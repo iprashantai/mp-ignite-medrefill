@@ -1,0 +1,57 @@
+{
+  "version": "1.0",
+  "project": {
+    "name": "Ignite Health",
+    "description": "AI-native medication adherence management platform",
+    "type": "healthcare-saas"
+  },
+  "context": {
+    "alwaysRead": [
+      "CLAUDE.md"
+    ],
+    "readOnRequest": [
+      "docs/FHIR_GUIDE.md",
+      "docs/IMPLEMENTATION_ROADMAP.md",
+      "specs/pdc-calculation.md",
+      "skills/fhir-resource.md",
+      "skills/medplum-bot.md"
+    ]
+  },
+  "preferences": {
+    "codeStyle": {
+      "language": "typescript",
+      "strictMode": true,
+      "noAny": true,
+      "preferZodValidation": true,
+      "preferResultPattern": true
+    },
+    "testing": {
+      "framework": "vitest",
+      "coverage": 80
+    },
+    "documentation": {
+      "jsdoc": true,
+      "inline": true
+    }
+  },
+  "constraints": {
+    "security": [
+      "Never log PHI in plain text",
+      "Always use Zod for external data validation",
+      "Always use HTTPS for API calls",
+      "Always create audit logs for PHI access"
+    ],
+    "clinical": [
+      "PDC calculation must be 100% deterministic - no AI",
+      "Drug interaction checking must use database lookup - no AI",
+      "AI recommendations must always be validated by schema",
+      "Low confidence (<0.70) must escalate to human"
+    ],
+    "compliance": [
+      "Follow HIPAA safe harbor for de-identification",
+      "Create AuditEvent for all resource access",
+      "Session timeout required",
+      "MFA recommended for production"
+    ]
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "name": "mp-ignite-medrefill",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build --turbopack",
+    "start": "next start",
+    "test": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "typecheck": "tsc --noEmit",
+    "medplum:login": "npx medplum login",
+    "medplum:deploy": "npx medplum bot deploy"
+  },
+  "dependencies": {
+    "@aws-sdk/client-bedrock-runtime": "^3.958.0",
+    "@medplum/core": "^5.0.10",
+    "@medplum/fhirtypes": "^5.0.10",
+    "@medplum/react": "^5.0.10",
+    "@radix-ui/react-dialog": "^1.1.15",
+    "@radix-ui/react-label": "^2.1.8",
+    "@radix-ui/react-slot": "^1.2.4",
+    "@radix-ui/react-tabs": "^1.1.13",
+    "@tanstack/react-query": "^5.90.12",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "date-fns": "^4.1.0",
+    "lucide-react": "^0.454.0",
+    "next": "15.5.9",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
+    "recharts": "^2.15.4",
+    "tailwind-merge": "^2.6.0",
+    "zod": "^3.25.76",
+    "zustand": "^5.0.9"
+  },
+  "devDependencies": {
+    "@medplum/cli": "^5.0.10",
+    "@tailwindcss/postcss": "^4",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.1",
+    "@types/node": "^22.19.3",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.1.2",
+    "@vitest/coverage-v8": "^4.0.16",
+    "eslint": "^8.57.1",
+    "eslint-config-next": "^15.5.9",
+    "tailwindcss": "^4",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.16"
+  }
+}
