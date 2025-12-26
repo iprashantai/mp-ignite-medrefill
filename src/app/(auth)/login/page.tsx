@@ -33,16 +33,30 @@ export default function LoginPage() {
         throw new Error('Client ID is not configured');
       }
 
+      // Generate a random state for CSRF protection
+      const generateState = () => {
+        if (typeof crypto !== 'undefined' && crypto.randomUUID) {
+          return crypto.randomUUID();
+        }
+        // Fallback for older browsers
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
+          const r = (Math.random() * 16) | 0;
+          const v = c === 'x' ? r : (r & 0x3) | 0x8;
+          return v.toString(16);
+        });
+      };
+
       // Build OAuth authorization URL manually
+      const state = generateState();
       const authUrl = new URL('oauth2/authorize', baseUrl);
       authUrl.searchParams.set('response_type', 'code');
       authUrl.searchParams.set('client_id', clientId);
       authUrl.searchParams.set('redirect_uri', redirectUri);
       authUrl.searchParams.set('scope', 'openid profile');
-      authUrl.searchParams.set('state', crypto.randomUUID());
+      authUrl.searchParams.set('state', state);
 
       // Store state for CSRF protection
-      sessionStorage.setItem('oauth_state', authUrl.searchParams.get('state') || '');
+      sessionStorage.setItem('oauth_state', state);
 
       // Redirect to Medplum authorization page
       window.location.href = authUrl.toString();
