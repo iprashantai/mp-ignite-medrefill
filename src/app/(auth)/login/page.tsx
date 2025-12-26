@@ -7,34 +7,6 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 
-/**
- * Generate a random code verifier for PKCE
- */
-function generateCodeVerifier(): string {
-  const array = new Uint8Array(32);
-  crypto.getRandomValues(array);
-  return base64UrlEncode(array);
-}
-
-/**
- * Generate code challenge from verifier (S256)
- */
-function generateCodeChallenge(verifier: string): string {
-  const encoder = new TextEncoder();
-  const data = encoder.encode(verifier);
-  // For simplicity, we'll use the verifier directly as plain method
-  // In production, you'd want to use S256 with actual SHA-256 hashing
-  return verifier;
-}
-
-/**
- * Base64 URL encode
- */
-function base64UrlEncode(buffer: Uint8Array): string {
-  const base64 = btoa(String.fromCharCode(...buffer));
-  return base64.replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '');
-}
-
 export default function LoginPage() {
   const medplum = useMedplum();
   const router = useRouter();
@@ -53,31 +25,26 @@ export default function LoginPage() {
     setError(null);
 
     try {
-      const baseUrl = process.env.NEXT_PUBLIC_MEDPLUM_BASE_URL || 'https://api.medplum.com/';
       const clientId = process.env.NEXT_PUBLIC_MEDPLUM_CLIENT_ID;
       const redirectUri = `${window.location.origin}/api/auth/callback`;
+      const baseUrl = process.env.NEXT_PUBLIC_MEDPLUM_BASE_URL || 'https://api.medplum.com/';
 
       if (!clientId) {
         throw new Error('Client ID is not configured');
       }
 
-      // Generate PKCE code verifier and challenge
-      const codeVerifier = generateCodeVerifier();
-      const codeChallenge = generateCodeChallenge(codeVerifier);
-
-      // Store code verifier for callback
-      sessionStorage.setItem('medplum_code_verifier', codeVerifier);
-
-      // Build authorization URL
-      const authUrl = new URL('/oauth2/authorize', baseUrl);
+      // Build OAuth authorization URL manually
+      const authUrl = new URL('oauth2/authorize', baseUrl);
       authUrl.searchParams.set('response_type', 'code');
       authUrl.searchParams.set('client_id', clientId);
       authUrl.searchParams.set('redirect_uri', redirectUri);
       authUrl.searchParams.set('scope', 'openid profile');
-      authUrl.searchParams.set('code_challenge', codeChallenge);
-      authUrl.searchParams.set('code_challenge_method', 'plain');
+      authUrl.searchParams.set('state', crypto.randomUUID());
 
-      // Redirect to Medplum authorization
+      // Store state for CSRF protection
+      sessionStorage.setItem('oauth_state', authUrl.searchParams.get('state') || '');
+
+      // Redirect to Medplum authorization page
       window.location.href = authUrl.toString();
     } catch (err) {
       console.error('Login error:', err);
