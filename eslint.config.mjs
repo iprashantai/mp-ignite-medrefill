@@ -36,6 +36,13 @@ const eslintConfig = [
       'max-lines-per-function': ['warn', { max: 200, skipBlankLines: true, skipComments: true }],
     },
   },
+  // Test files have many test cases - disable function length limit
+  {
+    files: ['**/*.test.ts', '**/*.test.tsx', '**/*.spec.ts', '**/*.spec.tsx'],
+    rules: {
+      'max-lines-per-function': 'off',
+    },
+  },
   {
     ignores: [
       '.next/',
