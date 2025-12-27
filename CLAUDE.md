@@ -71,6 +71,138 @@ Primary resources we use:
 - `AllergyIntolerance` - Safety checking
 - `Flag` - Urgency markers, alerts
 
+## Medplum-First Development (CRITICAL)
+
+**ALWAYS use Medplum's native components before writing custom code.**
+
+Medplum is a production-grade, HIPAA-compliant platform. Its components handle edge cases, security, and performance that custom code often misses.
+
+### Required: Use Native Components
+
+| Need | Use This | NOT This |
+|------|----------|----------|
+| Search/browse resources | `<SearchControl>` | Custom tables with `useSearchResources` |
+| Display single resource | `<ResourceTable>` | Custom field rendering |
+| Patient info display | `<PatientHeader>`, `<PatientSummary>` | Custom patient cards |
+| Authentication | `<SignInForm>` | Custom OAuth flows |
+| Resource forms | `<ResourceForm>`, `<QuestionnaireForm>` | Custom form builders |
+| Data fetching | `useSearch`, `useSearchResources` | Custom fetch + useState |
+| Real-time updates | `useSubscription` | Polling or custom WebSocket |
+
+### Component Usage Examples
+
+```typescript
+// CORRECT: Use Medplum's SearchControl
+import { SearchControl } from '@medplum/react';
+
+<SearchControl
+  search={{ resourceType: 'Patient' }}
+  onChange={(e) => setSearch(e.definition)}
+  onClick={(e) => handlePatientSelect(e.resource)}
+/>
+
+// WRONG: Custom implementation
+const [patients, loading] = useSearchResources('Patient', {...});
+// Then manually building table, handling pagination, filters...
+```
+
+```typescript
+// CORRECT: Use Medplum's ResourceTable for display
+import { ResourceTable } from '@medplum/react';
+
+<ResourceTable value={patient} />
+
+// WRONG: Manually rendering each field
+<div>{patient.name?.[0]?.given?.join(' ')}</div>
+```
+
+### When Custom UI is Acceptable
+
+Only write custom components when:
+1. **Brand-specific styling** - Wrap Medplum components, don't replace them
+2. **Domain-specific workflows** - E.g., PDC-specific visualizations
+3. **AI integration UI** - Confidence scores, recommendation cards
+4. **Medplum has no equivalent** - Check docs first!
+
+### UI Library Strategy (IMPORTANT)
+
+We use **two UI libraries** with clear boundaries:
+
+| Area | Library | Components | Reason |
+|------|---------|------------|--------|
+| **Developer Tools** | Mantine | `/dev/*`, `/[resourceType]/[id]` | Medplum components require Mantine |
+| **Main Application** | shadcn/ui | Dashboard, Queue, Patients, Analytics | Custom, modern UI |
+
+**Rules:**
+1. **Dev tools pages** (`/dev/explorer`, `/dev/search`, resource detail pages): Use Mantine + Medplum native components
+2. **Application pages** (everything else): Use shadcn/ui + Tailwind CSS
+3. **Never mix** shadcn/ui and Mantine components on the same page - causes CSS conflicts
+4. **Medplum hooks** (`useMedplum`, `useSearchResources`) can be used anywhere - they don't have UI
+
+```typescript
+// DEV TOOLS - Use Mantine
+import { Paper, Stack, Tabs, Button } from '@mantine/core';
+import { SearchControl, ResourceTable } from '@medplum/react';
+
+// MAIN APP - Use shadcn/ui
+import { Card, CardContent } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { useMedplum } from '@medplum/react'; // Hooks are fine
+```
+
+### Provider Setup (Required)
+
+```typescript
+// src/lib/medplum/provider.tsx
+import { MedplumProvider } from '@medplum/react';
+import { MantineProvider } from '@mantine/core';
+import '@mantine/core/styles.css';
+
+// MantineProvider is REQUIRED for Medplum React components
+export function AppProvider({ children }) {
+  return (
+    <MantineProvider>
+      <MedplumProvider medplum={medplum}>
+        {children}
+      </MedplumProvider>
+    </MantineProvider>
+  );
+}
+```
+
+### Available Medplum Components
+
+**Authentication:**
+- `SignInForm` - Full auth with email, Google, MFA
+- `RegisterForm` - User registration
+
+**Search & Display:**
+- `SearchControl` - Full search UI with filters, sort, pagination
+- `ResourceTable` - Display any FHIR resource as table
+- `ResourceForm` - Auto-generated forms for any resource
+
+**Patient:**
+- `PatientHeader` - Patient banner
+- `PatientSummary` - Patient overview card
+- `PatientTimeline` - Activity timeline
+
+**Clinical:**
+- `DiagnosticReportDisplay` - Lab results
+- `ObservationTable` - Observations grid
+- `QuestionnaireForm` - FHIR questionnaires
+
+**Inputs:**
+- `ReferenceInput` - Select FHIR references
+- `CodeableConceptInput` - Select coded values
+- `DateTimeInput` - Date/time picker
+
+**Hooks:**
+- `useMedplum()` - Access MedplumClient
+- `useMedplumProfile()` - Current user
+- `useSearchResources()` - Search with caching
+- `useResource()` - Fetch by reference
+- `useSubscription()` - Real-time updates
+
 ## Coding Standards
 
 ### TypeScript Requirements
@@ -315,14 +447,16 @@ const CONFIDENCE_THRESHOLDS = {
 
 ## Common Mistakes to Avoid
 
-1. **DO NOT** use `any` type in TypeScript
-2. **DO NOT** skip Zod validation for external data
-3. **DO NOT** hardcode Medplum credentials
-4. **DO NOT** log PHI
-5. **DO NOT** trust AI output without validation
-6. **DO NOT** use AI for deterministic calculations (PDC, interactions)
-7. **DO NOT** skip error handling for async operations
-8. **DO NOT** create FHIR resources without required fields
+1. **DO NOT** write custom UI when Medplum has a native component
+2. **DO NOT** use `any` type in TypeScript
+3. **DO NOT** skip Zod validation for external data
+4. **DO NOT** hardcode Medplum credentials
+5. **DO NOT** log PHI
+6. **DO NOT** trust AI output without validation
+7. **DO NOT** use AI for deterministic calculations (PDC, interactions)
+8. **DO NOT** skip error handling for async operations
+9. **DO NOT** create FHIR resources without required fields
+10. **DO NOT** build custom tables/forms when `SearchControl`/`ResourceForm` exist
 
 ## Quick Reference Commands
 
