@@ -1,0 +1,173 @@
+{
+  "title": "Ignite Health - FHIR Explorer",
+  "version": "2.4",
+  "settings": {
+    "pagenumber": 0,
+    "editable": true
+  },
+  "pages": [
+    {
+      "title": "Overview",
+      "reports": [
+        {
+          "id": "a1",
+          "title": "Database Summary",
+          "query": "MATCH (n)\nRETURN labels(n)[0] AS Type, count(n) AS Count\nORDER BY Count DESC",
+          "width": 4,
+          "height": 2,
+          "x": 0,
+          "y": 0,
+          "type": "bar",
+          "selection": {
+            "index": "Type",
+            "value": "Count",
+            "key": "(none)"
+          },
+          "settings": {}
+        },
+        {
+          "id": "a2",
+          "title": "Medication Adherence Classes",
+          "query": "MATCH (m:Medication)\nWHERE m.adherenceClass IS NOT NULL\nRETURN m.adherenceClass AS Class, count(m) AS Medications",
+          "width": 4,
+          "height": 2,
+          "x": 4,
+          "y": 0,
+          "type": "pie",
+          "selection": {
+            "index": "Class",
+            "value": "Medications",
+            "key": "(none)"
+          },
+          "settings": {}
+        },
+        {
+          "id": "a3",
+          "title": "Patients per Adherence Class",
+          "query": "MATCH (p:Patient)-[:HAS_MEDICATION_DISPENSE]->(md)-[:OF_MEDICATION]->(m)\nWHERE m.adherenceClass IS NOT NULL\nRETURN m.adherenceClass AS Class, count(DISTINCT p) AS Patients",
+          "width": 4,
+          "height": 2,
+          "x": 8,
+          "y": 0,
+          "type": "bar",
+          "selection": {
+            "index": "Class",
+            "value": "Patients",
+            "key": "(none)"
+          },
+          "settings": {}
+        },
+        {
+          "id": "a4",
+          "title": "Top 10 Conditions",
+          "query": "MATCH (p:Patient)-[:HAS_CONDITION]->(c:Condition)\nRETURN c.description AS Condition, count(DISTINCT p) AS Patients\nORDER BY Patients DESC\nLIMIT 10",
+          "width": 6,
+          "height": 3,
+          "x": 0,
+          "y": 2,
+          "type": "table",
+          "selection": {},
+          "settings": {}
+        },
+        {
+          "id": "a5",
+          "title": "Sample Patient Graph",
+          "query": "MATCH path = (p:Patient)-[:HAS_MEDICATION_DISPENSE]->(md)-[:OF_MEDICATION]->(m)\nWHERE m.adherenceClass IS NOT NULL\nRETURN path LIMIT 30",
+          "width": 6,
+          "height": 3,
+          "x": 6,
+          "y": 2,
+          "type": "graph",
+          "selection": {
+            "Patient": "lastName",
+            "Medication": "description",
+            "MedicationDispense": "(label)"
+          },
+          "settings": {}
+        }
+      ]
+    },
+    {
+      "title": "Medications",
+      "reports": [
+        {
+          "id": "b1",
+          "title": "All Medications",
+          "query": "MATCH (m:Medication)\nRETURN m.description AS Medication, m.adherenceClass AS Class, m.code AS Code\nORDER BY m.adherenceClass, m.description",
+          "width": 6,
+          "height": 4,
+          "x": 0,
+          "y": 0,
+          "type": "table",
+          "selection": {},
+          "settings": {}
+        },
+        {
+          "id": "b2",
+          "title": "Dispenses Over Time",
+          "query": "MATCH (md:MedicationDispense)-[:OF_MEDICATION]->(m)\nWHERE m.adherenceClass IS NOT NULL\nRETURN m.adherenceClass AS Class, count(md) AS Dispenses",
+          "width": 6,
+          "height": 4,
+          "x": 6,
+          "y": 0,
+          "type": "pie",
+          "selection": {
+            "index": "Class",
+            "value": "Dispenses",
+            "key": "(none)"
+          },
+          "settings": {}
+        }
+      ]
+    },
+    {
+      "title": "Patients",
+      "reports": [
+        {
+          "id": "c1",
+          "title": "Patient List",
+          "query": "MATCH (p:Patient)\nRETURN p.firstName AS First, p.lastName AS Last, p.gender AS Gender, p.birthDate AS DOB, p.city AS City\nORDER BY p.lastName\nLIMIT 50",
+          "width": 6,
+          "height": 4,
+          "x": 0,
+          "y": 0,
+          "type": "table",
+          "selection": {},
+          "settings": {}
+        },
+        {
+          "id": "c2",
+          "title": "Patient Demographics",
+          "query": "MATCH (p:Patient)\nRETURN p.gender AS Gender, count(p) AS Count",
+          "width": 3,
+          "height": 2,
+          "x": 6,
+          "y": 0,
+          "type": "pie",
+          "selection": {
+            "index": "Gender",
+            "value": "Count",
+            "key": "(none)"
+          },
+          "settings": {}
+        },
+        {
+          "id": "c3",
+          "title": "Patients by City",
+          "query": "MATCH (p:Patient)\nRETURN p.city AS City, count(p) AS Count\nORDER BY Count DESC\nLIMIT 10",
+          "width": 3,
+          "height": 2,
+          "x": 9,
+          "y": 0,
+          "type": "bar",
+          "selection": {
+            "index": "City",
+            "value": "Count",
+            "key": "(none)"
+          },
+          "settings": {}
+        }
+      ]
+    }
+  ]
+}
