@@ -13,6 +13,9 @@ import {
   Settings,
   LogOut,
   Pill,
+  Code2,
+  Database,
+  Search,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -21,6 +24,11 @@ const navigation = [
   { name: 'Refill Queue', href: '/queue', icon: ClipboardList },
   { name: 'Patients', href: '/patients', icon: Users },
   { name: 'Analytics', href: '/analytics', icon: BarChart3 },
+];
+
+const devTools = [
+  { name: 'FHIR Explorer', href: '/dev/explorer', icon: Database },
+  { name: 'Search Playground', href: '/dev/search', icon: Search },
 ];
 
 export default function DashboardLayout({
@@ -72,25 +80,57 @@ export default function DashboardLayout({
         </div>
 
         {/* Navigation */}
-        <nav className="flex-1 space-y-1 p-4">
-          {navigation.map((item) => {
-            const isActive = pathname === item.href;
-            return (
-              <Link
-                key={item.name}
-                href={item.href}
-                className={cn(
-                  'flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors',
-                  isActive
-                    ? 'bg-primary text-primary-foreground'
-                    : 'text-muted-foreground hover:bg-muted hover:text-foreground'
-                )}
-              >
-                <item.icon className="h-5 w-5" />
-                {item.name}
-              </Link>
-            );
-          })}
+        <nav className="flex-1 overflow-y-auto p-4">
+          <div className="space-y-1">
+            {navigation.map((item) => {
+              const isActive = pathname === item.href;
+              return (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className={cn(
+                    'flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors',
+                    isActive
+                      ? 'bg-primary text-primary-foreground'
+                      : 'text-muted-foreground hover:bg-muted hover:text-foreground'
+                  )}
+                >
+                  <item.icon className="h-5 w-5" />
+                  {item.name}
+                </Link>
+              );
+            })}
+          </div>
+
+          {/* Developer Tools Section */}
+          <div className="mt-8">
+            <div className="flex items-center gap-2 px-3 py-2">
+              <Code2 className="h-4 w-4 text-muted-foreground" />
+              <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                Developer Tools
+              </span>
+            </div>
+            <div className="space-y-1">
+              {devTools.map((item) => {
+                const isActive = pathname === item.href || pathname.startsWith(item.href + '/');
+                return (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    className={cn(
+                      'flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors',
+                      isActive
+                        ? 'bg-primary text-primary-foreground'
+                        : 'text-muted-foreground hover:bg-muted hover:text-foreground'
+                    )}
+                  >
+                    <item.icon className="h-5 w-5" />
+                    {item.name}
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
         </nav>
 
         {/* User section */}

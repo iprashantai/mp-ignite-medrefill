@@ -1,9 +1,10 @@
 'use client';
 
-import { useMedplum, useMedplumProfile } from '@medplum/react';
+import { useMedplumProfile, useSearchResources } from '@medplum/react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { Skeleton } from '@/components/ui/skeleton';
 import {
   ClipboardList,
   Users,
@@ -15,14 +16,37 @@ import {
 import Link from 'next/link';
 
 export default function DashboardPage() {
-  const medplum = useMedplum();
   const profile = useMedplumProfile();
 
-  // Placeholder stats - will be replaced with real data
+  // Use Medplum's built-in hooks for HIPAA-compliant data access
+  const [patients, patientsLoading] = useSearchResources('Patient', {
+    active: 'true',
+    _count: '100',
+  });
+
+  const [pendingTasks, tasksLoading] = useSearchResources('Task', {
+    status: 'requested,received,accepted,in-progress',
+    _count: '100',
+  });
+
+  const [urgentTasks, urgentLoading] = useSearchResources('Task', {
+    status: 'requested,received,accepted,in-progress',
+    priority: 'urgent,stat',
+    _count: '50',
+  });
+
+  const [completedToday, completedLoading] = useSearchResources('Task', {
+    status: 'completed',
+    _count: '100',
+  });
+
+  const isLoading = patientsLoading || tasksLoading || urgentLoading || completedLoading;
+
   const stats = [
     {
       title: 'Pending Reviews',
-      value: '—',
+      value: pendingTasks?.length ?? 0,
+      loading: tasksLoading,
       description: 'Refills awaiting review',
       icon: ClipboardList,
       href: '/queue',
@@ -30,7 +54,8 @@ export default function DashboardPage() {
     },
     {
       title: 'Active Patients',
-      value: '—',
+      value: patients?.length ?? 0,
+      loading: patientsLoading,
       description: 'In medication programs',
       icon: Users,
       href: '/patients',
@@ -38,7 +63,8 @@ export default function DashboardPage() {
     },
     {
       title: 'Urgent Items',
-      value: '—',
+      value: urgentTasks?.length ?? 0,
+      loading: urgentLoading,
       description: 'Require immediate attention',
       icon: AlertTriangle,
       href: '/queue?priority=urgent',
@@ -46,7 +72,8 @@ export default function DashboardPage() {
     },
     {
       title: 'Completed Today',
-      value: '—',
+      value: completedToday?.length ?? 0,
+      loading: completedLoading,
       description: 'Reviews processed',
       icon: CheckCircle,
       href: '/analytics',
@@ -54,12 +81,14 @@ export default function DashboardPage() {
     },
   ];
 
+  const displayName = profile?.name?.[0]?.given?.[0] || 'User';
+
   return (
     <div className="space-y-8">
       {/* Header */}
       <div>
         <h1 className="text-3xl font-bold tracking-tight">
-          Welcome back, {profile?.name?.[0]?.given?.[0] || 'User'}
+          Welcome back, {displayName}
         </h1>
         <p className="text-muted-foreground">
           Here's what's happening with your medication adherence program today.
@@ -104,7 +133,11 @@ export default function DashboardPage() {
               <stat.icon className={`h-5 w-5 ${stat.color}`} />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">{stat.value}</div>
+              {stat.loading ? (
+                <Skeleton className="h-8 w-16" />
+              ) : (
+                <div className="text-2xl font-bold">{stat.value}</div>
+              )}
               <p className="text-xs text-muted-foreground">{stat.description}</p>
             </CardContent>
           </Card>

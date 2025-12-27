@@ -1,12 +1,15 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { useMedplum } from '@medplum/react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Alert, AlertDescription } from '@/components/ui/alert';
+import { Center, Paper, Title, Text, Loader, Alert, Anchor, Stack } from '@mantine/core';
 
-export default function CallbackPage() {
+/**
+ * OAuth Callback Content
+ * Handles the authorization code exchange with Medplum
+ */
+function CallbackContent() {
   const medplum = useMedplum();
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -15,9 +18,10 @@ export default function CallbackPage() {
   useEffect(() => {
     const code = searchParams.get('code');
     const errorParam = searchParams.get('error');
+    const errorDescription = searchParams.get('error_description');
 
     if (errorParam) {
-      setError(errorParam);
+      setError(errorDescription || errorParam);
       return;
     }
 
@@ -26,15 +30,15 @@ export default function CallbackPage() {
       return;
     }
 
-    // Exchange code for tokens
+    // Exchange code for tokens using Medplum's built-in handling
     const handleCallback = async () => {
       try {
+        // processCode handles PKCE validation and token exchange
         await medplum.processCode(code);
-        // Redirect to dashboard on success
         router.push('/');
       } catch (err) {
-        console.error('Token exchange failed:', err);
-        setError(err instanceof Error ? err.message : 'Authentication failed');
+        console.error('Authentication failed:', err);
+        setError(err instanceof Error ? err.message : 'Authentication failed. Please try again.');
       }
     };
 
@@ -43,39 +47,54 @@ export default function CallbackPage() {
 
   if (error) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-background p-4">
-        <Card className="w-full max-w-md">
-          <CardHeader>
-            <CardTitle className="text-destructive">Authentication Error</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <Alert variant="destructive">
-              <AlertDescription>{error}</AlertDescription>
+      <Center mih="100vh" bg="gray.0">
+        <Paper shadow="md" p="xl" radius="md" withBorder maw={400} w="100%">
+          <Stack gap="md">
+            <Title order={3} c="red">Authentication Error</Title>
+            <Alert color="red" variant="light">
+              {error}
             </Alert>
-            <a
-              href="/login"
-              className="mt-4 block text-center text-sm text-primary hover:underline"
-            >
+            <Anchor href="/login" ta="center">
               Return to login
-            </a>
-          </CardContent>
-        </Card>
-      </div>
+            </Anchor>
+          </Stack>
+        </Paper>
+      </Center>
     );
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background p-4">
-      <Card className="w-full max-w-md">
-        <CardHeader>
-          <CardTitle className="text-center">Signing you in...</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="flex justify-center">
-            <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent" />
-          </div>
-        </CardContent>
-      </Card>
-    </div>
+    <Center mih="100vh" bg="gray.0">
+      <Paper shadow="md" p="xl" radius="md" withBorder maw={400} w="100%">
+        <Stack align="center" gap="md">
+          <Loader size="lg" />
+          <Title order={4}>Signing you in...</Title>
+          <Text size="sm" c="dimmed">Please wait while we complete authentication</Text>
+        </Stack>
+      </Paper>
+    </Center>
+  );
+}
+
+/**
+ * OAuth Callback Page
+ * Wrapped in Suspense for useSearchParams (Next.js requirement)
+ */
+export default function CallbackPage() {
+  return (
+    <Suspense
+      fallback={
+        <Center mih="100vh" bg="gray.0">
+          <Paper shadow="md" p="xl" radius="md" withBorder maw={400} w="100%">
+            <Stack align="center" gap="md">
+              <Loader size="lg" />
+              <Title order={4}>Loading...</Title>
+            </Stack>
+          </Paper>
+        </Center>
+      }
+    >
+      <CallbackContent />
+    </Suspense>
   );
 }

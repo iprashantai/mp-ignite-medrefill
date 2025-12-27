@@ -1,102 +1,91 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useMedplum } from '@medplum/react';
+import { SignInForm, useMedplum, useMedplumProfile } from '@medplum/react';
 import { useRouter } from 'next/navigation';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Alert, AlertDescription } from '@/components/ui/alert';
+import { Container, Paper, Title, Text, Center, Stack, Button, Divider } from '@mantine/core';
 
 export default function LoginPage() {
   const medplum = useMedplum();
+  const profile = useMedplumProfile();
   const router = useRouter();
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [isRedirecting, setIsRedirecting] = useState(false);
 
-  // Check if already logged in
+  // Redirect if already logged in
   useEffect(() => {
-    if (medplum.getActiveLogin()) {
+    if (profile) {
       router.push('/');
     }
-  }, [medplum, router]);
+  }, [profile, router]);
 
-  const handleLogin = () => {
-    setIsLoading(true);
-    setError(null);
+  const handleSuccess = () => {
+    router.push('/');
+  };
 
+  // Redirect to Medplum's OAuth login page (supports Google, email, etc.)
+  const handleMedplumLogin = async () => {
+    setIsRedirecting(true);
     try {
       const clientId = process.env.NEXT_PUBLIC_MEDPLUM_CLIENT_ID;
-      const redirectUri = `${window.location.origin}/api/auth/callback`;
       const baseUrl = process.env.NEXT_PUBLIC_MEDPLUM_BASE_URL || 'https://api.medplum.com/';
+      const redirectUri = `${window.location.origin}/api/auth/callback`;
 
-      if (!clientId) {
-        throw new Error('Client ID is not configured');
-      }
+      // Start PKCE flow
+      const pkce = await medplum.startPkce();
 
-      // Generate a random state for CSRF protection
-      const generateState = () => {
-        if (typeof crypto !== 'undefined' && crypto.randomUUID) {
-          return crypto.randomUUID();
-        }
-        // Fallback for older browsers
-        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
-          const r = (Math.random() * 16) | 0;
-          const v = c === 'x' ? r : (r & 0x3) | 0x8;
-          return v.toString(16);
-        });
-      };
-
-      // Build OAuth authorization URL manually
-      const state = generateState();
+      // Build OAuth URL
       const authUrl = new URL('oauth2/authorize', baseUrl);
       authUrl.searchParams.set('response_type', 'code');
-      authUrl.searchParams.set('client_id', clientId);
+      authUrl.searchParams.set('client_id', clientId || '');
       authUrl.searchParams.set('redirect_uri', redirectUri);
       authUrl.searchParams.set('scope', 'openid profile');
-      authUrl.searchParams.set('state', state);
+      authUrl.searchParams.set('code_challenge', pkce.codeChallenge);
+      authUrl.searchParams.set('code_challenge_method', pkce.codeChallengeMethod);
 
-      // Store state for CSRF protection
-      sessionStorage.setItem('oauth_state', state);
-
-      // Redirect to Medplum authorization page
       window.location.href = authUrl.toString();
     } catch (err) {
       console.error('Login error:', err);
-      setError(err instanceof Error ? err.message : 'Failed to start login');
-      setIsLoading(false);
+      setIsRedirecting(false);
     }
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background p-4">
-      <Card className="w-full max-w-md">
-        <CardHeader className="text-center">
-          <CardTitle className="text-2xl font-bold">Ignite Health</CardTitle>
-          <CardDescription>
-            Medication Adherence Management Platform
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          {error && (
-            <Alert variant="destructive">
-              <AlertDescription>{error}</AlertDescription>
-            </Alert>
-          )}
+    <Center mih="100vh" bg="gray.0">
+      <Container size="xs" w="100%">
+        <Paper shadow="md" p="xl" radius="md" withBorder>
+          <Stack gap="lg">
+            <div style={{ textAlign: 'center' }}>
+              <Title order={2} mb="xs">Ignite Health</Title>
+              <Text size="sm" c="dimmed">
+                Medication Adherence Management Platform
+              </Text>
+            </div>
 
-          <Button
-            onClick={handleLogin}
-            disabled={isLoading}
-            className="w-full"
-            size="lg"
-          >
-            {isLoading ? 'Redirecting...' : 'Sign in with Medplum'}
-          </Button>
+            {/* Primary: Sign in with Medplum (supports Google) */}
+            <Button
+              size="lg"
+              fullWidth
+              onClick={handleMedplumLogin}
+              loading={isRedirecting}
+            >
+              Sign in with Medplum
+            </Button>
 
-          <p className="text-center text-sm text-muted-foreground">
-            Secure authentication via Medplum FHIR Platform
-          </p>
-        </CardContent>
-      </Card>
-    </div>
+            <Text size="xs" c="dimmed" ta="center">
+              Use your Medplum account (Google, email, or SSO)
+            </Text>
+
+            <Divider label="Or sign in with email" labelPosition="center" />
+
+            {/* Alternative: Direct email/password */}
+            <SignInForm
+              onSuccess={handleSuccess}
+              projectId={process.env.NEXT_PUBLIC_MEDPLUM_PROJECT_ID}
+              disableGoogleAuth={true}
+            />
+          </Stack>
+        </Paper>
+      </Container>
+    </Center>
   );
 }
