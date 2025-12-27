@@ -1,0 +1,28 @@
+# Build outputs
+.next/
+out/
+build/
+dist/
+
+# Dependencies
+node_modules/
+
+# Coverage
+coverage/
+
+# Minified files
+*.min.js
+*.min.css
+
+# Lock files
+pnpm-lock.yaml
+package-lock.json
+yarn.lock
+
+# Neo4j data
+neo4j/backups/
+neo4j/import/
+
+# Generated files
+*.d.ts
+.vercel/

@@ -1,0 +1,90 @@
+# Gitleaks Configuration for Ignite Health
+# PHI and Secrets Detection for HIPAA Compliance
+
+[extend]
+useDefault = true
+
+# PHI Detection Rules
+[[rules]]
+id = "phi-ssn"
+description = "Social Security Number"
+regex = '''\b(?!000|666|9\d{2})\d{3}[- ]?(?!00)\d{2}[- ]?(?!0000)\d{4}\b'''
+tags = ["phi", "hipaa", "pii"]
+
+[[rules]]
+id = "phi-mrn"
+description = "Medical Record Number Pattern"
+regex = '''(?i)(?:mrn|medical.?record.?number|patient.?id)\s*[:=]?\s*['"]?([A-Z0-9]{5,20})['"]?'''
+tags = ["phi", "hipaa"]
+
+[[rules]]
+id = "phi-dob"
+description = "Date of Birth with Label"
+regex = '''(?i)(?:dob|date.?of.?birth|birth.?date)\s*[:=]?\s*['"]?\d{1,2}[/-]\d{1,2}[/-]\d{2,4}['"]?'''
+tags = ["phi", "hipaa", "pii"]
+
+[[rules]]
+id = "phi-medicare"
+description = "Medicare Beneficiary Identifier"
+regex = '''\b[1-9][A-Z][A-Z0-9][0-9]-?[A-Z][A-Z0-9][0-9]-?[A-Z]{2}[0-9]{2}\b'''
+tags = ["phi", "hipaa"]
+
+[[rules]]
+id = "phi-npi"
+description = "National Provider Identifier"
+regex = '''\b[12]\d{9}\b'''
+tags = ["phi", "hipaa"]
+
+# Medplum-Specific Secrets
+[[rules]]
+id = "medplum-client-secret"
+description = "Medplum Client Secret"
+regex = '''(?i)medplum[_-]?(?:client[_-]?)?secret\s*[:=]\s*['"]?[a-zA-Z0-9]{32,}['"]?'''
+tags = ["secret", "medplum"]
+
+[[rules]]
+id = "medplum-token"
+description = "Medplum Access Token"
+regex = '''(?i)medplum[_-]?(?:access[_-]?)?token\s*[:=]\s*['"]?[a-zA-Z0-9._-]{40,}['"]?'''
+tags = ["secret", "medplum"]
+
+# Healthcare API Keys
+[[rules]]
+id = "fhir-api-key"
+description = "FHIR API Key"
+regex = '''(?i)fhir[_-]?api[_-]?key\s*[:=]\s*['"]?[a-zA-Z0-9]{20,}['"]?'''
+tags = ["secret", "fhir"]
+
+# AWS Secrets (for Bedrock AI)
+[[rules]]
+id = "aws-access-key"
+description = "AWS Access Key ID"
+regex = '''(?i)aws[_-]?access[_-]?key[_-]?id\s*[:=]\s*['"]?(AKIA[0-9A-Z]{16})['"]?'''
+tags = ["secret", "aws"]
+
+[[rules]]
+id = "aws-secret-key"
+description = "AWS Secret Access Key"
+regex = '''(?i)aws[_-]?secret[_-]?(?:access[_-]?)?key\s*[:=]\s*['"]?([A-Za-z0-9/+=]{40})['"]?'''
+tags = ["secret", "aws"]
+
+# Allowlist - Exclude test files and fixtures
+[allowlist]
+description = "Allowlist for test files and fixtures"
+paths = [
+  '''\.test\.tsx?$''',
+  '''\.spec\.tsx?$''',
+  '''__tests__''',
+  '''__mocks__''',
+  '''fixtures''',
+  '''\.example$''',
+  '''\.sample$''',
+]
+
+# Exclude common false positives
+regexes = [
+  '''(?i)example''',
+  '''(?i)placeholder''',
+  '''(?i)your-.*-here''',
+  '''(?i)xxx+''',
+]

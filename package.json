@@ -7,10 +7,26 @@
     "build": "next build --turbopack",
     "start": "next start",
     "test": "vitest",
+    "test:ci": "vitest run --coverage --reporter=verbose",
     "test:coverage": "vitest run --coverage",
     "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "security:scan": "npx gitleaks detect --config .gitleaks.toml --no-git",
     "medplum:login": "npx medplum login",
-    "medplum:deploy": "npx medplum bot deploy"
+    "medplum:deploy": "npx medplum bot deploy",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "prettier --write",
+      "eslint --fix --max-warnings=0 --no-warn-ignored"
+    ],
+    "*.{json,md,css}": [
+      "prettier --write"
+    ]
   },
   "dependencies": {
     "@aws-sdk/client-bedrock-runtime": "^3.958.0",
@@ -42,6 +58,9 @@
     "zustand": "^5.0.9"
   },
   "devDependencies": {
+    "@commitlint/cli": "^20.2.0",
+    "@commitlint/config-conventional": "^20.2.0",
+    "@eslint/eslintrc": "^3.3.3",
     "@medplum/cli": "^5.0.10",
     "@tailwindcss/postcss": "^4",
     "@testing-library/jest-dom": "^6.9.1",
@@ -54,6 +73,10 @@
     "dotenv": "^17.2.3",
     "eslint": "^8.57.1",
     "eslint-config-next": "^15.5.9",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.7",
+    "prettier": "^3.7.4",
+    "prettier-plugin-tailwindcss": "^0.7.2",
     "tailwindcss": "^4",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3",
