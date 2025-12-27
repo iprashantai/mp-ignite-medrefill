@@ -13,7 +13,7 @@
  */
 
 import React from 'react';
-import { Badge, type BadgeSize } from './badge';
+import { Badge, type BadgeSize, type BadgeVariant } from './badge';
 import { getRunoutVariant, getRunoutLabel } from '@/lib/design-system/helpers';
 
 export interface RunoutBadgeProps {
@@ -27,7 +27,7 @@ export const RunoutBadge: React.FC<RunoutBadgeProps> = ({
   size = 'sm',
   className,
 }) => {
-  const variant = getRunoutVariant(daysToRunout);
+  const variant = getRunoutVariant(daysToRunout) as BadgeVariant;
   const label = getRunoutLabel(daysToRunout);
 
   return (

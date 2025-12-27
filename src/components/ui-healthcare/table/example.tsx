@@ -68,8 +68,8 @@ export function PatientTableExample() {
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [patients] = useState<Patient[]>(samplePatients);
 
-  // Use the table state hook
-  const { density, setDensity, getSortProps, sortData } = useTableState({
+  // Use the table state hook with Patient generic type
+  const { density, setDensity, getSortProps, sortData } = useTableState<Patient>({
     defaultDensity: 'compact',
     defaultSortColumn: 'name',
   });

@@ -12,7 +12,7 @@
  */
 
 import React from 'react';
-import { Badge, type BadgeSize } from './badge';
+import { Badge, type BadgeSize, type BadgeVariant } from './badge';
 import { getMeasureVariant, type MeasureType } from '@/lib/design-system/helpers';
 
 export interface MeasureBadgeProps {
@@ -24,7 +24,7 @@ export interface MeasureBadgeProps {
 export const MeasureBadge: React.FC<MeasureBadgeProps> = ({ measure, size = 'sm', className }) => {
   if (!measure) return null;
 
-  const variant = getMeasureVariant(measure as MeasureType);
+  const variant = getMeasureVariant(measure as MeasureType) as BadgeVariant;
 
   return (
     <Badge variant={variant} size={size} className={className}>

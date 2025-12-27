@@ -7,6 +7,9 @@
 
 import { colors, type FragilityTier, type PDCStatus, type BadgeVariant } from './tokens';
 
+// Re-export types for external use
+export type { FragilityTier, PDCStatus, BadgeVariant } from './tokens';
+
 // ============================================================================
 // FRAGILITY TIER HELPERS
 // ============================================================================

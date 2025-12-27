@@ -15,7 +15,7 @@
  */
 
 import React from 'react';
-import { Badge, type BadgeSize } from './badge';
+import { Badge, type BadgeSize, type BadgeVariant } from './badge';
 import {
   getFragilityVariant,
   getFragilityLabel,
@@ -29,7 +29,7 @@ export interface FragilityBadgeProps {
 }
 
 export const FragilityBadge: React.FC<FragilityBadgeProps> = ({ tier, size = 'sm', className }) => {
-  const variant = getFragilityVariant(tier);
+  const variant = getFragilityVariant(tier) as BadgeVariant;
   const label = getFragilityLabel(tier);
 
   return (

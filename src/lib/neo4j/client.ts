@@ -5,7 +5,7 @@
  * medication adherence analysis and FHIR visualization.
  */
 
-import neo4j, { Driver, Session, Record as Neo4jRecord } from 'neo4j-driver';
+import neo4j, { Driver, Session, Record as Neo4jRecord, Integer } from 'neo4j-driver';
 
 // Singleton driver instance
 let driver: Driver | null = null;
@@ -37,19 +37,15 @@ export function getNeo4jDriver(): Driver {
   if (!driver) {
     const config = getConfig();
 
-    driver = neo4j.driver(
-      config.uri,
-      neo4j.auth.basic(config.user, config.password),
-      {
-        maxConnectionPoolSize: 50,
-        connectionAcquisitionTimeout: 30000,
-        connectionTimeout: 30000,
-        logging: {
-          level: 'warn',
-          logger: (level, message) => console.log(`[Neo4j ${level}] ${message}`),
-        },
-      }
-    );
+    driver = neo4j.driver(config.uri, neo4j.auth.basic(config.user, config.password), {
+      maxConnectionPoolSize: 50,
+      connectionAcquisitionTimeout: 30000,
+      connectionTimeout: 30000,
+      logging: {
+        level: 'warn',
+        logger: (level, message) => console.warn(`[Neo4j ${level}] ${message}`),
+      },
+    });
   }
   return driver;
 }
@@ -87,7 +83,7 @@ export async function readQuery<T = Record<string, unknown>>(
   params: Record<string, unknown> = {}
 ): Promise<T[]> {
   const session = getNeo4jDriver().session({
-    defaultAccessMode: neo4j.session.READ
+    defaultAccessMode: neo4j.session.READ,
   });
 
   try {
@@ -95,7 +91,7 @@ export async function readQuery<T = Record<string, unknown>>(
     return result.records.map((record: Neo4jRecord) => {
       const obj: Record<string, unknown> = {};
       record.keys.forEach((key) => {
-        obj[key] = convertNeo4jValue(record.get(key));
+        obj[String(key)] = convertNeo4jValue(record.get(key));
       });
       return obj as T;
     });
@@ -113,7 +109,7 @@ export async function writeQuery<T = Record<string, unknown>>(
   params: Record<string, unknown> = {}
 ): Promise<T[]> {
   const session = getNeo4jDriver().session({
-    defaultAccessMode: neo4j.session.WRITE
+    defaultAccessMode: neo4j.session.WRITE,
   });
 
   try {
@@ -121,7 +117,7 @@ export async function writeQuery<T = Record<string, unknown>>(
     return result.records.map((record: Neo4jRecord) => {
       const obj: Record<string, unknown> = {};
       record.keys.forEach((key) => {
-        obj[key] = convertNeo4jValue(record.get(key));
+        obj[String(key)] = convertNeo4jValue(record.get(key));
       });
       return obj as T;
     });
@@ -134,11 +130,9 @@ export async function writeQuery<T = Record<string, unknown>>(
  * Execute a query within a transaction
  * Useful for multiple related writes
  */
-export async function withTransaction<T>(
-  work: (tx: Session) => Promise<T>
-): Promise<T> {
+export async function withTransaction<T>(work: (tx: Session) => Promise<T>): Promise<T> {
   const session = getNeo4jDriver().session({
-    defaultAccessMode: neo4j.session.WRITE
+    defaultAccessMode: neo4j.session.WRITE,
   });
 
   try {
@@ -146,6 +140,53 @@ export async function withTransaction<T>(
   } finally {
     await session.close();
   }
+}
+
+/**
+ * Convert Neo4j Date to ISO date string
+ */
+function convertNeo4jDate(value: { year: Integer; month: Integer; day: Integer }): string {
+  return new Date(
+    neo4j.integer.toNumber(value.year),
+    neo4j.integer.toNumber(value.month) - 1,
+    neo4j.integer.toNumber(value.day)
+  )
+    .toISOString()
+    .split('T')[0];
+}
+
+/**
+ * Convert Neo4j DateTime to ISO datetime string
+ */
+function convertNeo4jDateTime(value: {
+  year: Integer;
+  month: Integer;
+  day: Integer;
+  hour: Integer;
+  minute: Integer;
+  second: Integer;
+}): string {
+  return new Date(
+    neo4j.integer.toNumber(value.year),
+    neo4j.integer.toNumber(value.month) - 1,
+    neo4j.integer.toNumber(value.day),
+    neo4j.integer.toNumber(value.hour),
+    neo4j.integer.toNumber(value.minute),
+    neo4j.integer.toNumber(value.second)
+  ).toISOString();
+}
+
+/**
+ * Convert Neo4j Duration to plain object
+ */
+function convertNeo4jDuration(value: { days: Integer; months: Integer }): {
+  days: number;
+  months: number;
+} {
+  return {
+    days: neo4j.integer.toNumber(value.days),
+    months: neo4j.integer.toNumber(value.months),
+  };
 }
 
 /**
@@ -157,75 +198,44 @@ function convertNeo4jValue(value: unknown): unknown {
     return value;
   }
 
-  // Neo4j Integer
-  if (neo4j.isInt(value)) {
-    return neo4j.integer.toNumber(value);
-  }
+  // Primitive Neo4j types
+  if (neo4j.isInt(value)) return neo4j.integer.toNumber(value);
+  if (neo4j.isDate(value))
+    return convertNeo4jDate(value as { year: Integer; month: Integer; day: Integer });
+  if (neo4j.isDateTime(value))
+    return convertNeo4jDateTime(
+      value as {
+        year: Integer;
+        month: Integer;
+        day: Integer;
+        hour: Integer;
+        minute: Integer;
+        second: Integer;
+      }
+    );
+  if (neo4j.isDuration(value))
+    return convertNeo4jDuration(value as { days: Integer; months: Integer });
 
-  // Neo4j Date
-  if (neo4j.isDate(value)) {
-    const date = value as { year: { low: number }; month: { low: number }; day: { low: number } };
-    return new Date(
-      neo4j.integer.toNumber(date.year),
-      neo4j.integer.toNumber(date.month) - 1,
-      neo4j.integer.toNumber(date.day)
-    ).toISOString().split('T')[0];
-  }
-
-  // Neo4j DateTime
-  if (neo4j.isDateTime(value)) {
-    const dt = value as {
-      year: { low: number }; month: { low: number }; day: { low: number };
-      hour: { low: number }; minute: { low: number }; second: { low: number };
-    };
-    return new Date(
-      neo4j.integer.toNumber(dt.year),
-      neo4j.integer.toNumber(dt.month) - 1,
-      neo4j.integer.toNumber(dt.day),
-      neo4j.integer.toNumber(dt.hour),
-      neo4j.integer.toNumber(dt.minute),
-      neo4j.integer.toNumber(dt.second)
-    ).toISOString();
-  }
-
-  // Neo4j Duration
-  if (neo4j.isDuration(value)) {
-    const dur = value as { days: { low: number }; months: { low: number } };
-    return {
-      days: neo4j.integer.toNumber(dur.days),
-      months: neo4j.integer.toNumber(dur.months),
-    };
-  }
+  // Complex types require object check
+  if (!value || typeof value !== 'object') return value;
 
   // Neo4j Node
-  if (value && typeof value === 'object' && 'labels' in value && 'properties' in value) {
+  if ('labels' in value && 'properties' in value) {
     const node = value as { labels: string[]; properties: Record<string, unknown> };
-    return {
-      labels: node.labels,
-      ...convertNeo4jProperties(node.properties),
-    };
+    return { labels: node.labels, ...convertNeo4jProperties(node.properties) };
   }
 
   // Neo4j Relationship
-  if (value && typeof value === 'object' && 'type' in value && 'properties' in value) {
+  if ('type' in value && 'properties' in value) {
     const rel = value as { type: string; properties: Record<string, unknown> };
-    return {
-      type: rel.type,
-      ...convertNeo4jProperties(rel.properties),
-    };
+    return { type: rel.type, ...convertNeo4jProperties(rel.properties) };
   }
 
   // Arrays
-  if (Array.isArray(value)) {
-    return value.map(convertNeo4jValue);
-  }
+  if (Array.isArray(value)) return value.map(convertNeo4jValue);
 
-  // Objects
-  if (value && typeof value === 'object') {
-    return convertNeo4jProperties(value as Record<string, unknown>);
-  }
-
-  return value;
+  // Plain objects
+  return convertNeo4jProperties(value as Record<string, unknown>);
 }
 
 /**

@@ -4,7 +4,7 @@
  * Usage: npx tsx scripts/upload-synthea.ts
  */
 
-import { MedplumClient, ClientStorage } from '@medplum/core';
+import { MedplumClient, type IClientStorage } from '@medplum/core';
 import { Bundle } from '@medplum/fhirtypes';
 import * as fs from 'fs';
 import * as path from 'path';
@@ -16,14 +16,12 @@ dotenv.config({ path: '.env.local' });
 const SYNTHEA_DIR = '/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/fhir';
 
 // In-memory storage for Node.js environment
-class MemoryStorage implements ClientStorage {
+class MemoryStorage implements IClientStorage {
   private data: Record<string, string> = {};
 
   getInitPromise(): Promise<void> {
     return Promise.resolve();
   }
-
-  setInitPromise(): void {}
 
   clear(): void {
     this.data = {};
@@ -48,6 +46,10 @@ class MemoryStorage implements ClientStorage {
 
   setObject<T>(key: string, value: T | undefined): void {
     this.setString(key, value !== undefined ? JSON.stringify(value) : undefined);
+  }
+
+  makeKey(key: string): string {
+    return key;
   }
 }
 
@@ -76,9 +78,10 @@ async function main() {
   console.log('Authenticated successfully!\n');
 
   // Get all JSON files
-  const files = fs.readdirSync(SYNTHEA_DIR)
-    .filter(f => f.endsWith('.json'))
-    .map(f => path.join(SYNTHEA_DIR, f));
+  const files = fs
+    .readdirSync(SYNTHEA_DIR)
+    .filter((f) => f.endsWith('.json'))
+    .map((f) => path.join(SYNTHEA_DIR, f));
 
   console.log(`Found ${files.length} Synthea bundles to upload\n`);
 
@@ -117,7 +120,7 @@ async function main() {
 
     // Small delay to avoid rate limiting
     if (i < files.length - 1) {
-      await new Promise(resolve => setTimeout(resolve, 50));
+      await new Promise((resolve) => setTimeout(resolve, 50));
     }
   }
 
@@ -131,7 +134,7 @@ async function main() {
 
   if (errors.length > 0 && errors.length <= 20) {
     console.log('\nFailed files:');
-    errors.forEach(e => console.log(`  - ${e.file}: ${e.error.slice(0, 100)}`));
+    errors.forEach((e) => console.log(`  - ${e.file}: ${e.error.slice(0, 100)}`));
   }
 }
 
