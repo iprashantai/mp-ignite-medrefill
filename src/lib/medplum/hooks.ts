@@ -1,7 +1,6 @@
 'use client';
 
 import { useMedplum, useMedplumProfile, useSearchResources } from '@medplum/react';
-import type { Patient, MedicationRequest, Task } from '@medplum/fhirtypes';
 
 /**
  * Re-export Medplum hooks for convenience
@@ -36,11 +35,16 @@ export function useAuth() {
  * Uses Medplum's useSearchResources for automatic caching and refetching
  */
 export function useMedications(patientId: string | undefined) {
-  return useSearchResources('MedicationRequest', patientId ? {
-    patient: `Patient/${patientId}`,
-    status: 'active',
-    _sort: '-authoredon',
-  } : undefined);
+  return useSearchResources(
+    'MedicationRequest',
+    patientId
+      ? {
+          patient: `Patient/${patientId}`,
+          status: 'active',
+          _sort: '-authoredon',
+        }
+      : undefined
+  );
 }
 
 /**

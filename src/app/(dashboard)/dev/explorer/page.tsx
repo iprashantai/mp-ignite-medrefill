@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { useMedplum, SearchControl, ResourceTable } from '@medplum/react';
+import { SearchControl, ResourceTable } from '@medplum/react';
 import type { ResourceType, Resource } from '@medplum/fhirtypes';
 import type { SearchRequest } from '@medplum/core';
 import {
@@ -15,28 +15,55 @@ import {
   Tabs,
   Badge,
   Table,
-  Anchor
+  Anchor,
 } from '@mantine/core';
 import { IconInfoCircle } from '@tabler/icons-react';
 
 // Common FHIR resource types used in healthcare applications
 const RESOURCE_TYPES: { value: ResourceType; label: string; description: string }[] = [
-  { value: 'Patient', label: 'Patient', description: 'Demographics and administrative information about a patient' },
-  { value: 'Practitioner', label: 'Practitioner', description: 'Healthcare providers and clinical staff' },
-  { value: 'MedicationRequest', label: 'MedicationRequest', description: 'Prescription orders for medications' },
-  { value: 'MedicationDispense', label: 'MedicationDispense', description: 'Pharmacy dispense records (used for PDC)' },
+  {
+    value: 'Patient',
+    label: 'Patient',
+    description: 'Demographics and administrative information about a patient',
+  },
+  {
+    value: 'Practitioner',
+    label: 'Practitioner',
+    description: 'Healthcare providers and clinical staff',
+  },
+  {
+    value: 'MedicationRequest',
+    label: 'MedicationRequest',
+    description: 'Prescription orders for medications',
+  },
+  {
+    value: 'MedicationDispense',
+    label: 'MedicationDispense',
+    description: 'Pharmacy dispense records (used for PDC)',
+  },
   { value: 'Task', label: 'Task', description: 'Workflow tasks like refill reviews' },
-  { value: 'Observation', label: 'Observation', description: 'Clinical observations, lab results, PDC scores' },
+  {
+    value: 'Observation',
+    label: 'Observation',
+    description: 'Clinical observations, lab results, PDC scores',
+  },
   { value: 'Condition', label: 'Condition', description: 'Diagnoses and health conditions' },
-  { value: 'AllergyIntolerance', label: 'AllergyIntolerance', description: 'Patient allergies and intolerances' },
+  {
+    value: 'AllergyIntolerance',
+    label: 'AllergyIntolerance',
+    description: 'Patient allergies and intolerances',
+  },
   { value: 'Encounter', label: 'Encounter', description: 'Patient visits and interactions' },
-  { value: 'Organization', label: 'Organization', description: 'Healthcare organizations, pharmacies' },
+  {
+    value: 'Organization',
+    label: 'Organization',
+    description: 'Healthcare organizations, pharmacies',
+  },
   { value: 'Coverage', label: 'Coverage', description: 'Insurance coverage information' },
   { value: 'Flag', label: 'Flag', description: 'Alerts and warnings for patients' },
 ];
 
 export default function FhirExplorerPage() {
-  const medplum = useMedplum();
   const [selectedType, setSelectedType] = useState<ResourceType>('Patient');
   const [selectedResource, setSelectedResource] = useState<Resource | null>(null);
   const [search, setSearch] = useState<SearchRequest>({
@@ -45,7 +72,7 @@ export default function FhirExplorerPage() {
     count: 10, // Limit initial fetch for faster load
   });
 
-  const selectedTypeInfo = RESOURCE_TYPES.find(t => t.value === selectedType);
+  const selectedTypeInfo = RESOURCE_TYPES.find((t) => t.value === selectedType);
 
   const handleTypeChange = (type: ResourceType) => {
     setSelectedType(type);
@@ -62,14 +89,17 @@ export default function FhirExplorerPage() {
       {/* Header */}
       <div>
         <Title order={2}>FHIR Explorer</Title>
-        <Text c="dimmed">Browse and understand FHIR resources using Medplum's native SearchControl</Text>
+        <Text c="dimmed">
+          Browse and understand FHIR resources using Medplum&apos;s native SearchControl
+        </Text>
       </div>
 
       {/* Info Alert */}
       <Alert color="blue" variant="light" icon={<IconInfoCircle size={16} />}>
         <Text size="sm">
-          <strong>For Developers:</strong> This page uses Medplum's native <Code>SearchControl</Code> component
-          which handles searching, filtering, sorting, and pagination automatically.
+          <strong>For Developers:</strong> This page uses Medplum&apos;s native{' '}
+          <Code>SearchControl</Code> component which handles searching, filtering, sorting, and
+          pagination automatically.
         </Text>
       </Alert>
 
@@ -78,9 +108,17 @@ export default function FhirExplorerPage() {
         <Stack gap="md">
           <div>
             <Title order={4}>Select Resource Type</Title>
-            <Text size="sm" c="dimmed">Choose a FHIR resource type to explore its data</Text>
+            <Text size="sm" c="dimmed">
+              Choose a FHIR resource type to explore its data
+            </Text>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '12px' }}>
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
+              gap: '12px',
+            }}
+          >
             {RESOURCE_TYPES.map((type) => (
               <Paper
                 key={type.value}
@@ -88,18 +126,26 @@ export default function FhirExplorerPage() {
                 withBorder
                 style={{
                   cursor: 'pointer',
-                  borderColor: selectedType === type.value ? 'var(--mantine-color-blue-6)' : undefined,
-                  backgroundColor: selectedType === type.value ? 'var(--mantine-color-blue-0)' : undefined,
+                  borderColor:
+                    selectedType === type.value ? 'var(--mantine-color-blue-6)' : undefined,
+                  backgroundColor:
+                    selectedType === type.value ? 'var(--mantine-color-blue-0)' : undefined,
                 }}
                 onClick={() => handleTypeChange(type.value)}
               >
                 <Group justify="space-between" mb={4}>
-                  <Text fw={600} size="sm">{type.label}</Text>
+                  <Text fw={600} size="sm">
+                    {type.label}
+                  </Text>
                   {selectedType === type.value && (
-                    <Badge size="xs" color="blue">Selected</Badge>
+                    <Badge size="xs" color="blue">
+                      Selected
+                    </Badge>
                   )}
                 </Group>
-                <Text size="xs" c="dimmed" lineClamp={2}>{type.description}</Text>
+                <Text size="xs" c="dimmed" lineClamp={2}>
+                  {type.description}
+                </Text>
               </Paper>
             ))}
           </div>
@@ -120,11 +166,11 @@ export default function FhirExplorerPage() {
               <Group justify="space-between">
                 <div>
                   <Title order={4}>{selectedType} Resources</Title>
-                  <Text size="sm" c="dimmed">Using Medplum's native SearchControl with built-in filtering and pagination</Text>
+                  <Text size="sm" c="dimmed">
+                    Using Medplum&apos;s native SearchControl with built-in filtering and pagination
+                  </Text>
                 </div>
-                {selectedTypeInfo && (
-                  <Badge variant="light">{selectedTypeInfo.description}</Badge>
-                )}
+                {selectedTypeInfo && <Badge variant="light">{selectedTypeInfo.description}</Badge>}
               </Group>
               <SearchControl
                 search={search}
@@ -153,7 +199,9 @@ export default function FhirExplorerPage() {
                 <Stack gap="md">
                   <ResourceTable value={selectedResource} />
                   <div>
-                    <Text size="sm" fw={600} mb="xs">Raw JSON</Text>
+                    <Text size="sm" fw={600} mb="xs">
+                      Raw JSON
+                    </Text>
                     <Code block style={{ maxHeight: '400px', overflow: 'auto' }}>
                       {JSON.stringify(selectedResource, null, 2)}
                     </Code>
@@ -173,7 +221,9 @@ export default function FhirExplorerPage() {
             <Stack gap="md">
               <div>
                 <Title order={4}>{selectedType} Schema</Title>
-                <Text size="sm" c="dimmed">Key fields and their meanings for this resource type</Text>
+                <Text size="sm" c="dimmed">
+                  Key fields and their meanings for this resource type
+                </Text>
               </div>
               <SchemaInfo resourceType={selectedType} />
             </Stack>
@@ -218,22 +268,42 @@ function SchemaInfo({ resourceType }: { resourceType: ResourceType }) {
       { field: 'id', type: 'string', description: 'Unique prescription identifier' },
       { field: 'status', type: 'code', description: 'active | completed | cancelled | etc.' },
       { field: 'intent', type: 'code', description: 'proposal | order | plan' },
-      { field: 'medicationCodeableConcept', type: 'CodeableConcept', description: 'Medication being requested (RxNorm)' },
+      {
+        field: 'medicationCodeableConcept',
+        type: 'CodeableConcept',
+        description: 'Medication being requested (RxNorm)',
+      },
       { field: 'subject', type: 'Reference<Patient>', description: 'Patient this is for' },
       { field: 'authoredOn', type: 'dateTime', description: 'When request was initially authored' },
       { field: 'requester', type: 'Reference<Practitioner>', description: 'Prescriber' },
-      { field: 'dosageInstruction', type: 'Dosage[]', description: 'How medication should be taken' },
+      {
+        field: 'dosageInstruction',
+        type: 'Dosage[]',
+        description: 'How medication should be taken',
+      },
       { field: 'dispenseRequest', type: 'object', description: 'Quantity, refills, days supply' },
     ],
     MedicationDispense: [
       { field: 'id', type: 'string', description: 'Unique dispense identifier' },
       { field: 'status', type: 'code', description: 'completed | in-progress | etc.' },
-      { field: 'medicationCodeableConcept', type: 'CodeableConcept', description: 'Medication dispensed' },
+      {
+        field: 'medicationCodeableConcept',
+        type: 'CodeableConcept',
+        description: 'Medication dispensed',
+      },
       { field: 'subject', type: 'Reference<Patient>', description: 'Patient receiving medication' },
       { field: 'quantity', type: 'Quantity', description: 'Amount dispensed' },
       { field: 'daysSupply', type: 'Quantity', description: 'Days supply (critical for PDC)' },
-      { field: 'whenHandedOver', type: 'dateTime', description: 'When given to patient (PDC date)' },
-      { field: 'authorizingPrescription', type: 'Reference<MedicationRequest>', description: 'Original prescription' },
+      {
+        field: 'whenHandedOver',
+        type: 'dateTime',
+        description: 'When given to patient (PDC date)',
+      },
+      {
+        field: 'authorizingPrescription',
+        type: 'Reference<MedicationRequest>',
+        description: 'Original prescription',
+      },
     ],
     Task: [
       { field: 'id', type: 'string', description: 'Unique task identifier' },
@@ -253,7 +323,11 @@ function SchemaInfo({ resourceType }: { resourceType: ResourceType }) {
       { field: 'subject', type: 'Reference<Patient>', description: 'Patient observed' },
       { field: 'valueQuantity', type: 'Quantity', description: 'Numeric result (e.g., PDC 0.85)' },
       { field: 'effectiveDateTime', type: 'dateTime', description: 'When observation was made' },
-      { field: 'interpretation', type: 'CodeableConcept[]', description: 'High, Low, Normal, etc.' },
+      {
+        field: 'interpretation',
+        type: 'CodeableConcept[]',
+        description: 'High, Low, Normal, etc.',
+      },
     ],
   };
 
@@ -288,9 +362,17 @@ function SchemaInfo({ resourceType }: { resourceType: ResourceType }) {
         <Table.Tbody>
           {fields.map((field) => (
             <Table.Tr key={field.field}>
-              <Table.Td><Code>{field.field}</Code></Table.Td>
-              <Table.Td><Text size="sm" c="dimmed">{field.type}</Text></Table.Td>
-              <Table.Td><Text size="sm">{field.description}</Text></Table.Td>
+              <Table.Td>
+                <Code>{field.field}</Code>
+              </Table.Td>
+              <Table.Td>
+                <Text size="sm" c="dimmed">
+                  {field.type}
+                </Text>
+              </Table.Td>
+              <Table.Td>
+                <Text size="sm">{field.description}</Text>
+              </Table.Td>
             </Table.Tr>
           ))}
         </Table.Tbody>

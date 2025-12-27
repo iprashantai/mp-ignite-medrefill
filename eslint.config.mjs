@@ -29,6 +29,13 @@ const eslintConfig = [
       'prefer-const': 'error',
     },
   },
+  // Next.js page components are naturally longer - relax function length limit
+  {
+    files: ['**/app/**/page.tsx', '**/app/**/layout.tsx'],
+    rules: {
+      'max-lines-per-function': ['warn', { max: 200, skipBlankLines: true, skipComments: true }],
+    },
+  },
   {
     ignores: [
       '.next/',
