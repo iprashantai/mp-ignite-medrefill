@@ -84,3 +84,48 @@ jobs:
             echo "$VIOLATIONS"
             exit 1
           fi
+
+  # AI-assisted PR review using Claude Code
+  # Requires ANTHROPIC_API_KEY secret to be set in repository settings
+  claude-review:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Claude Code Review
+        uses: anthropics/claude-code-action@beta
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          model: claude-sonnet-4-20250514
+          timeout_minutes: 10
+          prompt: |
+            Review this PR for:
+
+            1. **Design System Compliance**
+               - No hardcoded hex colors in src/app/ (use @/components/ui-healthcare)
+               - Barrel imports only (not direct file imports)
+               - Use Medplum SDK, not raw fetch() for FHIR
+
+            2. **Code Quality**
+               - TypeScript best practices (no `any` types)
+               - Proper error handling
+               - No PHI in logs or comments
+
+            3. **Healthcare Domain**
+               - PDC thresholds: >=80% pass, 60-79% at-risk, <60% fail
+               - FHIR resources use proper types from @medplum/fhirtypes
+               - Zod validation for external data
+
+            Reference CLAUDE.md for project guidelines.
+
+            Provide actionable feedback. For each issue:
+            - Explain why it's a problem
+            - Show the fix
+
+            If the code looks good, say so briefly.

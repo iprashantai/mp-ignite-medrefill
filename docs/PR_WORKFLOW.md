@@ -21,11 +21,11 @@ PR Created
 └───────────────────────────────────────┘
     ↓
 ┌───────────────────────────────────────┐
-│  Layer 2: AI Code Review (CodeRabbit) │
-│  - Design pattern compliance          │
-│  - Security scanning                  │
-│  - Best practices                     │
-│  - Documentation suggestions          │
+│  Layer 2: AI Code Review (Claude)     │
+│  - Design system compliance           │
+│  - FHIR/Medplum patterns              │
+│  - Healthcare domain rules            │
+│  - Security & PHI detection           │
 └───────────────────────────────────────┘
     ↓
 ┌───────────────────────────────────────┐
@@ -92,42 +92,50 @@ Jobs: design-system-check
 
 ---
 
-## AI Code Review (CodeRabbit)
+## AI Code Review (Claude Code)
 
-CodeRabbit automatically reviews every PR with context-aware feedback.
+Claude Code automatically reviews every PR using the `claude-review` GitHub Action job.
 
 ### What It Checks
 
-| Area                         | Focus                                                 |
-| ---------------------------- | ----------------------------------------------------- |
-| **Application Code**         | Design system compliance, FHIR patterns, PHI logging  |
-| **UI Healthcare Components** | Backward compatibility, accessibility, TypeScript     |
-| **Design System**            | PDC thresholds, color mappings, deterministic helpers |
-| **Tests**                    | Edge cases, boundary values, no PHI in test data      |
+| Category              | Checks                                                  |
+| --------------------- | ------------------------------------------------------- |
+| **Design System**     | No hardcoded colors, barrel imports, UI component usage |
+| **Code Quality**      | TypeScript best practices, error handling, no `any`     |
+| **Healthcare Domain** | PDC thresholds, FHIR types, Zod validation              |
+| **Security**          | No PHI in logs/comments, proper data handling           |
 
-### Interacting with CodeRabbit
-
-In PR comments, you can:
-
-```
-@coderabbitai explain this change
-@coderabbitai suggest improvements
-@coderabbitai generate tests
-```
-
-### Ignoring Feedback
-
-If a suggestion is not applicable:
-
-```
-@coderabbitai ignore this
-```
-
-Or add to `.coderabbit.yaml`:
+### How It Works
 
 ```yaml
-ignore:
-  - path: 'specific/file.ts'
+Jobs: claude-review
+```
+
+- Runs on every PR automatically
+- Uses `CLAUDE.md` project guidelines for context
+- Posts review comments directly on the PR
+- Provides actionable fixes, not just problem descriptions
+
+### Setup Required
+
+Add the Anthropic API key to your repository secrets:
+
+1. Go to **Settings** → **Secrets and variables** → **Actions**
+2. Add secret: `ANTHROPIC_API_KEY`
+
+### Local Review (Before PR)
+
+You can also run Claude Code review locally:
+
+```bash
+# In Claude Code CLI
+/review
+
+# Or for security-focused review
+/security-review
+
+# Or use the pr-review-toolkit plugin
+/pr-review-toolkit:review-pr
 ```
 
 ---
@@ -282,7 +290,7 @@ const patient = await medplum.readResource('Patient', '123');
 ### For Authors
 
 - [ ] All CI checks passing?
-- [ ] Addressed CodeRabbit feedback?
+- [ ] Addressed Claude review feedback?
 - [ ] Updated tests for new functionality?
 - [ ] Documented any new patterns?
 
@@ -291,6 +299,7 @@ const patient = await medplum.readResource('Patient', '123');
 ## Getting Help
 
 - **CI failures**: Check the Actions tab for detailed logs
-- **CodeRabbit questions**: Comment `@coderabbitai help`
+- **Claude review issues**: Check the `claude-review` job logs
 - **Design system**: See `docs/COMPONENT_REGISTRY.md`
 - **FHIR patterns**: See `docs/FHIR_PATTERNS.md`
+- **Local review**: Run `/review` or `/pr-review-toolkit:review-pr` in Claude Code
