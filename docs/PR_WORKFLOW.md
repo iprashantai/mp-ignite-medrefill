@@ -116,12 +116,13 @@ Jobs: claude-review
 - Posts review comments directly on the PR
 - Provides actionable fixes, not just problem descriptions
 
-### Setup Required
+### Setup Required (One-Time)
 
-Add the Anthropic API key to your repository secrets:
+Uses your Claude Max subscription (no separate API costs):
 
-1. Go to **Settings** → **Secrets and variables** → **Actions**
-2. Add secret: `ANTHROPIC_API_KEY`
+1. Run locally: `claude setup-token`
+2. Go to **Settings** → **Secrets and variables** → **Actions**
+3. Add secret: `CLAUDE_CODE_OAUTH_TOKEN` (paste token from step 1)
 
 ### Local Review (Before PR)
 

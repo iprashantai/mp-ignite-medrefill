@@ -86,23 +86,24 @@ jobs:
           fi
 
   # AI-assisted PR review using Claude Code
-  # Requires ANTHROPIC_API_KEY secret to be set in repository settings
+  # Uses OAuth token from Max subscription (no separate API costs)
+  # Setup: Run `claude setup-token` locally, add result as CLAUDE_CODE_OAUTH_TOKEN secret
   claude-review:
     runs-on: ubuntu-latest
     if: github.event_name == 'pull_request'
     permissions:
       contents: read
       pull-requests: write
+      issues: write
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
       - name: Claude Code Review
-        uses: anthropics/claude-code-action@beta
+        uses: anthropics/claude-code-action@v1
         with:
-          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
-          model: claude-sonnet-4-20250514
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           timeout_minutes: 10
           prompt: |
             Review this PR for:
