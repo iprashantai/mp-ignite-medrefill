@@ -44,3 +44,43 @@ jobs:
           cache: 'npm'
       - run: npm ci
       - run: npm run build
+
+  design-system-check:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check for hardcoded hex colors in app code
+        run: |
+          echo "Checking for hardcoded hex colors in src/app/..."
+          VIOLATIONS=$(grep -rn "#[0-9a-fA-F]\{6\}" src/app/ --include="*.tsx" --include="*.ts" 2>/dev/null || true)
+          if [ -n "$VIOLATIONS" ]; then
+            echo "::warning::Found potential hardcoded colors in application code:"
+            echo "$VIOLATIONS"
+            echo ""
+            echo "Consider using design system components instead:"
+            echo "  - PDCBadge, FragilityBadge, MeasureBadge from @/components/ui-healthcare"
+            echo "  - getPDCClasses(), getFragilityClasses() from @/lib/design-system/helpers"
+          fi
+
+      - name: Check for direct ui-healthcare imports
+        run: |
+          echo "Checking for direct file imports from ui-healthcare..."
+          VIOLATIONS=$(grep -rn "from ['\"]@/components/ui-healthcare/" src/app/ --include="*.tsx" --include="*.ts" 2>/dev/null | grep -v "from '@/components/ui-healthcare'" | grep -v "from '@/components/ui-healthcare/table'" || true)
+          if [ -n "$VIOLATIONS" ]; then
+            echo "::warning::Found direct file imports (should use barrel exports):"
+            echo "$VIOLATIONS"
+            echo ""
+            echo "Use: import { Component } from '@/components/ui-healthcare'"
+            echo "Not: import { Component } from '@/components/ui-healthcare/component'"
+          fi
+
+      - name: Check for raw fetch in FHIR operations
+        run: |
+          echo "Checking for raw fetch() instead of Medplum SDK..."
+          VIOLATIONS=$(grep -rn "fetch.*fhir\|fetch.*Patient\|fetch.*Medication" src/app/ --include="*.tsx" --include="*.ts" 2>/dev/null || true)
+          if [ -n "$VIOLATIONS" ]; then
+            echo "::error::Found raw fetch() for FHIR operations (must use Medplum SDK):"
+            echo "$VIOLATIONS"
+            exit 1
+          fi
