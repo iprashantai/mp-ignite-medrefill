@@ -483,6 +483,157 @@ const CONFIDENCE_THRESHOLDS = {
 9. **DO NOT** create FHIR resources without required fields
 10. **DO NOT** build custom tables/forms when `SearchControl`/`ResourceForm` exist
 
+---
+
+## NEVER DO Examples (Critical Violations)
+
+### 1. NEVER Hardcode Colors
+
+```tsx
+// ❌ NEVER DO THIS
+<div className="bg-green-100 text-green-700 px-2 py-1 rounded">Pass</div>
+<span style={{ color: '#22C55E' }}>85%</span>
+
+// ✅ ALWAYS DO THIS
+import { PDCBadge } from '@/components/ui-healthcare';
+<PDCBadge pdc={85} />
+```
+
+### 2. NEVER Calculate PDC Thresholds Manually
+
+```tsx
+// ❌ NEVER DO THIS
+const status = pdc >= 80 ? 'pass' : pdc >= 60 ? 'at-risk' : 'fail';
+const color = pdc >= 80 ? 'green' : pdc >= 60 ? 'amber' : 'red';
+
+// ✅ ALWAYS DO THIS
+import { getPDCVariant, getPDCLabel } from '@/lib/design-system/helpers';
+const variant = getPDCVariant(pdc); // Handles all thresholds
+const label = getPDCLabel(pdc); // Returns correct label
+```
+
+### 3. NEVER Use Raw fetch() for FHIR Operations
+
+```tsx
+// ❌ NEVER DO THIS
+const response = await fetch('/fhir/Patient/123');
+const patient = await response.json();
+
+// ✅ ALWAYS DO THIS
+import { useMedplum } from '@medplum/react';
+const medplum = useMedplum();
+const patient = await medplum.readResource('Patient', '123');
+```
+
+### 4. NEVER Create Custom Badge Styling
+
+```tsx
+// ❌ NEVER DO THIS
+<span className="inline-flex items-center rounded-full bg-red-100 px-2 py-0.5 text-xs font-medium text-red-700">
+  Critical
+</span>;
+
+// ✅ ALWAYS DO THIS
+import { FragilityBadge } from '@/components/ui-healthcare';
+<FragilityBadge tier="F1_IMMINENT" />;
+```
+
+### 5. NEVER Build Custom Tables
+
+```tsx
+// ❌ NEVER DO THIS
+<table className="min-w-full divide-y divide-gray-200">
+  <thead className="bg-gray-50">
+    <tr>
+      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500">Name</th>
+    </tr>
+  </thead>
+  ...
+</table>;
+
+// ✅ ALWAYS DO THIS
+import {
+  Table,
+  TableHead,
+  TableBody,
+  TableRow,
+  TableHeaderCell,
+} from '@/components/ui-healthcare/table';
+<Table density="compact">
+  <TableHead sticky>
+    <TableRow>
+      <TableHeaderCell>Name</TableHeaderCell>
+    </TableRow>
+  </TableHead>
+  ...
+</Table>;
+```
+
+### 6. NEVER Import From Deep Paths
+
+```tsx
+// ❌ NEVER DO THIS
+import { PDCBadge } from '@/components/ui-healthcare/pdc-badge';
+import { Badge } from '@/components/ui-healthcare/badge';
+
+// ✅ ALWAYS DO THIS
+import { PDCBadge, Badge } from '@/components/ui-healthcare';
+```
+
+### 7. NEVER Log PHI
+
+```tsx
+// ❌ NEVER DO THIS
+console.log(`Processing patient ${patient.name[0].given.join(' ')} ${patient.name[0].family}`);
+console.log(`DOB: ${patient.birthDate}, MRN: ${patient.identifier[0].value}`);
+
+// ✅ ALWAYS DO THIS
+console.log(`Processing patient ${patient.id}`);
+```
+
+### 8. NEVER Skip Zod Validation
+
+```tsx
+// ❌ NEVER DO THIS
+async function createTask(data: any) {
+  return await medplum.createResource(data);
+}
+
+// ✅ ALWAYS DO THIS
+import { z } from 'zod';
+const TaskSchema = z.object({
+  resourceType: z.literal('Task'),
+  status: z.enum(['requested', 'in-progress', 'completed']),
+  intent: z.literal('order'),
+});
+
+async function createTask(data: unknown) {
+  const validated = TaskSchema.parse(data);
+  return await medplum.createResource(validated);
+}
+```
+
+---
+
+## New Team Member Documentation
+
+When onboarding new team members (including BA/Product using Claude Code):
+
+1. **Component Registry**: `docs/COMPONENT_REGISTRY.md`
+   - Lists all available components
+   - Shows when to use each one
+   - Includes code examples
+
+2. **FHIR Patterns**: `docs/FHIR_PATTERNS.md`
+   - How to work with Medplum/FHIR
+   - Common resource patterns
+   - Error handling
+
+3. **Requirement Template**: `docs/templates/FEATURE_SPEC.md`
+   - Template for writing feature requirements
+   - Includes MUST/MUST NOT constraints
+   - Sample data format
+
 ## Quick Reference Commands
 
 ```bash
