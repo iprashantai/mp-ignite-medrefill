@@ -83,7 +83,7 @@ async function deleteResourceType(medplum: MedplumClient, resourceType: string):
 
   while (hasMore) {
     // Search for resources (get 100 at a time)
-    const searchResult = await medplum.search(resourceType, { _count: '100' });
+    const searchResult = await medplum.search(resourceType as any, { _count: '100' });
 
     if (!searchResult.entry || searchResult.entry.length === 0) {
       hasMore = false;
@@ -98,7 +98,7 @@ async function deleteResourceType(medplum: MedplumClient, resourceType: string):
       const resource = entry.resource;
       if (resource?.id) {
         try {
-          await medplum.deleteResource(resourceType, resource.id);
+          await medplum.deleteResource(resourceType as any, resource.id);
         } catch (error) {
           console.error(
             `  ✗ Failed to delete ${resourceType}/${resource.id}:`,

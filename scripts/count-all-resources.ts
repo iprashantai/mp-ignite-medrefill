@@ -88,7 +88,7 @@ async function main() {
   let total = 0;
   for (const resourceType of resourceTypes) {
     try {
-      const result = await medplum.search(resourceType, { _count: '0', _total: 'accurate' });
+      const result = await medplum.search(resourceType as any, { _count: '0', _total: 'accurate' });
       const count = result.total || 0;
       if (count > 0) {
         console.log(`  ${resourceType.padEnd(30)} ${count}`);

@@ -63,7 +63,7 @@ async function main() {
 
   // Create a test patient
   const testPatient = {
-    resourceType: 'Patient',
+    resourceType: 'Patient' as const,
     id: 'test-patient-12345',
     name: [
       {
@@ -76,7 +76,7 @@ async function main() {
 
   console.log('Uploading test patient...');
   try {
-    const result = await medplum.createResource(testPatient);
+    const result = await medplum.createResource(testPatient as any);
     console.log('✓ Upload succeeded');
     console.log(`  Patient ID: ${result.id}`);
   } catch (error) {

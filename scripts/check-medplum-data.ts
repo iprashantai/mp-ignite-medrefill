@@ -60,10 +60,11 @@ async function main() {
   });
 
   console.log('Authenticating...');
-  const loginResult = await medplum.startClientLogin(clientId!, clientSecret!);
+  await medplum.startClientLogin(clientId!, clientSecret!);
+  const profile = medplum.getProfile();
   console.log('✓ Authenticated');
-  console.log(`  Project: ${loginResult.project?.id || 'N/A'}`);
-  console.log(`  Project Name: ${loginResult.project?.name || 'N/A'}`);
+  console.log(`  Project: ${profile?.meta?.project || 'N/A'}`);
+  console.log(`  Profile Type: ${profile?.resourceType || 'N/A'}`);
   console.log();
 
   // Count resources
@@ -74,11 +75,11 @@ async function main() {
     'Observation',
     'Condition',
     'Encounter',
-  ];
+  ] as const;
 
   console.log('Resource Counts:');
   for (const resourceType of resourceTypes) {
-    const result = await medplum.search(resourceType, { _count: '0', _total: 'accurate' });
+    const result = await medplum.search(resourceType as any, { _count: '0', _total: 'accurate' });
     const count = result.total || 0;
     console.log(`  ${resourceType.padEnd(25)} ${count}`);
   }
