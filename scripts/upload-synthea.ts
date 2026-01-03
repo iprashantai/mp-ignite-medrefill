@@ -13,7 +13,8 @@ import * as dotenv from 'dotenv';
 // Load environment variables
 dotenv.config({ path: '.env.local' });
 
-const SYNTHEA_DIR = '/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/fhir';
+const SYNTHEA_DIR =
+  '/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2025-12-30_02-54-53/fhir';
 
 // In-memory storage for Node.js environment
 class MemoryStorage implements IClientStorage {
@@ -57,19 +58,33 @@ async function main() {
   const baseUrl = process.env.NEXT_PUBLIC_MEDPLUM_BASE_URL || 'https://api.medplum.com/';
   const clientId = process.env.NEXT_PUBLIC_MEDPLUM_CLIENT_ID;
   const clientSecret = process.env.MEDPLUM_CLIENT_SECRET;
+  const projectId = process.env.NEXT_PUBLIC_MEDPLUM_PROJECT_ID;
 
   if (!clientId || !clientSecret) {
     console.error('Missing MEDPLUM_CLIENT_ID or MEDPLUM_CLIENT_SECRET in .env.local');
     process.exit(1);
   }
 
+  if (!projectId) {
+    console.error('Missing NEXT_PUBLIC_MEDPLUM_PROJECT_ID in .env.local');
+    process.exit(1);
+  }
+
   console.log(`Connecting to Medplum at ${baseUrl}`);
+  console.log(`Target Project: ${projectId}\n`);
+
+  // Custom fetch to inject project header (required for executeBatch to use correct project)
+  const customFetch = async (url: RequestInfo | URL, options?: RequestInit) => {
+    const headers = new Headers(options?.headers);
+    headers.set('X-Medplum-Project', projectId);
+    return fetch(url, { ...options, headers });
+  };
 
   // Initialize Medplum client with memory storage for Node.js
   const medplum = new MedplumClient({
     baseUrl,
     storage: new MemoryStorage(),
-    fetch: fetch,
+    fetch: customFetch as typeof fetch,
   });
 
   // Login with client credentials
