@@ -1,20 +1,21 @@
-# Phase 2 Master Plan: Trigger Mechanisms & AI Integration
+# Phase 3 Master Plan: Trigger Mechanisms & AI Integration
 
 ## Executive Summary
 
 **Phase 1 Completed**: FHIR-native PDC Calculator and Fragility Tier Engine
-**Phase 2 Goal**: Add trigger mechanisms (Bots + CRON) and AI integration (legacy port)
+**Phase 2 Completed**: Patient List Page UI
+**Phase 3 Goal**: Add trigger mechanisms (Bots + CRON) and AI integration (legacy port)
 
 **Timeline**: 5 days (same structure as Phase 1)
 **Approach**: Minimum effort - port legacy AI patterns, not rebuild from scratch
 
 ---
 
-## Phase 2 Architecture Overview
+## Phase 3 Architecture Overview
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│                         PHASE 2: TRIGGER & AI LAYER                          │
+│                         PHASE 3: TRIGGER & AI LAYER                          │
 ├─────────────────────────────────────────────────────────────────────────────┤
 │                                                                              │
 │  ┌──────────────────────────────────────────────────────────────────────┐   │
@@ -59,11 +60,11 @@
 
 ### Option A: Medplum Bots (RECOMMENDED)
 
-| Trigger Type | Bot Name | Schedule/Criteria | Purpose |
-|-------------|----------|-------------------|---------|
-| **CRON** | `pdc-nightly-calculator` | `0 2 * * *` (2 AM daily) | Calculate PDC for all patients, create Tasks |
-| **Subscription** | `ai-recommendation-generator` | `Task?status=requested&code=refill-review` | Generate AI recommendations on new Tasks |
-| **On-Demand** | `pdc-single-patient` | `POST /$execute` | Recalculate single patient on demand |
+| Trigger Type     | Bot Name                      | Schedule/Criteria                          | Purpose                                      |
+| ---------------- | ----------------------------- | ------------------------------------------ | -------------------------------------------- |
+| **CRON**         | `pdc-nightly-calculator`      | `0 2 * * *` (2 AM daily)                   | Calculate PDC for all patients, create Tasks |
+| **Subscription** | `ai-recommendation-generator` | `Task?status=requested&code=refill-review` | Generate AI recommendations on new Tasks     |
+| **On-Demand**    | `pdc-single-patient`          | `POST /$execute`                           | Recalculate single patient on demand         |
 
 ### Option B: Next.js API Routes (Alternative)
 
@@ -93,6 +94,7 @@ src/app/api/
 **Goal**: Create Medplum Bot structure and deployment configuration
 
 **Files to Create**:
+
 ```
 src/bots/
 ├── pdc-nightly-calculator/
@@ -109,11 +111,13 @@ src/bots/
 ```
 
 **Configuration**:
+
 ```
 medplum.config.json           # Bot deployment config (root level)
 ```
 
 **Test Cases** (TC-P2-D1-001 to TC-P2-D1-020):
+
 - Bot handler structure validation
 - Error handling patterns
 - Logging and audit trail
@@ -126,6 +130,7 @@ medplum.config.json           # Bot deployment config (root level)
 **Goal**: Implement the CRON-triggered bot that calculates PDC for all patients
 
 **Bot Flow**:
+
 ```
 1. Fetch all patients with active MedicationRequests
 2. For each patient:
@@ -138,11 +143,13 @@ medplum.config.json           # Bot deployment config (root level)
 ```
 
 **Files to Modify**:
+
 ```
 src/bots/pdc-nightly-calculator/index.ts
 ```
 
 **Integration with Phase 1**:
+
 ```typescript
 // Bot uses Phase 1 services
 import { getPatientDispenses } from '@/lib/fhir/dispense-service';
@@ -152,6 +159,7 @@ import { createOrUpdatePDCObservation } from '@/lib/fhir/observation-service';
 ```
 
 **Test Cases** (TC-P2-D2-001 to TC-P2-D2-030):
+
 - Batch processing all patients
 - Error isolation (one patient failure doesn't stop batch)
 - Observation creation/update
@@ -165,6 +173,7 @@ import { createOrUpdatePDCObservation } from '@/lib/fhir/observation-service';
 **Goal**: Port the legacy AI implementation with minimum changes
 
 **Legacy AI Pattern** (to port):
+
 ```
 1. De-identify patient data
 2. Call AWS Bedrock (Claude Sonnet)
@@ -174,6 +183,7 @@ import { createOrUpdatePDCObservation } from '@/lib/fhir/observation-service';
 ```
 
 **Files to Create**:
+
 ```
 src/lib/ai/
 ├── bedrock-client.ts         # AWS Bedrock wrapper
@@ -187,6 +197,7 @@ src/lib/ai/
 ```
 
 **Simplified AI Flow** (NOT 3-tier initially):
+
 ```typescript
 // Simple single-call approach (port from legacy)
 export async function generateRecommendation(
@@ -205,6 +216,7 @@ export async function generateRecommendation(
 ```
 
 **Test Cases** (TC-P2-D3-001 to TC-P2-D3-025):
+
 - De-identification removes all PHI
 - Bedrock client error handling
 - JSON response parsing
@@ -218,6 +230,7 @@ export async function generateRecommendation(
 **Goal**: Create subscription-triggered bot that generates AI recommendations
 
 **Bot Flow**:
+
 ```
 1. Receive new Task (subscription trigger)
 2. Validate task is refill-review type
@@ -230,6 +243,7 @@ export async function generateRecommendation(
 ```
 
 **Files to Create/Modify**:
+
 ```
 src/bots/ai-recommendation/index.ts
 src/lib/ai/recommendation-service.ts
@@ -238,16 +252,18 @@ src/lib/safety/                         # Placeholder for future
 ```
 
 **Confidence Routing**:
+
 ```typescript
 const ROUTING_THRESHOLDS = {
-  AUTO_QUEUE: 0.95,      // Very high confidence → minimal review
-  STANDARD: 0.85,        // High confidence → standard review
-  ENHANCED: 0.70,        // Medium → enhanced review
-  PHARMACIST: 0,         // Low → pharmacist escalation
+  AUTO_QUEUE: 0.95, // Very high confidence → minimal review
+  STANDARD: 0.85, // High confidence → standard review
+  ENHANCED: 0.7, // Medium → enhanced review
+  PHARMACIST: 0, // Low → pharmacist escalation
 };
 ```
 
 **Test Cases** (TC-P2-D4-001 to TC-P2-D4-030):
+
 - Subscription trigger handling
 - Safety check blocking before AI
 - AI recommendation stored in Task.extension
@@ -261,6 +277,7 @@ const ROUTING_THRESHOLDS = {
 **Goal**: End-to-end testing and deployment
 
 **Integration Tests**:
+
 ```
 src/bots/__tests__/
 ├── integration.test.ts       # Full flow tests
@@ -269,6 +286,7 @@ src/bots/__tests__/
 ```
 
 **Deployment Steps**:
+
 ```bash
 # 1. Deploy bots to Medplum
 npx medplum bot deploy pdc-nightly-calculator
@@ -282,11 +300,13 @@ npx medplum bot deploy ai-recommendation
 ```
 
 **Verification Script**:
+
 ```
 scripts/verify-phase2.ts
 ```
 
 **Test Cases** (TC-P2-D5-001 to TC-P2-D5-020):
+
 - End-to-end: Patient → PDC → Task → AI → Recommendation
 - Bot deployment verification
 - CRON trigger test
@@ -352,14 +372,14 @@ medplum.config.json                    # Bot configuration
 
 ## Test Case Summary
 
-| Day | Category | Test Count | Test IDs |
-|-----|----------|------------|----------|
-| Day 1 | Bot Infrastructure | 20 | TC-P2-D1-001 to TC-P2-D1-020 |
-| Day 2 | Nightly PDC Bot | 30 | TC-P2-D2-001 to TC-P2-D2-030 |
-| Day 3 | AI Infrastructure | 25 | TC-P2-D3-001 to TC-P2-D3-025 |
-| Day 4 | AI Recommendation Bot | 30 | TC-P2-D4-001 to TC-P2-D4-030 |
-| Day 5 | Integration & Deployment | 20 | TC-P2-D5-001 to TC-P2-D5-020 |
-| **Total** | | **125** | |
+| Day       | Category                 | Test Count | Test IDs                     |
+| --------- | ------------------------ | ---------- | ---------------------------- |
+| Day 1     | Bot Infrastructure       | 20         | TC-P2-D1-001 to TC-P2-D1-020 |
+| Day 2     | Nightly PDC Bot          | 30         | TC-P2-D2-001 to TC-P2-D2-030 |
+| Day 3     | AI Infrastructure        | 25         | TC-P2-D3-001 to TC-P2-D3-025 |
+| Day 4     | AI Recommendation Bot    | 30         | TC-P2-D4-001 to TC-P2-D4-030 |
+| Day 5     | Integration & Deployment | 20         | TC-P2-D5-001 to TC-P2-D5-020 |
+| **Total** |                          | **125**    |                              |
 
 ---
 
@@ -387,6 +407,7 @@ ENABLE_AUTO_APPROVAL=false  # Keep false until validated
 ## Key Differences from Legacy AI
 
 ### What We're Keeping (Port As-Is):
+
 1. AWS Bedrock client pattern
 2. De-identification approach
 3. Single-call recommendation generation
@@ -394,6 +415,7 @@ ENABLE_AUTO_APPROVAL=false  # Keep false until validated
 5. Confidence routing thresholds
 
 ### What We're Simplifying:
+
 1. **3-tier pipeline → Single call initially**
    - Legacy: Primary → QA → Manager
    - Phase 2: Primary only (add QA/Manager in Phase 3 if needed)
@@ -436,6 +458,7 @@ Phase 2 is complete when:
 ## Next: Phase 3 Preview
 
 After Phase 2, Phase 3 will add:
+
 - Queue UI (Task list view)
 - Patient Detail Page (4 tabs)
 - Actions (Approve, Deny, Escalate)
@@ -443,6 +466,6 @@ After Phase 2, Phase 3 will add:
 
 ---
 
-*Created: 2026-01-05*
-*Author: Claude Code*
-*Status: Draft - Ready for Review*
+_Created: 2026-01-05_
+_Author: Claude Code_
+_Status: Draft - Ready for Review_
