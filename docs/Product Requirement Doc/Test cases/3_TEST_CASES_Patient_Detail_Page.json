@@ -1,0 +1,1969 @@
+{
+  "metadata": {
+    "document": "Test Cases - Patient Detail Page",
+    "version": "1.1.0",
+    "created": "2026-01-04",
+    "updated": "2026-01-04",
+    "author": "QA Team",
+    "source_prd": "1_PRD_Patient_Detail_Page.md",
+    "source_features": "2_FEATURES_Patient_Detail_Page.json",
+    "golden_standard": "src/pages/MetricsReference.jsx",
+    "component": "PatientDetailPageTabbed.jsx",
+    "total_test_cases": 420,
+    "categories": {
+      "tab_1_overview": 60,
+      "tab_2_medications": 48,
+      "tab_3_outreach": 52,
+      "tab_4_med_adherence": 56,
+      "medication_timeline_drawer": 84,
+      "golden_standard_calculations": 35,
+      "performance_accessibility": 25,
+      "error_handling": 20
+    },
+    "changelog": [
+      {
+        "version": "1.1.0",
+        "date": "2026-01-04",
+        "changes": [
+          "Removed Tab 5: Refill Worklist tests (TC-PD-101 to TC-PD-115)",
+          "Updated tab navigation from 5 tabs to 4 tabs",
+          "Added Medication Timeline Drawer tests (TC-TD-001 to TC-TD-084)",
+          "Updated total test case count from 380 to 420"
+        ]
+      }
+    ]
+  },
+  "test_scenario_overview": [
+    {
+      "scenario": "TS-PD-01",
+      "tier": "F1 Critical",
+      "pdc": "72%",
+      "gap_days_remaining": "2 days",
+      "days_supply": "0 (out)",
+      "expected_priority": "CRITICAL (155 pts)"
+    },
+    {
+      "scenario": "TS-PD-02",
+      "tier": "F2 Fragile",
+      "pdc": "75%",
+      "gap_days_remaining": "8 days",
+      "days_supply": "5 days",
+      "expected_priority": "HIGH (110 pts)"
+    },
+    {
+      "scenario": "TS-PD-03",
+      "tier": "F3 Moderate",
+      "pdc": "78%",
+      "gap_days_remaining": "18 days",
+      "days_supply": "10 days",
+      "expected_priority": "MEDIUM (60 pts)"
+    },
+    {
+      "scenario": "TS-PD-04",
+      "tier": "F4 Stable",
+      "pdc": "82%",
+      "gap_days_remaining": "30 days",
+      "days_supply": "20 days",
+      "expected_priority": "LOW (40 pts)"
+    },
+    {
+      "scenario": "TS-PD-05",
+      "tier": "F5 Safe",
+      "pdc": "88%",
+      "gap_days_remaining": "45 days",
+      "days_supply": "30 days",
+      "expected_priority": "LOW (20 pts)"
+    },
+    {
+      "scenario": "TS-PD-06",
+      "tier": "COMPLIANT",
+      "pdc": "85%",
+      "gap_days_remaining": "25 days",
+      "days_supply": "45 days",
+      "expected_priority": "N/A (already passing)"
+    },
+    {
+      "scenario": "TS-PD-07",
+      "tier": "T5 Lost",
+      "pdc": "55%",
+      "gap_days_remaining": "-15 days",
+      "days_supply": "30 days",
+      "expected_priority": "N/A (unsalvageable)"
+    }
+  ],
+  "test_cases": [
+    {
+      "category": "Tab 1: Overview",
+      "feature_id": "F-PD-001 to F-PD-015",
+      "tests": [
+        {
+          "id": "TC-PD-001",
+          "name": "Patient name displays correctly",
+          "type": "happy_path",
+          "input": "Patient: Maria Gonzalez",
+          "expected": "Name displays as 'Gonzalez, Maria' in header"
+        },
+        {
+          "id": "TC-PD-002",
+          "name": "DOB and age calculation",
+          "type": "happy_path",
+          "input": "DOB: 01/15/1952",
+          "expected": "Shows 'DOB: 01/15/1952 (74 years)'"
+        },
+        {
+          "id": "TC-PD-003",
+          "name": "Age updates on birthday",
+          "type": "edge_case",
+          "input": "DOB is today",
+          "expected": "Age increments correctly"
+        },
+        {
+          "id": "TC-PD-004",
+          "name": "Phone number formatting",
+          "type": "happy_path",
+          "input": "5551234567",
+          "expected": "Displays as '(555) 123-4567'"
+        },
+        {
+          "id": "TC-PD-005",
+          "name": "Missing phone number",
+          "type": "edge_case",
+          "input": "phone: null",
+          "expected": "Shows 'N/A' without error"
+        },
+        {
+          "id": "TC-PD-006",
+          "name": "Email clickable",
+          "type": "happy_path",
+          "input": "email: maria@test.com",
+          "expected": "Email is mailto link"
+        },
+        {
+          "id": "TC-PD-007",
+          "name": "Member ID displayed",
+          "type": "happy_path",
+          "input": "memberId: MEM123456",
+          "expected": "Member ID visible in header"
+        },
+        {
+          "id": "TC-PD-008",
+          "name": "Insurance info complete",
+          "type": "happy_path",
+          "input": "Full insurance data",
+          "expected": "Plan, Group, Dates displayed"
+        },
+        {
+          "id": "TC-PD-009",
+          "name": "Missing insurance info",
+          "type": "edge_case",
+          "input": "insurance: null",
+          "expected": "Shows 'No insurance on file'"
+        },
+        {
+          "id": "TC-PD-010",
+          "name": "PDC badge green",
+          "type": "business_logic",
+          "input": "PDC = 85%",
+          "expected": "Green badge, 'PASSING' status"
+        },
+        {
+          "id": "TC-PD-011",
+          "name": "PDC badge amber",
+          "type": "business_logic",
+          "input": "PDC = 72%",
+          "expected": "Amber badge, 'AT-RISK' status"
+        },
+        {
+          "id": "TC-PD-012",
+          "name": "PDC badge red",
+          "type": "business_logic",
+          "input": "PDC = 55%",
+          "expected": "Red badge, 'FAILING' status"
+        },
+        {
+          "id": "TC-PD-013",
+          "name": "PDC exactly 80%",
+          "type": "edge_case",
+          "input": "PDC = 80%",
+          "expected": "Green badge (>= 80% is passing)"
+        },
+        {
+          "id": "TC-PD-014",
+          "name": "PDC at 79.9%",
+          "type": "edge_case",
+          "input": "PDC = 79.9%",
+          "expected": "Amber badge (< 80% is at-risk)"
+        },
+        {
+          "id": "TC-PD-015",
+          "name": "Gap days summary displayed",
+          "type": "happy_path",
+          "input": "treatment=365, covered=292",
+          "expected": "Used: 73, Allowed: 73, Remaining: 0"
+        },
+        {
+          "id": "TC-PD-016",
+          "name": "Gap days negative remaining",
+          "type": "business_logic",
+          "input": "used=100, allowed=73",
+          "expected": "Remaining: -27 (red indicator)"
+        },
+        {
+          "id": "TC-PD-017",
+          "name": "Fragility tier F1 display",
+          "type": "business_logic",
+          "input": "delayBudget = 1.5",
+          "expected": "F1 badge (red), '24 hours' contact window"
+        },
+        {
+          "id": "TC-PD-018",
+          "name": "Fragility tier F2 display",
+          "type": "business_logic",
+          "input": "delayBudget = 4",
+          "expected": "F2 badge (orange), '48 hours' contact window"
+        },
+        {
+          "id": "TC-PD-019",
+          "name": "Fragility tier F3 display",
+          "type": "business_logic",
+          "input": "delayBudget = 8",
+          "expected": "F3 badge (amber), '1 week' contact window"
+        },
+        {
+          "id": "TC-PD-020",
+          "name": "Fragility tier F4 display",
+          "type": "business_logic",
+          "input": "delayBudget = 15",
+          "expected": "F4 badge (blue), '2 weeks' contact window"
+        },
+        {
+          "id": "TC-PD-021",
+          "name": "Fragility tier F5 display",
+          "type": "business_logic",
+          "input": "delayBudget = 25",
+          "expected": "F5 badge (green), 'Monthly' contact window"
+        },
+        {
+          "id": "TC-PD-022",
+          "name": "COMPLIANT tier check first",
+          "type": "business_logic",
+          "input": "pdcStatusQuo = 82%",
+          "expected": "COMP badge (green), NOT F1-F5"
+        },
+        {
+          "id": "TC-PD-023",
+          "name": "T5 tier display",
+          "type": "business_logic",
+          "input": "pdcPerfect = 75%",
+          "expected": "T5 badge (gray), 'Unsalvageable' message"
+        },
+        {
+          "id": "TC-PD-024",
+          "name": "Priority score F1 + bonuses",
+          "type": "business_logic",
+          "input": "F1 + Out + Q4 + MultiMA",
+          "expected": "Score: 100 + 30 + 25 + 15 = 170"
+        },
+        {
+          "id": "TC-PD-025",
+          "name": "Priority score F2 base",
+          "type": "business_logic",
+          "input": "F2, no bonuses",
+          "expected": "Score: 80"
+        },
+        {
+          "id": "TC-PD-026",
+          "name": "MA badge MAC",
+          "type": "happy_path",
+          "input": "Patient on Atorvastatin",
+          "expected": "MAC badge displayed"
+        },
+        {
+          "id": "TC-PD-027",
+          "name": "MA badge MAD",
+          "type": "happy_path",
+          "input": "Patient on Metformin",
+          "expected": "MAD badge displayed"
+        },
+        {
+          "id": "TC-PD-028",
+          "name": "MA badge MAH",
+          "type": "happy_path",
+          "input": "Patient on Lisinopril",
+          "expected": "MAH badge displayed"
+        },
+        {
+          "id": "TC-PD-029",
+          "name": "Multiple MA badges",
+          "type": "happy_path",
+          "input": "Patient on statin + ACE",
+          "expected": "Both MAC and MAH badges"
+        },
+        {
+          "id": "TC-PD-030",
+          "name": "Collapsible section toggle",
+          "type": "happy_path",
+          "input": "Click Demographics section",
+          "expected": "Section collapses/expands smoothly"
+        },
+        {
+          "id": "TC-PD-031",
+          "name": "Care team notes display",
+          "type": "happy_path",
+          "input": "2 existing notes",
+          "expected": "Notes shown with timestamps"
+        },
+        {
+          "id": "TC-PD-032",
+          "name": "Add new care team note",
+          "type": "happy_path",
+          "input": "Enter new note text",
+          "expected": "Note saved, appears in list"
+        }
+      ]
+    },
+    {
+      "category": "Tab 2: Medications",
+      "feature_id": "F-PD-016 to F-PD-027",
+      "tests": [
+        {
+          "id": "TC-PD-033",
+          "name": "Medication table displays",
+          "type": "happy_path",
+          "input": "Patient with 5 meds",
+          "expected": "Table shows 5 rows"
+        },
+        {
+          "id": "TC-PD-034",
+          "name": "Medication name column",
+          "type": "happy_path",
+          "input": "Lisinopril 10mg",
+          "expected": "Name displays as 'Lisinopril 10mg'"
+        },
+        {
+          "id": "TC-PD-035",
+          "name": "Drug class badge color",
+          "type": "happy_path",
+          "input": "Class: Statin",
+          "expected": "Purple badge for Statin"
+        },
+        {
+          "id": "TC-PD-036",
+          "name": "ACE inhibitor class color",
+          "type": "happy_path",
+          "input": "Class: ACE Inhibitor",
+          "expected": "Blue badge"
+        },
+        {
+          "id": "TC-PD-037",
+          "name": "PDC column green",
+          "type": "business_logic",
+          "input": "med PDC = 85%",
+          "expected": "Green color indicator"
+        },
+        {
+          "id": "TC-PD-038",
+          "name": "PDC column amber",
+          "type": "business_logic",
+          "input": "med PDC = 72%",
+          "expected": "Amber color indicator"
+        },
+        {
+          "id": "TC-PD-039",
+          "name": "PDC column red",
+          "type": "business_logic",
+          "input": "med PDC = 55%",
+          "expected": "Red color indicator"
+        },
+        {
+          "id": "TC-PD-040",
+          "name": "Days remaining positive",
+          "type": "happy_path",
+          "input": "daysToRunout = 14",
+          "expected": "Shows '14' in green"
+        },
+        {
+          "id": "TC-PD-041",
+          "name": "Days remaining urgent",
+          "type": "business_logic",
+          "input": "daysToRunout = 5",
+          "expected": "Shows '5' in orange"
+        },
+        {
+          "id": "TC-PD-042",
+          "name": "Days remaining critical",
+          "type": "business_logic",
+          "input": "daysToRunout = 2",
+          "expected": "Shows '2' in red"
+        },
+        {
+          "id": "TC-PD-043",
+          "name": "Days remaining OUT",
+          "type": "business_logic",
+          "input": "daysToRunout = -3",
+          "expected": "Shows 'OUT' badge in red"
+        },
+        {
+          "id": "TC-PD-044",
+          "name": "Last fill date format",
+          "type": "happy_path",
+          "input": "lastFill: 2025-12-15",
+          "expected": "Shows '12/15/2025'"
+        },
+        {
+          "id": "TC-PD-045",
+          "name": "Last fill null",
+          "type": "edge_case",
+          "input": "lastFill: null",
+          "expected": "Shows 'N/A'"
+        },
+        {
+          "id": "TC-PD-046",
+          "name": "Refills remaining shown",
+          "type": "happy_path",
+          "input": "refillsRemaining = 3",
+          "expected": "Shows '3'"
+        },
+        {
+          "id": "TC-PD-047",
+          "name": "Refills zero RENEWAL",
+          "type": "business_logic",
+          "input": "refillsRemaining = 0",
+          "expected": "Shows 'RENEWAL' badge"
+        },
+        {
+          "id": "TC-PD-048",
+          "name": "MA badge on statin",
+          "type": "happy_path",
+          "input": "Atorvastatin",
+          "expected": "MAC badge next to name"
+        },
+        {
+          "id": "TC-PD-049",
+          "name": "No MA badge non-MA med",
+          "type": "happy_path",
+          "input": "Omeprazole",
+          "expected": "No MA badge"
+        },
+        {
+          "id": "TC-PD-050",
+          "name": "Sort by PDC ascending",
+          "type": "happy_path",
+          "input": "Click PDC header",
+          "expected": "Lowest PDC first"
+        },
+        {
+          "id": "TC-PD-051",
+          "name": "Sort by days remaining",
+          "type": "happy_path",
+          "input": "Click Days Remaining header",
+          "expected": "Lowest days first"
+        },
+        {
+          "id": "TC-PD-052",
+          "name": "Filter Active meds",
+          "type": "happy_path",
+          "input": "Select 'Active' filter",
+          "expected": "Only active meds shown"
+        },
+        {
+          "id": "TC-PD-053",
+          "name": "Click row opens Timeline Drawer",
+          "type": "happy_path",
+          "input": "Click medication row",
+          "expected": "Timeline Drawer opens with 3 tabs"
+        },
+        {
+          "id": "TC-PD-054",
+          "name": "Empty state no meds",
+          "type": "edge_case",
+          "input": "Patient with 0 meds",
+          "expected": "'No medications found' message"
+        }
+      ]
+    },
+    {
+      "category": "Tab 3: Outreach",
+      "feature_id": "F-PD-028 to F-PD-040",
+      "tests": [
+        {
+          "id": "TC-PD-055",
+          "name": "Days since last contact",
+          "type": "happy_path",
+          "input": "Last contact 5 days ago",
+          "expected": "Shows '5 days' in green"
+        },
+        {
+          "id": "TC-PD-056",
+          "name": "Days since contact amber",
+          "type": "business_logic",
+          "input": "Last contact 20 days ago",
+          "expected": "Shows '20 days' in amber"
+        },
+        {
+          "id": "TC-PD-057",
+          "name": "Days since contact red",
+          "type": "business_logic",
+          "input": "Last contact 45 days ago",
+          "expected": "Shows '45 days' in red"
+        },
+        {
+          "id": "TC-PD-058",
+          "name": "Never contacted",
+          "type": "edge_case",
+          "input": "No outreach history",
+          "expected": "Shows 'Never contacted'"
+        },
+        {
+          "id": "TC-PD-059",
+          "name": "Outreach timeline displays",
+          "type": "happy_path",
+          "input": "3 contact entries",
+          "expected": "Shows 3 entries newest first"
+        },
+        {
+          "id": "TC-PD-060",
+          "name": "Timeline entry details",
+          "type": "happy_path",
+          "input": "Phone call entry",
+          "expected": "Shows date, type, outcome, staff"
+        },
+        {
+          "id": "TC-PD-061",
+          "name": "Filter by Phone",
+          "type": "happy_path",
+          "input": "Select 'Phone' filter",
+          "expected": "Only phone contacts shown"
+        },
+        {
+          "id": "TC-PD-062",
+          "name": "Filter by Email",
+          "type": "happy_path",
+          "input": "Select 'Email' filter",
+          "expected": "Only email contacts shown"
+        },
+        {
+          "id": "TC-PD-063",
+          "name": "Filter by outcome Reached",
+          "type": "happy_path",
+          "input": "Select 'Reached'",
+          "expected": "Only reached contacts shown"
+        },
+        {
+          "id": "TC-PD-064",
+          "name": "Filter by 7 days",
+          "type": "happy_path",
+          "input": "Select '7 days'",
+          "expected": "Only last 7 days contacts"
+        },
+        {
+          "id": "TC-PD-065",
+          "name": "Communication preferences",
+          "type": "happy_path",
+          "input": "Preferred: Phone, Morning",
+          "expected": "Shows 'Phone' and 'Morning'"
+        },
+        {
+          "id": "TC-PD-066",
+          "name": "Do not call days",
+          "type": "happy_path",
+          "input": "DNC: Saturday, Sunday",
+          "expected": "Shows 'Sat, Sun' as DNC days"
+        },
+        {
+          "id": "TC-PD-067",
+          "name": "Log New Call button",
+          "type": "happy_path",
+          "input": "Click 'Log Call'",
+          "expected": "AI Call Log Modal opens"
+        },
+        {
+          "id": "TC-PD-068",
+          "name": "Call Log Modal fields",
+          "type": "happy_path",
+          "input": "Modal open",
+          "expected": "Shows outcome, notes, follow-up fields"
+        },
+        {
+          "id": "TC-PD-069",
+          "name": "Select call outcome",
+          "type": "happy_path",
+          "input": "Select 'Reached - Agreed'",
+          "expected": "Outcome recorded"
+        },
+        {
+          "id": "TC-PD-070",
+          "name": "Enter call notes",
+          "type": "happy_path",
+          "input": "Type 'Patient agreed to refill'",
+          "expected": "Notes saved"
+        },
+        {
+          "id": "TC-PD-071",
+          "name": "Set follow-up date",
+          "type": "happy_path",
+          "input": "Select date 7 days out",
+          "expected": "Follow-up date saved"
+        },
+        {
+          "id": "TC-PD-072",
+          "name": "Save call log",
+          "type": "happy_path",
+          "input": "Click Save",
+          "expected": "Entry added to timeline"
+        },
+        {
+          "id": "TC-PD-073",
+          "name": "Contact success rate",
+          "type": "business_logic",
+          "input": "7 reached of 10 total",
+          "expected": "Shows '70%' success rate"
+        },
+        {
+          "id": "TC-PD-074",
+          "name": "AI Call Prep Banner",
+          "type": "happy_path",
+          "input": "Outreach tab open",
+          "expected": "Banner shows talking points"
+        }
+      ]
+    },
+    {
+      "category": "Tab 4: Med Adherence",
+      "feature_id": "F-PD-041 to F-PD-055",
+      "tests": [
+        {
+          "id": "TC-PD-075",
+          "name": "PDC large display",
+          "type": "happy_path",
+          "input": "PDC = 78%",
+          "expected": "Large '78%' with AT-RISK badge"
+        },
+        {
+          "id": "TC-PD-076",
+          "name": "PDC PASSING status",
+          "type": "business_logic",
+          "input": "PDC = 85%",
+          "expected": "Green PASSING badge"
+        },
+        {
+          "id": "TC-PD-077",
+          "name": "PDC AT-RISK status",
+          "type": "business_logic",
+          "input": "PDC = 72%",
+          "expected": "Amber AT-RISK badge"
+        },
+        {
+          "id": "TC-PD-078",
+          "name": "PDC FAILING status",
+          "type": "business_logic",
+          "input": "PDC = 55%",
+          "expected": "Red FAILING badge"
+        },
+        {
+          "id": "TC-PD-079",
+          "name": "Gap days card values",
+          "type": "business_logic",
+          "input": "treatment=365, covered=290",
+          "expected": "Used: 75, Allowed: 73, Remaining: -2"
+        },
+        {
+          "id": "TC-PD-080",
+          "name": "Gap days allowed formula",
+          "type": "business_logic",
+          "input": "treatment=365",
+          "expected": "Allowed = 365 × 20% = 73"
+        },
+        {
+          "id": "TC-PD-081",
+          "name": "Days to year end",
+          "type": "happy_path",
+          "input": "Today = Dec 15",
+          "expected": "Shows '16 days' to Dec 31"
+        },
+        {
+          "id": "TC-PD-082",
+          "name": "Days to year end Q4 urgency",
+          "type": "business_logic",
+          "input": "Today = Dec 20",
+          "expected": "Shows urgency indicator (<30 days)"
+        },
+        {
+          "id": "TC-PD-083",
+          "name": "Fragility tier card F1",
+          "type": "business_logic",
+          "input": "delayBudget = 2",
+          "expected": "F1 badge, '24 hours' window"
+        },
+        {
+          "id": "TC-PD-084",
+          "name": "Fragility tier card COMP",
+          "type": "business_logic",
+          "input": "pdcStatusQuo = 82%",
+          "expected": "COMP badge, 'Monitor only'"
+        },
+        {
+          "id": "TC-PD-085",
+          "name": "Delay budget calculation",
+          "type": "business_logic",
+          "input": "gapRemaining=10, refills=2",
+          "expected": "Shows '5 days/refill'"
+        },
+        {
+          "id": "TC-PD-086",
+          "name": "Delay budget zero refills",
+          "type": "edge_case",
+          "input": "refills=0",
+          "expected": "Shows 'N/A' or Infinity"
+        },
+        {
+          "id": "TC-PD-087",
+          "name": "Priority score display",
+          "type": "happy_path",
+          "input": "F2 tier",
+          "expected": "Shows base score 80"
+        },
+        {
+          "id": "TC-PD-088",
+          "name": "Priority bonus Out of Meds",
+          "type": "business_logic",
+          "input": "daysToRunout = -2",
+          "expected": "+30 bonus applied"
+        },
+        {
+          "id": "TC-PD-089",
+          "name": "Priority bonus Q4",
+          "type": "business_logic",
+          "input": "Month = November",
+          "expected": "+25 bonus applied"
+        },
+        {
+          "id": "TC-PD-090",
+          "name": "Priority bonus Multiple MA",
+          "type": "business_logic",
+          "input": "MAC and MAD",
+          "expected": "+15 bonus applied"
+        },
+        {
+          "id": "TC-PD-091",
+          "name": "Priority bonus New Patient",
+          "type": "business_logic",
+          "input": "First fill 60 days ago",
+          "expected": "+10 bonus applied"
+        },
+        {
+          "id": "TC-PD-092",
+          "name": "PDC Status Quo projection",
+          "type": "business_logic",
+          "input": "covered=290, supply=30, daysToEnd=15, treat=365",
+          "expected": "StatusQuo = (290+15)/365 = 83.6%"
+        },
+        {
+          "id": "TC-PD-093",
+          "name": "PDC Status Quo supply cap",
+          "type": "business_logic",
+          "input": "supply=90, daysToEnd=15",
+          "expected": "Uses 15 days (not 90)"
+        },
+        {
+          "id": "TC-PD-094",
+          "name": "PDC Perfect projection",
+          "type": "business_logic",
+          "input": "covered=260, daysToEnd=60",
+          "expected": "Perfect = (260+60)/365 = 87.7%"
+        },
+        {
+          "id": "TC-PD-095",
+          "name": "T5 when PDC Perfect < 80%",
+          "type": "business_logic",
+          "input": "pdcPerfect = 75%",
+          "expected": "T5 badge, unsalvageable message"
+        },
+        {
+          "id": "TC-PD-096",
+          "name": "MA medications table",
+          "type": "happy_path",
+          "input": "3 MA meds",
+          "expected": "Table shows 3 MA meds only"
+        },
+        {
+          "id": "TC-PD-097",
+          "name": "Treatment period display",
+          "type": "happy_path",
+          "input": "First fill Jan 15",
+          "expected": "Shows 'Jan 15 - Dec 31' (351 days)"
+        },
+        {
+          "id": "TC-PD-098",
+          "name": "Covered days display",
+          "type": "happy_path",
+          "input": "covered=290",
+          "expected": "Shows '290 of 351 days covered'"
+        },
+        {
+          "id": "TC-PD-099",
+          "name": "Refills needed to 80%",
+          "type": "business_logic",
+          "input": "Need 20 more days",
+          "expected": "Shows '1 refill needed'"
+        },
+        {
+          "id": "TC-PD-100",
+          "name": "COMPLIANT check priority",
+          "type": "business_logic",
+          "input": "pdcStatusQuo=82%, delayBudget=1",
+          "expected": "COMP tier (NOT F1 despite low budget)"
+        },
+        {
+          "id": "TC-PD-101",
+          "name": "Click MA med row opens Timeline Drawer",
+          "type": "happy_path",
+          "input": "Click Lisinopril row",
+          "expected": "Timeline Drawer opens"
+        },
+        {
+          "id": "TC-PD-102",
+          "name": "Click med name in summary opens drawer",
+          "type": "happy_path",
+          "input": "Click medication name link",
+          "expected": "Timeline Drawer opens to Timeline tab"
+        }
+      ]
+    },
+    {
+      "category": "Medication Timeline Drawer - General",
+      "feature_id": "F-PD-056 to F-PD-058",
+      "tests": [
+        {
+          "id": "TC-TD-001",
+          "name": "Drawer slides in from right",
+          "type": "happy_path",
+          "input": "Click medication row",
+          "expected": "Drawer slides in with 300ms animation"
+        },
+        {
+          "id": "TC-TD-002",
+          "name": "Drawer width on desktop",
+          "type": "happy_path",
+          "input": "Desktop viewport",
+          "expected": "Drawer width is 450-500px"
+        },
+        {
+          "id": "TC-TD-003",
+          "name": "Drawer full width on mobile",
+          "type": "responsive",
+          "input": "Mobile viewport < 768px",
+          "expected": "Drawer is full width"
+        },
+        {
+          "id": "TC-TD-004",
+          "name": "Background overlay dims content",
+          "type": "happy_path",
+          "input": "Drawer open",
+          "expected": "Main content has dark overlay"
+        },
+        {
+          "id": "TC-TD-005",
+          "name": "Close drawer with X button",
+          "type": "happy_path",
+          "input": "Click X button",
+          "expected": "Drawer closes smoothly"
+        },
+        {
+          "id": "TC-TD-006",
+          "name": "Close drawer clicking outside",
+          "type": "happy_path",
+          "input": "Click overlay",
+          "expected": "Drawer closes"
+        },
+        {
+          "id": "TC-TD-007",
+          "name": "Close drawer with Escape key",
+          "type": "accessibility",
+          "input": "Press Escape",
+          "expected": "Drawer closes"
+        },
+        {
+          "id": "TC-TD-008",
+          "name": "Medication name in header",
+          "type": "happy_path",
+          "input": "Open Lisinopril drawer",
+          "expected": "Header shows 'Lisinopril'"
+        },
+        {
+          "id": "TC-TD-009",
+          "name": "MA badge in header",
+          "type": "happy_path",
+          "input": "Open MAH medication",
+          "expected": "MAH badge in header"
+        },
+        {
+          "id": "TC-TD-010",
+          "name": "Header sticky on scroll",
+          "type": "happy_path",
+          "input": "Scroll drawer content",
+          "expected": "Header remains fixed at top"
+        },
+        {
+          "id": "TC-TD-011",
+          "name": "Three tabs visible",
+          "type": "happy_path",
+          "input": "Drawer open",
+          "expected": "Details, Timeline, Claims tabs visible"
+        },
+        {
+          "id": "TC-TD-012",
+          "name": "Default tab is Timeline",
+          "type": "happy_path",
+          "input": "Open drawer",
+          "expected": "Timeline tab is active"
+        },
+        {
+          "id": "TC-TD-013",
+          "name": "Tab switch is instant",
+          "type": "performance",
+          "input": "Click different tab",
+          "expected": "Content appears < 100ms"
+        },
+        {
+          "id": "TC-TD-014",
+          "name": "Active tab uses Clinical Calm blue",
+          "type": "happy_path",
+          "input": "View tabs",
+          "expected": "Active tab has #4A90A4 color"
+        },
+        {
+          "id": "TC-TD-015",
+          "name": "Focus trapped in drawer",
+          "type": "accessibility",
+          "input": "Tab through drawer",
+          "expected": "Focus stays within drawer"
+        },
+        {
+          "id": "TC-TD-016",
+          "name": "Focus returns on close",
+          "type": "accessibility",
+          "input": "Close drawer",
+          "expected": "Focus returns to trigger row"
+        },
+        {
+          "id": "TC-TD-017",
+          "name": "Reduced motion preference",
+          "type": "accessibility",
+          "input": "prefers-reduced-motion: reduce",
+          "expected": "No slide animation, instant show/hide"
+        },
+        {
+          "id": "TC-TD-018",
+          "name": "Loading skeleton on open",
+          "type": "happy_path",
+          "input": "Open drawer (slow load)",
+          "expected": "Skeleton loader displayed"
+        }
+      ]
+    },
+    {
+      "category": "Medication Timeline Drawer - Details Tab",
+      "feature_id": "F-PD-059 to F-PD-064",
+      "tests": [
+        {
+          "id": "TC-TD-019",
+          "name": "Key metrics row displays",
+          "type": "happy_path",
+          "input": "Open Details tab",
+          "expected": "PDC, Gap Days, Days Supply visible"
+        },
+        {
+          "id": "TC-TD-020",
+          "name": "PDC badge color in metrics",
+          "type": "business_logic",
+          "input": "PDC = 75%",
+          "expected": "Amber badge displayed"
+        },
+        {
+          "id": "TC-TD-021",
+          "name": "Gap Days Remaining status",
+          "type": "business_logic",
+          "input": "gapRemaining = -5",
+          "expected": "Negative value in red"
+        },
+        {
+          "id": "TC-TD-022",
+          "name": "Days Supply urgency color",
+          "type": "business_logic",
+          "input": "daysSupply = 3",
+          "expected": "Red urgency color"
+        },
+        {
+          "id": "TC-TD-023",
+          "name": "Medication info section",
+          "type": "happy_path",
+          "input": "Lisinopril 10mg",
+          "expected": "Name, class, dosage, NDC shown"
+        },
+        {
+          "id": "TC-TD-024",
+          "name": "Drug class badge color",
+          "type": "happy_path",
+          "input": "ACE Inhibitor",
+          "expected": "Blue badge for ACE Inhibitor"
+        },
+        {
+          "id": "TC-TD-025",
+          "name": "NDC code copyable",
+          "type": "happy_path",
+          "input": "Click NDC",
+          "expected": "NDC copied to clipboard"
+        },
+        {
+          "id": "TC-TD-026",
+          "name": "Prescriber info displayed",
+          "type": "happy_path",
+          "input": "Dr. Smith, NPI: 1234567890",
+          "expected": "Name and NPI shown"
+        },
+        {
+          "id": "TC-TD-027",
+          "name": "Prescriber phone clickable",
+          "type": "happy_path",
+          "input": "Click phone number",
+          "expected": "Phone app opens or tel: link"
+        },
+        {
+          "id": "TC-TD-028",
+          "name": "Pharmacy info displayed",
+          "type": "happy_path",
+          "input": "CVS Pharmacy",
+          "expected": "Name, address, phone shown"
+        },
+        {
+          "id": "TC-TD-029",
+          "name": "Pharmacy type indicator",
+          "type": "happy_path",
+          "input": "Mail order pharmacy",
+          "expected": "Shows 'Mail Order' indicator"
+        },
+        {
+          "id": "TC-TD-030",
+          "name": "Last fill date format",
+          "type": "happy_path",
+          "input": "lastFill: 2025-12-01",
+          "expected": "Shows '12/01/2025'"
+        },
+        {
+          "id": "TC-TD-031",
+          "name": "Quantity dispensed shown",
+          "type": "happy_path",
+          "input": "qty = 30",
+          "expected": "Shows '30 tablets'"
+        },
+        {
+          "id": "TC-TD-032",
+          "name": "Days supply from last fill",
+          "type": "happy_path",
+          "input": "daysSupply = 30",
+          "expected": "Shows '30 days'"
+        },
+        {
+          "id": "TC-TD-033",
+          "name": "Projected runout date",
+          "type": "happy_path",
+          "input": "lastFill + 30 days",
+          "expected": "Shows projected date"
+        },
+        {
+          "id": "TC-TD-034",
+          "name": "Refills remaining count",
+          "type": "happy_path",
+          "input": "refills = 2",
+          "expected": "Shows '2 refills remaining'"
+        },
+        {
+          "id": "TC-TD-035",
+          "name": "Zero refills RENEWAL badge",
+          "type": "business_logic",
+          "input": "refills = 0",
+          "expected": "'RENEWAL NEEDED' badge"
+        },
+        {
+          "id": "TC-TD-036",
+          "name": "Prescription expiration shown",
+          "type": "happy_path",
+          "input": "Expires in 60 days",
+          "expected": "Shows expiration date"
+        },
+        {
+          "id": "TC-TD-037",
+          "name": "Adherence summary PDC",
+          "type": "happy_path",
+          "input": "PDC = 78%",
+          "expected": "PDC with trend shown"
+        },
+        {
+          "id": "TC-TD-038",
+          "name": "Fragility tier badge",
+          "type": "happy_path",
+          "input": "F2 tier",
+          "expected": "F2 badge displayed"
+        },
+        {
+          "id": "TC-TD-039",
+          "name": "Action buttons display",
+          "type": "happy_path",
+          "input": "refills > 0",
+          "expected": "Request Refill button visible"
+        },
+        {
+          "id": "TC-TD-040",
+          "name": "Renewal button when zero refills",
+          "type": "business_logic",
+          "input": "refills = 0",
+          "expected": "Request Renewal button visible"
+        }
+      ]
+    },
+    {
+      "category": "Medication Timeline Drawer - Timeline Tab",
+      "feature_id": "F-PD-065 to F-PD-072",
+      "tests": [
+        {
+          "id": "TC-TD-041",
+          "name": "Timeline spans treatment period",
+          "type": "happy_path",
+          "input": "First fill Jan 15",
+          "expected": "Timeline from Jan 15 to Dec 31"
+        },
+        {
+          "id": "TC-TD-042",
+          "name": "Today marker displayed",
+          "type": "happy_path",
+          "input": "View timeline",
+          "expected": "Today marker visible"
+        },
+        {
+          "id": "TC-TD-043",
+          "name": "Fill events as green dots",
+          "type": "happy_path",
+          "input": "5 fills",
+          "expected": "5 green dots on timeline"
+        },
+        {
+          "id": "TC-TD-044",
+          "name": "Fill dot hover shows details",
+          "type": "happy_path",
+          "input": "Hover over fill dot",
+          "expected": "Tooltip: date, qty, days supply"
+        },
+        {
+          "id": "TC-TD-045",
+          "name": "Fill dot size proportional",
+          "type": "happy_path",
+          "input": "90 day supply fill",
+          "expected": "Larger dot than 30 day fill"
+        },
+        {
+          "id": "TC-TD-046",
+          "name": "Gap events as red spans",
+          "type": "happy_path",
+          "input": "15 day gap",
+          "expected": "Red span on timeline"
+        },
+        {
+          "id": "TC-TD-047",
+          "name": "Gap hover shows days",
+          "type": "happy_path",
+          "input": "Hover over gap",
+          "expected": "Shows '15 days without medication'"
+        },
+        {
+          "id": "TC-TD-048",
+          "name": "Due date as blue dot",
+          "type": "happy_path",
+          "input": "Due in 5 days",
+          "expected": "Blue dot 5 days from today"
+        },
+        {
+          "id": "TC-TD-049",
+          "name": "Past due warning",
+          "type": "business_logic",
+          "input": "Due date passed",
+          "expected": "Warning indicator on due marker"
+        },
+        {
+          "id": "TC-TD-050",
+          "name": "Reversal strikethrough",
+          "type": "happy_path",
+          "input": "Reversed fill",
+          "expected": "Strikethrough on event"
+        },
+        {
+          "id": "TC-TD-051",
+          "name": "Reversal gray color",
+          "type": "happy_path",
+          "input": "Reversed fill",
+          "expected": "Gray color instead of green"
+        },
+        {
+          "id": "TC-TD-052",
+          "name": "Reversal badge on hover",
+          "type": "happy_path",
+          "input": "Hover reversed event",
+          "expected": "'REVERSED' badge shown"
+        },
+        {
+          "id": "TC-TD-053",
+          "name": "Timeline legend displays",
+          "type": "happy_path",
+          "input": "View timeline",
+          "expected": "Legend shows Green/Red/Blue/Gray"
+        },
+        {
+          "id": "TC-TD-054",
+          "name": "Legend click highlights",
+          "type": "happy_path",
+          "input": "Click 'Fill' in legend",
+          "expected": "Fill events highlighted"
+        },
+        {
+          "id": "TC-TD-055",
+          "name": "Click event expands card",
+          "type": "happy_path",
+          "input": "Click fill dot",
+          "expected": "Detail card expands"
+        },
+        {
+          "id": "TC-TD-056",
+          "name": "Only one card at a time",
+          "type": "happy_path",
+          "input": "Click second event",
+          "expected": "First card collapses"
+        },
+        {
+          "id": "TC-TD-057",
+          "name": "Event card shows claim ID",
+          "type": "happy_path",
+          "input": "Expand event",
+          "expected": "Claim ID visible"
+        },
+        {
+          "id": "TC-TD-058",
+          "name": "Date range filter YTD",
+          "type": "happy_path",
+          "input": "Select 'YTD'",
+          "expected": "Shows Jan 1 to today"
+        },
+        {
+          "id": "TC-TD-059",
+          "name": "Date range filter 90 days",
+          "type": "happy_path",
+          "input": "Select 'Last 90 days'",
+          "expected": "Shows last 90 days only"
+        },
+        {
+          "id": "TC-TD-060",
+          "name": "Coverage bands display",
+          "type": "happy_path",
+          "input": "View timeline",
+          "expected": "Green bands for covered periods"
+        },
+        {
+          "id": "TC-TD-061",
+          "name": "Gap bands in red/white",
+          "type": "happy_path",
+          "input": "View timeline",
+          "expected": "Red/white bands for gaps"
+        },
+        {
+          "id": "TC-TD-062",
+          "name": "80% threshold line",
+          "type": "happy_path",
+          "input": "View timeline",
+          "expected": "Horizontal line at 80% level"
+        },
+        {
+          "id": "TC-TD-063",
+          "name": "Projected coverage dashed",
+          "type": "happy_path",
+          "input": "View timeline",
+          "expected": "Dashed line from today to year end"
+        },
+        {
+          "id": "TC-TD-064",
+          "name": "Event count summary",
+          "type": "happy_path",
+          "input": "5 fills, 2 gaps, 1 reversal",
+          "expected": "Summary shows: 5 fills, 2 gaps, 1 reversal"
+        },
+        {
+          "id": "TC-TD-065",
+          "name": "Tooltip hover delay",
+          "type": "happy_path",
+          "input": "Hover over event",
+          "expected": "Tooltip after 500ms"
+        },
+        {
+          "id": "TC-TD-066",
+          "name": "Touch shows tooltip on tap",
+          "type": "responsive",
+          "input": "Tap event on mobile",
+          "expected": "Tooltip displays"
+        }
+      ]
+    },
+    {
+      "category": "Medication Timeline Drawer - Claims Tab",
+      "feature_id": "F-PD-073 to F-PD-077",
+      "tests": [
+        {
+          "id": "TC-TD-067",
+          "name": "Claims table displays",
+          "type": "happy_path",
+          "input": "4 claims",
+          "expected": "Table shows 4 rows"
+        },
+        {
+          "id": "TC-TD-068",
+          "name": "Claims sorted newest first",
+          "type": "happy_path",
+          "input": "Multiple claims",
+          "expected": "Newest claim at top"
+        },
+        {
+          "id": "TC-TD-069",
+          "name": "Claim columns visible",
+          "type": "happy_path",
+          "input": "View table",
+          "expected": "Fill Date, NDC, Days Supply, Pharmacy, Status"
+        },
+        {
+          "id": "TC-TD-070",
+          "name": "PAID status green badge",
+          "type": "happy_path",
+          "input": "Paid claim",
+          "expected": "Green 'PAID' badge"
+        },
+        {
+          "id": "TC-TD-071",
+          "name": "REVERSED status red badge",
+          "type": "business_logic",
+          "input": "Reversed claim",
+          "expected": "Red 'REVERSED' badge"
+        },
+        {
+          "id": "TC-TD-072",
+          "name": "Reversed row strikethrough",
+          "type": "business_logic",
+          "input": "Reversed claim",
+          "expected": "Row has strikethrough"
+        },
+        {
+          "id": "TC-TD-073",
+          "name": "PENDING status amber",
+          "type": "happy_path",
+          "input": "Pending claim",
+          "expected": "Amber 'PENDING' badge"
+        },
+        {
+          "id": "TC-TD-074",
+          "name": "Click row expands details",
+          "type": "happy_path",
+          "input": "Click claim row",
+          "expected": "Detail section expands"
+        },
+        {
+          "id": "TC-TD-075",
+          "name": "Expanded shows Claim ID",
+          "type": "happy_path",
+          "input": "Expand claim",
+          "expected": "Claim ID visible"
+        },
+        {
+          "id": "TC-TD-076",
+          "name": "Copy Claim ID button",
+          "type": "happy_path",
+          "input": "Click copy button",
+          "expected": "Claim ID copied"
+        },
+        {
+          "id": "TC-TD-077",
+          "name": "Cost breakdown displays",
+          "type": "happy_path",
+          "input": "Expand claim",
+          "expected": "Total, Plan Paid, Patient Paid shown"
+        },
+        {
+          "id": "TC-TD-078",
+          "name": "Reversal reason shown",
+          "type": "happy_path",
+          "input": "Reversed claim expanded",
+          "expected": "Reversal reason displayed"
+        },
+        {
+          "id": "TC-TD-079",
+          "name": "Pagination at 10 per page",
+          "type": "happy_path",
+          "input": "15 claims",
+          "expected": "10 shown, page 1 of 2"
+        },
+        {
+          "id": "TC-TD-080",
+          "name": "Page navigation works",
+          "type": "happy_path",
+          "input": "Click page 2",
+          "expected": "Next 5 claims shown"
+        },
+        {
+          "id": "TC-TD-081",
+          "name": "Total claims count",
+          "type": "happy_path",
+          "input": "15 claims",
+          "expected": "'15 total claims' displayed"
+        },
+        {
+          "id": "TC-TD-082",
+          "name": "Empty state message",
+          "type": "edge_case",
+          "input": "0 claims",
+          "expected": "'No claims found' message"
+        },
+        {
+          "id": "TC-TD-083",
+          "name": "Export to CSV button",
+          "type": "happy_path",
+          "input": "Click Export",
+          "expected": "CSV file downloads"
+        },
+        {
+          "id": "TC-TD-084",
+          "name": "Claims search works",
+          "type": "happy_path",
+          "input": "Search by pharmacy name",
+          "expected": "Filtered results shown"
+        }
+      ]
+    },
+    {
+      "category": "Golden Standard Calculations (CRITICAL)",
+      "feature_id": "F-PD-094 to F-PD-098",
+      "reference": "src/pages/MetricsReference.jsx",
+      "tests": [
+        {
+          "id": "TC-GS-001",
+          "name": "PDC basic calculation",
+          "type": "business_logic",
+          "input": "covered=292, treatment=365",
+          "expected": "PDC = 292/365 × 100 = 80%"
+        },
+        {
+          "id": "TC-GS-002",
+          "name": "PDC 100% cap",
+          "type": "edge_case",
+          "input": "covered=400, treatment=365",
+          "expected": "PDC = 100% (capped)"
+        },
+        {
+          "id": "TC-GS-003",
+          "name": "PDC 0% edge",
+          "type": "edge_case",
+          "input": "covered=0, treatment=365",
+          "expected": "PDC = 0%"
+        },
+        {
+          "id": "TC-GS-004",
+          "name": "Treatment period calculation",
+          "type": "business_logic",
+          "input": "First fill Jan 15",
+          "expected": "Treatment = Jan 15 → Dec 31 = 351 days"
+        },
+        {
+          "id": "TC-GS-005",
+          "name": "Gap Days Used formula",
+          "type": "business_logic",
+          "input": "treatment=365, covered=290",
+          "expected": "Used = 365 - 290 = 75"
+        },
+        {
+          "id": "TC-GS-006",
+          "name": "Gap Days Allowed formula",
+          "type": "business_logic",
+          "input": "treatment=365",
+          "expected": "Allowed = 365 × 20% = 73"
+        },
+        {
+          "id": "TC-GS-007",
+          "name": "Gap Days Remaining formula",
+          "type": "business_logic",
+          "input": "allowed=73, used=60",
+          "expected": "Remaining = 73 - 60 = 13"
+        },
+        {
+          "id": "TC-GS-008",
+          "name": "Gap Days Remaining negative",
+          "type": "business_logic",
+          "input": "allowed=73, used=100",
+          "expected": "Remaining = -27 (unsalvageable)"
+        },
+        {
+          "id": "TC-GS-009",
+          "name": "Delay Budget formula",
+          "type": "business_logic",
+          "input": "gapRemaining=10, refills=2",
+          "expected": "DelayBudget = 10/2 = 5 days/refill"
+        },
+        {
+          "id": "TC-GS-010",
+          "name": "Delay Budget F1 threshold",
+          "type": "business_logic",
+          "input": "delayBudget=2",
+          "expected": "Tier = F1 (≤ 2)"
+        },
+        {
+          "id": "TC-GS-011",
+          "name": "Delay Budget F2 threshold",
+          "type": "business_logic",
+          "input": "delayBudget=4",
+          "expected": "Tier = F2 (3-5)"
+        },
+        {
+          "id": "TC-GS-012",
+          "name": "Delay Budget F3 threshold",
+          "type": "business_logic",
+          "input": "delayBudget=8",
+          "expected": "Tier = F3 (6-10)"
+        },
+        {
+          "id": "TC-GS-013",
+          "name": "Delay Budget F4 threshold",
+          "type": "business_logic",
+          "input": "delayBudget=15",
+          "expected": "Tier = F4 (11-20)"
+        },
+        {
+          "id": "TC-GS-014",
+          "name": "Delay Budget F5 threshold",
+          "type": "business_logic",
+          "input": "delayBudget=25",
+          "expected": "Tier = F5 (>20)"
+        },
+        {
+          "id": "TC-GS-015",
+          "name": "COMPLIANT before F1-F5",
+          "type": "business_logic",
+          "input": "pdcStatusQuo=82%, delayBudget=1",
+          "expected": "Tier = COMP (NOT F1)"
+        },
+        {
+          "id": "TC-GS-016",
+          "name": "T5 when PDC Perfect < 80%",
+          "type": "business_logic",
+          "input": "pdcPerfect=75%",
+          "expected": "Tier = T5"
+        },
+        {
+          "id": "TC-GS-017",
+          "name": "PDC Status Quo formula",
+          "type": "business_logic",
+          "input": "covered=290, supply=30, daysEnd=15, treat=365",
+          "expected": "StatusQuo = (290+15)/365 = 83.6%"
+        },
+        {
+          "id": "TC-GS-018",
+          "name": "PDC Perfect formula",
+          "type": "business_logic",
+          "input": "covered=260, daysEnd=60, treat=365",
+          "expected": "Perfect = (260+60)/365 = 87.7%"
+        },
+        {
+          "id": "TC-GS-019",
+          "name": "Priority base F1",
+          "type": "business_logic",
+          "input": "tier=F1",
+          "expected": "Base = 100"
+        },
+        {
+          "id": "TC-GS-020",
+          "name": "Priority base F2",
+          "type": "business_logic",
+          "input": "tier=F2",
+          "expected": "Base = 80"
+        },
+        {
+          "id": "TC-GS-021",
+          "name": "Priority bonus Out of Meds",
+          "type": "business_logic",
+          "input": "daysToRunout ≤ 0",
+          "expected": "Bonus = +30"
+        },
+        {
+          "id": "TC-GS-022",
+          "name": "Priority bonus Q4",
+          "type": "business_logic",
+          "input": "month=Oct/Nov/Dec",
+          "expected": "Bonus = +25"
+        },
+        {
+          "id": "TC-GS-023",
+          "name": "Priority bonus Multiple MA",
+          "type": "business_logic",
+          "input": "measures=2+",
+          "expected": "Bonus = +15"
+        },
+        {
+          "id": "TC-GS-024",
+          "name": "Priority bonus New Patient",
+          "type": "business_logic",
+          "input": "firstFill < 90 days",
+          "expected": "Bonus = +10"
+        },
+        {
+          "id": "TC-GS-025",
+          "name": "Combined priority score",
+          "type": "business_logic",
+          "input": "F1 + Out + Q4 + Multi",
+          "expected": "Score = 100+30+25+15 = 170"
+        },
+        {
+          "id": "TC-GS-026",
+          "name": "Uses fragilityTierService.js",
+          "type": "integration",
+          "input": "Any tier calculation",
+          "expected": "MUST use service, no inline calc"
+        },
+        {
+          "id": "TC-GS-027",
+          "name": "Tier NOT from raw gap days",
+          "type": "business_logic",
+          "input": "gapRemaining=5, refills=1",
+          "expected": "Uses delayBudget=5 for tier"
+        }
+      ]
+    },
+    {
+      "category": "Tab Navigation",
+      "feature_id": "F-PD-081 to F-PD-083",
+      "tests": [
+        {
+          "id": "TC-TN-001",
+          "name": "4 tabs visible",
+          "type": "happy_path",
+          "input": "View page",
+          "expected": "Overview, Medications, Outreach, Med Adherence tabs"
+        },
+        {
+          "id": "TC-TN-002",
+          "name": "Tab switch < 500ms",
+          "type": "performance",
+          "input": "Click tab",
+          "expected": "Content appears < 500ms"
+        },
+        {
+          "id": "TC-TN-003",
+          "name": "Active tab distinct",
+          "type": "happy_path",
+          "input": "View tabs",
+          "expected": "Active tab visually highlighted"
+        },
+        {
+          "id": "TC-TN-004",
+          "name": "Medications tab badge",
+          "type": "happy_path",
+          "input": "5 medications",
+          "expected": "Shows '5' badge"
+        },
+        {
+          "id": "TC-TN-005",
+          "name": "Outreach tab badge",
+          "type": "happy_path",
+          "input": "15 days since contact",
+          "expected": "Shows '15d' badge"
+        },
+        {
+          "id": "TC-TN-006",
+          "name": "Tab URL persistence",
+          "type": "happy_path",
+          "input": "Click Outreach tab",
+          "expected": "URL updates with ?tab=outreach"
+        },
+        {
+          "id": "TC-TN-007",
+          "name": "Direct link to tab",
+          "type": "happy_path",
+          "input": "Navigate to ?tab=medications",
+          "expected": "Medications tab active"
+        }
+      ]
+    },
+    {
+      "category": "Performance & Accessibility",
+      "feature_id": "F-PD-084 to F-PD-089",
+      "tests": [
+        {
+          "id": "TC-PF-001",
+          "name": "Page load < 2 seconds",
+          "type": "performance",
+          "input": "Navigate to patient",
+          "expected": "Full render < 2s"
+        },
+        {
+          "id": "TC-PF-002",
+          "name": "Tab switch < 500ms",
+          "type": "performance",
+          "input": "Click different tab",
+          "expected": "Content appears < 500ms"
+        },
+        {
+          "id": "TC-PF-003",
+          "name": "Loading indicator shown",
+          "type": "happy_path",
+          "input": "Page loading",
+          "expected": "Spinner visible during load"
+        },
+        {
+          "id": "TC-PF-004",
+          "name": "Lazy load Timeline Drawer data",
+          "type": "performance",
+          "input": "Open drawer",
+          "expected": "Data loads on demand"
+        },
+        {
+          "id": "TC-PF-005",
+          "name": "Keyboard Tab navigation",
+          "type": "accessibility",
+          "input": "Press Tab key",
+          "expected": "Focus moves between elements"
+        },
+        {
+          "id": "TC-PF-006",
+          "name": "Keyboard Enter activates",
+          "type": "accessibility",
+          "input": "Enter on button",
+          "expected": "Button action triggered"
+        },
+        {
+          "id": "TC-PF-007",
+          "name": "Keyboard Escape closes drawer",
+          "type": "accessibility",
+          "input": "Escape with drawer open",
+          "expected": "Drawer closes"
+        },
+        {
+          "id": "TC-PF-008",
+          "name": "Screen reader labels",
+          "type": "accessibility",
+          "input": "Screen reader active",
+          "expected": "All elements have labels"
+        },
+        {
+          "id": "TC-PF-009",
+          "name": "Color contrast normal text",
+          "type": "accessibility",
+          "input": "Check contrast",
+          "expected": "4.5:1 ratio met"
+        },
+        {
+          "id": "TC-PF-010",
+          "name": "Color not sole indicator",
+          "type": "accessibility",
+          "input": "Status badges",
+          "expected": "Text + color used together"
+        }
+      ]
+    },
+    {
+      "category": "Error Handling",
+      "feature_id": "F-PD-090 to F-PD-093",
+      "tests": [
+        {
+          "id": "TC-EH-001",
+          "name": "Loading state display",
+          "type": "happy_path",
+          "input": "Page loading",
+          "expected": "Spinner with 'Loading patient data...'"
+        },
+        {
+          "id": "TC-EH-002",
+          "name": "Error state display",
+          "type": "error_handling",
+          "input": "API error",
+          "expected": "Error message with retry button"
+        },
+        {
+          "id": "TC-EH-003",
+          "name": "Patient not found",
+          "type": "error_handling",
+          "input": "Invalid patient ID",
+          "expected": "'Patient not found' message"
+        },
+        {
+          "id": "TC-EH-004",
+          "name": "Missing phone shows N/A",
+          "type": "edge_case",
+          "input": "phone: null",
+          "expected": "Shows 'N/A'"
+        },
+        {
+          "id": "TC-EH-005",
+          "name": "Missing email shows N/A",
+          "type": "edge_case",
+          "input": "email: null",
+          "expected": "Shows 'N/A'"
+        },
+        {
+          "id": "TC-EH-006",
+          "name": "Missing PDC shows N/A",
+          "type": "edge_case",
+          "input": "pdc: null",
+          "expected": "Shows 'N/A' or '--'"
+        },
+        {
+          "id": "TC-EH-007",
+          "name": "No medications graceful",
+          "type": "edge_case",
+          "input": "medications: []",
+          "expected": "Empty state message"
+        },
+        {
+          "id": "TC-EH-008",
+          "name": "No outreach graceful",
+          "type": "edge_case",
+          "input": "outreachHistory: []",
+          "expected": "'Never contacted' message"
+        },
+        {
+          "id": "TC-EH-009",
+          "name": "Timeout with retry",
+          "type": "error_handling",
+          "input": "API timeout 10s",
+          "expected": "Timeout message with retry button"
+        },
+        {
+          "id": "TC-EH-010",
+          "name": "No JavaScript errors",
+          "type": "error_handling",
+          "input": "Partial data",
+          "expected": "Console has no JS errors"
+        },
+        {
+          "id": "TC-EH-011",
+          "name": "Timeline Drawer load error",
+          "type": "error_handling",
+          "input": "Claims API fails",
+          "expected": "Error state in Claims tab"
+        },
+        {
+          "id": "TC-EH-012",
+          "name": "Timeline data empty",
+          "type": "edge_case",
+          "input": "No fill events",
+          "expected": "Empty timeline message"
+        }
+      ]
+    }
+  ],
+  "detailed_test_scenarios": [
+    {
+      "scenario_id": "TS-PD-01",
+      "name": "F1 Critical + Out of Meds + Q4",
+      "patient": "Maria Gonzalez (DEMO_001)",
+      "medication": "Lisinopril 10mg (MAH)",
+      "data": {
+        "first_fill_date": "Jan 15, 2025",
+        "treatment_period": "351 days",
+        "covered_days": "253 days",
+        "current_pdc": "72.1%",
+        "gap_days_used": "98 days",
+        "gap_days_allowed": "70 days (351 × 20%)",
+        "gap_days_remaining": "2 days",
+        "last_fill_date": "Nov 15, 2025",
+        "days_supply": "30 days",
+        "days_to_runout": "-3 days (OUT)",
+        "refills_remaining": "2"
+      },
+      "calculations": {
+        "delay_budget": "2 / 2 = 1 day/refill = F1 Critical",
+        "priority_base": "100 (F1)",
+        "bonus_out_of_meds": "+30",
+        "bonus_q4": "+25 (October)",
+        "total_priority": "155 pts = EXTREME"
+      },
+      "expected_behavior": [
+        "Displayed in CRITICAL queue",
+        "Red urgency badge",
+        "Contact within 24 hours",
+        "Cannot afford ANY delay"
+      ],
+      "timeline_drawer_tests": [
+        "Timeline shows multiple gaps",
+        "Red gap spans visible",
+        "Due date marker past due (warning)",
+        "Claims tab shows all fill history"
+      ]
+    },
+    {
+      "scenario_id": "TS-PD-06",
+      "name": "COMPLIANT - Already Passing",
+      "patient": "James Wilson (DEMO_006)",
+      "medication": "Atorvastatin 40mg (MAC)",
+      "data": {
+        "first_fill_date": "Jan 1, 2025",
+        "treatment_period": "365 days",
+        "covered_days": "310 days",
+        "current_pdc": "85%",
+        "pdc_status_quo": "82%",
+        "gap_days_used": "55 days",
+        "gap_days_allowed": "73 days",
+        "gap_days_remaining": "18 days",
+        "refills_remaining": "3",
+        "delay_budget": "6 days/refill"
+      },
+      "calculations": {
+        "check_order": "COMPLIANT check happens FIRST",
+        "pdc_status_quo": "82% >= 80%",
+        "result": "Tier = COMPLIANT (NOT F3 despite delay budget in F3 range)"
+      },
+      "expected_behavior": [
+        "COMP badge (green)",
+        "Priority = 0 (already compliant)",
+        "'Monitor only' contact window",
+        "Not in urgent queues"
+      ],
+      "timeline_drawer_tests": [
+        "Timeline mostly green coverage",
+        "Minimal gap spans",
+        "Healthy PDC trend in Details tab",
+        "Regular fill pattern visible"
+      ]
+    },
+    {
+      "scenario_id": "TS-PD-07",
+      "name": "T5 Lost - Unsalvageable",
+      "patient": "Robert Chen (DEMO_007)",
+      "medication": "Metformin 500mg (MAD)",
+      "data": {
+        "first_fill_date": "Feb 1, 2025",
+        "treatment_period": "334 days",
+        "covered_days": "200 days",
+        "current_pdc": "59.9%",
+        "days_to_year_end": "30 days",
+        "pdc_perfect": "(200 + 30) / 334 = 68.9%"
+      },
+      "calculations": {
+        "check_order": "T5 check when PDC Perfect < 80%",
+        "pdc_perfect": "68.9% < 80%",
+        "result": "Tier = T5 (mathematically impossible to reach 80%)"
+      },
+      "expected_behavior": [
+        "T5 badge (gray)",
+        "'Unsalvageable' message",
+        "Special handling required",
+        "Not prioritized for outreach"
+      ],
+      "timeline_drawer_tests": [
+        "Large gap spans in timeline",
+        "Projected coverage below 80% line",
+        "Dashed projection shows cannot reach 80%",
+        "Many gaps visible in history"
+      ]
+    }
+  ]
+}

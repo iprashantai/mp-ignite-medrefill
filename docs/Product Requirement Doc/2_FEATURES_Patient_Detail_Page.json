@@ -1,0 +1,1647 @@
+{
+  "metadata": {
+    "project": "Ignite MedRefills",
+    "version": "1.1.0",
+    "created": "2026-01-04",
+    "updated": "2026-01-04",
+    "author": "Product Head",
+    "description": "Complete feature list for Patient Detail Page with 4 tabs (Overview, Medications, Outreach, Med Adherence)",
+    "source_prd": "1_PRD_Patient_Detail_Page.md",
+    "golden_standard": "src/pages/MetricsReference.jsx",
+    "component": "PatientDetailPageTabbed.jsx",
+    "route": "/med-adherence/patients/:patientId",
+    "total_features": 121,
+    "priority_breakdown": {
+      "P0_critical": 68,
+      "P1_high": 35,
+      "P2_medium": 18
+    },
+    "changelog": [
+      {
+        "version": "1.1.0",
+        "date": "2026-01-04",
+        "changes": [
+          "Removed Tab 5: Refill Worklist (F-PD-055 to F-PD-065)",
+          "Updated tab navigation from 5 tabs to 4 tabs",
+          "Added Medication Timeline Drawer features (F-PD-096 to F-PD-121)",
+          "Updated total feature count from 95 to 121"
+        ]
+      }
+    ]
+  },
+  "features": [
+    {
+      "id": "F-PD-001",
+      "category": "Tab 1: Overview",
+      "name": "Display patient name",
+      "description": "Show patient full name (Last, First format) in header",
+      "acceptance_criteria": [
+        "Name displays in 'Last, First' format",
+        "Font is large and readable (text-2xl or larger)",
+        "Name is visible immediately on page load"
+      ],
+      "priority": "P0",
+      "dependencies": []
+    },
+    {
+      "id": "F-PD-002",
+      "category": "Tab 1: Overview",
+      "name": "Display patient DOB and age",
+      "description": "Show date of birth with calculated age",
+      "acceptance_criteria": [
+        "DOB displays in MM/DD/YYYY format",
+        "Age is auto-calculated from DOB",
+        "Age shows in years (e.g., '72 years')"
+      ],
+      "priority": "P0",
+      "dependencies": ["F-PD-001"]
+    },
+    {
+      "id": "F-PD-003",
+      "category": "Tab 1: Overview",
+      "name": "Display contact information",
+      "description": "Show phone, email, and address",
+      "acceptance_criteria": [
+        "Phone displays formatted (xxx) xxx-xxxx",
+        "Email is clickable mailto link",
+        "Address shows city, state, zip"
+      ],
+      "priority": "P0",
+      "dependencies": ["F-PD-001"]
+    },
+    {
+      "id": "F-PD-004",
+      "category": "Tab 1: Overview",
+      "name": "Display member ID",
+      "description": "Show insurance member ID prominently",
+      "acceptance_criteria": [
+        "Member ID visible in header area",
+        "ID is copyable on click",
+        "Format preserved as stored"
+      ],
+      "priority": "P0",
+      "dependencies": ["F-PD-001"]
+    },
+    {
+      "id": "F-PD-005",
+      "category": "Tab 1: Overview",
+      "name": "Display insurance information",
+      "description": "Show plan name, group number, effective dates",
+      "acceptance_criteria": [
+        "Plan name displayed",
+        "Group number displayed",
+        "Effective and termination dates shown"
+      ],
+      "priority": "P0",
+      "dependencies": ["F-PD-001"]
+    },
+    {
+      "id": "F-PD-006",
+      "category": "Tab 1: Overview",
+      "name": "Display primary pharmacy",
+      "description": "Show pharmacy name, location, phone",
+      "acceptance_criteria": [
+        "Pharmacy name displayed",
+        "Location shows address",
+        "Phone is clickable"
+      ],
+      "priority": "P1",
+      "dependencies": ["F-PD-001"]
+    },
+    {
+      "id": "F-PD-007",
+      "category": "Tab 1: Overview",
+      "name": "Display current PDC",
+      "description": "Show PDC percentage with color-coded badge",
+      "acceptance_criteria": [
+        "PDC displayed as percentage (e.g., 82%)",
+        "Green badge for PDC >= 80%",
+        "Amber badge for 60-79%",
+        "Red badge for < 60%"
+      ],
+      "priority": "P0",
+      "dependencies": ["F-PD-001"]
+    },
+    {
+      "id": "F-PD-008",
+      "category": "Tab 1: Overview",
+      "name": "Display gap days summary",
+      "description": "Show gap days used, allowed, remaining",
+      "acceptance_criteria": [
+        "Gap Days Used displayed",
+        "Gap Days Allowed displayed (Treatment Period × 20%)",
+        "Gap Days Remaining displayed with color indicator"
+      ],
+      "priority": "P0",
+      "dependencies": ["F-PD-007"]
+    },
+    {
+      "id": "F-PD-009",
+      "category": "Tab 1: Overview",
+      "name": "Display fragility tier badge",
+      "description": "Show fragility tier (COMP/F1-F5/T5) with color",
+      "acceptance_criteria": [
+        "Tier badge shows COMP, F1, F2, F3, F4, F5, or T5",
+        "Color coding: F1=red, F2=orange, F3=amber, F4=blue, F5=green, T5=gray, COMP=green",
+        "Tier calculated using fragilityTierService.js"
+      ],
+      "priority": "P0",
+      "dependencies": ["F-PD-008"]
+    },
+    {
+      "id": "F-PD-010",
+      "category": "Tab 1: Overview",
+      "name": "Display delay budget",
+      "description": "Show delay budget calculation (Gap Days Remaining ÷ Refills Remaining)",
+      "acceptance_criteria": [
+        "Delay budget displayed in days/refill format",
+        "Formula shown: Gap Days Remaining ÷ Refills Remaining",
+        "CRITICAL: This is used for tier assignment, NOT raw gap days"
+      ],
+      "priority": "P0",
+      "dependencies": ["F-PD-008"]
+    },
+    {
+      "id": "F-PD-011",
+      "category": "Tab 1: Overview",
+      "name": "Display priority score",
+      "description": "Show priority score with bonus breakdown",
+      "acceptance_criteria": [
+        "Total priority score displayed",
+        "Base score shown (from tier)",
+        "Bonuses listed: Out of Meds (+30), Q4 (+25), Multiple MA (+15), New Patient (+10)"
+      ],
+      "priority": "P0",
+      "dependencies": ["F-PD-009"]
+    },
+    {
+      "id": "F-PD-012",
+      "category": "Tab 1: Overview",
+      "name": "Display MA measure badges",
+      "description": "Show MAC/MAD/MAH badges with status",
+      "acceptance_criteria": [
+        "MAC badge if patient on statin",
+        "MAD badge if patient on diabetes medication",
+        "MAH badge if patient on hypertension medication",
+        "Each badge shows passing/failing status"
+      ],
+      "priority": "P0",
+      "dependencies": ["F-PD-001"]
+    },
+    {
+      "id": "F-PD-013",
+      "category": "Tab 1: Overview",
+      "name": "Display upcoming actions/alerts",
+      "description": "Show refills due, appointments, follow-ups",
+      "acceptance_criteria": [
+        "List of upcoming actions displayed",
+        "Sorted by urgency/date",
+        "Color-coded by priority"
+      ],
+      "priority": "P1",
+      "dependencies": ["F-PD-001"]
+    },
+    {
+      "id": "F-PD-014",
+      "category": "Tab 1: Overview",
+      "name": "Collapsible sections",
+      "description": "Allow expanding/collapsing each section",
+      "acceptance_criteria": [
+        "Each section has expand/collapse toggle",
+        "Smooth animation on toggle",
+        "State persists during session"
+      ],
+      "priority": "P2",
+      "dependencies": ["F-PD-001"]
+    },
+    {
+      "id": "F-PD-015",
+      "category": "Tab 1: Overview",
+      "name": "Care team notes section",
+      "description": "Display and add care team notes",
+      "acceptance_criteria": [
+        "Existing notes displayed with timestamp",
+        "Add new note button",
+        "Notes saved to Firestore"
+      ],
+      "priority": "P2",
+      "dependencies": ["F-PD-001"]
+    },
+    {
+      "id": "F-PD-016",
+      "category": "Tab 2: Medications",
+      "name": "Display medication table",
+      "description": "Show all medications in sortable table",
+      "acceptance_criteria": [
+        "Table displays all patient medications",
+        "Sortable by any column",
+        "Responsive layout"
+      ],
+      "priority": "P0",
+      "dependencies": []
+    },
+    {
+      "id": "F-PD-017",
+      "category": "Tab 2: Medications",
+      "name": "Medication name column",
+      "description": "Display medication name with dosage",
+      "acceptance_criteria": [
+        "Drug name displayed",
+        "Dosage and strength shown",
+        "Format: 'Name Strength Unit' (e.g., 'Lisinopril 10mg')"
+      ],
+      "priority": "P0",
+      "dependencies": ["F-PD-016"]
+    },
+    {
+      "id": "F-PD-018",
+      "category": "Tab 2: Medications",
+      "name": "Medication class column",
+      "description": "Display drug class with color-coded badge",
+      "acceptance_criteria": [
+        "Drug class displayed",
+        "Color coding: Statins=purple, ACE/ARBs=blue, Biguanides=teal, etc.",
+        "Hover shows full class name if truncated"
+      ],
+      "priority": "P0",
+      "dependencies": ["F-PD-016"]
+    },
+    {
+      "id": "F-PD-019",
+      "category": "Tab 2: Medications",
+      "name": "PDC column",
+      "description": "Display per-medication PDC with color indicator",
+      "acceptance_criteria": [
+        "PDC displayed as percentage",
+        "Green for >= 80%",
+        "Amber for 60-79%",
+        "Red for < 60%"
+      ],
+      "priority": "P0",
+      "dependencies": ["F-PD-016"]
+    },
+    {
+      "id": "F-PD-020",
+      "category": "Tab 2: Medications",
+      "name": "Days remaining column",
+      "description": "Display days until runout with urgency indicator",
+      "acceptance_criteria": [
+        "Days remaining displayed as number",
+        "Negative values show 'OUT' badge in red",
+        "Color: <=0 red, 1-3 red, 4-7 orange, 8-14 amber, >14 green"
+      ],
+      "priority": "P0",
+      "dependencies": ["F-PD-016"]
+    },
+    {
+      "id": "F-PD-021",
+      "category": "Tab 2: Medications",
+      "name": "Last fill date column",
+      "description": "Display date of most recent fill",
+      "acceptance_criteria": [
+        "Date displayed in MM/DD/YYYY format",
+        "Null dates show 'N/A'",
+        "Sortable by date"
+      ],
+      "priority": "P0",
+      "dependencies": ["F-PD-016"]
+    },
+    {
+      "id": "F-PD-022",
+      "category": "Tab 2: Medications",
+      "name": "Refills remaining column",
+      "description": "Display remaining refills on prescription",
+      "acceptance_criteria": [
+        "Refills remaining displayed as number",
+        "0 refills shows 'RENEWAL' badge",
+        "Null shows 'N/A'"
+      ],
+      "priority": "P0",
+      "dependencies": ["F-PD-016"]
+    },
+    {
+      "id": "F-PD-023",
+      "category": "Tab 2: Medications",
+      "name": "MA badge indicator",
+      "description": "Display badge if medication is MA-tracked",
+      "acceptance_criteria": [
+        "MAC badge for statins",
+        "MAD badge for diabetes meds",
+        "MAH badge for hypertension meds",
+        "No badge for non-MA medications"
+      ],
+      "priority": "P0",
+      "dependencies": ["F-PD-016"]
+    },
+    {
+      "id": "F-PD-024",
+      "category": "Tab 2: Medications",
+      "name": "Status filter",
+      "description": "Filter medications by status",
+      "acceptance_criteria": [
+        "Filter options: All, Active, Inactive, Due Soon",
+        "Count shown next to each filter option",
+        "Clear filter option available"
+      ],
+      "priority": "P1",
+      "dependencies": ["F-PD-016"]
+    },
+    {
+      "id": "F-PD-025",
+      "category": "Tab 2: Medications",
+      "name": "Column sorting",
+      "description": "Sort by any column ascending/descending",
+      "acceptance_criteria": [
+        "Click column header to sort",
+        "Sort indicator visible",
+        "Toggle ascending/descending on repeated clicks"
+      ],
+      "priority": "P1",
+      "dependencies": ["F-PD-016"]
+    },
+    {
+      "id": "F-PD-026",
+      "category": "Tab 2: Medications",
+      "name": "Medication row click opens Timeline Drawer",
+      "description": "Click row to open Medication Timeline Drawer",
+      "acceptance_criteria": [
+        "Row is clickable (hover effect)",
+        "Opens Timeline Drawer on click",
+        "Drawer shows Details, Timeline, and Claims tabs"
+      ],
+      "priority": "P0",
+      "dependencies": ["F-PD-016"]
+    },
+    {
+      "id": "F-PD-027",
+      "category": "Tab 2: Medications",
+      "name": "Empty state message",
+      "description": "Display message when no medications found",
+      "acceptance_criteria": [
+        "Message: 'No medications found'",
+        "Centered in table area",
+        "Includes icon or illustration"
+      ],
+      "priority": "P1",
+      "dependencies": ["F-PD-016"]
+    },
+    {
+      "id": "F-PD-028",
+      "category": "Tab 3: Outreach",
+      "name": "Days since last contact display",
+      "description": "Show days since last patient contact",
+      "acceptance_criteria": [
+        "Number of days displayed prominently",
+        "Color coding: >30 days = red, 14-30 = amber, <14 = green",
+        "Shows 'Never contacted' if no history"
+      ],
+      "priority": "P0",
+      "dependencies": []
+    },
+    {
+      "id": "F-PD-029",
+      "category": "Tab 3: Outreach",
+      "name": "Outreach history timeline",
+      "description": "Display chronological list of all contacts",
+      "acceptance_criteria": [
+        "Entries sorted by date (newest first)",
+        "Each entry shows: date, type, outcome, staff",
+        "Scrollable list for many entries"
+      ],
+      "priority": "P0",
+      "dependencies": []
+    },
+    {
+      "id": "F-PD-030",
+      "category": "Tab 3: Outreach",
+      "name": "Filter by contact type",
+      "description": "Filter outreach by Phone/Email/SMS/Video",
+      "acceptance_criteria": [
+        "Filter buttons for each type",
+        "Multiple selection allowed",
+        "Count shown for each type"
+      ],
+      "priority": "P1",
+      "dependencies": ["F-PD-029"]
+    },
+    {
+      "id": "F-PD-031",
+      "category": "Tab 3: Outreach",
+      "name": "Filter by outcome",
+      "description": "Filter by Reached/Not Reached/Voicemail/etc.",
+      "acceptance_criteria": [
+        "Dropdown with outcome options",
+        "Options: All, Reached, Not Reached, Left Voicemail, Wrong Number",
+        "Count shown for each outcome"
+      ],
+      "priority": "P1",
+      "dependencies": ["F-PD-029"]
+    },
+    {
+      "id": "F-PD-032",
+      "category": "Tab 3: Outreach",
+      "name": "Filter by time range",
+      "description": "Filter by 7/30/90 days or all time",
+      "acceptance_criteria": [
+        "Buttons: 7 days, 30 days, 90 days, All",
+        "Default to 30 days",
+        "Clear visual indication of selected range"
+      ],
+      "priority": "P2",
+      "dependencies": ["F-PD-029"]
+    },
+    {
+      "id": "F-PD-033",
+      "category": "Tab 3: Outreach",
+      "name": "Communication preferences display",
+      "description": "Show patient's preferred contact method/time",
+      "acceptance_criteria": [
+        "Preferred method displayed (Phone, Email, SMS)",
+        "Best time to call displayed",
+        "Do not call days listed"
+      ],
+      "priority": "P1",
+      "dependencies": []
+    },
+    {
+      "id": "F-PD-034",
+      "category": "Tab 3: Outreach",
+      "name": "Log New Call button",
+      "description": "Button to open call logging modal",
+      "acceptance_criteria": [
+        "Prominent button in header",
+        "Opens AI Call Log Modal on click",
+        "Button shows 'Log Call' text"
+      ],
+      "priority": "P0",
+      "dependencies": []
+    },
+    {
+      "id": "F-PD-035",
+      "category": "Tab 3: Outreach",
+      "name": "AI Call Log Modal",
+      "description": "Modal for documenting calls with AI assistance",
+      "acceptance_criteria": [
+        "Modal opens on button click",
+        "Fields: outcome, notes, follow-up date, follow-up action",
+        "AI-assisted note generation",
+        "Save and Cancel buttons"
+      ],
+      "priority": "P0",
+      "dependencies": ["F-PD-034"]
+    },
+    {
+      "id": "F-PD-036",
+      "category": "Tab 3: Outreach",
+      "name": "Call outcome selection",
+      "description": "Select call outcome from predefined list",
+      "acceptance_criteria": [
+        "Dropdown with outcomes: Reached - Agreed, Reached - Declined, Left Voicemail, No Answer, Wrong Number",
+        "Required field",
+        "Selection updates form"
+      ],
+      "priority": "P0",
+      "dependencies": ["F-PD-035"]
+    },
+    {
+      "id": "F-PD-037",
+      "category": "Tab 3: Outreach",
+      "name": "Call notes field",
+      "description": "Free-text field for call notes",
+      "acceptance_criteria": [
+        "Multiline text area",
+        "Character count displayed",
+        "AI-generated suggestions available"
+      ],
+      "priority": "P0",
+      "dependencies": ["F-PD-035"]
+    },
+    {
+      "id": "F-PD-038",
+      "category": "Tab 3: Outreach",
+      "name": "Next action scheduling",
+      "description": "Set follow-up date and action from call log",
+      "acceptance_criteria": [
+        "Date picker for follow-up date",
+        "Action dropdown: Call back, Email, Send SMS, Schedule visit",
+        "Both fields optional"
+      ],
+      "priority": "P1",
+      "dependencies": ["F-PD-035"]
+    },
+    {
+      "id": "F-PD-039",
+      "category": "Tab 3: Outreach",
+      "name": "Contact success rate",
+      "description": "Display calculated success rate percentage",
+      "acceptance_criteria": [
+        "Success rate = (Reached contacts / Total contacts) × 100",
+        "Displayed as percentage",
+        "Color coded: >70% green, 40-70% amber, <40% red"
+      ],
+      "priority": "P2",
+      "dependencies": ["F-PD-029"]
+    },
+    {
+      "id": "F-PD-040",
+      "category": "Tab 3: Outreach",
+      "name": "AI Call Prep Banner",
+      "description": "Display AI-generated talking points before call",
+      "acceptance_criteria": [
+        "Banner appears at top of Outreach tab",
+        "Shows: patient context, medications due, suggested talking points",
+        "Collapsible/dismissible"
+      ],
+      "priority": "P1",
+      "dependencies": []
+    },
+    {
+      "id": "F-PD-041",
+      "category": "Tab 4: Med Adherence",
+      "name": "Current PDC display with status badge",
+      "description": "Show large PDC percentage with PASSING/AT-RISK/FAILING badge",
+      "acceptance_criteria": [
+        "PDC displayed prominently (large text)",
+        "Status badge: PASSING (green) >= 80%, AT-RISK (amber) 60-79%, FAILING (red) < 60%",
+        "Shows measure period (Jan 1 - Dec 31)"
+      ],
+      "priority": "P0",
+      "dependencies": []
+    },
+    {
+      "id": "F-PD-042",
+      "category": "Tab 4: Med Adherence",
+      "name": "Gap days breakdown card",
+      "description": "Show gap days used, allowed, remaining in card",
+      "acceptance_criteria": [
+        "Card with three values",
+        "Gap Days Used = Treatment Period - Covered Days",
+        "Gap Days Allowed = Treatment Period × 20%",
+        "Gap Days Remaining = Allowed - Used (can be negative)"
+      ],
+      "priority": "P0",
+      "dependencies": []
+    },
+    {
+      "id": "F-PD-043",
+      "category": "Tab 4: Med Adherence",
+      "name": "Days to year end display",
+      "description": "Show countdown to December 31",
+      "acceptance_criteria": [
+        "Days remaining until Dec 31 displayed",
+        "Updates daily",
+        "Shows urgency indicator if < 30 days"
+      ],
+      "priority": "P0",
+      "dependencies": []
+    },
+    {
+      "id": "F-PD-044",
+      "category": "Tab 4: Med Adherence",
+      "name": "Fragility tier card with contact window",
+      "description": "Show tier and recommended contact window",
+      "acceptance_criteria": [
+        "Tier badge (COMP/F1-F5/T5) displayed",
+        "Contact window shown: F1=24hrs, F2=48hrs, F3=1wk, F4=2wks, F5=Monthly",
+        "Color matches tier badge"
+      ],
+      "priority": "P0",
+      "dependencies": []
+    },
+    {
+      "id": "F-PD-045",
+      "category": "Tab 4: Med Adherence",
+      "name": "Delay budget display",
+      "description": "Show delay budget calculation with formula",
+      "acceptance_criteria": [
+        "Delay Budget = Gap Days Remaining ÷ Remaining Refills",
+        "Result shown in 'X days/refill' format",
+        "CRITICAL: This determines tier, not raw gap days"
+      ],
+      "priority": "P0",
+      "dependencies": ["F-PD-042"]
+    },
+    {
+      "id": "F-PD-046",
+      "category": "Tab 4: Med Adherence",
+      "name": "Priority score card with bonuses",
+      "description": "Show priority score with breakdown of bonuses",
+      "acceptance_criteria": [
+        "Total score displayed prominently",
+        "Base score from tier (F1=100, F2=80, F3=60, F4=40, F5=20)",
+        "Bonuses listed: Out of Meds (+30), Q4 (+25), Multiple MA (+15), New Patient (+10)"
+      ],
+      "priority": "P0",
+      "dependencies": ["F-PD-044"]
+    },
+    {
+      "id": "F-PD-047",
+      "category": "Tab 4: Med Adherence",
+      "name": "PDC Status Quo projection",
+      "description": "Show projected PDC if no more refills",
+      "acceptance_criteria": [
+        "Formula: (Covered Days + min(Current Supply, Days to Year End)) ÷ Treatment Period",
+        "Displayed as percentage",
+        "Shows interpretation: 'Will reach 80%' or 'Will fall short'"
+      ],
+      "priority": "P0",
+      "dependencies": []
+    },
+    {
+      "id": "F-PD-048",
+      "category": "Tab 4: Med Adherence",
+      "name": "PDC Perfect projection",
+      "description": "Show projected PDC if perfect adherence from now",
+      "acceptance_criteria": [
+        "Formula: (Covered Days + Days to Year End) ÷ Treatment Period",
+        "Displayed as percentage",
+        "If < 80%, patient is T5 (unsalvageable)"
+      ],
+      "priority": "P0",
+      "dependencies": []
+    },
+    {
+      "id": "F-PD-049",
+      "category": "Tab 4: Med Adherence",
+      "name": "T5 (Lost) status indicator",
+      "description": "Show special indicator when PDC Perfect < 80%",
+      "acceptance_criteria": [
+        "T5 badge displayed when PDC Perfect < 80%",
+        "Gray color for T5",
+        "Message: 'Patient cannot reach 80% compliance this year'"
+      ],
+      "priority": "P0",
+      "dependencies": ["F-PD-048"]
+    },
+    {
+      "id": "F-PD-050",
+      "category": "Tab 4: Med Adherence",
+      "name": "MA medications table",
+      "description": "Display table of MA-tracked medications with per-med metrics",
+      "acceptance_criteria": [
+        "Table shows only MA medications",
+        "Columns: Medication, Measure, PDC, Gap Days, Days to Runout",
+        "Sorted by urgency (lowest days first)"
+      ],
+      "priority": "P0",
+      "dependencies": []
+    },
+    {
+      "id": "F-PD-051",
+      "category": "Tab 4: Med Adherence",
+      "name": "Treatment period display",
+      "description": "Show treatment period (first fill to Dec 31)",
+      "acceptance_criteria": [
+        "First fill date displayed",
+        "Year end date (Dec 31) displayed",
+        "Total days in treatment period calculated"
+      ],
+      "priority": "P0",
+      "dependencies": []
+    },
+    {
+      "id": "F-PD-052",
+      "category": "Tab 4: Med Adherence",
+      "name": "Covered days display",
+      "description": "Show total days with medication coverage",
+      "acceptance_criteria": [
+        "Total covered days displayed",
+        "Calculated from all fills (overlaps handled)",
+        "Shows as 'X of Y days covered'"
+      ],
+      "priority": "P0",
+      "dependencies": ["F-PD-051"]
+    },
+    {
+      "id": "F-PD-053",
+      "category": "Tab 4: Med Adherence",
+      "name": "Refills needed calculation",
+      "description": "Calculate and display refills needed to reach 80%",
+      "acceptance_criteria": [
+        "Number of refills needed displayed",
+        "Calculation based on gap days remaining",
+        "Shows 'N/A' if already compliant or T5"
+      ],
+      "priority": "P1",
+      "dependencies": ["F-PD-042"]
+    },
+    {
+      "id": "F-PD-054",
+      "category": "Tab 4: Med Adherence",
+      "name": "COMPLIANT check before tier assignment",
+      "description": "Always check PDC Status Quo >= 80% before assigning F1-F5",
+      "acceptance_criteria": [
+        "CRITICAL RULE: If PDC Status Quo >= 80%, tier = COMPLIANT",
+        "Only assign F1-F5 if PDC Status Quo < 80%",
+        "This check happens BEFORE delay budget calculation"
+      ],
+      "priority": "P0",
+      "dependencies": ["F-PD-047"]
+    },
+    {
+      "id": "F-PD-055",
+      "category": "Tab 4: Med Adherence",
+      "name": "Open Medication Timeline Drawer from table",
+      "description": "Click medication row in MA table to open Timeline Drawer",
+      "acceptance_criteria": [
+        "MA medication rows are clickable",
+        "Opens Medication Timeline Drawer on click",
+        "Drawer shows full medication details, timeline, and claims"
+      ],
+      "priority": "P0",
+      "dependencies": ["F-PD-050"]
+    },
+    {
+      "id": "F-PD-056",
+      "category": "Medication Timeline Drawer",
+      "name": "Drawer slide-out animation",
+      "description": "Drawer slides in from right side of screen",
+      "acceptance_criteria": [
+        "Drawer width: 450-500px on desktop",
+        "Smooth slide-in animation (300ms ease-out)",
+        "Background overlay dims main content",
+        "Click outside or X button to close"
+      ],
+      "priority": "P0",
+      "dependencies": []
+    },
+    {
+      "id": "F-PD-057",
+      "category": "Medication Timeline Drawer",
+      "name": "Drawer header with medication name",
+      "description": "Show medication name and key badges in drawer header",
+      "acceptance_criteria": [
+        "Medication name displayed prominently",
+        "MA measure badge (MAC/MAD/MAH) if applicable",
+        "Close button (X) in top right",
+        "Sticky header on scroll"
+      ],
+      "priority": "P0",
+      "dependencies": ["F-PD-056"]
+    },
+    {
+      "id": "F-PD-058",
+      "category": "Medication Timeline Drawer",
+      "name": "Three-tab navigation (Details/Timeline/Claims)",
+      "description": "Tab bar with Details, Timeline, and Claims tabs",
+      "acceptance_criteria": [
+        "Three tabs: Details, Timeline, Claims",
+        "Active tab visually distinct (Clinical Calm blue #4A90A4)",
+        "Tab switch is instant (< 100ms)",
+        "Default tab: Timeline"
+      ],
+      "priority": "P0",
+      "dependencies": ["F-PD-056"]
+    },
+    {
+      "id": "F-PD-059",
+      "category": "Medication Timeline Drawer - Details Tab",
+      "name": "Key metrics summary row",
+      "description": "Display PDC, Gap Days, Days Supply at top of Details tab",
+      "acceptance_criteria": [
+        "Three metrics displayed horizontally",
+        "PDC with color-coded badge",
+        "Gap Days Remaining with status",
+        "Days Supply Remaining with urgency color"
+      ],
+      "priority": "P0",
+      "dependencies": ["F-PD-058"]
+    },
+    {
+      "id": "F-PD-060",
+      "category": "Medication Timeline Drawer - Details Tab",
+      "name": "Medication information section",
+      "description": "Display drug name, class, dosage, strength, NDC",
+      "acceptance_criteria": [
+        "Full medication name",
+        "Drug class with colored badge",
+        "Dosage and directions",
+        "NDC code copyable"
+      ],
+      "priority": "P0",
+      "dependencies": ["F-PD-058"]
+    },
+    {
+      "id": "F-PD-061",
+      "category": "Medication Timeline Drawer - Details Tab",
+      "name": "Prescriber information section",
+      "description": "Display prescriber name, NPI, phone, specialty",
+      "acceptance_criteria": [
+        "Prescriber name displayed",
+        "NPI number",
+        "Phone (clickable to dial)",
+        "Specialty if available"
+      ],
+      "priority": "P1",
+      "dependencies": ["F-PD-058"]
+    },
+    {
+      "id": "F-PD-062",
+      "category": "Medication Timeline Drawer - Details Tab",
+      "name": "Pharmacy information section",
+      "description": "Display pharmacy name, address, phone",
+      "acceptance_criteria": [
+        "Pharmacy name",
+        "Full address",
+        "Phone (clickable to dial)",
+        "Type: Retail/Mail Order indicator"
+      ],
+      "priority": "P1",
+      "dependencies": ["F-PD-058"]
+    },
+    {
+      "id": "F-PD-063",
+      "category": "Medication Timeline Drawer - Details Tab",
+      "name": "Last fill information",
+      "description": "Display last fill date, quantity, days supply",
+      "acceptance_criteria": [
+        "Last fill date in MM/DD/YYYY format",
+        "Quantity dispensed",
+        "Days supply from last fill",
+        "Projected runout date"
+      ],
+      "priority": "P0",
+      "dependencies": ["F-PD-058"]
+    },
+    {
+      "id": "F-PD-064",
+      "category": "Medication Timeline Drawer - Details Tab",
+      "name": "Refills remaining with renewal indicator",
+      "description": "Display refills remaining and prescription status",
+      "acceptance_criteria": [
+        "Refills remaining count",
+        "0 refills shows 'RENEWAL NEEDED' badge",
+        "Prescription expiration date if available",
+        "Days until prescription expires"
+      ],
+      "priority": "P0",
+      "dependencies": ["F-PD-058"]
+    },
+    {
+      "id": "F-PD-065",
+      "category": "Medication Timeline Drawer - Timeline Tab",
+      "name": "Visual timeline with event dots",
+      "description": "Horizontal timeline visualization showing fill events, gaps, due dates",
+      "acceptance_criteria": [
+        "Timeline spans treatment period (first fill to Dec 31)",
+        "Events displayed as colored dots on timeline",
+        "Scrollable/zoomable for many events",
+        "Today marker shown"
+      ],
+      "priority": "P0",
+      "dependencies": ["F-PD-058"]
+    },
+    {
+      "id": "F-PD-066",
+      "category": "Medication Timeline Drawer - Timeline Tab",
+      "name": "Fill events (green dots)",
+      "description": "Display prescription fill events as green dots",
+      "acceptance_criteria": [
+        "Green dots for successful fills",
+        "Hover shows: fill date, quantity, days supply, pharmacy",
+        "Click expands to full detail card",
+        "Size proportional to days supply"
+      ],
+      "priority": "P0",
+      "dependencies": ["F-PD-065"]
+    },
+    {
+      "id": "F-PD-067",
+      "category": "Medication Timeline Drawer - Timeline Tab",
+      "name": "Gap events (red dots/spans)",
+      "description": "Display medication gap periods as red markers",
+      "acceptance_criteria": [
+        "Red dots/spans for gap periods",
+        "Shows number of gap days",
+        "Hover shows: gap start, gap end, days without medication",
+        "Highlighted in timeline as red zone"
+      ],
+      "priority": "P0",
+      "dependencies": ["F-PD-065"]
+    },
+    {
+      "id": "F-PD-068",
+      "category": "Medication Timeline Drawer - Timeline Tab",
+      "name": "Due date marker (blue dot)",
+      "description": "Display projected refill due date",
+      "acceptance_criteria": [
+        "Blue dot for refill due date",
+        "Shows days until due",
+        "Positioned based on days supply from last fill",
+        "Past due shown with warning indicator"
+      ],
+      "priority": "P0",
+      "dependencies": ["F-PD-065"]
+    },
+    {
+      "id": "F-PD-069",
+      "category": "Medication Timeline Drawer - Timeline Tab",
+      "name": "Reversal markers (strikethrough)",
+      "description": "Display reversed/cancelled fills distinctly",
+      "acceptance_criteria": [
+        "Reversed fills shown with strikethrough",
+        "Gray color for reversed events",
+        "'REVERSED' badge on hover",
+        "Reversal date shown if different from fill date"
+      ],
+      "priority": "P0",
+      "dependencies": ["F-PD-065"]
+    },
+    {
+      "id": "F-PD-070",
+      "category": "Medication Timeline Drawer - Timeline Tab",
+      "name": "Timeline legend",
+      "description": "Display color legend for timeline events",
+      "acceptance_criteria": [
+        "Legend shows: Green=Fill, Red=Gap, Blue=Due, Gray=Reversed",
+        "Legend positioned below timeline",
+        "Interactive: clicking legend item highlights events"
+      ],
+      "priority": "P1",
+      "dependencies": ["F-PD-065"]
+    },
+    {
+      "id": "F-PD-071",
+      "category": "Medication Timeline Drawer - Timeline Tab",
+      "name": "Event detail cards",
+      "description": "Expandable detail cards for each timeline event",
+      "acceptance_criteria": [
+        "Click event to expand detail card",
+        "Card shows: full date, quantity, pharmacy, claim ID",
+        "Only one card expanded at a time",
+        "Click outside or card to collapse"
+      ],
+      "priority": "P1",
+      "dependencies": ["F-PD-065"]
+    },
+    {
+      "id": "F-PD-072",
+      "category": "Medication Timeline Drawer - Timeline Tab",
+      "name": "Timeline date range filter",
+      "description": "Filter timeline to specific date range",
+      "acceptance_criteria": [
+        "Presets: Last 90 days, Last 6 months, YTD, All time",
+        "Custom date range picker",
+        "Default: YTD (Jan 1 to today)"
+      ],
+      "priority": "P2",
+      "dependencies": ["F-PD-065"]
+    },
+    {
+      "id": "F-PD-073",
+      "category": "Medication Timeline Drawer - Claims Tab",
+      "name": "RX claims table",
+      "description": "Display table of all prescription claims",
+      "acceptance_criteria": [
+        "Columns: Fill Date, NDC, Days Supply, Pharmacy, Status",
+        "Sorted by date (newest first)",
+        "Shows: Paid, Reversed, Pending status with badges"
+      ],
+      "priority": "P0",
+      "dependencies": ["F-PD-058"]
+    },
+    {
+      "id": "F-PD-074",
+      "category": "Medication Timeline Drawer - Claims Tab",
+      "name": "Claim status badges",
+      "description": "Display claim status with color-coded badges",
+      "acceptance_criteria": [
+        "PAID = Green badge",
+        "REVERSED = Red badge with strikethrough row",
+        "PENDING = Amber badge",
+        "Status filter available"
+      ],
+      "priority": "P0",
+      "dependencies": ["F-PD-073"]
+    },
+    {
+      "id": "F-PD-075",
+      "category": "Medication Timeline Drawer - Claims Tab",
+      "name": "Claim detail expansion",
+      "description": "Click claim row to expand full details",
+      "acceptance_criteria": [
+        "Expansion shows: Claim ID, Quantity, Cost, Plan Paid, Patient Paid",
+        "Reversal info if applicable",
+        "Copy claim ID button"
+      ],
+      "priority": "P1",
+      "dependencies": ["F-PD-073"]
+    },
+    {
+      "id": "F-PD-076",
+      "category": "Medication Timeline Drawer - Claims Tab",
+      "name": "Claims pagination",
+      "description": "Paginate claims table for many records",
+      "acceptance_criteria": [
+        "10 claims per page default",
+        "Page navigation controls",
+        "Total claims count displayed",
+        "'Load more' option available"
+      ],
+      "priority": "P1",
+      "dependencies": ["F-PD-073"]
+    },
+    {
+      "id": "F-PD-077",
+      "category": "Medication Timeline Drawer - Claims Tab",
+      "name": "Claims empty state",
+      "description": "Display message when no claims found",
+      "acceptance_criteria": [
+        "Message: 'No claims found for this medication'",
+        "Helpful context about what this means",
+        "Check data source suggestion"
+      ],
+      "priority": "P1",
+      "dependencies": ["F-PD-073"]
+    },
+    {
+      "id": "F-PD-078",
+      "category": "Header Section",
+      "name": "Back to list button",
+      "description": "Button to navigate back to All Patients",
+      "acceptance_criteria": [
+        "Back arrow with 'All Patients' text",
+        "Navigates to /med-adherence",
+        "Preserves any filters/search from previous view"
+      ],
+      "priority": "P0",
+      "dependencies": []
+    },
+    {
+      "id": "F-PD-079",
+      "category": "Header Section",
+      "name": "PDC badge in header",
+      "description": "Display PDC badge prominently in page header",
+      "acceptance_criteria": [
+        "PDC percentage displayed",
+        "Color-coded badge (green/amber/red)",
+        "Visible without scrolling"
+      ],
+      "priority": "P0",
+      "dependencies": []
+    },
+    {
+      "id": "F-PD-080",
+      "category": "Header Section",
+      "name": "Fragility tier in header",
+      "description": "Display fragility tier badge in header",
+      "acceptance_criteria": [
+        "Tier badge (COMP/F1-F5/T5)",
+        "Color-coded",
+        "Tooltip shows tier description"
+      ],
+      "priority": "P0",
+      "dependencies": []
+    },
+    {
+      "id": "F-PD-081",
+      "category": "Tab Navigation",
+      "name": "Tab navigation component",
+      "description": "4-tab navigation bar",
+      "acceptance_criteria": [
+        "Tabs: Overview, Medications, Outreach, Med Adherence",
+        "Active tab visually distinct",
+        "Tab switch < 500ms"
+      ],
+      "priority": "P0",
+      "dependencies": []
+    },
+    {
+      "id": "F-PD-082",
+      "category": "Tab Navigation",
+      "name": "Tab badge counts",
+      "description": "Show counts on tabs where relevant",
+      "acceptance_criteria": [
+        "Medications tab shows medication count",
+        "Outreach shows days since last contact"
+      ],
+      "priority": "P1",
+      "dependencies": ["F-PD-081"]
+    },
+    {
+      "id": "F-PD-083",
+      "category": "Tab Navigation",
+      "name": "Tab persistence",
+      "description": "Remember last active tab during session",
+      "acceptance_criteria": [
+        "Active tab persists on navigation",
+        "URL updates with tab parameter",
+        "Direct link to specific tab works"
+      ],
+      "priority": "P2",
+      "dependencies": ["F-PD-081"]
+    },
+    {
+      "id": "F-PD-084",
+      "category": "Performance",
+      "name": "Page load under 2 seconds",
+      "description": "Full page renders in under 2 seconds",
+      "acceptance_criteria": [
+        "Time from click to full render < 2s",
+        "Loading indicator shown during load",
+        "Critical content loads first"
+      ],
+      "priority": "P0",
+      "dependencies": []
+    },
+    {
+      "id": "F-PD-085",
+      "category": "Performance",
+      "name": "Tab switch under 500ms",
+      "description": "Switching tabs completes in under 500ms",
+      "acceptance_criteria": [
+        "Tab content appears < 500ms after click",
+        "No visible loading state for cached tabs",
+        "Smooth transition animation"
+      ],
+      "priority": "P0",
+      "dependencies": []
+    },
+    {
+      "id": "F-PD-086",
+      "category": "Performance",
+      "name": "Lazy loading for heavy content",
+      "description": "Heavy content loads on demand",
+      "acceptance_criteria": [
+        "RX claims loaded when Claims tab opened in drawer",
+        "Timeline events loaded when drawer opened",
+        "Loading states shown appropriately"
+      ],
+      "priority": "P1",
+      "dependencies": []
+    },
+    {
+      "id": "F-PD-087",
+      "category": "Accessibility",
+      "name": "Keyboard navigation",
+      "description": "Full keyboard navigation support",
+      "acceptance_criteria": [
+        "Tab key navigates between elements",
+        "Enter/Space activates buttons",
+        "Arrow keys for lists",
+        "Escape closes modals and drawers"
+      ],
+      "priority": "P1",
+      "dependencies": []
+    },
+    {
+      "id": "F-PD-088",
+      "category": "Accessibility",
+      "name": "Screen reader support",
+      "description": "Content accessible to screen readers",
+      "acceptance_criteria": [
+        "All images have alt text",
+        "ARIA labels on interactive elements",
+        "Semantic HTML structure",
+        "Focus management in modals and drawers"
+      ],
+      "priority": "P1",
+      "dependencies": []
+    },
+    {
+      "id": "F-PD-089",
+      "category": "Accessibility",
+      "name": "Color contrast compliance",
+      "description": "All text meets WCAG 2.1 AA contrast",
+      "acceptance_criteria": [
+        "4.5:1 contrast for normal text",
+        "3:1 contrast for large text",
+        "Color not sole indicator of state"
+      ],
+      "priority": "P1",
+      "dependencies": []
+    },
+    {
+      "id": "F-PD-090",
+      "category": "Error Handling",
+      "name": "Loading state display",
+      "description": "Show loading indicator while data loads",
+      "acceptance_criteria": [
+        "Spinner or skeleton shown during load",
+        "Loading text: 'Loading patient data...'",
+        "Timeout after 10 seconds with retry option"
+      ],
+      "priority": "P0",
+      "dependencies": []
+    },
+    {
+      "id": "F-PD-091",
+      "category": "Error Handling",
+      "name": "Error state display",
+      "description": "Show error message if data fails to load",
+      "acceptance_criteria": [
+        "Error message displayed",
+        "Retry button available",
+        "Error logged for debugging"
+      ],
+      "priority": "P0",
+      "dependencies": []
+    },
+    {
+      "id": "F-PD-092",
+      "category": "Error Handling",
+      "name": "Patient not found handling",
+      "description": "Handle case when patient ID not found",
+      "acceptance_criteria": [
+        "Message: 'Patient not found'",
+        "Back to list button",
+        "No crash or blank screen"
+      ],
+      "priority": "P0",
+      "dependencies": []
+    },
+    {
+      "id": "F-PD-093",
+      "category": "Error Handling",
+      "name": "Partial data handling",
+      "description": "Gracefully handle missing data fields",
+      "acceptance_criteria": [
+        "Missing fields show 'N/A' or dash",
+        "Page renders with partial data",
+        "No JavaScript errors"
+      ],
+      "priority": "P0",
+      "dependencies": []
+    },
+    {
+      "id": "F-PD-094",
+      "category": "Data Validation",
+      "name": "PDC calculation accuracy",
+      "description": "PDC matches Golden Standard formula",
+      "acceptance_criteria": [
+        "PDC = (Covered Days / Treatment Period) × 100",
+        "Matches MetricsReference.jsx exactly",
+        "Unit tests verify calculation"
+      ],
+      "priority": "P0",
+      "dependencies": []
+    },
+    {
+      "id": "F-PD-095",
+      "category": "Data Validation",
+      "name": "Gap days calculation accuracy",
+      "description": "Gap days match Golden Standard formula",
+      "acceptance_criteria": [
+        "Gap Days Used = Treatment Period - Covered Days",
+        "Gap Days Allowed = Treatment Period × 20%",
+        "Gap Days Remaining = Allowed - Used"
+      ],
+      "priority": "P0",
+      "dependencies": []
+    },
+    {
+      "id": "F-PD-096",
+      "category": "Data Validation",
+      "name": "Delay budget calculation accuracy",
+      "description": "Delay budget matches Golden Standard",
+      "acceptance_criteria": [
+        "Delay Budget = Gap Days Remaining / Refills Remaining",
+        "Used for tier assignment",
+        "NOT raw gap days for tiers"
+      ],
+      "priority": "P0",
+      "dependencies": []
+    },
+    {
+      "id": "F-PD-097",
+      "category": "Data Validation",
+      "name": "Fragility tier accuracy",
+      "description": "Tier assignment uses fragilityTierService.js",
+      "acceptance_criteria": [
+        "MUST use fragilityTierService.js",
+        "No inline tier calculations",
+        "Tier based on delay budget thresholds"
+      ],
+      "priority": "P0",
+      "dependencies": []
+    },
+    {
+      "id": "F-PD-098",
+      "category": "Data Validation",
+      "name": "Priority score accuracy",
+      "description": "Priority score matches Golden Standard",
+      "acceptance_criteria": [
+        "Base score from tier correct",
+        "Bonuses applied correctly",
+        "Total matches expected calculation"
+      ],
+      "priority": "P0",
+      "dependencies": []
+    },
+    {
+      "id": "F-PD-099",
+      "category": "Medication Timeline Drawer",
+      "name": "Drawer keyboard accessibility",
+      "description": "Drawer supports full keyboard navigation",
+      "acceptance_criteria": [
+        "Escape key closes drawer",
+        "Tab cycles through drawer elements",
+        "Focus trapped inside drawer when open",
+        "Focus returns to trigger element on close"
+      ],
+      "priority": "P1",
+      "dependencies": ["F-PD-056"]
+    },
+    {
+      "id": "F-PD-100",
+      "category": "Medication Timeline Drawer",
+      "name": "Drawer loading states",
+      "description": "Show loading indicators while drawer data loads",
+      "acceptance_criteria": [
+        "Skeleton shown while Timeline data loads",
+        "Skeleton shown while Claims data loads",
+        "Error state if data fails to load"
+      ],
+      "priority": "P0",
+      "dependencies": ["F-PD-056"]
+    },
+    {
+      "id": "F-PD-101",
+      "category": "Medication Timeline Drawer",
+      "name": "Drawer responsive behavior",
+      "description": "Drawer adapts to screen size",
+      "acceptance_criteria": [
+        "Full width on mobile (< 768px)",
+        "450-500px fixed width on desktop",
+        "Touch-friendly close gesture on mobile"
+      ],
+      "priority": "P1",
+      "dependencies": ["F-PD-056"]
+    },
+    {
+      "id": "F-PD-102",
+      "category": "Medication Timeline Drawer - Timeline Tab",
+      "name": "Timeline hover tooltips",
+      "description": "Show tooltips on hover over timeline events",
+      "acceptance_criteria": [
+        "Tooltip appears on hover (500ms delay)",
+        "Shows key event info",
+        "Tooltip positions correctly near cursor",
+        "Touch: show on tap"
+      ],
+      "priority": "P1",
+      "dependencies": ["F-PD-065"]
+    },
+    {
+      "id": "F-PD-103",
+      "category": "Medication Timeline Drawer - Timeline Tab",
+      "name": "Timeline zoom controls",
+      "description": "Allow zooming in/out on timeline",
+      "acceptance_criteria": [
+        "Zoom in/out buttons",
+        "Scroll to zoom on desktop",
+        "Pinch to zoom on mobile",
+        "Reset zoom button"
+      ],
+      "priority": "P2",
+      "dependencies": ["F-PD-065"]
+    },
+    {
+      "id": "F-PD-104",
+      "category": "Medication Timeline Drawer - Claims Tab",
+      "name": "Claims search/filter",
+      "description": "Search and filter claims",
+      "acceptance_criteria": [
+        "Search by claim ID, pharmacy, NDC",
+        "Filter by status (Paid/Reversed/Pending)",
+        "Filter by date range",
+        "Clear filters button"
+      ],
+      "priority": "P2",
+      "dependencies": ["F-PD-073"]
+    },
+    {
+      "id": "F-PD-105",
+      "category": "Medication Timeline Drawer - Claims Tab",
+      "name": "Claims export",
+      "description": "Export claims data",
+      "acceptance_criteria": [
+        "Export to CSV button",
+        "Includes all filtered claims",
+        "Filename: {patient}_{medication}_claims.csv"
+      ],
+      "priority": "P2",
+      "dependencies": ["F-PD-073"]
+    },
+    {
+      "id": "F-PD-106",
+      "category": "Medication Timeline Drawer",
+      "name": "Deep link to drawer",
+      "description": "URL parameter to open drawer directly",
+      "acceptance_criteria": [
+        "URL format: ?medication={medId}&drawer=open",
+        "Drawer opens on page load if param present",
+        "Tab parameter: &tab=timeline or &tab=claims"
+      ],
+      "priority": "P2",
+      "dependencies": ["F-PD-056"]
+    },
+    {
+      "id": "F-PD-107",
+      "category": "Tab 4: Med Adherence",
+      "name": "Open Timeline Drawer from MA summary cards",
+      "description": "Click medication name in summary cards to open drawer",
+      "acceptance_criteria": [
+        "Medication names are clickable links",
+        "Opens Medication Timeline Drawer",
+        "Default to Timeline tab"
+      ],
+      "priority": "P1",
+      "dependencies": ["F-PD-050", "F-PD-056"]
+    },
+    {
+      "id": "F-PD-108",
+      "category": "Tab 2: Medications",
+      "name": "Timeline preview on hover",
+      "description": "Show mini timeline preview on medication row hover",
+      "acceptance_criteria": [
+        "Small timeline preview (last 90 days) on hover",
+        "Shows recent fills as dots",
+        "Click opens full Timeline Drawer",
+        "Desktop only (not on touch devices)"
+      ],
+      "priority": "P2",
+      "dependencies": ["F-PD-016"]
+    },
+    {
+      "id": "F-PD-109",
+      "category": "Medication Timeline Drawer - Details Tab",
+      "name": "Adherence summary in Details",
+      "description": "Show adherence summary metrics in Details tab",
+      "acceptance_criteria": [
+        "Current PDC with trend indicator",
+        "Gap days breakdown",
+        "Fragility tier badge",
+        "Priority score if applicable"
+      ],
+      "priority": "P0",
+      "dependencies": ["F-PD-058"]
+    },
+    {
+      "id": "F-PD-110",
+      "category": "Medication Timeline Drawer - Details Tab",
+      "name": "Action buttons in Details",
+      "description": "Quick action buttons in Details tab",
+      "acceptance_criteria": [
+        "Request Refill button (if refills > 0)",
+        "Request Renewal button (if refills = 0)",
+        "Log Call button",
+        "Buttons open appropriate modals"
+      ],
+      "priority": "P1",
+      "dependencies": ["F-PD-058"]
+    },
+    {
+      "id": "F-PD-111",
+      "category": "Medication Timeline Drawer",
+      "name": "Print/Share drawer content",
+      "description": "Print or share drawer information",
+      "acceptance_criteria": [
+        "Print button opens print preview",
+        "Formatted for printing",
+        "Includes timeline visualization",
+        "Claims table included"
+      ],
+      "priority": "P2",
+      "dependencies": ["F-PD-056"]
+    },
+    {
+      "id": "F-PD-112",
+      "category": "Medication Timeline Drawer - Timeline Tab",
+      "name": "Coverage coverage visualization",
+      "description": "Show coverage periods as colored bands",
+      "acceptance_criteria": [
+        "Green bands show covered periods",
+        "Red/white bands show gap periods",
+        "80% threshold line displayed",
+        "Current day marker"
+      ],
+      "priority": "P0",
+      "dependencies": ["F-PD-065"]
+    },
+    {
+      "id": "F-PD-113",
+      "category": "Medication Timeline Drawer - Timeline Tab",
+      "name": "Projected coverage visualization",
+      "description": "Show projected future coverage",
+      "acceptance_criteria": [
+        "Dashed line from today to year end",
+        "PDC Status Quo projection shown",
+        "PDC Perfect projection shown",
+        "Legend explains projections"
+      ],
+      "priority": "P1",
+      "dependencies": ["F-PD-065"]
+    },
+    {
+      "id": "F-PD-114",
+      "category": "Medication Timeline Drawer",
+      "name": "Navigation between medications",
+      "description": "Navigate to next/previous medication in drawer",
+      "acceptance_criteria": [
+        "Previous/Next arrows in drawer header",
+        "Cycles through patient's medications",
+        "Current position indicator (e.g., '2 of 5')",
+        "Keyboard: Left/Right arrows to navigate"
+      ],
+      "priority": "P2",
+      "dependencies": ["F-PD-056"]
+    },
+    {
+      "id": "F-PD-115",
+      "category": "Medication Timeline Drawer - Claims Tab",
+      "name": "Reversal reason display",
+      "description": "Show reversal reason for reversed claims",
+      "acceptance_criteria": [
+        "Reversal reason in expanded detail",
+        "Common reasons: Duplicate, Patient Request, Insurance Change",
+        "Shows 'Unknown' if reason not available"
+      ],
+      "priority": "P1",
+      "dependencies": ["F-PD-073"]
+    },
+    {
+      "id": "F-PD-116",
+      "category": "Medication Timeline Drawer - Claims Tab",
+      "name": "Cost breakdown display",
+      "description": "Show cost breakdown for each claim",
+      "acceptance_criteria": [
+        "Total cost displayed",
+        "Plan paid amount",
+        "Patient paid (copay) amount",
+        "Deductible applied if any"
+      ],
+      "priority": "P1",
+      "dependencies": ["F-PD-073"]
+    },
+    {
+      "id": "F-PD-117",
+      "category": "Medication Timeline Drawer - Details Tab",
+      "name": "Notes/comments section",
+      "description": "Display and add notes about medication",
+      "acceptance_criteria": [
+        "Existing notes displayed",
+        "Add new note capability",
+        "Notes saved to patient record",
+        "Timestamp and user shown"
+      ],
+      "priority": "P2",
+      "dependencies": ["F-PD-058"]
+    },
+    {
+      "id": "F-PD-118",
+      "category": "Medication Timeline Drawer",
+      "name": "Drawer scroll preservation",
+      "description": "Preserve scroll position when switching tabs",
+      "acceptance_criteria": [
+        "Scroll position saved per tab",
+        "Restored when returning to tab",
+        "Reset when drawer closed"
+      ],
+      "priority": "P2",
+      "dependencies": ["F-PD-058"]
+    },
+    {
+      "id": "F-PD-119",
+      "category": "Medication Timeline Drawer - Timeline Tab",
+      "name": "Timeline event count summary",
+      "description": "Show summary counts above timeline",
+      "acceptance_criteria": [
+        "Total fills count",
+        "Total gap events count",
+        "Reversals count",
+        "Filter affects counts"
+      ],
+      "priority": "P1",
+      "dependencies": ["F-PD-065"]
+    },
+    {
+      "id": "F-PD-120",
+      "category": "Medication Timeline Drawer",
+      "name": "Clinical Calm UI styling",
+      "description": "Apply Clinical Calm design system to drawer",
+      "acceptance_criteria": [
+        "Primary color: #4A90A4 (Clinical Calm Blue)",
+        "Success: Green for positive indicators",
+        "Warning: Amber for at-risk states",
+        "Danger: Red for critical/failing states",
+        "Clean, minimal design reducing visual noise"
+      ],
+      "priority": "P0",
+      "dependencies": ["F-PD-056"]
+    },
+    {
+      "id": "F-PD-121",
+      "category": "Medication Timeline Drawer",
+      "name": "Drawer animation preferences",
+      "description": "Respect reduced motion preferences",
+      "acceptance_criteria": [
+        "Check prefers-reduced-motion media query",
+        "Disable slide animation if reduced motion preferred",
+        "Instant show/hide instead of animation"
+      ],
+      "priority": "P1",
+      "dependencies": ["F-PD-056"]
+    }
+  ]
+}
