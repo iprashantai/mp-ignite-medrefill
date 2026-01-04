@@ -88,6 +88,133 @@
 
 ---
 
+## Trigger Mechanisms: How Services Are Invoked
+
+### Overview
+
+Phase 1 services (PDC Calculator, Fragility Tier) need to be triggered. There are three trigger patterns:
+
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                         TRIGGER MECHANISMS                                   │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                              │
+│  1. CRON TRIGGER (Nightly Batch)                                            │
+│  ─────────────────────────────────                                          │
+│  Schedule: 0 2 * * * (2 AM daily)                                           │
+│  Bot: pdc-nightly-calculator                                                │
+│  Flow:                                                                       │
+│    • Fetch all patients with active MedicationRequests                      │
+│    • For each patient → Calculate PDC → Store Observation → Create Task    │
+│                                                                              │
+│  2. SUBSCRIPTION TRIGGER (Real-time)                                        │
+│  ────────────────────────────────────                                       │
+│  Criteria: Task?status=requested&code=refill-review                         │
+│  Bot: ai-recommendation-generator                                           │
+│  Flow:                                                                       │
+│    • New Task created → Run safety checks → Generate AI recommendation     │
+│    • Update Task.extension with recommendation + confidence                 │
+│                                                                              │
+│  3. ON-DEMAND ($execute)                                                    │
+│  ────────────────────────                                                   │
+│  Endpoint: POST /fhir/R4/Bot/<bot-id>/$execute                             │
+│  Use: Manual recalculation for single patient                               │
+│  Flow:                                                                       │
+│    • User clicks "Recalculate" → API call → PDC recalculated               │
+│                                                                              │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+### Medplum Bot Implementation
+
+```typescript
+// src/bots/pdc-nightly-calculator/index.ts
+import { BotEvent, MedplumClient } from '@medplum/core';
+import { getPatientDispenses } from '@/lib/fhir/dispense-service';
+import { calculatePDCFromDispenses } from '@/lib/pdc/calculator';
+import { calculateFragility } from '@/lib/pdc/fragility';
+import { createOrUpdatePDCObservation } from '@/lib/fhir/observation-service';
+
+export async function handler(
+  medplum: MedplumClient,
+  event: BotEvent
+): Promise<{ processed: number; errors: number }> {
+  console.log(`PDC Calculator started at ${new Date().toISOString()}`);
+
+  // 1. Get all patients with active medications
+  const patients = await getActivePatientsWithMedications(medplum);
+
+  let processed = 0, errors = 0;
+
+  for (const patient of patients) {
+    try {
+      // 2. Get dispenses
+      const dispenses = await getPatientDispenses(medplum, patient.id!, 2025);
+
+      // 3. Calculate PDC (Phase 1 service)
+      const pdcResult = calculatePDCFromDispenses(dispenses, 2025);
+
+      // 4. Calculate fragility (Phase 1 service)
+      const fragility = calculateFragility({
+        pdcResult,
+        refillsRemaining: pdcResult.refillsNeeded,
+        measureTypes: ['MAC'],
+        isNewPatient: false,
+        currentDate: new Date(),
+      });
+
+      // 5. Store as Observation
+      await createOrUpdatePDCObservation(medplum, patient.id!, 'MAC', pdcResult, fragility);
+
+      // 6. Create Task if actionable
+      if (fragility.tier !== 'COMPLIANT' && fragility.tier !== 'T5_UNSALVAGEABLE') {
+        await createRefillTask(medplum, patient.id!, pdcResult, fragility);
+      }
+
+      processed++;
+    } catch (error) {
+      console.error(`Error processing ${patient.id}:`, error);
+      errors++;
+    }
+  }
+
+  return { processed, errors };
+}
+```
+
+### Bot Deployment Configuration
+
+```json
+// medplum.config.json
+{
+  "bots": [
+    {
+      "name": "pdc-nightly-calculator",
+      "path": "src/bots/pdc-nightly-calculator/index.ts",
+      "cronTrigger": "0 2 * * *"
+    },
+    {
+      "name": "ai-recommendation-generator",
+      "path": "src/bots/ai-recommendation/index.ts",
+      "subscription": "Task?status=requested&code=refill-review"
+    }
+  ]
+}
+```
+
+### Deployment Commands
+
+```bash
+# Deploy bots
+npx medplum bot deploy pdc-nightly-calculator
+npx medplum bot deploy ai-recommendation-generator
+
+# Test on-demand execution
+npx medplum bot execute pdc-nightly-calculator
+```
+
+---
+
 ## FHIR-Native Service Design
 
 ### 1. PDC Calculator Service (`/src/lib/pdc/calculator.ts`)
