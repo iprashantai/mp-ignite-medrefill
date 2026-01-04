@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useMedplum, useMedplumProfile } from '@medplum/react';
 import { useRouter, usePathname } from 'next/navigation';
 import Link from 'next/link';
@@ -35,6 +35,12 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   const profile = useMedplumProfile();
   const router = useRouter();
   const pathname = usePathname();
+  const [isClient, setIsClient] = useState(false);
+
+  // Mark as client-side after hydration
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   // Redirect to login if not authenticated
   useEffect(() => {
@@ -48,8 +54,8 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     router.push('/login');
   };
 
-  // Show loading while checking auth
-  if (medplum.isLoading()) {
+  // Show loading while checking auth (only after hydration to avoid mismatch)
+  if (!isClient || medplum.isLoading()) {
     return (
       <div className="flex min-h-screen items-center justify-center">
         <div className="border-primary h-8 w-8 animate-spin rounded-full border-4 border-t-transparent" />
