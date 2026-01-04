@@ -1,0 +1,312 @@
+{
+  "metadata": {
+    "batch": 1,
+    "category": "Patient Management",
+    "features": "F001-F007",
+    "total_test_cases": 35,
+    "created": "2026-01-03"
+  },
+  "test_cases": [
+    {
+      "feature_id": "F001",
+      "feature_name": "Display patient list table",
+      "test_cases": [
+        {
+          "id": "F001-TC01",
+          "name": "Patient list displays with 10 patients",
+          "type": "happy_path",
+          "input": "User has 10 assigned patients in database",
+          "expected": "Table displays all 10 patients with Name and MRN columns visible"
+        },
+        {
+          "id": "F001-TC02",
+          "name": "Empty patient list",
+          "type": "edge_case",
+          "input": "User has 0 assigned patients",
+          "expected": "Shows 'No patients found' message with empty state UI"
+        },
+        {
+          "id": "F001-TC03",
+          "name": "Large dataset - 500 patients",
+          "type": "edge_case",
+          "input": "User has exactly 500 patients",
+          "expected": "Table loads within 2 seconds, pagination enabled"
+        },
+        {
+          "id": "F001-TC04",
+          "name": "Firestore connection failure",
+          "type": "error_handling",
+          "input": "Firestore connection times out",
+          "expected": "Shows error message with retry button, no crash"
+        },
+        {
+          "id": "F001-TC05",
+          "name": "Name format Last, First",
+          "type": "business_logic",
+          "input": "Patient: firstName='John', lastName='Smith'",
+          "expected": "Displays as 'Smith, John'"
+        }
+      ]
+    },
+    {
+      "feature_id": "F002",
+      "feature_name": "Add demographics columns to patient list",
+      "test_cases": [
+        {
+          "id": "F002-TC01",
+          "name": "All demographics display correctly",
+          "type": "happy_path",
+          "input": "Patient with DOB=1950-03-15, phone=555-123-4567, email=test@test.com, memberId=MEM123",
+          "expected": "DOB shows '03/15/1950', phone formatted, email shown, Member ID visible"
+        },
+        {
+          "id": "F002-TC02",
+          "name": "Missing email field",
+          "type": "edge_case",
+          "input": "Patient with email=null",
+          "expected": "Email column shows '-' or empty, no error"
+        },
+        {
+          "id": "F002-TC03",
+          "name": "Invalid phone format",
+          "type": "edge_case",
+          "input": "Patient with phone='123'",
+          "expected": "Phone displays as-is without formatting error"
+        },
+        {
+          "id": "F002-TC04",
+          "name": "Null DOB handling",
+          "type": "error_handling",
+          "input": "Patient with DOB=undefined",
+          "expected": "DOB column shows '-' or 'N/A', no crash"
+        },
+        {
+          "id": "F002-TC05",
+          "name": "Future DOB validation",
+          "type": "business_logic",
+          "input": "Patient with DOB='2030-01-01'",
+          "expected": "DOB displays but may show warning indicator for invalid data"
+        }
+      ]
+    },
+    {
+      "feature_id": "F003",
+      "feature_name": "Add PDC column to patient list",
+      "test_cases": [
+        {
+          "id": "F003-TC01",
+          "name": "PDC 85% displays green",
+          "type": "happy_path",
+          "input": "Patient with PDC=85",
+          "expected": "Shows '85%' with green badge (bg-green-100 text-green-700)"
+        },
+        {
+          "id": "F003-TC02",
+          "name": "PDC exactly 80% boundary",
+          "type": "edge_case",
+          "input": "Patient with PDC=80",
+          "expected": "Shows '80%' with green badge (>= 80% is passing)"
+        },
+        {
+          "id": "F003-TC03",
+          "name": "PDC 79% displays amber",
+          "type": "edge_case",
+          "input": "Patient with PDC=79",
+          "expected": "Shows '79%' with amber badge (60-79% range)"
+        },
+        {
+          "id": "F003-TC04",
+          "name": "PDC 59% displays red",
+          "type": "edge_case",
+          "input": "Patient with PDC=59",
+          "expected": "Shows '59%' with red badge (< 60%)"
+        },
+        {
+          "id": "F003-TC05",
+          "name": "PDC null/undefined",
+          "type": "error_handling",
+          "input": "Patient with PDC=null (D0/D1 patient)",
+          "expected": "Shows 'N/A' or '-' badge, no crash"
+        },
+        {
+          "id": "F003-TC06",
+          "name": "PDC 100% maximum",
+          "type": "business_logic",
+          "input": "Patient with PDC=100",
+          "expected": "Shows '100%' with green badge"
+        },
+        {
+          "id": "F003-TC07",
+          "name": "PDC 0% minimum",
+          "type": "business_logic",
+          "input": "Patient with PDC=0",
+          "expected": "Shows '0%' with red badge"
+        }
+      ]
+    },
+    {
+      "feature_id": "F004",
+      "feature_name": "Add fragility tier column",
+      "test_cases": [
+        {
+          "id": "F004-TC01",
+          "name": "F1 tier displays red",
+          "type": "happy_path",
+          "input": "Patient with fragilityTier='F1'",
+          "expected": "Shows 'F1' badge with red styling"
+        },
+        {
+          "id": "F004-TC02",
+          "name": "COMP tier displays correctly",
+          "type": "edge_case",
+          "input": "Patient with fragilityTier='COMP'",
+          "expected": "Shows 'COMP' badge (already compliant, no refill urgency)"
+        },
+        {
+          "id": "F004-TC03",
+          "name": "T5 tier displays gray",
+          "type": "edge_case",
+          "input": "Patient with fragilityTier='T5'",
+          "expected": "Shows 'T5' badge with gray styling (unsalvageable)"
+        },
+        {
+          "id": "F004-TC04",
+          "name": "Invalid tier value",
+          "type": "error_handling",
+          "input": "Patient with fragilityTier='INVALID'",
+          "expected": "Shows default badge or 'Unknown', no crash"
+        },
+        {
+          "id": "F004-TC05",
+          "name": "Tier color coding F1-F5",
+          "type": "business_logic",
+          "input": "Patients with tiers F1,F2,F3,F4,F5",
+          "expected": "F1=red, F2=orange, F3=amber, F4=blue, F5=green"
+        }
+      ]
+    },
+    {
+      "feature_id": "F005",
+      "feature_name": "Add days to runout column",
+      "test_cases": [
+        {
+          "id": "F005-TC01",
+          "name": "10 days to runout displays green",
+          "type": "happy_path",
+          "input": "Patient with daysToRunout=10",
+          "expected": "Shows '10' with amber badge (8-14 range)"
+        },
+        {
+          "id": "F005-TC02",
+          "name": "0 days shows OUT badge",
+          "type": "edge_case",
+          "input": "Patient with daysToRunout=0",
+          "expected": "Shows 'OUT' with red badge"
+        },
+        {
+          "id": "F005-TC03",
+          "name": "Negative days (already out)",
+          "type": "edge_case",
+          "input": "Patient with daysToRunout=-5",
+          "expected": "Shows 'OUT' or '-5' with red badge indicating overdue"
+        },
+        {
+          "id": "F005-TC04",
+          "name": "Null days to runout",
+          "type": "error_handling",
+          "input": "Patient with daysToRunout=undefined",
+          "expected": "Shows '-' or 'N/A', no crash"
+        },
+        {
+          "id": "F005-TC05",
+          "name": "Color thresholds correct",
+          "type": "business_logic",
+          "input": "daysToRunout values: -1, 0, 5, 10, 20",
+          "expected": "-1=red, 0=red, 5=orange, 10=amber, 20=green"
+        }
+      ]
+    },
+    {
+      "feature_id": "F006",
+      "feature_name": "Default sort by priority score",
+      "test_cases": [
+        {
+          "id": "F006-TC01",
+          "name": "Highest priority first",
+          "type": "happy_path",
+          "input": "3 patients with scores 100, 50, 80",
+          "expected": "Order: 100, 80, 50 (descending)"
+        },
+        {
+          "id": "F006-TC02",
+          "name": "Equal priority scores",
+          "type": "edge_case",
+          "input": "2 patients both with score=75",
+          "expected": "Secondary sort by name or stable sort maintained"
+        },
+        {
+          "id": "F006-TC03",
+          "name": "All zero priority scores",
+          "type": "edge_case",
+          "input": "5 patients all with score=0",
+          "expected": "All displayed, secondary sort applies"
+        },
+        {
+          "id": "F006-TC04",
+          "name": "Null priority scores",
+          "type": "error_handling",
+          "input": "Patient with priorityScore=null",
+          "expected": "Treated as 0 or sorted last, no crash"
+        },
+        {
+          "id": "F006-TC05",
+          "name": "Toggle sort direction",
+          "type": "business_logic",
+          "input": "Click priority column header twice",
+          "expected": "First click: descending (default), second click: ascending"
+        }
+      ]
+    },
+    {
+      "feature_id": "F007",
+      "feature_name": "Pagination for patient list",
+      "test_cases": [
+        {
+          "id": "F007-TC01",
+          "name": "50 patients per page default",
+          "type": "happy_path",
+          "input": "100 patients in database",
+          "expected": "Page 1 shows 50 patients, shows '1-50 of 100'"
+        },
+        {
+          "id": "F007-TC02",
+          "name": "Less than page size",
+          "type": "edge_case",
+          "input": "30 patients in database",
+          "expected": "Shows all 30, no pagination needed, shows '1-30 of 30'"
+        },
+        {
+          "id": "F007-TC03",
+          "name": "Exactly 50 patients",
+          "type": "edge_case",
+          "input": "50 patients in database",
+          "expected": "Shows all 50, single page, no next button"
+        },
+        {
+          "id": "F007-TC04",
+          "name": "Jump to invalid page",
+          "type": "error_handling",
+          "input": "User tries to navigate to page 999 with only 3 pages",
+          "expected": "Redirects to last valid page or shows error"
+        },
+        {
+          "id": "F007-TC05",
+          "name": "Total count accuracy",
+          "type": "business_logic",
+          "input": "250 patients, navigate through all pages",
+          "expected": "Total always shows 250, pages show correct ranges"
+        }
+      ]
+    }
+  ]
+}

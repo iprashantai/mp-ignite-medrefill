@@ -1,0 +1,319 @@
+{
+  "metadata": {
+    "batch": 2,
+    "category": "Search & Filter",
+    "features": "F008-F014",
+    "total_test_cases": 35,
+    "created": "2026-01-03"
+  },
+  "test_cases": [
+    {
+      "feature_id": "F008",
+      "feature_name": "Fuzzy search by patient name",
+      "test_cases": [
+        {
+          "id": "F008-TC01",
+          "name": "Partial name search works",
+          "type": "happy_path",
+          "input": "Search term: 'Smi' with patient 'John Smith'",
+          "expected": "John Smith appears in results"
+        },
+        {
+          "id": "F008-TC02",
+          "name": "2 character search ignored",
+          "type": "edge_case",
+          "input": "Search term: 'Jo'",
+          "expected": "No search triggered, shows all patients"
+        },
+        {
+          "id": "F008-TC03",
+          "name": "Misspelled name fuzzy match",
+          "type": "edge_case",
+          "input": "Search term: 'Smth' for 'Smith'",
+          "expected": "Smith patients appear with fuzzy matching"
+        },
+        {
+          "id": "F008-TC04",
+          "name": "No results found",
+          "type": "edge_case",
+          "input": "Search term: 'XYZ123NonExistent'",
+          "expected": "Shows 'No patients found' message"
+        },
+        {
+          "id": "F008-TC05",
+          "name": "Special characters in search",
+          "type": "error_handling",
+          "input": "Search term: '<script>alert(1)</script>'",
+          "expected": "Search executes safely, no XSS, shows no results"
+        },
+        {
+          "id": "F008-TC06",
+          "name": "Search performance under 500ms",
+          "type": "business_logic",
+          "input": "Search 'John' with 5000 patients",
+          "expected": "Results appear within 500ms"
+        },
+        {
+          "id": "F008-TC07",
+          "name": "Clear search button",
+          "type": "happy_path",
+          "input": "Click clear button after search",
+          "expected": "Search cleared, all patients visible again"
+        }
+      ]
+    },
+    {
+      "feature_id": "F009",
+      "feature_name": "Search by MRN",
+      "test_cases": [
+        {
+          "id": "F009-TC01",
+          "name": "Exact MRN match",
+          "type": "happy_path",
+          "input": "Search: 'MRN123456'",
+          "expected": "Single patient with exact MRN returned"
+        },
+        {
+          "id": "F009-TC02",
+          "name": "Partial MRN search",
+          "type": "edge_case",
+          "input": "Search: 'MRN12'",
+          "expected": "Shows patients with MRN starting with 'MRN12'"
+        },
+        {
+          "id": "F009-TC03",
+          "name": "MRN not found",
+          "type": "edge_case",
+          "input": "Search: 'MRN999999999'",
+          "expected": "Shows 'No patient found' message"
+        },
+        {
+          "id": "F009-TC04",
+          "name": "Auto-detect MRN vs Name",
+          "type": "business_logic",
+          "input": "Search: 'MRN' prefix detected",
+          "expected": "System auto-switches to MRN search mode"
+        },
+        {
+          "id": "F009-TC05",
+          "name": "Numeric-only MRN search",
+          "type": "edge_case",
+          "input": "Search: '123456' (numeric only)",
+          "expected": "Searches both MRN and potentially numeric names"
+        }
+      ]
+    },
+    {
+      "feature_id": "F010",
+      "feature_name": "Search results highlighting",
+      "test_cases": [
+        {
+          "id": "F010-TC01",
+          "name": "Name match highlighted",
+          "type": "happy_path",
+          "input": "Search 'Smi' finds 'John Smith'",
+          "expected": "'Smi' portion highlighted in yellow in result"
+        },
+        {
+          "id": "F010-TC02",
+          "name": "MRN match highlighted",
+          "type": "happy_path",
+          "input": "Search 'MRN123' finds 'MRN123456'",
+          "expected": "'MRN123' portion highlighted"
+        },
+        {
+          "id": "F010-TC03",
+          "name": "Case-insensitive highlighting",
+          "type": "edge_case",
+          "input": "Search 'SMITH' finds 'John Smith'",
+          "expected": "'Smith' highlighted despite case difference"
+        },
+        {
+          "id": "F010-TC04",
+          "name": "Multiple matches in name",
+          "type": "edge_case",
+          "input": "Search 'an' finds 'Anna Anderson'",
+          "expected": "Both 'an' in Anna and 'An' in Anderson highlighted"
+        },
+        {
+          "id": "F010-TC05",
+          "name": "No highlight for non-matching columns",
+          "type": "business_logic",
+          "input": "Search 'Smith' matches name only",
+          "expected": "Only Name column has highlight, not MRN or other fields"
+        }
+      ]
+    },
+    {
+      "feature_id": "F011",
+      "feature_name": "Filter by fragility tier",
+      "test_cases": [
+        {
+          "id": "F011-TC01",
+          "name": "Filter by F1 tier",
+          "type": "happy_path",
+          "input": "Click F1 filter button",
+          "expected": "Only F1 tier patients shown, count badge updated"
+        },
+        {
+          "id": "F011-TC02",
+          "name": "Multi-select F1 and F2",
+          "type": "happy_path",
+          "input": "Select both F1 and F2 filters",
+          "expected": "Shows F1 and F2 patients combined"
+        },
+        {
+          "id": "F011-TC03",
+          "name": "Filter with 0 results",
+          "type": "edge_case",
+          "input": "Select T5 when no T5 patients exist",
+          "expected": "Shows empty state, count shows 0"
+        },
+        {
+          "id": "F011-TC04",
+          "name": "Clear all filters",
+          "type": "happy_path",
+          "input": "Click 'Clear All' after multiple filters",
+          "expected": "All filters cleared, all patients shown"
+        },
+        {
+          "id": "F011-TC05",
+          "name": "Count badge accuracy",
+          "type": "business_logic",
+          "input": "3 F1 patients, 5 F2 patients in database",
+          "expected": "F1 button shows (3), F2 shows (5)"
+        }
+      ]
+    },
+    {
+      "feature_id": "F012",
+      "feature_name": "Filter by STARS measure",
+      "test_cases": [
+        {
+          "id": "F012-TC01",
+          "name": "Filter by MAC measure",
+          "type": "happy_path",
+          "input": "Click MAC filter",
+          "expected": "Only patients on cholesterol meds shown"
+        },
+        {
+          "id": "F012-TC02",
+          "name": "Filter by MAD measure",
+          "type": "happy_path",
+          "input": "Click MAD filter",
+          "expected": "Only patients on diabetes meds shown"
+        },
+        {
+          "id": "F012-TC03",
+          "name": "Filter by MAH measure",
+          "type": "happy_path",
+          "input": "Click MAH filter",
+          "expected": "Only patients on hypertension meds shown"
+        },
+        {
+          "id": "F012-TC04",
+          "name": "Multi-measure patient appears once",
+          "type": "business_logic",
+          "input": "Patient on both MAC and MAD meds, both filters active",
+          "expected": "Patient appears once (not duplicated)"
+        },
+        {
+          "id": "F012-TC05",
+          "name": "Measure count accuracy",
+          "type": "business_logic",
+          "input": "10 MAC, 5 MAD, 8 MAH patients",
+          "expected": "Buttons show correct counts for each"
+        }
+      ]
+    },
+    {
+      "feature_id": "F013",
+      "feature_name": "Filter by PDC status",
+      "test_cases": [
+        {
+          "id": "F013-TC01",
+          "name": "Filter by Passing (>=80%)",
+          "type": "happy_path",
+          "input": "Click Passing filter",
+          "expected": "Only patients with PDC >= 80% shown"
+        },
+        {
+          "id": "F013-TC02",
+          "name": "Filter by At-Risk (60-79%)",
+          "type": "happy_path",
+          "input": "Click At-Risk filter",
+          "expected": "Only patients with PDC 60-79% shown"
+        },
+        {
+          "id": "F013-TC03",
+          "name": "Filter by Failing (<60%)",
+          "type": "happy_path",
+          "input": "Click Failing filter",
+          "expected": "Only patients with PDC < 60% shown"
+        },
+        {
+          "id": "F013-TC04",
+          "name": "PDC exactly 80% boundary",
+          "type": "business_logic",
+          "input": "Patient with PDC=80, Passing filter active",
+          "expected": "Patient appears in Passing (80% is >= 80)"
+        },
+        {
+          "id": "F013-TC05",
+          "name": "PDC exactly 60% boundary",
+          "type": "business_logic",
+          "input": "Patient with PDC=60, At-Risk filter active",
+          "expected": "Patient appears in At-Risk (60% is in 60-79 range)"
+        },
+        {
+          "id": "F013-TC06",
+          "name": "N/A PDC patients",
+          "type": "edge_case",
+          "input": "D0/D1 patient with no PDC, any filter active",
+          "expected": "D0/D1 patients may be excluded or shown separately"
+        }
+      ]
+    },
+    {
+      "feature_id": "F014",
+      "feature_name": "Quick filters (Candidates, Urgent, Overdue)",
+      "test_cases": [
+        {
+          "id": "F014-TC01",
+          "name": "Candidates filter",
+          "type": "happy_path",
+          "input": "Click Candidates quick filter",
+          "expected": "Patients needing refill soon (7-14 days) shown"
+        },
+        {
+          "id": "F014-TC02",
+          "name": "Urgent filter",
+          "type": "happy_path",
+          "input": "Click Urgent quick filter",
+          "expected": "Patients with <= 7 days to runout shown"
+        },
+        {
+          "id": "F014-TC03",
+          "name": "Overdue filter",
+          "type": "happy_path",
+          "input": "Click Overdue quick filter",
+          "expected": "Patients with <= 0 days to runout shown"
+        },
+        {
+          "id": "F014-TC04",
+          "name": "Quick filter clears other filters",
+          "type": "business_logic",
+          "input": "F1 filter active, click Urgent quick filter",
+          "expected": "F1 cleared, Urgent applied"
+        },
+        {
+          "id": "F014-TC05",
+          "name": "No urgent patients",
+          "type": "edge_case",
+          "input": "Click Urgent when all patients have > 7 days",
+          "expected": "Shows empty state with appropriate message"
+        }
+      ]
+    }
+  ]
+}

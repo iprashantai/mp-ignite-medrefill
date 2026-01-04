@@ -1,0 +1,2254 @@
+{
+  "metadata": {
+    "project": "Ignite MedRefills",
+    "version": "2.0.0",
+    "created": "2026-01-03",
+    "author": "Claude Code Agent",
+    "description": "Granular feature list broken into 1-3 day buildable, testable units",
+    "source_prd": "docs/PRD_ALL_PATIENTS_REFILL_WORKLIST.md",
+    "golden_standard": "src/pages/MetricsReference.jsx",
+    "total_features": 142,
+    "estimated_days": 180
+  },
+  "features": [
+    {
+      "id": "F001",
+      "category": "Patient Management",
+      "name": "Display patient list table",
+      "description": "Show basic patient list with name, MRN columns",
+      "acceptance_criteria": [
+        "Table displays with patient name (Last, First format)",
+        "MRN column visible",
+        "Table uses reusable Table components per CLAUDE.md",
+        "Loads within 2 seconds for 500 patients"
+      ],
+      "priority": "critical",
+      "phase": 1,
+      "estimated_days": 2,
+      "dependencies": []
+    },
+    {
+      "id": "F002",
+      "category": "Patient Management",
+      "name": "Add demographics columns to patient list",
+      "description": "Add DOB, phone, email columns to patient table",
+      "acceptance_criteria": [
+        "DOB column displays in MM/DD/YYYY format",
+        "Phone column with formatted number",
+        "Email column (optional, can be empty)",
+        "Member ID column"
+      ],
+      "priority": "critical",
+      "phase": 1,
+      "estimated_days": 1,
+      "dependencies": ["F001"]
+    },
+    {
+      "id": "F003",
+      "category": "Patient Management",
+      "name": "Add PDC column to patient list",
+      "description": "Display current PDC value with color-coded badge",
+      "acceptance_criteria": [
+        "PDC value displayed as percentage",
+        "Green badge for PDC >= 80%",
+        "Amber badge for 60-79%",
+        "Red badge for < 60%"
+      ],
+      "priority": "critical",
+      "phase": 1,
+      "estimated_days": 1,
+      "dependencies": ["F001"]
+    },
+    {
+      "id": "F004",
+      "category": "Patient Management",
+      "name": "Add fragility tier column",
+      "description": "Display fragility tier with color-coded badge",
+      "acceptance_criteria": [
+        "Tier badge shows COMP/F1/F2/F3/F4/F5/T5",
+        "F1 = red, F2 = orange, F3 = amber, F4 = blue, F5 = green, T5 = gray",
+        "Hover shows tier description"
+      ],
+      "priority": "critical",
+      "phase": 1,
+      "estimated_days": 1,
+      "dependencies": ["F001"]
+    },
+    {
+      "id": "F005",
+      "category": "Patient Management",
+      "name": "Add days to runout column",
+      "description": "Display days until medication runs out",
+      "acceptance_criteria": [
+        "Numeric value displayed",
+        "Negative values show 'OUT' badge",
+        "Color coding: <=0 red, 1-7 orange, 8-14 amber, >14 green"
+      ],
+      "priority": "critical",
+      "phase": 1,
+      "estimated_days": 1,
+      "dependencies": ["F001"]
+    },
+    {
+      "id": "F006",
+      "category": "Patient Management",
+      "name": "Default sort by priority score",
+      "description": "Sort patient list by priority score descending",
+      "acceptance_criteria": [
+        "Highest priority patients appear first",
+        "Sort indicator visible on column header",
+        "Click to toggle ascending/descending"
+      ],
+      "priority": "critical",
+      "phase": 1,
+      "estimated_days": 1,
+      "dependencies": ["F001"]
+    },
+    {
+      "id": "F007",
+      "category": "Patient Management",
+      "name": "Pagination for patient list",
+      "description": "Add pagination with 50 patients per page",
+      "acceptance_criteria": [
+        "Shows 50 patients per page by default",
+        "Page navigation controls",
+        "Total count displayed",
+        "Jump to page functionality"
+      ],
+      "priority": "critical",
+      "phase": 1,
+      "estimated_days": 1,
+      "dependencies": ["F001"]
+    },
+    {
+      "id": "F008",
+      "category": "Search",
+      "name": "Fuzzy search by patient name",
+      "description": "Search patients by name with fuzzy matching",
+      "acceptance_criteria": [
+        "Partial name matches work",
+        "Results appear within 500ms",
+        "Minimum 3 characters to trigger search",
+        "Search box with clear button"
+      ],
+      "priority": "critical",
+      "phase": 1,
+      "estimated_days": 2,
+      "dependencies": ["F001"]
+    },
+    {
+      "id": "F009",
+      "category": "Search",
+      "name": "Search by MRN",
+      "description": "Search patients by exact MRN match",
+      "acceptance_criteria": [
+        "Exact MRN match returns patient",
+        "Partial MRN shows suggestions",
+        "Auto-detect MRN vs name input"
+      ],
+      "priority": "critical",
+      "phase": 1,
+      "estimated_days": 1,
+      "dependencies": ["F008"]
+    },
+    {
+      "id": "F010",
+      "category": "Search",
+      "name": "Search results highlighting",
+      "description": "Highlight matching text in search results",
+      "acceptance_criteria": [
+        "Matching characters highlighted in results",
+        "Works for both name and MRN",
+        "Consistent highlight color"
+      ],
+      "priority": "high",
+      "phase": 1,
+      "estimated_days": 1,
+      "dependencies": ["F008"]
+    },
+    {
+      "id": "F011",
+      "category": "Filter",
+      "name": "Filter by fragility tier",
+      "description": "Quick filter buttons for each tier",
+      "acceptance_criteria": [
+        "Button for each tier (COMP, F1-F5, T5)",
+        "Count badge on each button",
+        "Multi-select enabled",
+        "Clear all filters button"
+      ],
+      "priority": "critical",
+      "phase": 1,
+      "estimated_days": 2,
+      "dependencies": ["F001", "F004"]
+    },
+    {
+      "id": "F012",
+      "category": "Filter",
+      "name": "Filter by STARS measure",
+      "description": "Filter patients by MAC/MAD/MAH measure",
+      "acceptance_criteria": [
+        "Filter buttons for MAC, MAD, MAH",
+        "Count per measure displayed",
+        "Multi-select works",
+        "Shows patients with any medication in selected measure"
+      ],
+      "priority": "critical",
+      "phase": 1,
+      "estimated_days": 1,
+      "dependencies": ["F011"]
+    },
+    {
+      "id": "F013",
+      "category": "Filter",
+      "name": "Filter by PDC status",
+      "description": "Filter by Passing/At-Risk/Failing",
+      "acceptance_criteria": [
+        "Three status buttons: Passing (>=80%), At-Risk (60-79%), Failing (<60%)",
+        "Count per status",
+        "Multi-select enabled"
+      ],
+      "priority": "critical",
+      "phase": 1,
+      "estimated_days": 1,
+      "dependencies": ["F011"]
+    },
+    {
+      "id": "F014",
+      "category": "Filter",
+      "name": "Quick filters (Candidates, Urgent, Overdue)",
+      "description": "Preset filter combinations for common scenarios",
+      "acceptance_criteria": [
+        "Candidates: Patients needing refill soon",
+        "Urgent: Days to runout <= 7",
+        "Overdue: Days to runout <= 0",
+        "One-click apply"
+      ],
+      "priority": "high",
+      "phase": 1,
+      "estimated_days": 1,
+      "dependencies": ["F011"]
+    },
+    {
+      "id": "F015",
+      "category": "Patient Detail",
+      "name": "Patient detail drawer - demographics",
+      "description": "Show patient demographics in side drawer",
+      "acceptance_criteria": [
+        "Clicking patient row opens drawer",
+        "Shows full name, DOB, phone, email, address",
+        "Member ID visible",
+        "Close button (X) and Escape key to close"
+      ],
+      "priority": "critical",
+      "phase": 1,
+      "estimated_days": 2,
+      "dependencies": ["F001"]
+    },
+    {
+      "id": "F016",
+      "category": "Patient Detail",
+      "name": "Patient detail - medications list",
+      "description": "Display all patient medications",
+      "acceptance_criteria": [
+        "All active medications listed",
+        "Medication name with strength",
+        "Days supply shown",
+        "Refills remaining shown",
+        "Last fill date"
+      ],
+      "priority": "critical",
+      "phase": 1,
+      "estimated_days": 2,
+      "dependencies": ["F015"]
+    },
+    {
+      "id": "F017",
+      "category": "Patient Detail",
+      "name": "Patient detail - PDC by measure",
+      "description": "Show PDC breakdown by MAC/MAD/MAH",
+      "acceptance_criteria": [
+        "Separate PDC value for each applicable measure",
+        "Color-coded status for each",
+        "N/A for measures that don't apply"
+      ],
+      "priority": "critical",
+      "phase": 1,
+      "estimated_days": 1,
+      "dependencies": ["F015"]
+    },
+    {
+      "id": "F018",
+      "category": "Patient Detail",
+      "name": "Patient detail - gap days display",
+      "description": "Show gap days remaining for patient",
+      "acceptance_criteria": [
+        "Gap Days Used displayed",
+        "Gap Days Allowed displayed",
+        "Gap Days Remaining with color coding",
+        "Negative values highlighted in red"
+      ],
+      "priority": "critical",
+      "phase": 1,
+      "estimated_days": 1,
+      "dependencies": ["F015"]
+    },
+    {
+      "id": "F019",
+      "category": "Worklist Navigation",
+      "name": "4-tab worklist navigation",
+      "description": "Implement Refills, Pick-up, Exceptions, Archive tabs",
+      "acceptance_criteria": [
+        "4 tabs visible: Refills, Pick-up, Exceptions, Archive",
+        "Active tab highlighted",
+        "Count badge on each tab",
+        "Tab persistence across page refresh"
+      ],
+      "priority": "critical",
+      "phase": 1,
+      "estimated_days": 2,
+      "dependencies": []
+    },
+    {
+      "id": "F020",
+      "category": "Worklist Navigation",
+      "name": "URL reflects current tab",
+      "description": "Update URL when switching tabs",
+      "acceptance_criteria": [
+        "URL updates on tab change",
+        "Direct URL navigation works",
+        "Browser back/forward works"
+      ],
+      "priority": "high",
+      "phase": 1,
+      "estimated_days": 1,
+      "dependencies": ["F019"]
+    },
+    {
+      "id": "F021",
+      "category": "Refills Tab",
+      "name": "Refills tab patient list",
+      "description": "Display AI-reviewed patients in Refills tab",
+      "acceptance_criteria": [
+        "Shows patients with AI review complete",
+        "Sorted by priority score",
+        "Tier color-coded",
+        "AI decision badge visible"
+      ],
+      "priority": "critical",
+      "phase": 1,
+      "estimated_days": 2,
+      "dependencies": ["F019"]
+    },
+    {
+      "id": "F022",
+      "category": "Refills Tab",
+      "name": "AI decision badge display",
+      "description": "Show AI recommendation badge (Approve/Deny/Route)",
+      "acceptance_criteria": [
+        "Green badge for APPROVE",
+        "Red badge for DENY",
+        "Yellow badge for ROUTE",
+        "Confidence percentage shown"
+      ],
+      "priority": "critical",
+      "phase": 1,
+      "estimated_days": 1,
+      "dependencies": ["F021"]
+    },
+    {
+      "id": "F023",
+      "category": "Refills Tab",
+      "name": "Pathway type badge (REFILL/RENEWAL)",
+      "description": "Display whether patient needs refill or renewal",
+      "acceptance_criteria": [
+        "REFILL badge if refills remaining",
+        "RENEWAL badge if Rx expired or no refills",
+        "Color differentiation"
+      ],
+      "priority": "critical",
+      "phase": 1,
+      "estimated_days": 1,
+      "dependencies": ["F021"]
+    },
+    {
+      "id": "F024",
+      "category": "Review Drawer",
+      "name": "Review drawer 3-tab layout",
+      "description": "Overview, RX Claims, Med Adherence tabs",
+      "acceptance_criteria": [
+        "3 tabs in drawer: Overview, RX Claims, Med Adherence",
+        "Overview is default tab",
+        "Tab state persists while drawer open"
+      ],
+      "priority": "critical",
+      "phase": 1,
+      "estimated_days": 2,
+      "dependencies": ["F021"]
+    },
+    {
+      "id": "F025",
+      "category": "Review Drawer",
+      "name": "Protocol checks grid",
+      "description": "Display all 16 protocol check results",
+      "acceptance_criteria": [
+        "All 16 checks displayed in grid",
+        "PASS shown in green, FAIL in red",
+        "Grouped by type (Safety, Clinical, Important, Admin)",
+        "Value shown for each check"
+      ],
+      "priority": "critical",
+      "phase": 1,
+      "estimated_days": 2,
+      "dependencies": ["F024"]
+    },
+    {
+      "id": "F026",
+      "category": "Review Drawer",
+      "name": "AI decision panel",
+      "description": "Show Primary, QA, Manager AI decisions",
+      "acceptance_criteria": [
+        "Primary AI decision with confidence and rationale",
+        "QA AI review (AGREE/OVERRIDE)",
+        "Manager AI section (if triggered)",
+        "Expandable rationale text"
+      ],
+      "priority": "critical",
+      "phase": 1,
+      "estimated_days": 2,
+      "dependencies": ["F024"]
+    },
+    {
+      "id": "F027",
+      "category": "Review Drawer",
+      "name": "Clinical memory timeline",
+      "description": "Show history of all actions on patient",
+      "acceptance_criteria": [
+        "Chronological timeline of events",
+        "Color-coded by type (AI, Human, System)",
+        "Collapsible/expandable entries",
+        "Who, When, What for each"
+      ],
+      "priority": "critical",
+      "phase": 1,
+      "estimated_days": 2,
+      "dependencies": ["F024"]
+    },
+    {
+      "id": "F028",
+      "category": "Review Drawer",
+      "name": "RX Claims tab - fill history table",
+      "description": "Display prescription fill history",
+      "acceptance_criteria": [
+        "Table with all fills",
+        "Columns: Date, Drug, Days Supply, Pharmacy, Claim #",
+        "Sorted by date descending",
+        "Async loading with spinner"
+      ],
+      "priority": "critical",
+      "phase": 1,
+      "estimated_days": 2,
+      "dependencies": ["F024"]
+    },
+    {
+      "id": "F029",
+      "category": "Review Drawer",
+      "name": "Med Adherence tab - PDC breakdown",
+      "description": "Display detailed PDC analytics",
+      "acceptance_criteria": [
+        "PDC by measure (MAC, MAD, MAH)",
+        "Gap days visualization",
+        "Treatment timeline",
+        "Recommendations"
+      ],
+      "priority": "critical",
+      "phase": 1,
+      "estimated_days": 2,
+      "dependencies": ["F024"]
+    },
+    {
+      "id": "F030",
+      "category": "Actions",
+      "name": "Approve button",
+      "description": "One-click approve refill action",
+      "acceptance_criteria": [
+        "Approve button visible in drawer",
+        "Click sends Rx to pharmacy",
+        "Captures pharmacist ID and timestamp",
+        "Moves patient to Pick-up tab"
+      ],
+      "priority": "critical",
+      "phase": 1,
+      "estimated_days": 2,
+      "dependencies": ["F024"]
+    },
+    {
+      "id": "F031",
+      "category": "Actions",
+      "name": "Deny button with reason",
+      "description": "Deny refill with required reason",
+      "acceptance_criteria": [
+        "Deny button opens modal",
+        "Reason selection required",
+        "Free text notes optional",
+        "Moves to Archive with CLOSED_DENIED"
+      ],
+      "priority": "critical",
+      "phase": 1,
+      "estimated_days": 2,
+      "dependencies": ["F030"]
+    },
+    {
+      "id": "F032",
+      "category": "Actions",
+      "name": "Override AI denial",
+      "description": "Allow pharmacist to override AI denial",
+      "acceptance_criteria": [
+        "Override button visible for AI denials",
+        "Requires justification text",
+        "Captures override reason",
+        "Logs override in clinical memory"
+      ],
+      "priority": "critical",
+      "phase": 1,
+      "estimated_days": 1,
+      "dependencies": ["F031"]
+    },
+    {
+      "id": "F033",
+      "category": "Actions",
+      "name": "Route to exception",
+      "description": "Route patient to exception queue",
+      "acceptance_criteria": [
+        "Route button opens modal",
+        "Select exception type (Clinical, PA, Scheduling, Others)",
+        "Add notes for recipient",
+        "Moves to Exceptions tab"
+      ],
+      "priority": "critical",
+      "phase": 1,
+      "estimated_days": 2,
+      "dependencies": ["F030"]
+    },
+    {
+      "id": "F034",
+      "category": "Actions",
+      "name": "Keyboard shortcuts",
+      "description": "Implement A=Approve, D=Deny, Esc=Close",
+      "acceptance_criteria": [
+        "A key triggers Approve action",
+        "D key triggers Deny modal",
+        "Esc closes drawer",
+        "Shortcuts only active when drawer open"
+      ],
+      "priority": "high",
+      "phase": 1,
+      "estimated_days": 1,
+      "dependencies": ["F030", "F031"]
+    },
+    {
+      "id": "F035",
+      "category": "Pick-up Tab",
+      "name": "Pick-up tab patient list",
+      "description": "Display approved patients awaiting pickup",
+      "acceptance_criteria": [
+        "Shows patients with AWAITING_PICKUP status",
+        "Days since approval visible",
+        "Outreach status shown",
+        "Sorted by days waiting"
+      ],
+      "priority": "critical",
+      "phase": 2,
+      "estimated_days": 2,
+      "dependencies": ["F019", "F030"]
+    },
+    {
+      "id": "F036",
+      "category": "Pick-up Tab",
+      "name": "Overdue highlighting",
+      "description": "Highlight patients waiting > 7 days",
+      "acceptance_criteria": [
+        "Red row background for > 7 days",
+        "Overdue badge visible",
+        "Filter to show only overdue"
+      ],
+      "priority": "critical",
+      "phase": 2,
+      "estimated_days": 1,
+      "dependencies": ["F035"]
+    },
+    {
+      "id": "F037",
+      "category": "Pick-up Tab",
+      "name": "Confirm Fill button",
+      "description": "Manually confirm patient picked up medication",
+      "acceptance_criteria": [
+        "Confirm Fill button on each row",
+        "Opens confirmation modal",
+        "Moves to Archive with CLOSED_FILLED",
+        "Records confirmation timestamp"
+      ],
+      "priority": "critical",
+      "phase": 2,
+      "estimated_days": 1,
+      "dependencies": ["F035"]
+    },
+    {
+      "id": "F038",
+      "category": "Pick-up Tab",
+      "name": "Re-engage button",
+      "description": "Restart outreach for non-responsive patient",
+      "acceptance_criteria": [
+        "Re-engage button visible",
+        "Resets outreach sequence",
+        "Records action in clinical memory"
+      ],
+      "priority": "high",
+      "phase": 2,
+      "estimated_days": 1,
+      "dependencies": ["F035"]
+    },
+    {
+      "id": "F039",
+      "category": "Exceptions Tab",
+      "name": "Exception sub-queue tabs",
+      "description": "4 sub-tabs for exception types",
+      "acceptance_criteria": [
+        "Sub-tabs: Clinical, PA, Scheduling, Others",
+        "Count badge on each",
+        "Active tab styling"
+      ],
+      "priority": "critical",
+      "phase": 2,
+      "estimated_days": 2,
+      "dependencies": ["F019"]
+    },
+    {
+      "id": "F040",
+      "category": "Exceptions Tab",
+      "name": "Exception patient list",
+      "description": "Display exceptions with type and SLA",
+      "acceptance_criteria": [
+        "Exception type and reason visible",
+        "SLA countdown displayed",
+        "Assigned owner shown",
+        "Sorted by SLA urgency"
+      ],
+      "priority": "critical",
+      "phase": 2,
+      "estimated_days": 2,
+      "dependencies": ["F039"]
+    },
+    {
+      "id": "F041",
+      "category": "Exceptions Tab",
+      "name": "SLA timer display",
+      "description": "Show countdown timer for each exception",
+      "acceptance_criteria": [
+        "Time remaining displayed (e.g., '2h 30m')",
+        "Yellow at 50% remaining",
+        "Red at 25% remaining",
+        "Overdue shows negative time"
+      ],
+      "priority": "critical",
+      "phase": 2,
+      "estimated_days": 1,
+      "dependencies": ["F040"]
+    },
+    {
+      "id": "F042",
+      "category": "Exceptions Tab",
+      "name": "Resolve exception action",
+      "description": "Resolve exception and move forward",
+      "acceptance_criteria": [
+        "Resolve button opens modal",
+        "Select resolution type",
+        "Add resolution notes",
+        "Routes to next queue or Archive"
+      ],
+      "priority": "critical",
+      "phase": 2,
+      "estimated_days": 2,
+      "dependencies": ["F040"]
+    },
+    {
+      "id": "F043",
+      "category": "Exceptions Tab",
+      "name": "Rerun AI button",
+      "description": "Rerun AI after new documentation",
+      "acceptance_criteria": [
+        "Rerun AI button visible",
+        "Max 3 reruns allowed",
+        "Counter shows remaining attempts",
+        "Escalates after 3 fails"
+      ],
+      "priority": "high",
+      "phase": 2,
+      "estimated_days": 2,
+      "dependencies": ["F040"]
+    },
+    {
+      "id": "F044",
+      "category": "Archive Tab",
+      "name": "Archive patient list",
+      "description": "Display all closed cases",
+      "acceptance_criteria": [
+        "Shows all CLOSED_* statuses",
+        "Closed date and by whom",
+        "Closure reason visible",
+        "Sorted by closed date"
+      ],
+      "priority": "critical",
+      "phase": 2,
+      "estimated_days": 2,
+      "dependencies": ["F019"]
+    },
+    {
+      "id": "F045",
+      "category": "Archive Tab",
+      "name": "Archive search",
+      "description": "Search within archived cases",
+      "acceptance_criteria": [
+        "Search by name or MRN",
+        "Results from archive only",
+        "Fast response time"
+      ],
+      "priority": "high",
+      "phase": 2,
+      "estimated_days": 1,
+      "dependencies": ["F044"]
+    },
+    {
+      "id": "F046",
+      "category": "Archive Tab",
+      "name": "Archive date range filter",
+      "description": "Filter archive by date range",
+      "acceptance_criteria": [
+        "Start and end date pickers",
+        "Quick presets (Today, This Week, This Month)",
+        "Clear filter button"
+      ],
+      "priority": "high",
+      "phase": 2,
+      "estimated_days": 1,
+      "dependencies": ["F044"]
+    },
+    {
+      "id": "F047",
+      "category": "AI Engine",
+      "name": "Primary AI evaluation",
+      "description": "Call Gemini for initial patient evaluation",
+      "acceptance_criteria": [
+        "Accepts patient data as input",
+        "Returns APPROVE/DENY/ROUTE decision",
+        "Returns confidence score (0-100)",
+        "Returns detailed rationale",
+        "Completes within 2 seconds"
+      ],
+      "priority": "critical",
+      "phase": 1,
+      "estimated_days": 3,
+      "dependencies": []
+    },
+    {
+      "id": "F048",
+      "category": "AI Engine",
+      "name": "QA AI validation",
+      "description": "Validate Primary AI decision",
+      "acceptance_criteria": [
+        "Reviews Primary AI reasoning",
+        "Checks for calculation errors",
+        "Returns AGREE or OVERRIDE",
+        "Documents disagreement reason"
+      ],
+      "priority": "critical",
+      "phase": 1,
+      "estimated_days": 2,
+      "dependencies": ["F047"]
+    },
+    {
+      "id": "F049",
+      "category": "AI Engine",
+      "name": "Manager AI arbitration",
+      "description": "Arbitrate when Primary and QA disagree",
+      "acceptance_criteria": [
+        "Only triggered on disagreement",
+        "Reviews both perspectives",
+        "Makes final decision",
+        "Documents reasoning"
+      ],
+      "priority": "critical",
+      "phase": 1,
+      "estimated_days": 2,
+      "dependencies": ["F048"]
+    },
+    {
+      "id": "F050",
+      "category": "AI Engine",
+      "name": "AI retry with exponential backoff",
+      "description": "Handle AI API errors gracefully",
+      "acceptance_criteria": [
+        "Max 3 retries",
+        "Exponential backoff between retries",
+        "User-friendly error message on failure",
+        "Logs all attempts"
+      ],
+      "priority": "critical",
+      "phase": 1,
+      "estimated_days": 1,
+      "dependencies": ["F047"]
+    },
+    {
+      "id": "F051",
+      "category": "Protocol Checks",
+      "name": "Safety checks (S1-S4)",
+      "description": "Implement 4 safety protocol checks",
+      "acceptance_criteria": [
+        "S1: Allergies check",
+        "S2: Drug interactions check",
+        "S3: Contraindications check",
+        "S4: Duplicate therapy check",
+        "Each returns PASS/FAIL with value"
+      ],
+      "priority": "critical",
+      "phase": 1,
+      "estimated_days": 3,
+      "dependencies": ["F047"]
+    },
+    {
+      "id": "F052",
+      "category": "Protocol Checks",
+      "name": "Clinical checks (C1-C4)",
+      "description": "Implement 4 clinical protocol checks",
+      "acceptance_criteria": [
+        "C1: Last visit within 90 days",
+        "C2: Lab values current",
+        "C3: Diagnosis supports medication",
+        "C4: Dosage appropriate"
+      ],
+      "priority": "critical",
+      "phase": 1,
+      "estimated_days": 3,
+      "dependencies": ["F047"]
+    },
+    {
+      "id": "F053",
+      "category": "Protocol Checks",
+      "name": "Important checks (I1-I4)",
+      "description": "Implement 4 important protocol checks",
+      "acceptance_criteria": [
+        "I1: Refills remaining",
+        "I2: Rx not expired",
+        "I3: Insurance coverage active",
+        "I4: No prior auth required"
+      ],
+      "priority": "critical",
+      "phase": 1,
+      "estimated_days": 2,
+      "dependencies": ["F047"]
+    },
+    {
+      "id": "F054",
+      "category": "Protocol Checks",
+      "name": "Admin checks (A1-A4)",
+      "description": "Implement 4 administrative checks",
+      "acceptance_criteria": [
+        "A1: Pharmacy in network",
+        "A2: Quantity limits met",
+        "A3: Fill frequency OK",
+        "A4: Member eligible"
+      ],
+      "priority": "critical",
+      "phase": 1,
+      "estimated_days": 2,
+      "dependencies": ["F047"]
+    },
+    {
+      "id": "F055",
+      "category": "Calculations",
+      "name": "PDC calculation engine",
+      "description": "Calculate PDC per Golden Standard formula",
+      "acceptance_criteria": [
+        "Formula: PDC = Covered Days / Treatment Days × 100",
+        "Treatment Days = First Fill → Dec 31",
+        "Handles overlapping fills correctly",
+        "Caps at Dec 31"
+      ],
+      "priority": "critical",
+      "phase": 1,
+      "estimated_days": 2,
+      "dependencies": []
+    },
+    {
+      "id": "F056",
+      "category": "Calculations",
+      "name": "Gap days calculation",
+      "description": "Calculate gap days used/allowed/remaining",
+      "acceptance_criteria": [
+        "Gap Days Used = Treatment Days - Covered Days",
+        "Gap Days Allowed = Treatment Days × 0.20",
+        "Gap Days Remaining = Allowed - Used",
+        "Negative indicates unsalvageable"
+      ],
+      "priority": "critical",
+      "phase": 1,
+      "estimated_days": 1,
+      "dependencies": ["F055"]
+    },
+    {
+      "id": "F057",
+      "category": "Calculations",
+      "name": "Days to runout calculation",
+      "description": "Calculate days until medication runs out",
+      "acceptance_criteria": [
+        "Formula: (Last Fill Date + Days Supply) - Today",
+        "Handles negative values (already out)",
+        "Updates daily"
+      ],
+      "priority": "critical",
+      "phase": 1,
+      "estimated_days": 1,
+      "dependencies": []
+    },
+    {
+      "id": "F058",
+      "category": "Calculations",
+      "name": "Delay budget calculation",
+      "description": "Calculate delay budget per refill",
+      "acceptance_criteria": [
+        "Formula: Gap Days Remaining / Refills Needed",
+        "Used for fragility tier assignment"
+      ],
+      "priority": "critical",
+      "phase": 1,
+      "estimated_days": 1,
+      "dependencies": ["F056"]
+    },
+    {
+      "id": "F059",
+      "category": "Calculations",
+      "name": "Fragility tier assignment",
+      "description": "Assign tier based on delay budget",
+      "acceptance_criteria": [
+        "COMP: PDC Status Quo >= 80%",
+        "F1: <= 2 days/refill",
+        "F2: 3-5 days/refill",
+        "F3: 6-10 days/refill",
+        "F4: 11-20 days/refill",
+        "F5: > 20 days/refill",
+        "T5: PDC Perfect < 80%"
+      ],
+      "priority": "critical",
+      "phase": 1,
+      "estimated_days": 2,
+      "dependencies": ["F058"]
+    },
+    {
+      "id": "F060",
+      "category": "Calculations",
+      "name": "Priority score calculation",
+      "description": "Calculate priority from tier + bonuses",
+      "acceptance_criteria": [
+        "Base: F1=100, F2=80, F3=60, F4=40, F5=20",
+        "Bonus: Out of Meds +30",
+        "Bonus: Q4 +25",
+        "Bonus: Multiple MA +15",
+        "Bonus: New Patient +10"
+      ],
+      "priority": "critical",
+      "phase": 1,
+      "estimated_days": 1,
+      "dependencies": ["F059"]
+    },
+    {
+      "id": "F061",
+      "category": "Calculations",
+      "name": "PDC Status Quo calculation",
+      "description": "Calculate PDC if patient stops today",
+      "acceptance_criteria": [
+        "Formula: (Covered + min(Supply, DaysToYearEnd)) / Treatment",
+        "Used to identify already compliant patients"
+      ],
+      "priority": "critical",
+      "phase": 1,
+      "estimated_days": 1,
+      "dependencies": ["F055"]
+    },
+    {
+      "id": "F062",
+      "category": "Calculations",
+      "name": "PDC Perfect calculation",
+      "description": "Calculate best possible PDC",
+      "acceptance_criteria": [
+        "Formula: (Covered + DaysToYearEnd) / Treatment",
+        "If < 80%, patient is T5 (unsalvageable)"
+      ],
+      "priority": "critical",
+      "phase": 1,
+      "estimated_days": 1,
+      "dependencies": ["F055"]
+    },
+    {
+      "id": "F063",
+      "category": "Calculations",
+      "name": "Coverage period merging",
+      "description": "Merge overlapping prescription fills",
+      "acceptance_criteria": [
+        "Sort fills by start date",
+        "Merge overlapping periods",
+        "Cap at Dec 31",
+        "Each day counted exactly once"
+      ],
+      "priority": "critical",
+      "phase": 1,
+      "estimated_days": 2,
+      "dependencies": ["F055"]
+    },
+    {
+      "id": "F064",
+      "category": "Calculations",
+      "name": "Refills needed calculation",
+      "description": "Calculate refills needed to year-end",
+      "acceptance_criteria": [
+        "Formula: ceil((Days to Dec 31 - Supply) / Typical Days Supply)",
+        "Handles edge cases (already has enough)"
+      ],
+      "priority": "critical",
+      "phase": 1,
+      "estimated_days": 1,
+      "dependencies": []
+    },
+    {
+      "id": "F065",
+      "category": "Measure Tracking",
+      "name": "MAC measure identification",
+      "description": "Identify cholesterol/statin medications",
+      "acceptance_criteria": [
+        "Matches Atorvastatin, Rosuvastatin, Simvastatin, etc.",
+        "Uses NDC codes and drug names",
+        "Tags medication with MAC badge"
+      ],
+      "priority": "critical",
+      "phase": 1,
+      "estimated_days": 1,
+      "dependencies": []
+    },
+    {
+      "id": "F066",
+      "category": "Measure Tracking",
+      "name": "MAD measure identification",
+      "description": "Identify diabetes oral medications",
+      "acceptance_criteria": [
+        "Matches Metformin, Glipizide, Sitagliptin, etc.",
+        "Uses NDC codes and drug names",
+        "Tags medication with MAD badge"
+      ],
+      "priority": "critical",
+      "phase": 1,
+      "estimated_days": 1,
+      "dependencies": []
+    },
+    {
+      "id": "F067",
+      "category": "Measure Tracking",
+      "name": "MAH measure identification",
+      "description": "Identify hypertension/RAS medications",
+      "acceptance_criteria": [
+        "Matches Lisinopril, Losartan, Valsartan, etc.",
+        "Uses NDC codes and drug names",
+        "Tags medication with MAH badge"
+      ],
+      "priority": "critical",
+      "phase": 1,
+      "estimated_days": 1,
+      "dependencies": []
+    },
+    {
+      "id": "F068",
+      "category": "Measure Tracking",
+      "name": "Per-measure PDC tracking",
+      "description": "Track PDC independently per measure",
+      "acceptance_criteria": [
+        "Separate PDC for MAC, MAD, MAH",
+        "Patient may be compliant for one but not another",
+        "Display all in patient detail"
+      ],
+      "priority": "critical",
+      "phase": 1,
+      "estimated_days": 2,
+      "dependencies": ["F065", "F066", "F067", "F055"]
+    },
+    {
+      "id": "F069",
+      "category": "Denominator Tracking",
+      "name": "Denominator status assignment",
+      "description": "Assign D0/D1a/D1b/D2/DX status",
+      "acceptance_criteria": [
+        "D0: No fills",
+        "D1a: 1 fill, running low",
+        "D1b: 1 fill, adequate supply",
+        "D2: 2+ fills",
+        "DX: Excluded"
+      ],
+      "priority": "critical",
+      "phase": 1,
+      "estimated_days": 2,
+      "dependencies": []
+    },
+    {
+      "id": "F070",
+      "category": "Denominator Tracking",
+      "name": "D1a urgent flagging",
+      "description": "Flag D1a patients for urgent 2nd fill",
+      "acceptance_criteria": [
+        "D1a patients get priority boost",
+        "Visual indicator on patient row",
+        "Appears in Urgent quick filter"
+      ],
+      "priority": "critical",
+      "phase": 1,
+      "estimated_days": 1,
+      "dependencies": ["F069"]
+    },
+    {
+      "id": "F071",
+      "category": "Denominator Tracking",
+      "name": "D1 to D2 transition handling",
+      "description": "Recalculate PDC on 2nd fill",
+      "acceptance_criteria": [
+        "Detects 2nd fill event",
+        "Recalculates PDC from first fill date",
+        "Logs transition in clinical memory"
+      ],
+      "priority": "critical",
+      "phase": 1,
+      "estimated_days": 1,
+      "dependencies": ["F069"]
+    },
+    {
+      "id": "F072",
+      "category": "Denominator Tracking",
+      "name": "Exclusion criteria handling",
+      "description": "Mark DX patients as excluded",
+      "acceptance_criteria": [
+        "Hospice patients marked DX",
+        "ESRD patients marked DX",
+        "Disenrolled patients marked DX",
+        "No PDC calculation for DX"
+      ],
+      "priority": "critical",
+      "phase": 1,
+      "estimated_days": 1,
+      "dependencies": ["F069"]
+    },
+    {
+      "id": "F073",
+      "category": "Decision Logic",
+      "name": "REFILL vs RENEWAL pathway",
+      "description": "Determine appropriate pathway",
+      "acceptance_criteria": [
+        "REFILL: Refills remaining AND Rx not expired",
+        "RENEWAL: Refills remaining AND Rx expired",
+        "RENEWAL: No refills AND recent visit (<=90 days)",
+        "APPOINTMENT_NEEDED: No refills AND no recent visit"
+      ],
+      "priority": "critical",
+      "phase": 1,
+      "estimated_days": 2,
+      "dependencies": []
+    },
+    {
+      "id": "F074",
+      "category": "Decision Logic",
+      "name": "Status transition engine",
+      "description": "Manage workflow status transitions",
+      "acceptance_criteria": [
+        "pending-review → reviewed (after pharmacist action)",
+        "reviewed + APPROVE → rx-sent",
+        "rx-sent → filled-confirmed (after pharmacy fill)",
+        "reviewed + DENY → CLOSED_USER_DENIED",
+        "reviewed + ROUTE → exception queue"
+      ],
+      "priority": "critical",
+      "phase": 1,
+      "estimated_days": 2,
+      "dependencies": []
+    },
+    {
+      "id": "F075",
+      "category": "Priority Matrix",
+      "name": "Two-dimensional priority calculation",
+      "description": "Evaluate both urgency and fragility",
+      "acceptance_criteria": [
+        "Urgency = Days to Runout",
+        "Fragility = Delay Budget",
+        "Matrix: CRITICAL, HIGH, MEDIUM, WATCH, LOW"
+      ],
+      "priority": "critical",
+      "phase": 1,
+      "estimated_days": 2,
+      "dependencies": ["F057", "F058"]
+    },
+    {
+      "id": "F076",
+      "category": "Priority Matrix",
+      "name": "Priority matrix display",
+      "description": "Show priority as matrix cell",
+      "acceptance_criteria": [
+        "Display format: 'CRITICAL - F1/Out'",
+        "Color matches priority level",
+        "Tooltip explains reasoning"
+      ],
+      "priority": "high",
+      "phase": 1,
+      "estimated_days": 1,
+      "dependencies": ["F075"]
+    },
+    {
+      "id": "F077",
+      "category": "Q4 Handling",
+      "name": "Q4 priority bonus",
+      "description": "Apply +25 bonus in Oct-Dec",
+      "acceptance_criteria": [
+        "Detects Q4 period (Oct 1 - Dec 31)",
+        "Adds +25 to priority score",
+        "Q4 badge visible on patient"
+      ],
+      "priority": "critical",
+      "phase": 1,
+      "estimated_days": 1,
+      "dependencies": ["F060"]
+    },
+    {
+      "id": "F078",
+      "category": "Q4 Handling",
+      "name": "Q4 tightening logic",
+      "description": "Increase urgency thresholds in Q4",
+      "acceptance_criteria": [
+        "Tighter tier thresholds in Q4",
+        "Earlier intervention triggers",
+        "Visual indicator of Q4 status"
+      ],
+      "priority": "high",
+      "phase": 1,
+      "estimated_days": 1,
+      "dependencies": ["F077"]
+    },
+    {
+      "id": "F079",
+      "category": "Outreach",
+      "name": "Automated SMS outreach",
+      "description": "Send SMS on Day 1 after approval",
+      "acceptance_criteria": [
+        "Triggers Day 1 after approval",
+        "Uses patient phone number",
+        "Logs attempt in clinical memory",
+        "Handles send failure"
+      ],
+      "priority": "high",
+      "phase": 2,
+      "estimated_days": 2,
+      "dependencies": ["F030"]
+    },
+    {
+      "id": "F080",
+      "category": "Outreach",
+      "name": "Automated email outreach",
+      "description": "Send email on Day 2",
+      "acceptance_criteria": [
+        "Triggers Day 2 if SMS no response",
+        "Uses patient email",
+        "Logs attempt",
+        "Template-based content"
+      ],
+      "priority": "high",
+      "phase": 2,
+      "estimated_days": 2,
+      "dependencies": ["F079"]
+    },
+    {
+      "id": "F081",
+      "category": "Outreach",
+      "name": "Flag for manual call",
+      "description": "Flag for coordinator call on Day 3",
+      "acceptance_criteria": [
+        "Triggers Day 3 if no response",
+        "Appears in coordinator queue",
+        "Priority ordering"
+      ],
+      "priority": "high",
+      "phase": 2,
+      "estimated_days": 1,
+      "dependencies": ["F080"]
+    },
+    {
+      "id": "F082",
+      "category": "Outreach",
+      "name": "Log call outcomes",
+      "description": "Capture call outcome for patient",
+      "acceptance_criteria": [
+        "Outcome options: Confirmed, No Answer, Barrier, Declined",
+        "If barrier, select type",
+        "If confirmed, set pickup date",
+        "Add notes"
+      ],
+      "priority": "critical",
+      "phase": 2,
+      "estimated_days": 2,
+      "dependencies": ["F081"]
+    },
+    {
+      "id": "F083",
+      "category": "Outreach",
+      "name": "Outreach history display",
+      "description": "Show all outreach attempts",
+      "acceptance_criteria": [
+        "List all SMS, email, call attempts",
+        "Date/time of each",
+        "Outcome of each",
+        "Chronological order"
+      ],
+      "priority": "high",
+      "phase": 2,
+      "estimated_days": 1,
+      "dependencies": ["F082"]
+    },
+    {
+      "id": "F084",
+      "category": "Monitoring",
+      "name": "Auto-detect pharmacy fills",
+      "description": "Poll claims for fill detection",
+      "acceptance_criteria": [
+        "Daily poll of pharmacy claims",
+        "Match to open worklist items",
+        "Auto-close with CLOSED_FILLED",
+        "Log detection in memory"
+      ],
+      "priority": "high",
+      "phase": 2,
+      "estimated_days": 3,
+      "dependencies": []
+    },
+    {
+      "id": "F085",
+      "category": "Monitoring",
+      "name": "Fill confirmation notification",
+      "description": "Notify when fill detected",
+      "acceptance_criteria": [
+        "Toast notification on detection",
+        "Updates patient status",
+        "Moves to Archive automatically"
+      ],
+      "priority": "high",
+      "phase": 2,
+      "estimated_days": 1,
+      "dependencies": ["F084"]
+    },
+    {
+      "id": "F086",
+      "category": "Exception Management",
+      "name": "Clinical exception routing",
+      "description": "Route to Clinical queue with 4h SLA",
+      "acceptance_criteria": [
+        "Routes to Clinical Pharmacist owner",
+        "4-hour SLA timer starts",
+        "Notifies owner"
+      ],
+      "priority": "critical",
+      "phase": 2,
+      "estimated_days": 1,
+      "dependencies": ["F033"]
+    },
+    {
+      "id": "F087",
+      "category": "Exception Management",
+      "name": "PA exception routing",
+      "description": "Route to PA queue with 24h SLA",
+      "acceptance_criteria": [
+        "Routes to PA Team owner",
+        "24-hour SLA timer starts",
+        "Notifies owner"
+      ],
+      "priority": "critical",
+      "phase": 2,
+      "estimated_days": 1,
+      "dependencies": ["F033"]
+    },
+    {
+      "id": "F088",
+      "category": "Exception Management",
+      "name": "Scheduling exception routing",
+      "description": "Route to Scheduling queue",
+      "acceptance_criteria": ["Routes to Care Coordinator owner", "24-hour SLA", "Notifies owner"],
+      "priority": "critical",
+      "phase": 2,
+      "estimated_days": 1,
+      "dependencies": ["F033"]
+    },
+    {
+      "id": "F089",
+      "category": "Exception Management",
+      "name": "SLA breach alerts",
+      "description": "Alert when SLA approaching breach",
+      "acceptance_criteria": [
+        "Yellow alert at 50% remaining",
+        "Red alert at 25% remaining",
+        "Notify owner",
+        "Escalate on breach"
+      ],
+      "priority": "high",
+      "phase": 2,
+      "estimated_days": 2,
+      "dependencies": ["F041"]
+    },
+    {
+      "id": "F090",
+      "category": "Data Integration",
+      "name": "Load RX claims from Firestore",
+      "description": "Query rxClaims collection",
+      "acceptance_criteria": [
+        "Query by Member_Id",
+        "Parse Rx_Date_Of_Service",
+        "Extract days_supply, Drug_Name",
+        "Handle missing data gracefully"
+      ],
+      "priority": "critical",
+      "phase": 1,
+      "estimated_days": 2,
+      "dependencies": []
+    },
+    {
+      "id": "F091",
+      "category": "Data Integration",
+      "name": "Sync allPatients to refillWorklist",
+      "description": "Populate worklist from patients",
+      "acceptance_criteria": [
+        "syncWorklistFromAllPatients function",
+        "Preserve existing statuses",
+        "Update adherence metrics",
+        "Handle conflicts"
+      ],
+      "priority": "critical",
+      "phase": 1,
+      "estimated_days": 2,
+      "dependencies": ["F090"]
+    },
+    {
+      "id": "F092",
+      "category": "Data Integration",
+      "name": "Real-time Firestore sync",
+      "description": "Subscribe to real-time updates",
+      "acceptance_criteria": [
+        "Worklist updates in real-time",
+        "No page refresh needed",
+        "Handle offline gracefully"
+      ],
+      "priority": "high",
+      "phase": 1,
+      "estimated_days": 2,
+      "dependencies": ["F091"]
+    },
+    {
+      "id": "F093",
+      "category": "UI Components",
+      "name": "PDC badge component",
+      "description": "Reusable PDC display badge",
+      "acceptance_criteria": [
+        "Accepts pdcValue prop",
+        "Automatically selects color",
+        "Shows percentage",
+        "Per design system standards"
+      ],
+      "priority": "critical",
+      "phase": 1,
+      "estimated_days": 1,
+      "dependencies": []
+    },
+    {
+      "id": "F094",
+      "category": "UI Components",
+      "name": "Fragility tier badge component",
+      "description": "Reusable tier display badge",
+      "acceptance_criteria": [
+        "Accepts tier prop",
+        "Correct color per tier",
+        "Shows tier code",
+        "Tooltip with description"
+      ],
+      "priority": "critical",
+      "phase": 1,
+      "estimated_days": 1,
+      "dependencies": []
+    },
+    {
+      "id": "F095",
+      "category": "UI Components",
+      "name": "Measure badge component (MAC/MAD/MAH)",
+      "description": "Reusable measure type badge",
+      "acceptance_criteria": [
+        "MAC = purple, MAD = blue, MAH = green",
+        "Shows measure code",
+        "Tooltip with full name"
+      ],
+      "priority": "critical",
+      "phase": 1,
+      "estimated_days": 1,
+      "dependencies": []
+    },
+    {
+      "id": "F096",
+      "category": "UI Components",
+      "name": "Priority level badge component",
+      "description": "Reusable priority display",
+      "acceptance_criteria": [
+        "CRITICAL = rose, HIGH = rose-light, MEDIUM = orange, etc.",
+        "Shows priority level",
+        "Per design system"
+      ],
+      "priority": "critical",
+      "phase": 1,
+      "estimated_days": 1,
+      "dependencies": []
+    },
+    {
+      "id": "F097",
+      "category": "UI Components",
+      "name": "Status badge component",
+      "description": "Workflow status display",
+      "acceptance_criteria": ["Shows decision and action status", "Color-coded", "Tooltips"],
+      "priority": "high",
+      "phase": 1,
+      "estimated_days": 1,
+      "dependencies": []
+    },
+    {
+      "id": "F098",
+      "category": "UI Components",
+      "name": "Denominator status badge",
+      "description": "D0/D1a/D1b/D2/DX badge",
+      "acceptance_criteria": ["Shows status code", "Color per status", "Tooltip with meaning"],
+      "priority": "high",
+      "phase": 1,
+      "estimated_days": 1,
+      "dependencies": []
+    },
+    {
+      "id": "F099",
+      "category": "Performance",
+      "name": "Patient list virtual scrolling",
+      "description": "Virtualize large patient lists",
+      "acceptance_criteria": [
+        "Handles 10,000+ patients",
+        "Smooth scrolling",
+        "Maintains performance"
+      ],
+      "priority": "high",
+      "phase": 2,
+      "estimated_days": 2,
+      "dependencies": ["F001"]
+    },
+    {
+      "id": "F100",
+      "category": "Performance",
+      "name": "Search debouncing",
+      "description": "Debounce search input",
+      "acceptance_criteria": [
+        "300ms debounce delay",
+        "Cancels pending requests",
+        "Smooth typing experience"
+      ],
+      "priority": "high",
+      "phase": 1,
+      "estimated_days": 1,
+      "dependencies": ["F008"]
+    },
+    {
+      "id": "F101",
+      "category": "Performance",
+      "name": "Lazy load RX claims",
+      "description": "Load claims only when tab opened",
+      "acceptance_criteria": [
+        "Claims not loaded initially",
+        "Loads on RX Claims tab click",
+        "Shows loading spinner",
+        "Caches loaded data"
+      ],
+      "priority": "high",
+      "phase": 1,
+      "estimated_days": 1,
+      "dependencies": ["F028"]
+    },
+    {
+      "id": "F102",
+      "category": "Error Handling",
+      "name": "API error handling",
+      "description": "Handle Firestore/AI API errors",
+      "acceptance_criteria": [
+        "Catches all API errors",
+        "Shows user-friendly message",
+        "Logs error details",
+        "Retry option where appropriate"
+      ],
+      "priority": "critical",
+      "phase": 1,
+      "estimated_days": 2,
+      "dependencies": []
+    },
+    {
+      "id": "F103",
+      "category": "Error Handling",
+      "name": "Form validation errors",
+      "description": "Validate form inputs",
+      "acceptance_criteria": [
+        "Required field validation",
+        "Format validation (phone, email)",
+        "Clear error messages",
+        "Inline error display"
+      ],
+      "priority": "high",
+      "phase": 1,
+      "estimated_days": 1,
+      "dependencies": []
+    },
+    {
+      "id": "F104",
+      "category": "Error Handling",
+      "name": "Error boundary implementation",
+      "description": "React error boundaries",
+      "acceptance_criteria": [
+        "Page-level error boundary",
+        "Catches component errors",
+        "Shows fallback UI",
+        "Reset/retry option"
+      ],
+      "priority": "critical",
+      "phase": 1,
+      "estimated_days": 1,
+      "dependencies": []
+    },
+    {
+      "id": "F105",
+      "category": "Audit Trail",
+      "name": "Log all user actions",
+      "description": "Capture all actions to clinical memory",
+      "acceptance_criteria": [
+        "Approve/Deny/Route logged",
+        "User ID captured",
+        "Timestamp captured",
+        "Action details recorded"
+      ],
+      "priority": "critical",
+      "phase": 1,
+      "estimated_days": 2,
+      "dependencies": []
+    },
+    {
+      "id": "F106",
+      "category": "Audit Trail",
+      "name": "Log all AI decisions",
+      "description": "Capture AI decisions to memory",
+      "acceptance_criteria": [
+        "Primary, QA, Manager decisions logged",
+        "Rationale stored",
+        "Timestamp recorded"
+      ],
+      "priority": "critical",
+      "phase": 1,
+      "estimated_days": 1,
+      "dependencies": ["F105"]
+    },
+    {
+      "id": "F107",
+      "category": "Audit Trail",
+      "name": "Log status transitions",
+      "description": "Capture all workflow transitions",
+      "acceptance_criteria": [
+        "From/To status logged",
+        "Trigger event recorded",
+        "Timestamp captured"
+      ],
+      "priority": "critical",
+      "phase": 1,
+      "estimated_days": 1,
+      "dependencies": ["F105"]
+    },
+    {
+      "id": "F108",
+      "category": "Authentication",
+      "name": "Anonymous auth setup",
+      "description": "Initialize anonymous Firebase auth",
+      "acceptance_criteria": ["Auto-auth on app load", "Session persisted", "Handle auth errors"],
+      "priority": "critical",
+      "phase": 1,
+      "estimated_days": 1,
+      "dependencies": []
+    },
+    {
+      "id": "F109",
+      "category": "Authentication",
+      "name": "User session management",
+      "description": "Manage user session state",
+      "acceptance_criteria": [
+        "User context available",
+        "Session timeout handling",
+        "Re-auth on timeout"
+      ],
+      "priority": "high",
+      "phase": 1,
+      "estimated_days": 1,
+      "dependencies": ["F108"]
+    },
+    {
+      "id": "F110",
+      "category": "Dashboard",
+      "name": "Tier distribution chart",
+      "description": "Show patient distribution by tier",
+      "acceptance_criteria": [
+        "Bar or pie chart",
+        "Count per tier",
+        "Clickable to filter",
+        "Updates in real-time"
+      ],
+      "priority": "high",
+      "phase": 2,
+      "estimated_days": 2,
+      "dependencies": []
+    },
+    {
+      "id": "F111",
+      "category": "Dashboard",
+      "name": "PDC distribution chart",
+      "description": "Show PDC distribution histogram",
+      "acceptance_criteria": ["Histogram of PDC values", "80% threshold line", "Color zones"],
+      "priority": "high",
+      "phase": 2,
+      "estimated_days": 2,
+      "dependencies": []
+    },
+    {
+      "id": "F112",
+      "category": "Dashboard",
+      "name": "Worklist queue counts",
+      "description": "Summary cards for each queue",
+      "acceptance_criteria": [
+        "Count for Refills, Pick-up, Exceptions, Archive",
+        "Click navigates to queue",
+        "Updates in real-time"
+      ],
+      "priority": "high",
+      "phase": 2,
+      "estimated_days": 1,
+      "dependencies": []
+    },
+    {
+      "id": "F113",
+      "category": "Dashboard",
+      "name": "SLA compliance metrics",
+      "description": "Show exception SLA performance",
+      "acceptance_criteria": ["% resolved within SLA", "Average resolution time", "Breach count"],
+      "priority": "high",
+      "phase": 2,
+      "estimated_days": 1,
+      "dependencies": []
+    },
+    {
+      "id": "F114",
+      "category": "Edge Cases",
+      "name": "Handle new patient (no fills)",
+      "description": "D0 patient handling",
+      "acceptance_criteria": [
+        "No PDC calculation",
+        "D0 status assigned",
+        "Flagged for first fill outreach"
+      ],
+      "priority": "critical",
+      "phase": 1,
+      "estimated_days": 1,
+      "dependencies": ["F069"]
+    },
+    {
+      "id": "F115",
+      "category": "Edge Cases",
+      "name": "Handle single fill patient",
+      "description": "D1a/D1b patient handling",
+      "acceptance_criteria": [
+        "No PDC displayed yet",
+        "Flag if running low (D1a)",
+        "Monitor if adequate (D1b)"
+      ],
+      "priority": "critical",
+      "phase": 1,
+      "estimated_days": 1,
+      "dependencies": ["F069"]
+    },
+    {
+      "id": "F116",
+      "category": "Edge Cases",
+      "name": "Handle year-end fills",
+      "description": "Cap supply at Dec 31",
+      "acceptance_criteria": [
+        "90-day fill on Dec 1 counts 31 days",
+        "Carryover noted",
+        "Correct PDC calculation"
+      ],
+      "priority": "critical",
+      "phase": 1,
+      "estimated_days": 1,
+      "dependencies": ["F063"]
+    },
+    {
+      "id": "F117",
+      "category": "Edge Cases",
+      "name": "Handle multiple MA measures",
+      "description": "Patient on 2+ measure types",
+      "acceptance_criteria": [
+        "Track each independently",
+        "Apply +15 priority bonus",
+        "Show all in detail view"
+      ],
+      "priority": "critical",
+      "phase": 1,
+      "estimated_days": 1,
+      "dependencies": ["F068"]
+    },
+    {
+      "id": "F118",
+      "category": "Edge Cases",
+      "name": "Handle unsalvageable patient (T5)",
+      "description": "PDC Perfect < 80%",
+      "acceptance_criteria": [
+        "Assign T5 tier",
+        "Gray badge styling",
+        "Reduced priority score",
+        "No refill outreach"
+      ],
+      "priority": "critical",
+      "phase": 1,
+      "estimated_days": 1,
+      "dependencies": ["F062"]
+    },
+    {
+      "id": "F119",
+      "category": "Edge Cases",
+      "name": "Handle already compliant patient",
+      "description": "PDC Status Quo >= 80%",
+      "acceptance_criteria": ["Assign COMP tier", "Green styling", "Monitoring only"],
+      "priority": "critical",
+      "phase": 1,
+      "estimated_days": 1,
+      "dependencies": ["F061"]
+    },
+    {
+      "id": "F120",
+      "category": "Edge Cases",
+      "name": "Handle reversal claims",
+      "description": "Process prescription reversals",
+      "acceptance_criteria": [
+        "Detect reversal claim",
+        "Remove from coverage",
+        "Recalculate PDC",
+        "Log in memory"
+      ],
+      "priority": "high",
+      "phase": 2,
+      "estimated_days": 2,
+      "dependencies": ["F090"]
+    },
+    {
+      "id": "F121",
+      "category": "Testing",
+      "name": "PDC calculation unit tests",
+      "description": "Test PDC formula edge cases",
+      "acceptance_criteria": [
+        "Test basic calculation",
+        "Test overlap handling",
+        "Test year-end capping",
+        "Test 0/100% edge cases"
+      ],
+      "priority": "high",
+      "phase": 1,
+      "estimated_days": 2,
+      "dependencies": ["F055"]
+    },
+    {
+      "id": "F122",
+      "category": "Testing",
+      "name": "Fragility tier unit tests",
+      "description": "Test tier assignment logic",
+      "acceptance_criteria": [
+        "Test each tier threshold",
+        "Test boundary conditions",
+        "Test T5 detection",
+        "Test COMP detection"
+      ],
+      "priority": "high",
+      "phase": 1,
+      "estimated_days": 1,
+      "dependencies": ["F059"]
+    },
+    {
+      "id": "F123",
+      "category": "Testing",
+      "name": "Priority score unit tests",
+      "description": "Test priority calculation",
+      "acceptance_criteria": [
+        "Test base scores",
+        "Test each bonus",
+        "Test combinations",
+        "Test Q4 handling"
+      ],
+      "priority": "high",
+      "phase": 1,
+      "estimated_days": 1,
+      "dependencies": ["F060"]
+    },
+    {
+      "id": "F124",
+      "category": "Testing",
+      "name": "Status transition unit tests",
+      "description": "Test workflow transitions",
+      "acceptance_criteria": [
+        "Test valid transitions",
+        "Test invalid transitions blocked",
+        "Test terminal states"
+      ],
+      "priority": "high",
+      "phase": 1,
+      "estimated_days": 1,
+      "dependencies": ["F074"]
+    },
+    {
+      "id": "F125",
+      "category": "Testing",
+      "name": "Integration tests - patient flow",
+      "description": "End-to-end patient processing",
+      "acceptance_criteria": [
+        "Test intake to archive",
+        "Test exception routing",
+        "Test fill confirmation"
+      ],
+      "priority": "high",
+      "phase": 2,
+      "estimated_days": 3,
+      "dependencies": []
+    },
+    {
+      "id": "F126",
+      "category": "Accessibility",
+      "name": "Keyboard navigation support",
+      "description": "Full keyboard accessibility",
+      "acceptance_criteria": [
+        "Tab through all controls",
+        "Enter activates buttons",
+        "Escape closes modals",
+        "Focus visible indicators"
+      ],
+      "priority": "high",
+      "phase": 2,
+      "estimated_days": 2,
+      "dependencies": []
+    },
+    {
+      "id": "F127",
+      "category": "Accessibility",
+      "name": "Screen reader support",
+      "description": "ARIA labels and roles",
+      "acceptance_criteria": [
+        "All images have alt text",
+        "Buttons have labels",
+        "Tables have headers",
+        "Status updates announced"
+      ],
+      "priority": "high",
+      "phase": 2,
+      "estimated_days": 2,
+      "dependencies": []
+    },
+    {
+      "id": "F128",
+      "category": "Accessibility",
+      "name": "Color contrast compliance",
+      "description": "WCAG AA color contrast",
+      "acceptance_criteria": [
+        "All text meets 4.5:1 ratio",
+        "Large text meets 3:1 ratio",
+        "Focus indicators visible"
+      ],
+      "priority": "high",
+      "phase": 2,
+      "estimated_days": 1,
+      "dependencies": []
+    },
+    {
+      "id": "F129",
+      "category": "Documentation",
+      "name": "API documentation",
+      "description": "Document all service functions",
+      "acceptance_criteria": [
+        "JSDoc comments on all functions",
+        "Parameter descriptions",
+        "Return type documentation",
+        "Usage examples"
+      ],
+      "priority": "medium",
+      "phase": 2,
+      "estimated_days": 2,
+      "dependencies": []
+    },
+    {
+      "id": "F130",
+      "category": "Documentation",
+      "name": "Component storybook",
+      "description": "Storybook for UI components",
+      "acceptance_criteria": [
+        "All badge variants documented",
+        "Interactive examples",
+        "Props documentation"
+      ],
+      "priority": "medium",
+      "phase": 2,
+      "estimated_days": 3,
+      "dependencies": []
+    },
+    {
+      "id": "F131",
+      "category": "Security",
+      "name": "Firestore security rules",
+      "description": "Implement access control rules",
+      "acceptance_criteria": [
+        "Read/write rules defined",
+        "User authentication required",
+        "Role-based access"
+      ],
+      "priority": "critical",
+      "phase": 2,
+      "estimated_days": 2,
+      "dependencies": ["F108"]
+    },
+    {
+      "id": "F132",
+      "category": "Security",
+      "name": "Clean undefined values",
+      "description": "Sanitize data before Firestore save",
+      "acceptance_criteria": [
+        "Remove undefined values",
+        "Preserve critical structures",
+        "Log cleaning actions"
+      ],
+      "priority": "critical",
+      "phase": 1,
+      "estimated_days": 1,
+      "dependencies": []
+    },
+    {
+      "id": "F133",
+      "category": "Notifications",
+      "name": "Toast notification system",
+      "description": "Success/error toast messages",
+      "acceptance_criteria": [
+        "Success toasts in green",
+        "Error toasts in red",
+        "Auto-dismiss after 5s",
+        "Dismissible manually"
+      ],
+      "priority": "high",
+      "phase": 1,
+      "estimated_days": 1,
+      "dependencies": []
+    },
+    {
+      "id": "F134",
+      "category": "Notifications",
+      "name": "Action confirmation modals",
+      "description": "Confirm destructive actions",
+      "acceptance_criteria": [
+        "Deny action confirmation",
+        "Override confirmation",
+        "Clear messaging"
+      ],
+      "priority": "high",
+      "phase": 1,
+      "estimated_days": 1,
+      "dependencies": []
+    },
+    {
+      "id": "F135",
+      "category": "Table Features",
+      "name": "Column sorting",
+      "description": "Sort by any column",
+      "acceptance_criteria": [
+        "Click header to sort",
+        "Toggle asc/desc",
+        "Sort indicator visible",
+        "Maintains pagination"
+      ],
+      "priority": "high",
+      "phase": 1,
+      "estimated_days": 1,
+      "dependencies": ["F001"]
+    },
+    {
+      "id": "F136",
+      "category": "Table Features",
+      "name": "Column resizing",
+      "description": "Resize table columns",
+      "acceptance_criteria": [
+        "Drag column border to resize",
+        "Min/max width constraints",
+        "Persists in session"
+      ],
+      "priority": "medium",
+      "phase": 2,
+      "estimated_days": 1,
+      "dependencies": ["F001"]
+    },
+    {
+      "id": "F137",
+      "category": "Table Features",
+      "name": "Table density toggle",
+      "description": "Compact/default/comfortable density",
+      "acceptance_criteria": [
+        "Three density options",
+        "Toggle button in table header",
+        "Persists preference"
+      ],
+      "priority": "medium",
+      "phase": 1,
+      "estimated_days": 1,
+      "dependencies": ["F001"]
+    },
+    {
+      "id": "F138",
+      "category": "Table Features",
+      "name": "Row selection",
+      "description": "Multi-row selection",
+      "acceptance_criteria": [
+        "Checkbox per row",
+        "Select all checkbox",
+        "Selection count shown",
+        "Bulk actions enabled"
+      ],
+      "priority": "high",
+      "phase": 2,
+      "estimated_days": 2,
+      "dependencies": ["F001"]
+    },
+    {
+      "id": "F139",
+      "category": "Bulk Actions",
+      "name": "Bulk approve",
+      "description": "Approve multiple patients at once",
+      "acceptance_criteria": [
+        "Select multiple rows",
+        "Bulk approve button",
+        "Confirmation modal",
+        "Progress indicator"
+      ],
+      "priority": "high",
+      "phase": 2,
+      "estimated_days": 2,
+      "dependencies": ["F138", "F030"]
+    },
+    {
+      "id": "F140",
+      "category": "Bulk Actions",
+      "name": "Bulk route to exception",
+      "description": "Route multiple to same exception",
+      "acceptance_criteria": [
+        "Select rows",
+        "Choose exception type",
+        "Bulk route",
+        "All move together"
+      ],
+      "priority": "high",
+      "phase": 2,
+      "estimated_days": 1,
+      "dependencies": ["F138", "F033"]
+    },
+    {
+      "id": "F141",
+      "category": "Export",
+      "name": "Export patient list to CSV",
+      "description": "Download patient data",
+      "acceptance_criteria": [
+        "Export button in header",
+        "Includes all visible columns",
+        "Respects current filters",
+        "Proper CSV formatting"
+      ],
+      "priority": "medium",
+      "phase": 2,
+      "estimated_days": 2,
+      "dependencies": ["F001"]
+    },
+    {
+      "id": "F142",
+      "category": "Export",
+      "name": "Export worklist to CSV",
+      "description": "Download worklist data",
+      "acceptance_criteria": [
+        "Export per tab",
+        "Includes status columns",
+        "Includes AI decisions",
+        "Audit log included"
+      ],
+      "priority": "medium",
+      "phase": 2,
+      "estimated_days": 2,
+      "dependencies": ["F021"]
+    }
+  ],
+  "summary": {
+    "total_features": 142,
+    "by_phase": {
+      "phase_1": 97,
+      "phase_2": 45
+    },
+    "by_priority": {
+      "critical": 78,
+      "high": 52,
+      "medium": 12
+    },
+    "by_category": {
+      "Patient Management": 7,
+      "Search": 3,
+      "Filter": 4,
+      "Patient Detail": 4,
+      "Worklist Navigation": 2,
+      "Refills Tab": 3,
+      "Review Drawer": 6,
+      "Actions": 5,
+      "Pick-up Tab": 4,
+      "Exceptions Tab": 5,
+      "Archive Tab": 3,
+      "AI Engine": 4,
+      "Protocol Checks": 4,
+      "Calculations": 10,
+      "Measure Tracking": 4,
+      "Denominator Tracking": 4,
+      "Decision Logic": 2,
+      "Priority Matrix": 2,
+      "Q4 Handling": 2,
+      "Outreach": 5,
+      "Monitoring": 2,
+      "Exception Management": 4,
+      "Data Integration": 3,
+      "UI Components": 6,
+      "Performance": 3,
+      "Error Handling": 3,
+      "Audit Trail": 3,
+      "Authentication": 2,
+      "Dashboard": 4,
+      "Edge Cases": 7,
+      "Testing": 5,
+      "Accessibility": 3,
+      "Documentation": 2,
+      "Security": 2,
+      "Notifications": 2,
+      "Table Features": 4,
+      "Bulk Actions": 2,
+      "Export": 2
+    },
+    "estimated_total_days": 180
+  }
+}

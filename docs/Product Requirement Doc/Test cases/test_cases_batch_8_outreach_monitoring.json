@@ -1,0 +1,586 @@
+{
+  "metadata": {
+    "batch": 8,
+    "category": "Outreach, Monitoring & Exceptions",
+    "features": "F079-F092",
+    "total_test_cases": 70,
+    "created": "2026-01-03",
+    "reference": "Patient Outreach and Exception Handling"
+  },
+  "test_cases": [
+    {
+      "feature_id": "F079",
+      "feature_name": "Patient outreach tracking",
+      "test_cases": [
+        {
+          "id": "F079-TC01",
+          "name": "Outreach attempt logged",
+          "type": "happy_path",
+          "input": "Pharmacist calls patient, logs attempt",
+          "expected": "Outreach record created with timestamp and method='phone'"
+        },
+        {
+          "id": "F079-TC02",
+          "name": "Multiple outreach methods",
+          "type": "business_logic",
+          "input": "Phone, SMS, email attempts",
+          "expected": "Each method tracked separately with timestamps"
+        },
+        {
+          "id": "F079-TC03",
+          "name": "Outreach outcome recorded",
+          "type": "business_logic",
+          "input": "Patient reached, agreed to refill",
+          "expected": "Outcome = 'successful', notes captured"
+        },
+        {
+          "id": "F079-TC04",
+          "name": "Zero outreach attempts",
+          "type": "edge_case",
+          "input": "New patient, no contact made",
+          "expected": "Outreach count = 0, shows 'No outreach attempts'"
+        },
+        {
+          "id": "F079-TC05",
+          "name": "Outreach save fails",
+          "type": "error_handling",
+          "input": "Firestore write error",
+          "expected": "Error toast, data not lost, retry option"
+        }
+      ]
+    },
+    {
+      "feature_id": "F080",
+      "feature_name": "Outreach history display",
+      "test_cases": [
+        {
+          "id": "F080-TC01",
+          "name": "History timeline shows",
+          "type": "happy_path",
+          "input": "Patient with 5 outreach attempts",
+          "expected": "Timeline displays all 5 attempts chronologically"
+        },
+        {
+          "id": "F080-TC02",
+          "name": "Most recent first",
+          "type": "business_logic",
+          "input": "Attempts on Jan 1, Jan 5, Jan 10",
+          "expected": "Jan 10 shown at top of timeline"
+        },
+        {
+          "id": "F080-TC03",
+          "name": "Method icons displayed",
+          "type": "business_logic",
+          "input": "Phone and email attempts",
+          "expected": "Phone icon for calls, envelope icon for emails"
+        },
+        {
+          "id": "F080-TC04",
+          "name": "Empty history state",
+          "type": "edge_case",
+          "input": "No outreach history",
+          "expected": "Shows 'No previous outreach' with action prompt"
+        },
+        {
+          "id": "F080-TC05",
+          "name": "Large history pagination",
+          "type": "edge_case",
+          "input": "Patient with 50+ outreach attempts",
+          "expected": "Pagination or 'Load more' for history"
+        }
+      ]
+    },
+    {
+      "feature_id": "F081",
+      "feature_name": "Outreach reminder scheduling",
+      "test_cases": [
+        {
+          "id": "F081-TC01",
+          "name": "Schedule follow-up",
+          "type": "happy_path",
+          "input": "Set reminder for 3 days from now",
+          "expected": "Reminder created with correct date/time"
+        },
+        {
+          "id": "F081-TC02",
+          "name": "Reminder appears in queue",
+          "type": "business_logic",
+          "input": "Reminder due today",
+          "expected": "Patient appears in 'Due Today' filter"
+        },
+        {
+          "id": "F081-TC03",
+          "name": "Past due reminder",
+          "type": "business_logic",
+          "input": "Reminder was due yesterday",
+          "expected": "Shows 'Overdue' indicator with days overdue"
+        },
+        {
+          "id": "F081-TC04",
+          "name": "Cancel reminder",
+          "type": "edge_case",
+          "input": "User cancels scheduled reminder",
+          "expected": "Reminder removed, patient out of reminder queue"
+        },
+        {
+          "id": "F081-TC05",
+          "name": "Invalid reminder date",
+          "type": "error_handling",
+          "input": "User selects date in past",
+          "expected": "Validation error: 'Cannot schedule in the past'"
+        }
+      ]
+    },
+    {
+      "feature_id": "F082",
+      "feature_name": "Exception queue display",
+      "test_cases": [
+        {
+          "id": "F082-TC01",
+          "name": "Exceptions tab shows items",
+          "type": "happy_path",
+          "input": "5 patients need exception review",
+          "expected": "Exceptions tab shows badge with '5', lists patients"
+        },
+        {
+          "id": "F082-TC02",
+          "name": "Exception reason displayed",
+          "type": "business_logic",
+          "input": "Patient flagged for 'Insurance Issue'",
+          "expected": "Exception card shows reason and details"
+        },
+        {
+          "id": "F082-TC03",
+          "name": "Sort by exception age",
+          "type": "business_logic",
+          "input": "Exceptions from various dates",
+          "expected": "Oldest exceptions first (FIFO)"
+        },
+        {
+          "id": "F082-TC04",
+          "name": "Empty exception queue",
+          "type": "edge_case",
+          "input": "No patients with exceptions",
+          "expected": "Shows 'No exceptions - all clear!' message"
+        },
+        {
+          "id": "F082-TC05",
+          "name": "Exception data missing",
+          "type": "error_handling",
+          "input": "Exception without reason field",
+          "expected": "Shows 'Reason not specified', no crash"
+        }
+      ]
+    },
+    {
+      "feature_id": "F083",
+      "feature_name": "Exception resolution workflow",
+      "test_cases": [
+        {
+          "id": "F083-TC01",
+          "name": "Resolve exception",
+          "type": "happy_path",
+          "input": "User clicks 'Resolve' with notes",
+          "expected": "Exception removed from queue, resolution logged"
+        },
+        {
+          "id": "F083-TC02",
+          "name": "Resolution requires notes",
+          "type": "business_logic",
+          "input": "Click resolve without notes",
+          "expected": "Validation: 'Resolution notes required'"
+        },
+        {
+          "id": "F083-TC03",
+          "name": "Escalate exception",
+          "type": "business_logic",
+          "input": "User escalates to supervisor",
+          "expected": "Exception status = 'Escalated', assigned to supervisor"
+        },
+        {
+          "id": "F083-TC04",
+          "name": "Re-open resolved exception",
+          "type": "edge_case",
+          "input": "Issue recurs after resolution",
+          "expected": "Exception can be re-opened with new notes"
+        },
+        {
+          "id": "F083-TC05",
+          "name": "Concurrent resolution",
+          "type": "error_handling",
+          "input": "Two users resolve same exception",
+          "expected": "Second user sees 'Already resolved' message"
+        }
+      ]
+    },
+    {
+      "feature_id": "F084",
+      "feature_name": "Exception categorization",
+      "test_cases": [
+        {
+          "id": "F084-TC01",
+          "name": "Insurance exception",
+          "type": "happy_path",
+          "input": "Patient insurance lapsed",
+          "expected": "Category = 'Insurance', specific type = 'Coverage Lapsed'"
+        },
+        {
+          "id": "F084-TC02",
+          "name": "Clinical exception",
+          "type": "business_logic",
+          "input": "Medication discontinued by provider",
+          "expected": "Category = 'Clinical', type = 'Discontinued'"
+        },
+        {
+          "id": "F084-TC03",
+          "name": "Patient refusal exception",
+          "type": "business_logic",
+          "input": "Patient declined refill",
+          "expected": "Category = 'Patient', type = 'Refusal'"
+        },
+        {
+          "id": "F084-TC04",
+          "name": "Uncategorized exception",
+          "type": "edge_case",
+          "input": "New exception type not in system",
+          "expected": "Category = 'Other', allows free-text reason"
+        },
+        {
+          "id": "F084-TC05",
+          "name": "Filter by category",
+          "type": "business_logic",
+          "input": "Filter to 'Insurance' exceptions only",
+          "expected": "Only insurance-related exceptions shown"
+        }
+      ]
+    },
+    {
+      "feature_id": "F085",
+      "feature_name": "Audit trail logging",
+      "test_cases": [
+        {
+          "id": "F085-TC01",
+          "name": "Action logged with user",
+          "type": "happy_path",
+          "input": "User approves refill",
+          "expected": "Audit log shows: user, action, timestamp, patient"
+        },
+        {
+          "id": "F085-TC02",
+          "name": "View audit history",
+          "type": "business_logic",
+          "input": "Open patient audit trail",
+          "expected": "Chronological list of all actions on patient"
+        },
+        {
+          "id": "F085-TC03",
+          "name": "AI decisions logged",
+          "type": "business_logic",
+          "input": "AI makes recommendation",
+          "expected": "Audit shows AI decision with model version"
+        },
+        {
+          "id": "F085-TC04",
+          "name": "High-volume audit trail",
+          "type": "edge_case",
+          "input": "Patient with 500+ audit entries",
+          "expected": "Pagination, loads without performance issues"
+        },
+        {
+          "id": "F085-TC05",
+          "name": "Audit log immutable",
+          "type": "business_logic",
+          "input": "Attempt to delete audit entry",
+          "expected": "No delete option, entries permanent"
+        }
+      ]
+    },
+    {
+      "feature_id": "F086",
+      "feature_name": "Batch processing monitoring",
+      "test_cases": [
+        {
+          "id": "F086-TC01",
+          "name": "Batch progress displayed",
+          "type": "happy_path",
+          "input": "Processing batch of 100 patients",
+          "expected": "Progress bar shows 50/100 (50%)"
+        },
+        {
+          "id": "F086-TC02",
+          "name": "Batch completion time",
+          "type": "business_logic",
+          "input": "Batch finishes processing",
+          "expected": "Shows total time elapsed and patients/minute rate"
+        },
+        {
+          "id": "F086-TC03",
+          "name": "Error count during batch",
+          "type": "business_logic",
+          "input": "3 patients fail AI evaluation",
+          "expected": "Shows '97 success, 3 errors' summary"
+        },
+        {
+          "id": "F086-TC04",
+          "name": "Pause/resume batch",
+          "type": "edge_case",
+          "input": "User pauses mid-batch",
+          "expected": "Processing stops, can resume where left off"
+        },
+        {
+          "id": "F086-TC05",
+          "name": "Batch timeout handling",
+          "type": "error_handling",
+          "input": "Batch exceeds 10 minute timeout",
+          "expected": "Graceful timeout with partial results saved"
+        }
+      ]
+    },
+    {
+      "feature_id": "F087",
+      "feature_name": "Real-time status updates",
+      "test_cases": [
+        {
+          "id": "F087-TC01",
+          "name": "Status updates live",
+          "type": "happy_path",
+          "input": "Another user updates patient status",
+          "expected": "UI refreshes to show new status without reload"
+        },
+        {
+          "id": "F087-TC02",
+          "name": "Firestore listener active",
+          "type": "business_logic",
+          "input": "Patient data changes in Firestore",
+          "expected": "Component receives real-time update"
+        },
+        {
+          "id": "F087-TC03",
+          "name": "Connection loss handling",
+          "type": "edge_case",
+          "input": "Network disconnects temporarily",
+          "expected": "Shows 'Offline' indicator, queues changes"
+        },
+        {
+          "id": "F087-TC04",
+          "name": "Reconnection sync",
+          "type": "edge_case",
+          "input": "Network reconnects after 30 seconds",
+          "expected": "Syncs missed updates, resolves conflicts"
+        },
+        {
+          "id": "F087-TC05",
+          "name": "Listener cleanup",
+          "type": "error_handling",
+          "input": "User navigates away from page",
+          "expected": "Firestore listeners properly unsubscribed"
+        }
+      ]
+    },
+    {
+      "feature_id": "F088",
+      "feature_name": "Daily worklist summary",
+      "test_cases": [
+        {
+          "id": "F088-TC01",
+          "name": "Summary shows today's stats",
+          "type": "happy_path",
+          "input": "Load daily summary",
+          "expected": "Shows: reviewed count, approved, denied, pending"
+        },
+        {
+          "id": "F088-TC02",
+          "name": "Comparison to yesterday",
+          "type": "business_logic",
+          "input": "Today: 50 reviewed, Yesterday: 40",
+          "expected": "Shows '+10 (+25%) vs yesterday'"
+        },
+        {
+          "id": "F088-TC03",
+          "name": "Zero activity day",
+          "type": "edge_case",
+          "input": "No patients reviewed today",
+          "expected": "Shows 0 for all metrics, no divide by zero"
+        },
+        {
+          "id": "F088-TC04",
+          "name": "First day of month",
+          "type": "edge_case",
+          "input": "Jan 1st, no historical data",
+          "expected": "Shows today's stats, 'N/A' for comparisons"
+        },
+        {
+          "id": "F088-TC05",
+          "name": "Summary API failure",
+          "type": "error_handling",
+          "input": "Aggregation query fails",
+          "expected": "Shows error message with cached data if available"
+        }
+      ]
+    },
+    {
+      "feature_id": "F089",
+      "feature_name": "User productivity metrics",
+      "test_cases": [
+        {
+          "id": "F089-TC01",
+          "name": "Patients reviewed per hour",
+          "type": "happy_path",
+          "input": "User reviewed 20 patients in 2 hours",
+          "expected": "Rate = 10 patients/hour displayed"
+        },
+        {
+          "id": "F089-TC02",
+          "name": "Average review time",
+          "type": "business_logic",
+          "input": "Average 3 minutes per patient",
+          "expected": "Shows '3 min avg review time'"
+        },
+        {
+          "id": "F089-TC03",
+          "name": "Approval rate shown",
+          "type": "business_logic",
+          "input": "80 approved, 20 denied",
+          "expected": "Approval rate = 80%"
+        },
+        {
+          "id": "F089-TC04",
+          "name": "No reviews yet",
+          "type": "edge_case",
+          "input": "User just logged in",
+          "expected": "Shows 'No data yet' for metrics"
+        },
+        {
+          "id": "F089-TC05",
+          "name": "Metrics across date range",
+          "type": "business_logic",
+          "input": "Select 'Last 7 days'",
+          "expected": "Aggregates metrics for selected period"
+        }
+      ]
+    },
+    {
+      "feature_id": "F090",
+      "feature_name": "Alert notifications",
+      "test_cases": [
+        {
+          "id": "F090-TC01",
+          "name": "Urgent patient alert",
+          "type": "happy_path",
+          "input": "F1 patient with 0 days to runout",
+          "expected": "Toast notification: 'Urgent: Patient X out of medication'"
+        },
+        {
+          "id": "F090-TC02",
+          "name": "Exception alert",
+          "type": "business_logic",
+          "input": "New exception added to queue",
+          "expected": "Badge count updates, optional notification"
+        },
+        {
+          "id": "F090-TC03",
+          "name": "Batch complete alert",
+          "type": "business_logic",
+          "input": "Background batch finishes",
+          "expected": "Notification: 'Batch complete: 100 patients processed'"
+        },
+        {
+          "id": "F090-TC04",
+          "name": "Dismiss notification",
+          "type": "edge_case",
+          "input": "User dismisses alert",
+          "expected": "Alert removed, not shown again for same event"
+        },
+        {
+          "id": "F090-TC05",
+          "name": "Notification queue overflow",
+          "type": "edge_case",
+          "input": "50 alerts triggered rapidly",
+          "expected": "Batches alerts, shows '50 new alerts'"
+        }
+      ]
+    },
+    {
+      "feature_id": "F091",
+      "feature_name": "Error recovery workflow",
+      "test_cases": [
+        {
+          "id": "F091-TC01",
+          "name": "Retry failed AI call",
+          "type": "happy_path",
+          "input": "AI evaluation timed out",
+          "expected": "Shows 'Retry' button, successful on retry"
+        },
+        {
+          "id": "F091-TC02",
+          "name": "Exponential backoff",
+          "type": "business_logic",
+          "input": "Multiple failures",
+          "expected": "Retries at 1s, 2s, 4s intervals"
+        },
+        {
+          "id": "F091-TC03",
+          "name": "Max retries reached",
+          "type": "business_logic",
+          "input": "3 consecutive failures",
+          "expected": "Moves patient to exception queue, logs error"
+        },
+        {
+          "id": "F091-TC04",
+          "name": "Partial batch recovery",
+          "type": "edge_case",
+          "input": "Batch crashes mid-processing",
+          "expected": "Completed patients saved, resume from failure point"
+        },
+        {
+          "id": "F091-TC05",
+          "name": "Manual override option",
+          "type": "edge_case",
+          "input": "AI consistently fails for patient",
+          "expected": "Option to manually approve/deny without AI"
+        }
+      ]
+    },
+    {
+      "feature_id": "F092",
+      "feature_name": "Session management",
+      "test_cases": [
+        {
+          "id": "F092-TC01",
+          "name": "Session persists",
+          "type": "happy_path",
+          "input": "User closes and reopens browser",
+          "expected": "User still logged in, session valid"
+        },
+        {
+          "id": "F092-TC02",
+          "name": "Session timeout warning",
+          "type": "business_logic",
+          "input": "25 minutes of inactivity",
+          "expected": "Warning: 'Session expires in 5 minutes'"
+        },
+        {
+          "id": "F092-TC03",
+          "name": "Session expired handling",
+          "type": "business_logic",
+          "input": "Session expires while reviewing",
+          "expected": "Redirect to login, unsaved work preserved"
+        },
+        {
+          "id": "F092-TC04",
+          "name": "Concurrent session limit",
+          "type": "edge_case",
+          "input": "User logs in from second device",
+          "expected": "First session invalidated or warned"
+        },
+        {
+          "id": "F092-TC05",
+          "name": "Logout clears state",
+          "type": "business_logic",
+          "input": "User clicks logout",
+          "expected": "Session ended, local storage cleared, redirected"
+        }
+      ]
+    }
+  ]
+}

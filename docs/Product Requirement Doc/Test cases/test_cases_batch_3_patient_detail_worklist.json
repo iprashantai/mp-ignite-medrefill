@@ -1,0 +1,380 @@
+{
+  "metadata": {
+    "batch": 3,
+    "category": "Patient Detail & Worklist Navigation",
+    "features": "F015-F023",
+    "total_test_cases": 45,
+    "created": "2026-01-03"
+  },
+  "test_cases": [
+    {
+      "feature_id": "F015",
+      "feature_name": "Patient detail drawer - demographics",
+      "test_cases": [
+        {
+          "id": "F015-TC01",
+          "name": "Drawer opens on row click",
+          "type": "happy_path",
+          "input": "Click on patient row 'John Smith'",
+          "expected": "Side drawer opens with John Smith's demographics"
+        },
+        {
+          "id": "F015-TC02",
+          "name": "Close with X button",
+          "type": "happy_path",
+          "input": "Click X button on drawer",
+          "expected": "Drawer closes, returns to patient list"
+        },
+        {
+          "id": "F015-TC03",
+          "name": "Close with Escape key",
+          "type": "happy_path",
+          "input": "Press Escape key while drawer open",
+          "expected": "Drawer closes"
+        },
+        {
+          "id": "F015-TC04",
+          "name": "All demographics displayed",
+          "type": "business_logic",
+          "input": "Patient with full data",
+          "expected": "Shows: Full Name, DOB, Phone, Email, Address, Member ID"
+        },
+        {
+          "id": "F015-TC05",
+          "name": "Missing address field",
+          "type": "edge_case",
+          "input": "Patient with address=null",
+          "expected": "Address shows '-' or 'Not Available'"
+        }
+      ]
+    },
+    {
+      "feature_id": "F016",
+      "feature_name": "Patient detail - medications list",
+      "test_cases": [
+        {
+          "id": "F016-TC01",
+          "name": "All medications displayed",
+          "type": "happy_path",
+          "input": "Patient with 3 medications",
+          "expected": "All 3 medications shown with name, strength, days supply"
+        },
+        {
+          "id": "F016-TC02",
+          "name": "Refills remaining shown",
+          "type": "happy_path",
+          "input": "Medication with refillsRemaining=5",
+          "expected": "Shows '5 refills remaining'"
+        },
+        {
+          "id": "F016-TC03",
+          "name": "Zero refills warning",
+          "type": "business_logic",
+          "input": "Medication with refillsRemaining=0",
+          "expected": "Shows '0 refills' with warning indicator"
+        },
+        {
+          "id": "F016-TC04",
+          "name": "No medications",
+          "type": "edge_case",
+          "input": "Patient with medications=[]",
+          "expected": "Shows 'No medications on file' message"
+        },
+        {
+          "id": "F016-TC05",
+          "name": "Last fill date displayed",
+          "type": "happy_path",
+          "input": "Medication with lastFillDate='2025-12-15'",
+          "expected": "Shows 'Last Fill: 12/15/2025'"
+        }
+      ]
+    },
+    {
+      "feature_id": "F017",
+      "feature_name": "Patient detail - PDC by measure",
+      "test_cases": [
+        {
+          "id": "F017-TC01",
+          "name": "PDC breakdown by measure",
+          "type": "happy_path",
+          "input": "Patient on MAC and MAH medications",
+          "expected": "Shows MAC PDC: 85%, MAH PDC: 72%, MAD: N/A"
+        },
+        {
+          "id": "F017-TC02",
+          "name": "Color coding per measure",
+          "type": "business_logic",
+          "input": "MAC PDC=85 (green), MAH PDC=72 (amber)",
+          "expected": "MAC badge green, MAH badge amber"
+        },
+        {
+          "id": "F017-TC03",
+          "name": "Single measure patient",
+          "type": "edge_case",
+          "input": "Patient only on MAC medication",
+          "expected": "MAC PDC shown, MAD/MAH show N/A"
+        },
+        {
+          "id": "F017-TC04",
+          "name": "All three measures",
+          "type": "business_logic",
+          "input": "Patient on MAC, MAD, and MAH medications",
+          "expected": "All three PDC values displayed with appropriate colors"
+        },
+        {
+          "id": "F017-TC05",
+          "name": "D1 patient no PDC",
+          "type": "edge_case",
+          "input": "D1 patient with single fill only",
+          "expected": "Shows 'Awaiting 2nd fill' or similar message"
+        }
+      ]
+    },
+    {
+      "feature_id": "F018",
+      "feature_name": "Patient detail - gap days display",
+      "test_cases": [
+        {
+          "id": "F018-TC01",
+          "name": "Gap days displayed correctly",
+          "type": "happy_path",
+          "input": "Patient: gapDaysUsed=45, gapDaysAllowed=73, gapDaysRemaining=28",
+          "expected": "Shows Used: 45, Allowed: 73, Remaining: 28 (green)"
+        },
+        {
+          "id": "F018-TC02",
+          "name": "Negative gap days (unsalvageable)",
+          "type": "business_logic",
+          "input": "gapDaysRemaining=-10",
+          "expected": "Shows -10 in red with 'Unsalvageable' warning"
+        },
+        {
+          "id": "F018-TC03",
+          "name": "Zero gap days remaining",
+          "type": "edge_case",
+          "input": "gapDaysRemaining=0",
+          "expected": "Shows 0 in orange with 'Critical' warning"
+        },
+        {
+          "id": "F018-TC04",
+          "name": "Low gap days warning",
+          "type": "business_logic",
+          "input": "gapDaysRemaining=5 (low)",
+          "expected": "Shows 5 with amber/orange color"
+        },
+        {
+          "id": "F018-TC05",
+          "name": "Formula accuracy",
+          "type": "business_logic",
+          "input": "treatmentDays=365, coveredDays=292",
+          "expected": "gapDaysUsed=73, gapDaysAllowed=73 (20% of 365)"
+        }
+      ]
+    },
+    {
+      "feature_id": "F019",
+      "feature_name": "4-tab worklist navigation",
+      "test_cases": [
+        {
+          "id": "F019-TC01",
+          "name": "All 4 tabs visible",
+          "type": "happy_path",
+          "input": "Load worklist page",
+          "expected": "Tabs: Refills, Pick-up, Exceptions, Archive visible"
+        },
+        {
+          "id": "F019-TC02",
+          "name": "Active tab highlighted",
+          "type": "happy_path",
+          "input": "Click on Pick-up tab",
+          "expected": "Pick-up tab styled as active, others inactive"
+        },
+        {
+          "id": "F019-TC03",
+          "name": "Count badge on each tab",
+          "type": "business_logic",
+          "input": "10 refills, 5 pick-up, 3 exceptions, 100 archived",
+          "expected": "Badges show (10), (5), (3), (100)"
+        },
+        {
+          "id": "F019-TC04",
+          "name": "Tab persistence after refresh",
+          "type": "edge_case",
+          "input": "On Exceptions tab, refresh page",
+          "expected": "Page reloads still on Exceptions tab"
+        },
+        {
+          "id": "F019-TC05",
+          "name": "Zero count tab",
+          "type": "edge_case",
+          "input": "No exceptions exist",
+          "expected": "Exceptions tab shows (0), still clickable"
+        }
+      ]
+    },
+    {
+      "feature_id": "F020",
+      "feature_name": "URL reflects current tab",
+      "test_cases": [
+        {
+          "id": "F020-TC01",
+          "name": "URL updates on tab change",
+          "type": "happy_path",
+          "input": "Click Pick-up tab",
+          "expected": "URL changes to /worklist?tab=pickup"
+        },
+        {
+          "id": "F020-TC02",
+          "name": "Direct URL navigation",
+          "type": "happy_path",
+          "input": "Navigate to /worklist?tab=exceptions",
+          "expected": "Exceptions tab is active on page load"
+        },
+        {
+          "id": "F020-TC03",
+          "name": "Browser back button",
+          "type": "happy_path",
+          "input": "Go Refills → Pick-up → click back",
+          "expected": "Returns to Refills tab"
+        },
+        {
+          "id": "F020-TC04",
+          "name": "Invalid tab parameter",
+          "type": "error_handling",
+          "input": "Navigate to /worklist?tab=invalid",
+          "expected": "Falls back to default Refills tab"
+        },
+        {
+          "id": "F020-TC05",
+          "name": "Forward button works",
+          "type": "happy_path",
+          "input": "Back then forward",
+          "expected": "Forward returns to previous tab"
+        }
+      ]
+    },
+    {
+      "feature_id": "F021",
+      "feature_name": "Refills tab patient list",
+      "test_cases": [
+        {
+          "id": "F021-TC01",
+          "name": "AI-reviewed patients shown",
+          "type": "happy_path",
+          "input": "5 patients with AI review complete",
+          "expected": "All 5 patients displayed in Refills tab"
+        },
+        {
+          "id": "F021-TC02",
+          "name": "Sorted by priority score",
+          "type": "business_logic",
+          "input": "Patients with scores 100, 80, 60",
+          "expected": "Order: 100, 80, 60 (highest first)"
+        },
+        {
+          "id": "F021-TC03",
+          "name": "Tier color-coded",
+          "type": "happy_path",
+          "input": "F1, F2, F3 patients in list",
+          "expected": "F1=red, F2=orange, F3=amber badges visible"
+        },
+        {
+          "id": "F021-TC04",
+          "name": "AI decision badge visible",
+          "type": "happy_path",
+          "input": "Patient with AI decision=APPROVE",
+          "expected": "Green APPROVE badge visible on row"
+        },
+        {
+          "id": "F021-TC05",
+          "name": "Empty refills tab",
+          "type": "edge_case",
+          "input": "No patients pending review",
+          "expected": "Shows 'All caught up!' or similar empty state"
+        }
+      ]
+    },
+    {
+      "feature_id": "F022",
+      "feature_name": "AI decision badge display",
+      "test_cases": [
+        {
+          "id": "F022-TC01",
+          "name": "APPROVE badge green",
+          "type": "happy_path",
+          "input": "AI decision=APPROVE, confidence=95",
+          "expected": "Green badge showing 'APPROVE 95%'"
+        },
+        {
+          "id": "F022-TC02",
+          "name": "DENY badge red",
+          "type": "happy_path",
+          "input": "AI decision=DENY, confidence=88",
+          "expected": "Red badge showing 'DENY 88%'"
+        },
+        {
+          "id": "F022-TC03",
+          "name": "ROUTE badge yellow",
+          "type": "happy_path",
+          "input": "AI decision=ROUTE, confidence=72",
+          "expected": "Yellow/amber badge showing 'ROUTE 72%'"
+        },
+        {
+          "id": "F022-TC04",
+          "name": "Low confidence indicator",
+          "type": "business_logic",
+          "input": "AI confidence=55 (low)",
+          "expected": "Badge shows warning indicator for low confidence"
+        },
+        {
+          "id": "F022-TC05",
+          "name": "Missing AI decision",
+          "type": "error_handling",
+          "input": "Patient with aiDecision=null",
+          "expected": "Shows 'Pending AI Review' or similar"
+        }
+      ]
+    },
+    {
+      "feature_id": "F023",
+      "feature_name": "Pathway type badge (REFILL/RENEWAL)",
+      "test_cases": [
+        {
+          "id": "F023-TC01",
+          "name": "REFILL badge displayed",
+          "type": "happy_path",
+          "input": "Patient with refillsRemaining > 0 and Rx not expired",
+          "expected": "Blue REFILL badge displayed"
+        },
+        {
+          "id": "F023-TC02",
+          "name": "RENEWAL badge for expired Rx",
+          "type": "business_logic",
+          "input": "Rx expired but refillsRemaining > 0",
+          "expected": "Orange RENEWAL badge displayed"
+        },
+        {
+          "id": "F023-TC03",
+          "name": "RENEWAL badge for no refills",
+          "type": "business_logic",
+          "input": "refillsRemaining = 0, recent visit",
+          "expected": "Orange RENEWAL badge displayed"
+        },
+        {
+          "id": "F023-TC04",
+          "name": "Pathway determination logic",
+          "type": "business_logic",
+          "input": "Test all 4 pathway conditions",
+          "expected": "Correct pathway assigned per decision tree"
+        },
+        {
+          "id": "F023-TC05",
+          "name": "APPOINTMENT_NEEDED case",
+          "type": "edge_case",
+          "input": "No refills and no recent visit (>90 days)",
+          "expected": "Shows APPOINTMENT_NEEDED indicator"
+        }
+      ]
+    }
+  ]
+}

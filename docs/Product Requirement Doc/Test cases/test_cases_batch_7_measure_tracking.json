@@ -1,0 +1,586 @@
+{
+  "metadata": {
+    "batch": 7,
+    "category": "Measure & Denominator Tracking",
+    "features": "F065-F078",
+    "total_test_cases": 70,
+    "created": "2026-01-03",
+    "reference": "CMS STARS/HEDIS Quality Measures"
+  },
+  "test_cases": [
+    {
+      "feature_id": "F065",
+      "feature_name": "MAC measure tracking",
+      "test_cases": [
+        {
+          "id": "F065-TC01",
+          "name": "MAC patient identified",
+          "type": "happy_path",
+          "input": "Patient on statin (atorvastatin) with diabetes diagnosis",
+          "expected": "Patient flagged for MAC measure tracking"
+        },
+        {
+          "id": "F065-TC02",
+          "name": "MAC PDC displayed",
+          "type": "business_logic",
+          "input": "Patient with 3 statin fills totaling 270 days",
+          "expected": "MAC PDC = 270/365 × 100 = 74%"
+        },
+        {
+          "id": "F065-TC03",
+          "name": "No MAC medications",
+          "type": "edge_case",
+          "input": "Patient not on any statin",
+          "expected": "MAC measure shows N/A or not applicable"
+        },
+        {
+          "id": "F065-TC04",
+          "name": "Multiple MAC medications",
+          "type": "edge_case",
+          "input": "Patient on atorvastatin AND rosuvastatin",
+          "expected": "Medications aggregated correctly for MAC PDC"
+        },
+        {
+          "id": "F065-TC05",
+          "name": "MAC data missing",
+          "type": "error_handling",
+          "input": "MAC claims data unavailable",
+          "expected": "Shows loading or error state, no crash"
+        }
+      ]
+    },
+    {
+      "feature_id": "F066",
+      "feature_name": "MAD measure tracking",
+      "test_cases": [
+        {
+          "id": "F066-TC01",
+          "name": "MAD patient identified",
+          "type": "happy_path",
+          "input": "Patient on metformin (biguanide) for diabetes",
+          "expected": "Patient flagged for MAD measure tracking"
+        },
+        {
+          "id": "F066-TC02",
+          "name": "MAD PDC calculated",
+          "type": "business_logic",
+          "input": "Patient with 4 metformin fills, 360 days covered",
+          "expected": "MAD PDC = 360/365 × 100 = 98.6%"
+        },
+        {
+          "id": "F066-TC03",
+          "name": "Sulfonylurea for MAD",
+          "type": "business_logic",
+          "input": "Patient on glipizide (sulfonylurea)",
+          "expected": "Patient qualifies for MAD measure"
+        },
+        {
+          "id": "F066-TC04",
+          "name": "Non-MAD diabetes med",
+          "type": "edge_case",
+          "input": "Patient only on insulin (excluded from MAD)",
+          "expected": "Patient NOT flagged for MAD measure"
+        },
+        {
+          "id": "F066-TC05",
+          "name": "MAD measure null data",
+          "type": "error_handling",
+          "input": "MAD fields undefined in patient record",
+          "expected": "Gracefully shows N/A, no crash"
+        }
+      ]
+    },
+    {
+      "feature_id": "F067",
+      "feature_name": "MAH measure tracking",
+      "test_cases": [
+        {
+          "id": "F067-TC01",
+          "name": "MAH patient on ACE inhibitor",
+          "type": "happy_path",
+          "input": "Patient on lisinopril for hypertension",
+          "expected": "Patient flagged for MAH measure tracking"
+        },
+        {
+          "id": "F067-TC02",
+          "name": "MAH patient on ARB",
+          "type": "business_logic",
+          "input": "Patient on losartan (ARB class)",
+          "expected": "Patient qualifies for MAH measure"
+        },
+        {
+          "id": "F067-TC03",
+          "name": "MAH PDC calculation",
+          "type": "business_logic",
+          "input": "Patient with 320 days covered, treatment = 365",
+          "expected": "MAH PDC = 87.7% (green/compliant)"
+        },
+        {
+          "id": "F067-TC04",
+          "name": "Non-MAH hypertension med",
+          "type": "edge_case",
+          "input": "Patient only on amlodipine (CCB, excluded)",
+          "expected": "Patient NOT flagged for MAH measure"
+        },
+        {
+          "id": "F067-TC05",
+          "name": "MAH data corruption",
+          "type": "error_handling",
+          "input": "MAH PDC = NaN in database",
+          "expected": "Shows error badge or N/A, no UI crash"
+        }
+      ]
+    },
+    {
+      "feature_id": "F068",
+      "feature_name": "Multi-measure patient display",
+      "test_cases": [
+        {
+          "id": "F068-TC01",
+          "name": "Patient on all 3 measures",
+          "type": "happy_path",
+          "input": "Patient on statin, metformin, and lisinopril",
+          "expected": "Shows MAC, MAD, MAH all with individual PDC values"
+        },
+        {
+          "id": "F068-TC02",
+          "name": "Two measures displayed",
+          "type": "business_logic",
+          "input": "Patient on MAC and MAD only",
+          "expected": "Shows both measures, MAH shows N/A"
+        },
+        {
+          "id": "F068-TC03",
+          "name": "Lowest PDC highlighted",
+          "type": "business_logic",
+          "input": "MAC=85%, MAD=72%, MAH=90%",
+          "expected": "MAD highlighted as priority (lowest)"
+        },
+        {
+          "id": "F068-TC04",
+          "name": "Single measure patient",
+          "type": "edge_case",
+          "input": "Patient only qualifies for MAH",
+          "expected": "Only MAH measure shown, others N/A"
+        },
+        {
+          "id": "F068-TC05",
+          "name": "No measures applicable",
+          "type": "edge_case",
+          "input": "Patient on medications not tracked by STARS",
+          "expected": "Shows 'No STARS measures applicable'"
+        }
+      ]
+    },
+    {
+      "feature_id": "F069",
+      "feature_name": "Denominator status D0",
+      "test_cases": [
+        {
+          "id": "F069-TC01",
+          "name": "D0 patient identified",
+          "type": "happy_path",
+          "input": "New patient with no fills in measurement year",
+          "expected": "Status = D0 (Not Yet in Denominator)"
+        },
+        {
+          "id": "F069-TC02",
+          "name": "D0 visual indicator",
+          "type": "business_logic",
+          "input": "Patient is D0",
+          "expected": "Shows gray badge 'D0 - Not in Denominator'"
+        },
+        {
+          "id": "F069-TC03",
+          "name": "D0 priority score",
+          "type": "business_logic",
+          "input": "Patient is D0",
+          "expected": "Lower priority than D1/D2 patients"
+        },
+        {
+          "id": "F069-TC04",
+          "name": "D0 to D1 transition",
+          "type": "edge_case",
+          "input": "D0 patient gets first fill",
+          "expected": "Status updates to D1a after fill recorded"
+        },
+        {
+          "id": "F069-TC05",
+          "name": "D0 with old data",
+          "type": "error_handling",
+          "input": "Patient had fills but all in previous year",
+          "expected": "Correctly shows D0 for current measurement year"
+        }
+      ]
+    },
+    {
+      "feature_id": "F070",
+      "feature_name": "Denominator status D1a/D1b",
+      "test_cases": [
+        {
+          "id": "F070-TC01",
+          "name": "D1a - approaching denominator",
+          "type": "happy_path",
+          "input": "Patient with 1 fill, needs 2 for denominator",
+          "expected": "Status = D1a (1 of 2 fills)"
+        },
+        {
+          "id": "F070-TC02",
+          "name": "D1b - in denominator, below threshold",
+          "type": "happy_path",
+          "input": "Patient with 2+ fills, PDC = 65%",
+          "expected": "Status = D1b (In Denom, Not Compliant)"
+        },
+        {
+          "id": "F070-TC03",
+          "name": "D1a badge styling",
+          "type": "business_logic",
+          "input": "Patient is D1a",
+          "expected": "Shows amber badge indicating approaching"
+        },
+        {
+          "id": "F070-TC04",
+          "name": "D1b priority boost",
+          "type": "business_logic",
+          "input": "Patient is D1b with PDC 75%",
+          "expected": "High priority - close to compliance"
+        },
+        {
+          "id": "F070-TC05",
+          "name": "D1a to D1b transition",
+          "type": "edge_case",
+          "input": "D1a patient gets second qualifying fill",
+          "expected": "Status changes to D1b"
+        }
+      ]
+    },
+    {
+      "feature_id": "F071",
+      "feature_name": "Denominator status D2",
+      "test_cases": [
+        {
+          "id": "F071-TC01",
+          "name": "D2 patient identified",
+          "type": "happy_path",
+          "input": "Patient with PDC >= 80%",
+          "expected": "Status = D2 (Compliant)"
+        },
+        {
+          "id": "F071-TC02",
+          "name": "D2 visual indicator",
+          "type": "business_logic",
+          "input": "Patient is D2",
+          "expected": "Shows green badge 'D2 - Compliant'"
+        },
+        {
+          "id": "F071-TC03",
+          "name": "D2 exactly at threshold",
+          "type": "edge_case",
+          "input": "Patient with PDC = 80.0%",
+          "expected": "Status = D2 (80% is passing)"
+        },
+        {
+          "id": "F071-TC04",
+          "name": "D2 maintenance priority",
+          "type": "business_logic",
+          "input": "Patient is D2 with PDC 82%",
+          "expected": "Lower priority than D1b (maintenance only)"
+        },
+        {
+          "id": "F071-TC05",
+          "name": "D2 to D1b regression",
+          "type": "edge_case",
+          "input": "D2 patient misses refill, PDC drops to 78%",
+          "expected": "Status changes to D1b, priority increases"
+        }
+      ]
+    },
+    {
+      "feature_id": "F072",
+      "feature_name": "Denominator status DX",
+      "test_cases": [
+        {
+          "id": "F072-TC01",
+          "name": "DX patient identified",
+          "type": "happy_path",
+          "input": "Patient excluded due to hospice enrollment",
+          "expected": "Status = DX (Excluded)"
+        },
+        {
+          "id": "F072-TC02",
+          "name": "DX from ESRD",
+          "type": "business_logic",
+          "input": "Patient has ESRD diagnosis",
+          "expected": "Status = DX with reason 'ESRD'"
+        },
+        {
+          "id": "F072-TC03",
+          "name": "DX visual indicator",
+          "type": "business_logic",
+          "input": "Patient is DX",
+          "expected": "Shows gray strikethrough badge 'DX - Excluded'"
+        },
+        {
+          "id": "F072-TC04",
+          "name": "DX not in worklist",
+          "type": "business_logic",
+          "input": "Patient is DX",
+          "expected": "Excluded from refill priority queue"
+        },
+        {
+          "id": "F072-TC05",
+          "name": "DX with multiple exclusions",
+          "type": "edge_case",
+          "input": "Patient has hospice AND ESRD",
+          "expected": "Shows DX with primary exclusion reason"
+        }
+      ]
+    },
+    {
+      "feature_id": "F073",
+      "feature_name": "Denominator status badges",
+      "test_cases": [
+        {
+          "id": "F073-TC01",
+          "name": "All status badges render",
+          "type": "happy_path",
+          "input": "Patients with D0, D1a, D1b, D2, DX statuses",
+          "expected": "Each badge displays with correct color/style"
+        },
+        {
+          "id": "F073-TC02",
+          "name": "Badge color mapping",
+          "type": "business_logic",
+          "input": "D0=gray, D1a=amber, D1b=orange, D2=green, DX=gray-strikethrough",
+          "expected": "Colors match specification"
+        },
+        {
+          "id": "F073-TC03",
+          "name": "Badge tooltip",
+          "type": "business_logic",
+          "input": "Hover over D1b badge",
+          "expected": "Shows 'In Denominator, Not Yet Compliant'"
+        },
+        {
+          "id": "F073-TC04",
+          "name": "Unknown status value",
+          "type": "error_handling",
+          "input": "Patient has denominatorStatus = 'UNKNOWN'",
+          "expected": "Shows default badge, no crash"
+        },
+        {
+          "id": "F073-TC05",
+          "name": "Null status handling",
+          "type": "error_handling",
+          "input": "Patient has denominatorStatus = null",
+          "expected": "Shows 'Calculating...' or default state"
+        }
+      ]
+    },
+    {
+      "feature_id": "F074",
+      "feature_name": "Measure-specific gap days",
+      "test_cases": [
+        {
+          "id": "F074-TC01",
+          "name": "MAC gap days calculated",
+          "type": "happy_path",
+          "input": "MAC: treatmentDays=300, coveredDays=250",
+          "expected": "MAC gapDays = 50"
+        },
+        {
+          "id": "F074-TC02",
+          "name": "MAD gap days calculated",
+          "type": "happy_path",
+          "input": "MAD: treatmentDays=365, coveredDays=292",
+          "expected": "MAD gapDays = 73"
+        },
+        {
+          "id": "F074-TC03",
+          "name": "Different gaps per measure",
+          "type": "business_logic",
+          "input": "Patient: MAC gap=30, MAD gap=60, MAH gap=15",
+          "expected": "Each measure shows individual gap days"
+        },
+        {
+          "id": "F074-TC04",
+          "name": "Zero gap days",
+          "type": "edge_case",
+          "input": "coveredDays >= treatmentDays",
+          "expected": "gapDays = 0 (not negative)"
+        },
+        {
+          "id": "F074-TC05",
+          "name": "Gap calculation with null",
+          "type": "error_handling",
+          "input": "treatmentDays = null",
+          "expected": "Shows N/A, no division error"
+        }
+      ]
+    },
+    {
+      "feature_id": "F075",
+      "feature_name": "Measure filter in worklist",
+      "test_cases": [
+        {
+          "id": "F075-TC01",
+          "name": "Filter by MAC only",
+          "type": "happy_path",
+          "input": "Select MAC filter",
+          "expected": "Only MAC patients displayed"
+        },
+        {
+          "id": "F075-TC02",
+          "name": "Filter by multiple measures",
+          "type": "business_logic",
+          "input": "Select MAC and MAD filters",
+          "expected": "Patients on MAC OR MAD displayed"
+        },
+        {
+          "id": "F075-TC03",
+          "name": "Filter count updates",
+          "type": "business_logic",
+          "input": "Apply MAH filter",
+          "expected": "Patient count reflects filtered results"
+        },
+        {
+          "id": "F075-TC04",
+          "name": "Clear all filters",
+          "type": "edge_case",
+          "input": "Click 'Clear Filters'",
+          "expected": "All patients displayed, filter chips removed"
+        },
+        {
+          "id": "F075-TC05",
+          "name": "No matching patients",
+          "type": "edge_case",
+          "input": "Filter by measure with 0 patients",
+          "expected": "Shows 'No patients match filters' message"
+        }
+      ]
+    },
+    {
+      "feature_id": "F076",
+      "feature_name": "Measure summary dashboard",
+      "test_cases": [
+        {
+          "id": "F076-TC01",
+          "name": "Summary cards display",
+          "type": "happy_path",
+          "input": "Load measure dashboard",
+          "expected": "Cards show MAC, MAD, MAH totals and compliance %"
+        },
+        {
+          "id": "F076-TC02",
+          "name": "Compliance percentage",
+          "type": "business_logic",
+          "input": "MAC: 80 patients, 60 compliant",
+          "expected": "MAC compliance = 75%"
+        },
+        {
+          "id": "F076-TC03",
+          "name": "At-risk count",
+          "type": "business_logic",
+          "input": "Patients with PDC 60-79%",
+          "expected": "At-risk count accurate per measure"
+        },
+        {
+          "id": "F076-TC04",
+          "name": "Zero patients scenario",
+          "type": "edge_case",
+          "input": "No MAC patients in population",
+          "expected": "MAC card shows 0 patients, 0% compliance"
+        },
+        {
+          "id": "F076-TC05",
+          "name": "Dashboard data error",
+          "type": "error_handling",
+          "input": "API returns error",
+          "expected": "Shows error state with retry button"
+        }
+      ]
+    },
+    {
+      "feature_id": "F077",
+      "feature_name": "Treatment period display",
+      "test_cases": [
+        {
+          "id": "F077-TC01",
+          "name": "Treatment period shown",
+          "type": "happy_path",
+          "input": "First fill Jan 15, last enrollment Dec 31",
+          "expected": "Treatment Period: 351 days"
+        },
+        {
+          "id": "F077-TC02",
+          "name": "Start date displayed",
+          "type": "business_logic",
+          "input": "First qualifying fill on Mar 1",
+          "expected": "Treatment Start: Mar 1, 2025"
+        },
+        {
+          "id": "F077-TC03",
+          "name": "End date displayed",
+          "type": "business_logic",
+          "input": "Enrollment through year end",
+          "expected": "Treatment End: Dec 31, 2025"
+        },
+        {
+          "id": "F077-TC04",
+          "name": "Mid-year enrollment",
+          "type": "edge_case",
+          "input": "Patient enrolled Jul 1, first fill Jul 15",
+          "expected": "Treatment Period: 169 days (Jul 15 - Dec 31)"
+        },
+        {
+          "id": "F077-TC05",
+          "name": "No first fill date",
+          "type": "error_handling",
+          "input": "firstFillDate = null",
+          "expected": "Treatment period shows N/A"
+        }
+      ]
+    },
+    {
+      "feature_id": "F078",
+      "feature_name": "Coverage timeline visualization",
+      "test_cases": [
+        {
+          "id": "F078-TC01",
+          "name": "Timeline renders fills",
+          "type": "happy_path",
+          "input": "Patient with 4 fills throughout year",
+          "expected": "Timeline shows 4 fill markers at correct dates"
+        },
+        {
+          "id": "F078-TC02",
+          "name": "Coverage bars displayed",
+          "type": "business_logic",
+          "input": "Fill on Jan 1 with 30-day supply",
+          "expected": "Green bar spans Jan 1 - Jan 30"
+        },
+        {
+          "id": "F078-TC03",
+          "name": "Gap visualization",
+          "type": "business_logic",
+          "input": "Gap between fills Feb 1 - Mar 15",
+          "expected": "Red gap indicator for 42-day gap"
+        },
+        {
+          "id": "F078-TC04",
+          "name": "Today marker",
+          "type": "business_logic",
+          "input": "Today = Nov 15",
+          "expected": "Vertical line indicates current date"
+        },
+        {
+          "id": "F078-TC05",
+          "name": "No fills timeline",
+          "type": "edge_case",
+          "input": "D0 patient with no fills",
+          "expected": "Empty timeline with 'No fills recorded' message"
+        }
+      ]
+    }
+  ]
+}

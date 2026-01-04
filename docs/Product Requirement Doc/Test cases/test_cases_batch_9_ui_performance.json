@@ -1,0 +1,2062 @@
+{
+  "metadata": {
+    "batch": 9,
+    "category": "UI, Performance & Edge Cases",
+    "features": "F093-F142",
+    "total_test_cases": 250,
+    "created": "2026-01-03",
+    "reference": "UI Components, Performance, Accessibility, Edge Cases"
+  },
+  "test_cases": [
+    {
+      "feature_id": "F093",
+      "feature_name": "Keyboard navigation",
+      "test_cases": [
+        {
+          "id": "F093-TC01",
+          "name": "Arrow keys navigate rows",
+          "type": "happy_path",
+          "input": "Press Up/Down arrows in patient table",
+          "expected": "Row focus moves up/down"
+        },
+        {
+          "id": "F093-TC02",
+          "name": "Enter opens patient",
+          "type": "business_logic",
+          "input": "Press Enter on focused row",
+          "expected": "Patient drawer opens"
+        },
+        {
+          "id": "F093-TC03",
+          "name": "Escape closes drawer",
+          "type": "business_logic",
+          "input": "Press Escape with drawer open",
+          "expected": "Drawer closes, focus returns to table"
+        },
+        {
+          "id": "F093-TC04",
+          "name": "Tab order correct",
+          "type": "business_logic",
+          "input": "Tab through page elements",
+          "expected": "Focus follows logical order"
+        },
+        {
+          "id": "F093-TC05",
+          "name": "No keyboard traps",
+          "type": "edge_case",
+          "input": "Tab through all interactive elements",
+          "expected": "Can always escape focus with Tab/Shift+Tab"
+        }
+      ]
+    },
+    {
+      "feature_id": "F094",
+      "feature_name": "Shortcut keys (A/D/R)",
+      "test_cases": [
+        {
+          "id": "F094-TC01",
+          "name": "A key approves",
+          "type": "happy_path",
+          "input": "Press 'A' with patient selected",
+          "expected": "Approve confirmation triggered"
+        },
+        {
+          "id": "F094-TC02",
+          "name": "D key denies",
+          "type": "happy_path",
+          "input": "Press 'D' with patient selected",
+          "expected": "Deny dialog opens"
+        },
+        {
+          "id": "F094-TC03",
+          "name": "R key routes",
+          "type": "happy_path",
+          "input": "Press 'R' with patient selected",
+          "expected": "Route/escalate dialog opens"
+        },
+        {
+          "id": "F094-TC04",
+          "name": "Shortcuts disabled in input",
+          "type": "business_logic",
+          "input": "Press 'A' while typing in text field",
+          "expected": "Types 'a', no action triggered"
+        },
+        {
+          "id": "F094-TC05",
+          "name": "Shortcut hint tooltip",
+          "type": "business_logic",
+          "input": "Hover over Approve button",
+          "expected": "Shows 'Press A' hint"
+        }
+      ]
+    },
+    {
+      "feature_id": "F095",
+      "feature_name": "Loading states",
+      "test_cases": [
+        {
+          "id": "F095-TC01",
+          "name": "Initial load spinner",
+          "type": "happy_path",
+          "input": "Navigate to worklist",
+          "expected": "Shows loading spinner while fetching data"
+        },
+        {
+          "id": "F095-TC02",
+          "name": "Skeleton loaders",
+          "type": "business_logic",
+          "input": "Data loading",
+          "expected": "Table shows skeleton placeholder rows"
+        },
+        {
+          "id": "F095-TC03",
+          "name": "Button loading state",
+          "type": "business_logic",
+          "input": "Click approve, wait for response",
+          "expected": "Button shows spinner, disabled during action"
+        },
+        {
+          "id": "F095-TC04",
+          "name": "Drawer data loading",
+          "type": "business_logic",
+          "input": "Open patient drawer",
+          "expected": "Content areas show loading until data arrives"
+        },
+        {
+          "id": "F095-TC05",
+          "name": "Infinite loading prevented",
+          "type": "error_handling",
+          "input": "API hangs",
+          "expected": "Timeout shows error after 30 seconds"
+        }
+      ]
+    },
+    {
+      "feature_id": "F096",
+      "feature_name": "Empty states",
+      "test_cases": [
+        {
+          "id": "F096-TC01",
+          "name": "No patients message",
+          "type": "happy_path",
+          "input": "User has 0 patients",
+          "expected": "Shows 'No patients to review' with illustration"
+        },
+        {
+          "id": "F096-TC02",
+          "name": "No search results",
+          "type": "business_logic",
+          "input": "Search returns 0 matches",
+          "expected": "Shows 'No results for [query]' with suggestions"
+        },
+        {
+          "id": "F096-TC03",
+          "name": "Empty RX claims tab",
+          "type": "business_logic",
+          "input": "Patient with no claims",
+          "expected": "Shows 'No RX claims found for this patient'"
+        },
+        {
+          "id": "F096-TC04",
+          "name": "Empty exception queue",
+          "type": "business_logic",
+          "input": "All exceptions resolved",
+          "expected": "Shows celebratory 'All clear!' message"
+        },
+        {
+          "id": "F096-TC05",
+          "name": "Empty filter result",
+          "type": "edge_case",
+          "input": "Filter combination yields 0 results",
+          "expected": "Clear filter button prominently displayed"
+        }
+      ]
+    },
+    {
+      "feature_id": "F097",
+      "feature_name": "Error boundary handling",
+      "test_cases": [
+        {
+          "id": "F097-TC01",
+          "name": "Component crash contained",
+          "type": "happy_path",
+          "input": "Component throws error",
+          "expected": "Error boundary shows fallback UI"
+        },
+        {
+          "id": "F097-TC02",
+          "name": "Refresh option provided",
+          "type": "business_logic",
+          "input": "Error boundary displayed",
+          "expected": "Shows 'Refresh Page' button"
+        },
+        {
+          "id": "F097-TC03",
+          "name": "Error logged to console",
+          "type": "business_logic",
+          "input": "Error occurs",
+          "expected": "Error details logged for debugging"
+        },
+        {
+          "id": "F097-TC04",
+          "name": "Parent components unaffected",
+          "type": "business_logic",
+          "input": "Child component crashes",
+          "expected": "Sidebar and header still functional"
+        },
+        {
+          "id": "F097-TC05",
+          "name": "Recover from error",
+          "type": "edge_case",
+          "input": "Click refresh after error",
+          "expected": "Page reloads, error cleared if transient"
+        }
+      ]
+    },
+    {
+      "feature_id": "F098",
+      "feature_name": "Toast notifications",
+      "test_cases": [
+        {
+          "id": "F098-TC01",
+          "name": "Success toast",
+          "type": "happy_path",
+          "input": "Approve action succeeds",
+          "expected": "Green toast: 'Patient approved successfully'"
+        },
+        {
+          "id": "F098-TC02",
+          "name": "Error toast",
+          "type": "business_logic",
+          "input": "Save fails",
+          "expected": "Red toast: 'Failed to save. Please try again.'"
+        },
+        {
+          "id": "F098-TC03",
+          "name": "Auto-dismiss after 5s",
+          "type": "business_logic",
+          "input": "Toast appears",
+          "expected": "Toast auto-dismisses after 5 seconds"
+        },
+        {
+          "id": "F098-TC04",
+          "name": "Manual dismiss",
+          "type": "business_logic",
+          "input": "Click X on toast",
+          "expected": "Toast immediately dismissed"
+        },
+        {
+          "id": "F098-TC05",
+          "name": "Multiple toasts stack",
+          "type": "edge_case",
+          "input": "3 actions complete rapidly",
+          "expected": "All 3 toasts visible, stacked vertically"
+        }
+      ]
+    },
+    {
+      "feature_id": "F099",
+      "feature_name": "Confirmation dialogs",
+      "test_cases": [
+        {
+          "id": "F099-TC01",
+          "name": "Deny requires confirmation",
+          "type": "happy_path",
+          "input": "Click deny",
+          "expected": "Confirmation dialog: 'Are you sure?'"
+        },
+        {
+          "id": "F099-TC02",
+          "name": "Cancel returns to drawer",
+          "type": "business_logic",
+          "input": "Click Cancel in dialog",
+          "expected": "Dialog closes, no action taken"
+        },
+        {
+          "id": "F099-TC03",
+          "name": "Confirm executes action",
+          "type": "business_logic",
+          "input": "Click Confirm in dialog",
+          "expected": "Action executed, dialog closes"
+        },
+        {
+          "id": "F099-TC04",
+          "name": "Escape closes dialog",
+          "type": "business_logic",
+          "input": "Press Escape with dialog open",
+          "expected": "Dialog closes, no action"
+        },
+        {
+          "id": "F099-TC05",
+          "name": "Click outside closes",
+          "type": "edge_case",
+          "input": "Click overlay behind dialog",
+          "expected": "Dialog closes, no action"
+        }
+      ]
+    },
+    {
+      "feature_id": "F100",
+      "feature_name": "Responsive design (mobile)",
+      "test_cases": [
+        {
+          "id": "F100-TC01",
+          "name": "Mobile layout loads",
+          "type": "happy_path",
+          "input": "View on 375px width",
+          "expected": "Mobile-optimized layout displays"
+        },
+        {
+          "id": "F100-TC02",
+          "name": "Table scrolls horizontally",
+          "type": "business_logic",
+          "input": "View table on mobile",
+          "expected": "Horizontal scroll for wide content"
+        },
+        {
+          "id": "F100-TC03",
+          "name": "Drawer full-screen",
+          "type": "business_logic",
+          "input": "Open patient on mobile",
+          "expected": "Drawer takes full screen width"
+        },
+        {
+          "id": "F100-TC04",
+          "name": "Touch targets sized",
+          "type": "business_logic",
+          "input": "Buttons on mobile",
+          "expected": "All buttons >= 44x44px for touch"
+        },
+        {
+          "id": "F100-TC05",
+          "name": "Hamburger menu",
+          "type": "edge_case",
+          "input": "Mobile navigation",
+          "expected": "Sidebar collapses to hamburger menu"
+        }
+      ]
+    },
+    {
+      "feature_id": "F101",
+      "feature_name": "Responsive design (tablet)",
+      "test_cases": [
+        {
+          "id": "F101-TC01",
+          "name": "Tablet layout loads",
+          "type": "happy_path",
+          "input": "View on 768px width",
+          "expected": "Tablet-optimized layout displays"
+        },
+        {
+          "id": "F101-TC02",
+          "name": "Drawer side panel",
+          "type": "business_logic",
+          "input": "Open patient on tablet",
+          "expected": "Drawer as side panel, table visible"
+        },
+        {
+          "id": "F101-TC03",
+          "name": "Column hiding",
+          "type": "business_logic",
+          "input": "Table on tablet",
+          "expected": "Less critical columns hidden"
+        },
+        {
+          "id": "F101-TC04",
+          "name": "Grid adjusts",
+          "type": "business_logic",
+          "input": "Dashboard cards",
+          "expected": "Cards in 2-column grid"
+        },
+        {
+          "id": "F101-TC05",
+          "name": "Orientation change",
+          "type": "edge_case",
+          "input": "Rotate tablet",
+          "expected": "Layout adjusts without reload"
+        }
+      ]
+    },
+    {
+      "feature_id": "F102",
+      "feature_name": "Dark mode support",
+      "test_cases": [
+        {
+          "id": "F102-TC01",
+          "name": "Dark mode toggle",
+          "type": "happy_path",
+          "input": "Click dark mode toggle",
+          "expected": "UI switches to dark theme"
+        },
+        {
+          "id": "F102-TC02",
+          "name": "Respects system preference",
+          "type": "business_logic",
+          "input": "OS set to dark mode",
+          "expected": "App defaults to dark mode"
+        },
+        {
+          "id": "F102-TC03",
+          "name": "Badge colors adapt",
+          "type": "business_logic",
+          "input": "View badges in dark mode",
+          "expected": "Colors adjusted for dark background"
+        },
+        {
+          "id": "F102-TC04",
+          "name": "Charts readable",
+          "type": "business_logic",
+          "input": "View timeline in dark mode",
+          "expected": "Chart colors contrast properly"
+        },
+        {
+          "id": "F102-TC05",
+          "name": "Preference persisted",
+          "type": "edge_case",
+          "input": "Close and reopen app",
+          "expected": "Dark mode setting remembered"
+        }
+      ]
+    },
+    {
+      "feature_id": "F103",
+      "feature_name": "Table density toggle",
+      "test_cases": [
+        {
+          "id": "F103-TC01",
+          "name": "Default density",
+          "type": "happy_path",
+          "input": "Load table",
+          "expected": "Normal density (40px row height)"
+        },
+        {
+          "id": "F103-TC02",
+          "name": "Compact density",
+          "type": "business_logic",
+          "input": "Select compact",
+          "expected": "Row height reduces to 32px"
+        },
+        {
+          "id": "F103-TC03",
+          "name": "Comfortable density",
+          "type": "business_logic",
+          "input": "Select comfortable",
+          "expected": "Row height increases to 48px"
+        },
+        {
+          "id": "F103-TC04",
+          "name": "Density persisted",
+          "type": "edge_case",
+          "input": "Change density, reload page",
+          "expected": "Setting remembered in localStorage"
+        },
+        {
+          "id": "F103-TC05",
+          "name": "Affects all tables",
+          "type": "business_logic",
+          "input": "Change density in worklist",
+          "expected": "Claims table also uses new density"
+        }
+      ]
+    },
+    {
+      "feature_id": "F104",
+      "feature_name": "Column visibility toggle",
+      "test_cases": [
+        {
+          "id": "F104-TC01",
+          "name": "Column selector opens",
+          "type": "happy_path",
+          "input": "Click column settings icon",
+          "expected": "Dropdown shows all columns with checkboxes"
+        },
+        {
+          "id": "F104-TC02",
+          "name": "Hide column",
+          "type": "business_logic",
+          "input": "Uncheck 'Email' column",
+          "expected": "Email column hidden from table"
+        },
+        {
+          "id": "F104-TC03",
+          "name": "Show column",
+          "type": "business_logic",
+          "input": "Check previously hidden column",
+          "expected": "Column reappears in table"
+        },
+        {
+          "id": "F104-TC04",
+          "name": "Reset to default",
+          "type": "edge_case",
+          "input": "Click 'Reset columns'",
+          "expected": "All default columns visible"
+        },
+        {
+          "id": "F104-TC05",
+          "name": "Minimum 1 column",
+          "type": "error_handling",
+          "input": "Try to hide all columns",
+          "expected": "Prevents hiding last column, shows warning"
+        }
+      ]
+    },
+    {
+      "feature_id": "F105",
+      "feature_name": "Column reordering",
+      "test_cases": [
+        {
+          "id": "F105-TC01",
+          "name": "Drag column header",
+          "type": "happy_path",
+          "input": "Drag 'PDC' column to left",
+          "expected": "Column moves to new position"
+        },
+        {
+          "id": "F105-TC02",
+          "name": "Drop indicator",
+          "type": "business_logic",
+          "input": "Drag column over another",
+          "expected": "Blue line indicates drop position"
+        },
+        {
+          "id": "F105-TC03",
+          "name": "Order persisted",
+          "type": "edge_case",
+          "input": "Reorder columns, reload",
+          "expected": "Order remembered in localStorage"
+        },
+        {
+          "id": "F105-TC04",
+          "name": "Reset order",
+          "type": "edge_case",
+          "input": "Click 'Reset column order'",
+          "expected": "Columns return to default order"
+        },
+        {
+          "id": "F105-TC05",
+          "name": "Cancel drag",
+          "type": "edge_case",
+          "input": "Press Escape while dragging",
+          "expected": "Column returns to original position"
+        }
+      ]
+    },
+    {
+      "feature_id": "F106",
+      "feature_name": "Table row expansion",
+      "test_cases": [
+        {
+          "id": "F106-TC01",
+          "name": "Expand row",
+          "type": "happy_path",
+          "input": "Click expand icon",
+          "expected": "Row expands to show additional details"
+        },
+        {
+          "id": "F106-TC02",
+          "name": "Collapse row",
+          "type": "business_logic",
+          "input": "Click collapse icon",
+          "expected": "Row collapses back to single row"
+        },
+        {
+          "id": "F106-TC03",
+          "name": "Only one expanded",
+          "type": "business_logic",
+          "input": "Expand row while another expanded",
+          "expected": "First row collapses, second expands"
+        },
+        {
+          "id": "F106-TC04",
+          "name": "Expanded content loads",
+          "type": "business_logic",
+          "input": "Expand patient row",
+          "expected": "Shows medications, recent fills inline"
+        },
+        {
+          "id": "F106-TC05",
+          "name": "Keyboard expand",
+          "type": "edge_case",
+          "input": "Press Space on focused row",
+          "expected": "Row expands/collapses"
+        }
+      ]
+    },
+    {
+      "feature_id": "F107",
+      "feature_name": "Inline editing",
+      "test_cases": [
+        {
+          "id": "F107-TC01",
+          "name": "Edit notes inline",
+          "type": "happy_path",
+          "input": "Double-click notes cell",
+          "expected": "Cell becomes editable text field"
+        },
+        {
+          "id": "F107-TC02",
+          "name": "Save on blur",
+          "type": "business_logic",
+          "input": "Edit and click away",
+          "expected": "Changes saved automatically"
+        },
+        {
+          "id": "F107-TC03",
+          "name": "Cancel with Escape",
+          "type": "business_logic",
+          "input": "Press Escape while editing",
+          "expected": "Changes discarded, original value restored"
+        },
+        {
+          "id": "F107-TC04",
+          "name": "Validation in inline edit",
+          "type": "error_handling",
+          "input": "Enter invalid data",
+          "expected": "Red border, error message, save prevented"
+        },
+        {
+          "id": "F107-TC05",
+          "name": "Save indicator",
+          "type": "business_logic",
+          "input": "Save inline edit",
+          "expected": "Brief checkmark shows save success"
+        }
+      ]
+    },
+    {
+      "feature_id": "F108",
+      "feature_name": "Bulk selection",
+      "test_cases": [
+        {
+          "id": "F108-TC01",
+          "name": "Select all on page",
+          "type": "happy_path",
+          "input": "Click header checkbox",
+          "expected": "All visible rows selected"
+        },
+        {
+          "id": "F108-TC02",
+          "name": "Select individual rows",
+          "type": "business_logic",
+          "input": "Click row checkboxes",
+          "expected": "Selected rows highlighted"
+        },
+        {
+          "id": "F108-TC03",
+          "name": "Selection count shown",
+          "type": "business_logic",
+          "input": "Select 5 rows",
+          "expected": "Shows '5 selected' badge"
+        },
+        {
+          "id": "F108-TC04",
+          "name": "Deselect all",
+          "type": "business_logic",
+          "input": "Click header checkbox when all selected",
+          "expected": "All rows deselected"
+        },
+        {
+          "id": "F108-TC05",
+          "name": "Selection across pages",
+          "type": "edge_case",
+          "input": "Select rows, navigate to page 2",
+          "expected": "Page 1 selections preserved"
+        }
+      ]
+    },
+    {
+      "feature_id": "F109",
+      "feature_name": "Bulk actions",
+      "test_cases": [
+        {
+          "id": "F109-TC01",
+          "name": "Bulk approve",
+          "type": "happy_path",
+          "input": "Select 5 patients, click Bulk Approve",
+          "expected": "Confirmation for 5 approvals"
+        },
+        {
+          "id": "F109-TC02",
+          "name": "Bulk deny",
+          "type": "business_logic",
+          "input": "Select 3 patients, click Bulk Deny",
+          "expected": "Bulk deny dialog with reason field"
+        },
+        {
+          "id": "F109-TC03",
+          "name": "Bulk assign",
+          "type": "business_logic",
+          "input": "Select patients, assign to user",
+          "expected": "All selected patients reassigned"
+        },
+        {
+          "id": "F109-TC04",
+          "name": "No selection warning",
+          "type": "error_handling",
+          "input": "Click bulk action with 0 selected",
+          "expected": "Warning: 'Select patients first'"
+        },
+        {
+          "id": "F109-TC05",
+          "name": "Partial failure handling",
+          "type": "error_handling",
+          "input": "3 of 5 bulk actions fail",
+          "expected": "Shows '2 succeeded, 3 failed' with details"
+        }
+      ]
+    },
+    {
+      "feature_id": "F110",
+      "feature_name": "Data export",
+      "test_cases": [
+        {
+          "id": "F110-TC01",
+          "name": "Export to CSV",
+          "type": "happy_path",
+          "input": "Click Export > CSV",
+          "expected": "CSV file downloads with current data"
+        },
+        {
+          "id": "F110-TC02",
+          "name": "Export filtered data",
+          "type": "business_logic",
+          "input": "Apply filter, then export",
+          "expected": "Export contains only filtered results"
+        },
+        {
+          "id": "F110-TC03",
+          "name": "Export selected only",
+          "type": "business_logic",
+          "input": "Select 10 rows, export selected",
+          "expected": "CSV contains only 10 selected rows"
+        },
+        {
+          "id": "F110-TC04",
+          "name": "Export all columns",
+          "type": "business_logic",
+          "input": "Export with hidden columns",
+          "expected": "Option to include all columns or visible only"
+        },
+        {
+          "id": "F110-TC05",
+          "name": "Large export handling",
+          "type": "edge_case",
+          "input": "Export 10,000 rows",
+          "expected": "Progress indicator, completes without timeout"
+        }
+      ]
+    },
+    {
+      "feature_id": "F111",
+      "feature_name": "Print functionality",
+      "test_cases": [
+        {
+          "id": "F111-TC01",
+          "name": "Print patient summary",
+          "type": "happy_path",
+          "input": "Click Print in drawer",
+          "expected": "Print dialog opens with formatted summary"
+        },
+        {
+          "id": "F111-TC02",
+          "name": "Print-friendly layout",
+          "type": "business_logic",
+          "input": "Print preview",
+          "expected": "No navigation, clean layout for printing"
+        },
+        {
+          "id": "F111-TC03",
+          "name": "Include RX history",
+          "type": "business_logic",
+          "input": "Print with claims",
+          "expected": "Option to include/exclude RX history"
+        },
+        {
+          "id": "F111-TC04",
+          "name": "Headers on each page",
+          "type": "business_logic",
+          "input": "Print multi-page",
+          "expected": "Patient name/MRN on each page"
+        },
+        {
+          "id": "F111-TC05",
+          "name": "Cancel print",
+          "type": "edge_case",
+          "input": "Cancel print dialog",
+          "expected": "Returns to app without changes"
+        }
+      ]
+    },
+    {
+      "feature_id": "F112",
+      "feature_name": "Performance - Initial load",
+      "test_cases": [
+        {
+          "id": "F112-TC01",
+          "name": "First contentful paint < 1.5s",
+          "type": "happy_path",
+          "input": "Cold start app load",
+          "expected": "FCP under 1.5 seconds"
+        },
+        {
+          "id": "F112-TC02",
+          "name": "Time to interactive < 3s",
+          "type": "business_logic",
+          "input": "Load worklist page",
+          "expected": "TTI under 3 seconds"
+        },
+        {
+          "id": "F112-TC03",
+          "name": "Bundle size check",
+          "type": "business_logic",
+          "input": "Build production bundle",
+          "expected": "Main bundle < 500KB gzipped"
+        },
+        {
+          "id": "F112-TC04",
+          "name": "Lazy loading routes",
+          "type": "business_logic",
+          "input": "Navigate to secondary page",
+          "expected": "Route chunk loads on demand"
+        },
+        {
+          "id": "F112-TC05",
+          "name": "Slow network handling",
+          "type": "edge_case",
+          "input": "Throttle to 3G",
+          "expected": "App functional within 10 seconds"
+        }
+      ]
+    },
+    {
+      "feature_id": "F113",
+      "feature_name": "Performance - Table rendering",
+      "test_cases": [
+        {
+          "id": "F113-TC01",
+          "name": "500 rows render < 1s",
+          "type": "happy_path",
+          "input": "Load table with 500 patients",
+          "expected": "Table renders in under 1 second"
+        },
+        {
+          "id": "F113-TC02",
+          "name": "Virtualized scrolling",
+          "type": "business_logic",
+          "input": "Scroll through 1000 rows",
+          "expected": "Only visible rows in DOM"
+        },
+        {
+          "id": "F113-TC03",
+          "name": "Smooth 60fps scroll",
+          "type": "business_logic",
+          "input": "Scroll large table",
+          "expected": "No jank, maintains 60fps"
+        },
+        {
+          "id": "F113-TC04",
+          "name": "Filter response < 100ms",
+          "type": "business_logic",
+          "input": "Type in search",
+          "expected": "Results update within 100ms per keystroke"
+        },
+        {
+          "id": "F113-TC05",
+          "name": "Sort performance",
+          "type": "business_logic",
+          "input": "Sort 1000 row table",
+          "expected": "Sort completes in < 200ms"
+        }
+      ]
+    },
+    {
+      "feature_id": "F114",
+      "feature_name": "Performance - Memory usage",
+      "test_cases": [
+        {
+          "id": "F114-TC01",
+          "name": "No memory leaks",
+          "type": "happy_path",
+          "input": "Open/close drawer 50 times",
+          "expected": "Memory stable, no growth pattern"
+        },
+        {
+          "id": "F114-TC02",
+          "name": "Firestore listener cleanup",
+          "type": "business_logic",
+          "input": "Navigate away from page",
+          "expected": "Listeners unsubscribed, memory freed"
+        },
+        {
+          "id": "F114-TC03",
+          "name": "Large dataset handling",
+          "type": "business_logic",
+          "input": "Load 5000 patients",
+          "expected": "Memory under 200MB"
+        },
+        {
+          "id": "F114-TC04",
+          "name": "Image cleanup",
+          "type": "edge_case",
+          "input": "View many patient photos",
+          "expected": "Old images released from memory"
+        },
+        {
+          "id": "F114-TC05",
+          "name": "Long session stability",
+          "type": "edge_case",
+          "input": "Use app for 4 hours",
+          "expected": "No performance degradation"
+        }
+      ]
+    },
+    {
+      "feature_id": "F115",
+      "feature_name": "Performance - API response caching",
+      "test_cases": [
+        {
+          "id": "F115-TC01",
+          "name": "Protocol cache hit",
+          "type": "happy_path",
+          "input": "Request same protocol twice",
+          "expected": "Second request uses cache, no API call"
+        },
+        {
+          "id": "F115-TC02",
+          "name": "Patient data cache",
+          "type": "business_logic",
+          "input": "Close and reopen patient drawer",
+          "expected": "Data loads from cache instantly"
+        },
+        {
+          "id": "F115-TC03",
+          "name": "Cache invalidation",
+          "type": "business_logic",
+          "input": "Patient data updated elsewhere",
+          "expected": "Cache invalidated, fresh data fetched"
+        },
+        {
+          "id": "F115-TC04",
+          "name": "Cache TTL expiry",
+          "type": "edge_case",
+          "input": "Wait 5 minutes, request again",
+          "expected": "Cache expired, fresh fetch made"
+        },
+        {
+          "id": "F115-TC05",
+          "name": "Cache size limit",
+          "type": "edge_case",
+          "input": "Cache fills up",
+          "expected": "LRU eviction keeps cache bounded"
+        }
+      ]
+    },
+    {
+      "feature_id": "F116",
+      "feature_name": "Accessibility - Screen reader",
+      "test_cases": [
+        {
+          "id": "F116-TC01",
+          "name": "Table announced",
+          "type": "happy_path",
+          "input": "Navigate to table with screen reader",
+          "expected": "Announces 'Patient table, 50 rows'"
+        },
+        {
+          "id": "F116-TC02",
+          "name": "Column headers read",
+          "type": "business_logic",
+          "input": "Navigate table cells",
+          "expected": "Column header announced for each cell"
+        },
+        {
+          "id": "F116-TC03",
+          "name": "Status badges announced",
+          "type": "business_logic",
+          "input": "Focus PDC badge",
+          "expected": "Announces 'PDC 85%, passing'"
+        },
+        {
+          "id": "F116-TC04",
+          "name": "Form labels correct",
+          "type": "business_logic",
+          "input": "Focus form inputs",
+          "expected": "Labels announced for all inputs"
+        },
+        {
+          "id": "F116-TC05",
+          "name": "Live region updates",
+          "type": "business_logic",
+          "input": "Toast notification appears",
+          "expected": "Screen reader announces notification"
+        }
+      ]
+    },
+    {
+      "feature_id": "F117",
+      "feature_name": "Accessibility - Color contrast",
+      "test_cases": [
+        {
+          "id": "F117-TC01",
+          "name": "Text contrast ratio",
+          "type": "happy_path",
+          "input": "Audit text colors",
+          "expected": "All text meets WCAG AA (4.5:1)"
+        },
+        {
+          "id": "F117-TC02",
+          "name": "Button contrast",
+          "type": "business_logic",
+          "input": "Audit button colors",
+          "expected": "Button text meets 4.5:1 ratio"
+        },
+        {
+          "id": "F117-TC03",
+          "name": "Badge readability",
+          "type": "business_logic",
+          "input": "Check badge colors",
+          "expected": "Badge text readable (3:1 minimum)"
+        },
+        {
+          "id": "F117-TC04",
+          "name": "Focus indicator visible",
+          "type": "business_logic",
+          "input": "Tab through elements",
+          "expected": "Focus ring clearly visible"
+        },
+        {
+          "id": "F117-TC05",
+          "name": "Error state colors",
+          "type": "edge_case",
+          "input": "Form validation errors",
+          "expected": "Error text meets contrast requirements"
+        }
+      ]
+    },
+    {
+      "feature_id": "F118",
+      "feature_name": "Accessibility - Focus management",
+      "test_cases": [
+        {
+          "id": "F118-TC01",
+          "name": "Modal focus trap",
+          "type": "happy_path",
+          "input": "Open modal dialog",
+          "expected": "Focus trapped within modal"
+        },
+        {
+          "id": "F118-TC02",
+          "name": "Focus returns on close",
+          "type": "business_logic",
+          "input": "Close modal",
+          "expected": "Focus returns to trigger element"
+        },
+        {
+          "id": "F118-TC03",
+          "name": "Skip to content link",
+          "type": "business_logic",
+          "input": "Press Tab on page load",
+          "expected": "Skip to main content link visible"
+        },
+        {
+          "id": "F118-TC04",
+          "name": "Visible focus state",
+          "type": "business_logic",
+          "input": "Keyboard navigate",
+          "expected": "Current focus element clearly visible"
+        },
+        {
+          "id": "F118-TC05",
+          "name": "No focus loss",
+          "type": "error_handling",
+          "input": "Element removed while focused",
+          "expected": "Focus moves to next logical element"
+        }
+      ]
+    },
+    {
+      "feature_id": "F119",
+      "feature_name": "Browser compatibility - Chrome",
+      "test_cases": [
+        {
+          "id": "F119-TC01",
+          "name": "Chrome latest works",
+          "type": "happy_path",
+          "input": "Open app in Chrome 120+",
+          "expected": "All features functional"
+        },
+        {
+          "id": "F119-TC02",
+          "name": "Chrome 2 versions back",
+          "type": "business_logic",
+          "input": "Test Chrome 118",
+          "expected": "Core functionality works"
+        },
+        {
+          "id": "F119-TC03",
+          "name": "Chrome mobile",
+          "type": "business_logic",
+          "input": "Test Chrome on Android",
+          "expected": "Touch interactions work"
+        },
+        {
+          "id": "F119-TC04",
+          "name": "Chrome DevTools audit",
+          "type": "business_logic",
+          "input": "Run Lighthouse audit",
+          "expected": "Performance score > 80"
+        },
+        {
+          "id": "F119-TC05",
+          "name": "Chrome extensions",
+          "type": "edge_case",
+          "input": "Test with ad blocker active",
+          "expected": "App functions normally"
+        }
+      ]
+    },
+    {
+      "feature_id": "F120",
+      "feature_name": "Browser compatibility - Safari",
+      "test_cases": [
+        {
+          "id": "F120-TC01",
+          "name": "Safari latest works",
+          "type": "happy_path",
+          "input": "Open app in Safari 17+",
+          "expected": "All features functional"
+        },
+        {
+          "id": "F120-TC02",
+          "name": "Safari iOS",
+          "type": "business_logic",
+          "input": "Test on iPhone Safari",
+          "expected": "Touch interactions work"
+        },
+        {
+          "id": "F120-TC03",
+          "name": "Safari date handling",
+          "type": "business_logic",
+          "input": "Display and parse dates",
+          "expected": "Dates display correctly"
+        },
+        {
+          "id": "F120-TC04",
+          "name": "Safari CSS grid",
+          "type": "business_logic",
+          "input": "View dashboard layout",
+          "expected": "Grid layouts render correctly"
+        },
+        {
+          "id": "F120-TC05",
+          "name": "Safari IndexedDB",
+          "type": "edge_case",
+          "input": "Offline caching",
+          "expected": "Local storage works in Safari"
+        }
+      ]
+    },
+    {
+      "feature_id": "F121",
+      "feature_name": "Browser compatibility - Firefox",
+      "test_cases": [
+        {
+          "id": "F121-TC01",
+          "name": "Firefox latest works",
+          "type": "happy_path",
+          "input": "Open app in Firefox 120+",
+          "expected": "All features functional"
+        },
+        {
+          "id": "F121-TC02",
+          "name": "Firefox 2 versions back",
+          "type": "business_logic",
+          "input": "Test Firefox 118",
+          "expected": "Core functionality works"
+        },
+        {
+          "id": "F121-TC03",
+          "name": "Firefox form handling",
+          "type": "business_logic",
+          "input": "Submit forms",
+          "expected": "Form submission works"
+        },
+        {
+          "id": "F121-TC04",
+          "name": "Firefox scrolling",
+          "type": "business_logic",
+          "input": "Scroll large tables",
+          "expected": "Smooth scrolling works"
+        },
+        {
+          "id": "F121-TC05",
+          "name": "Firefox private mode",
+          "type": "edge_case",
+          "input": "Use app in private window",
+          "expected": "App functional, storage limited"
+        }
+      ]
+    },
+    {
+      "feature_id": "F122",
+      "feature_name": "Browser compatibility - Edge",
+      "test_cases": [
+        {
+          "id": "F122-TC01",
+          "name": "Edge latest works",
+          "type": "happy_path",
+          "input": "Open app in Edge 120+",
+          "expected": "All features functional"
+        },
+        {
+          "id": "F122-TC02",
+          "name": "Edge legacy handling",
+          "type": "edge_case",
+          "input": "Edge 18 (legacy)",
+          "expected": "Graceful degradation or upgrade notice"
+        },
+        {
+          "id": "F122-TC03",
+          "name": "Edge IE mode",
+          "type": "edge_case",
+          "input": "IE mode enabled",
+          "expected": "Shows browser upgrade message"
+        },
+        {
+          "id": "F122-TC04",
+          "name": "Edge on mobile",
+          "type": "business_logic",
+          "input": "Edge on Android/iOS",
+          "expected": "Touch interactions work"
+        },
+        {
+          "id": "F122-TC05",
+          "name": "Edge Chromium features",
+          "type": "business_logic",
+          "input": "Modern JS features",
+          "expected": "All ES2022 features work"
+        }
+      ]
+    },
+    {
+      "feature_id": "F123",
+      "feature_name": "Offline handling",
+      "test_cases": [
+        {
+          "id": "F123-TC01",
+          "name": "Offline indicator",
+          "type": "happy_path",
+          "input": "Network disconnects",
+          "expected": "Shows 'You are offline' banner"
+        },
+        {
+          "id": "F123-TC02",
+          "name": "Cached data available",
+          "type": "business_logic",
+          "input": "Go offline after loading",
+          "expected": "Previously loaded data viewable"
+        },
+        {
+          "id": "F123-TC03",
+          "name": "Pending changes queued",
+          "type": "business_logic",
+          "input": "Make changes offline",
+          "expected": "Changes queued for sync"
+        },
+        {
+          "id": "F123-TC04",
+          "name": "Reconnection sync",
+          "type": "business_logic",
+          "input": "Network reconnects",
+          "expected": "Queued changes sync automatically"
+        },
+        {
+          "id": "F123-TC05",
+          "name": "Conflict resolution",
+          "type": "error_handling",
+          "input": "Same record changed offline and online",
+          "expected": "Shows conflict resolution UI"
+        }
+      ]
+    },
+    {
+      "feature_id": "F124",
+      "feature_name": "Session state persistence",
+      "test_cases": [
+        {
+          "id": "F124-TC01",
+          "name": "Filter state saved",
+          "type": "happy_path",
+          "input": "Apply filters, refresh page",
+          "expected": "Filters still applied after refresh"
+        },
+        {
+          "id": "F124-TC02",
+          "name": "Sort state saved",
+          "type": "business_logic",
+          "input": "Change sort, refresh",
+          "expected": "Sort order preserved"
+        },
+        {
+          "id": "F124-TC03",
+          "name": "Scroll position saved",
+          "type": "business_logic",
+          "input": "Scroll down, navigate back",
+          "expected": "Returns to same scroll position"
+        },
+        {
+          "id": "F124-TC04",
+          "name": "Tab state saved",
+          "type": "business_logic",
+          "input": "On RX Claims tab, refresh",
+          "expected": "Returns to RX Claims tab"
+        },
+        {
+          "id": "F124-TC05",
+          "name": "Clear session state",
+          "type": "edge_case",
+          "input": "Click 'Reset View'",
+          "expected": "All state cleared to defaults"
+        }
+      ]
+    },
+    {
+      "feature_id": "F125",
+      "feature_name": "URL routing state",
+      "test_cases": [
+        {
+          "id": "F125-TC01",
+          "name": "Patient ID in URL",
+          "type": "happy_path",
+          "input": "Open patient drawer",
+          "expected": "URL updates to /worklist?patient=123"
+        },
+        {
+          "id": "F125-TC02",
+          "name": "Direct link to patient",
+          "type": "business_logic",
+          "input": "Navigate to /worklist?patient=123",
+          "expected": "Drawer opens for patient 123"
+        },
+        {
+          "id": "F125-TC03",
+          "name": "Tab in URL",
+          "type": "business_logic",
+          "input": "Switch to RX Claims tab",
+          "expected": "URL updates to include tab=rx-claims"
+        },
+        {
+          "id": "F125-TC04",
+          "name": "Browser back button",
+          "type": "business_logic",
+          "input": "Press back after opening patient",
+          "expected": "Returns to patient list"
+        },
+        {
+          "id": "F125-TC05",
+          "name": "Invalid patient ID in URL",
+          "type": "error_handling",
+          "input": "Navigate to ?patient=invalid",
+          "expected": "Shows 'Patient not found' error"
+        }
+      ]
+    },
+    {
+      "feature_id": "F126",
+      "feature_name": "Form validation",
+      "test_cases": [
+        {
+          "id": "F126-TC01",
+          "name": "Required field validation",
+          "type": "happy_path",
+          "input": "Submit form with empty required field",
+          "expected": "Shows 'This field is required' error"
+        },
+        {
+          "id": "F126-TC02",
+          "name": "Email format validation",
+          "type": "business_logic",
+          "input": "Enter invalid email 'test@'",
+          "expected": "Shows 'Enter valid email' error"
+        },
+        {
+          "id": "F126-TC03",
+          "name": "Phone format validation",
+          "type": "business_logic",
+          "input": "Enter '123'",
+          "expected": "Shows 'Enter valid phone number' error"
+        },
+        {
+          "id": "F126-TC04",
+          "name": "Date range validation",
+          "type": "business_logic",
+          "input": "End date before start date",
+          "expected": "Shows 'End date must be after start' error"
+        },
+        {
+          "id": "F126-TC05",
+          "name": "Real-time validation",
+          "type": "business_logic",
+          "input": "Type in field",
+          "expected": "Errors shown as user types after blur"
+        }
+      ]
+    },
+    {
+      "feature_id": "F127",
+      "feature_name": "Input sanitization",
+      "test_cases": [
+        {
+          "id": "F127-TC01",
+          "name": "XSS prevention",
+          "type": "happy_path",
+          "input": "Enter <script>alert('xss')</script> in notes",
+          "expected": "Script tags escaped, not executed"
+        },
+        {
+          "id": "F127-TC02",
+          "name": "SQL injection prevention",
+          "type": "business_logic",
+          "input": "Enter '; DROP TABLE patients; --' in search",
+          "expected": "Treated as literal text, no SQL execution"
+        },
+        {
+          "id": "F127-TC03",
+          "name": "HTML encoding",
+          "type": "business_logic",
+          "input": "Enter <b>bold</b> in name field",
+          "expected": "Displays as literal '<b>bold</b>'"
+        },
+        {
+          "id": "F127-TC04",
+          "name": "Unicode handling",
+          "type": "edge_case",
+          "input": "Enter emoji in notes",
+          "expected": "Emoji saved and displayed correctly"
+        },
+        {
+          "id": "F127-TC05",
+          "name": "Null byte handling",
+          "type": "error_handling",
+          "input": "Input contains null byte",
+          "expected": "Null byte stripped, no crash"
+        }
+      ]
+    },
+    {
+      "feature_id": "F128",
+      "feature_name": "Date/time handling",
+      "test_cases": [
+        {
+          "id": "F128-TC01",
+          "name": "Timezone display",
+          "type": "happy_path",
+          "input": "View dates in EST timezone",
+          "expected": "Dates shown in user's local timezone"
+        },
+        {
+          "id": "F128-TC02",
+          "name": "UTC storage",
+          "type": "business_logic",
+          "input": "Save timestamp",
+          "expected": "Stored as UTC in Firestore"
+        },
+        {
+          "id": "F128-TC03",
+          "name": "Date picker works",
+          "type": "business_logic",
+          "input": "Click date input",
+          "expected": "Date picker opens, allows selection"
+        },
+        {
+          "id": "F128-TC04",
+          "name": "Daylight saving handling",
+          "type": "edge_case",
+          "input": "View date during DST change",
+          "expected": "Correct time displayed"
+        },
+        {
+          "id": "F128-TC05",
+          "name": "Year boundary",
+          "type": "edge_case",
+          "input": "Treatment spans Dec 31 to Jan 1",
+          "expected": "Year transition handled correctly"
+        }
+      ]
+    },
+    {
+      "feature_id": "F129",
+      "feature_name": "Number formatting",
+      "test_cases": [
+        {
+          "id": "F129-TC01",
+          "name": "PDC percentage format",
+          "type": "happy_path",
+          "input": "PDC = 85.7142857",
+          "expected": "Displays as '85.7%' (1 decimal)"
+        },
+        {
+          "id": "F129-TC02",
+          "name": "Days as integers",
+          "type": "business_logic",
+          "input": "Gap days = 73.5",
+          "expected": "Displays as '74' (rounded up)"
+        },
+        {
+          "id": "F129-TC03",
+          "name": "Large numbers formatted",
+          "type": "business_logic",
+          "input": "Patient count = 12500",
+          "expected": "Shows '12,500' with comma"
+        },
+        {
+          "id": "F129-TC04",
+          "name": "Currency format",
+          "type": "business_logic",
+          "input": "Cost = 1234.56",
+          "expected": "Shows '$1,234.56'"
+        },
+        {
+          "id": "F129-TC05",
+          "name": "Negative number display",
+          "type": "edge_case",
+          "input": "Gap days remaining = -10",
+          "expected": "Shows '-10' with negative indicator"
+        }
+      ]
+    },
+    {
+      "feature_id": "F130",
+      "feature_name": "Special characters handling",
+      "test_cases": [
+        {
+          "id": "F130-TC01",
+          "name": "Apostrophe in name",
+          "type": "happy_path",
+          "input": "Patient name = O'Brien",
+          "expected": "Displays and saves correctly"
+        },
+        {
+          "id": "F130-TC02",
+          "name": "Ampersand in notes",
+          "type": "business_logic",
+          "input": "Notes contain 'Smith & Jones'",
+          "expected": "Ampersand displayed correctly"
+        },
+        {
+          "id": "F130-TC03",
+          "name": "Quotes in text",
+          "type": "business_logic",
+          "input": "Notes = 'Patient said \"no\"'",
+          "expected": "Quotes preserved in display"
+        },
+        {
+          "id": "F130-TC04",
+          "name": "Newlines in notes",
+          "type": "business_logic",
+          "input": "Multi-line notes",
+          "expected": "Newlines preserved in display"
+        },
+        {
+          "id": "F130-TC05",
+          "name": "Long text truncation",
+          "type": "edge_case",
+          "input": "Notes = 5000 characters",
+          "expected": "Truncated with 'Show more' option"
+        }
+      ]
+    },
+    {
+      "feature_id": "F131",
+      "feature_name": "Concurrent user handling",
+      "test_cases": [
+        {
+          "id": "F131-TC01",
+          "name": "Real-time updates",
+          "type": "happy_path",
+          "input": "User A changes patient, User B viewing",
+          "expected": "User B sees update in real-time"
+        },
+        {
+          "id": "F131-TC02",
+          "name": "Optimistic locking",
+          "type": "business_logic",
+          "input": "Two users edit same patient",
+          "expected": "Second save shows conflict warning"
+        },
+        {
+          "id": "F131-TC03",
+          "name": "Patient lock indicator",
+          "type": "business_logic",
+          "input": "User A opens patient for edit",
+          "expected": "User B sees 'Being edited by User A'"
+        },
+        {
+          "id": "F131-TC04",
+          "name": "Lock timeout",
+          "type": "edge_case",
+          "input": "User A idle for 5 minutes",
+          "expected": "Lock released, other users can edit"
+        },
+        {
+          "id": "F131-TC05",
+          "name": "Merge changes",
+          "type": "edge_case",
+          "input": "Non-conflicting concurrent edits",
+          "expected": "Changes merged automatically"
+        }
+      ]
+    },
+    {
+      "feature_id": "F132",
+      "feature_name": "Rate limiting handling",
+      "test_cases": [
+        {
+          "id": "F132-TC01",
+          "name": "API rate limit hit",
+          "type": "happy_path",
+          "input": "Exceed 100 requests/minute",
+          "expected": "Shows 'Too many requests, please wait'"
+        },
+        {
+          "id": "F132-TC02",
+          "name": "Automatic retry",
+          "type": "business_logic",
+          "input": "Rate limited request",
+          "expected": "Retries after delay automatically"
+        },
+        {
+          "id": "F132-TC03",
+          "name": "Request queuing",
+          "type": "business_logic",
+          "input": "Rapid button clicks",
+          "expected": "Requests queued, not all fired simultaneously"
+        },
+        {
+          "id": "F132-TC04",
+          "name": "Debounced search",
+          "type": "business_logic",
+          "input": "Type quickly in search",
+          "expected": "Only final value triggers API call"
+        },
+        {
+          "id": "F132-TC05",
+          "name": "Rate limit recovery",
+          "type": "edge_case",
+          "input": "Wait for rate limit window",
+          "expected": "Normal operation resumes"
+        }
+      ]
+    },
+    {
+      "feature_id": "F133",
+      "feature_name": "File upload handling",
+      "test_cases": [
+        {
+          "id": "F133-TC01",
+          "name": "Upload document",
+          "type": "happy_path",
+          "input": "Upload PDF attachment",
+          "expected": "File uploaded, progress shown"
+        },
+        {
+          "id": "F133-TC02",
+          "name": "File type validation",
+          "type": "business_logic",
+          "input": "Try to upload .exe file",
+          "expected": "Error: 'File type not allowed'"
+        },
+        {
+          "id": "F133-TC03",
+          "name": "File size limit",
+          "type": "business_logic",
+          "input": "Upload 50MB file",
+          "expected": "Error: 'File exceeds 10MB limit'"
+        },
+        {
+          "id": "F133-TC04",
+          "name": "Upload cancellation",
+          "type": "edge_case",
+          "input": "Cancel mid-upload",
+          "expected": "Upload cancelled, partial file cleaned up"
+        },
+        {
+          "id": "F133-TC05",
+          "name": "Network failure during upload",
+          "type": "error_handling",
+          "input": "Network drops mid-upload",
+          "expected": "Error shown, resume option if supported"
+        }
+      ]
+    },
+    {
+      "feature_id": "F134",
+      "feature_name": "API error responses",
+      "test_cases": [
+        {
+          "id": "F134-TC01",
+          "name": "400 Bad Request",
+          "type": "happy_path",
+          "input": "Send malformed request",
+          "expected": "Shows 'Invalid request' with details"
+        },
+        {
+          "id": "F134-TC02",
+          "name": "401 Unauthorized",
+          "type": "business_logic",
+          "input": "Token expired",
+          "expected": "Redirects to login page"
+        },
+        {
+          "id": "F134-TC03",
+          "name": "403 Forbidden",
+          "type": "business_logic",
+          "input": "Access denied resource",
+          "expected": "Shows 'Access denied' message"
+        },
+        {
+          "id": "F134-TC04",
+          "name": "404 Not Found",
+          "type": "business_logic",
+          "input": "Request missing patient",
+          "expected": "Shows 'Patient not found'"
+        },
+        {
+          "id": "F134-TC05",
+          "name": "500 Server Error",
+          "type": "error_handling",
+          "input": "Server crashes",
+          "expected": "Shows 'Server error, try again later'"
+        }
+      ]
+    },
+    {
+      "feature_id": "F135",
+      "feature_name": "Network timeout handling",
+      "test_cases": [
+        {
+          "id": "F135-TC01",
+          "name": "Request timeout",
+          "type": "happy_path",
+          "input": "Server takes > 30s",
+          "expected": "Shows 'Request timed out' after 30s"
+        },
+        {
+          "id": "F135-TC02",
+          "name": "Retry on timeout",
+          "type": "business_logic",
+          "input": "First request times out",
+          "expected": "Automatic retry with longer timeout"
+        },
+        {
+          "id": "F135-TC03",
+          "name": "User-initiated retry",
+          "type": "business_logic",
+          "input": "Click 'Retry' after timeout",
+          "expected": "New request made"
+        },
+        {
+          "id": "F135-TC04",
+          "name": "Timeout during batch",
+          "type": "edge_case",
+          "input": "Batch processing times out",
+          "expected": "Partial progress saved, resume option"
+        },
+        {
+          "id": "F135-TC05",
+          "name": "Multiple timeouts",
+          "type": "error_handling",
+          "input": "3 consecutive timeouts",
+          "expected": "Shows 'Service unavailable' message"
+        }
+      ]
+    },
+    {
+      "feature_id": "F136",
+      "feature_name": "Firestore security rules",
+      "test_cases": [
+        {
+          "id": "F136-TC01",
+          "name": "Authenticated read",
+          "type": "happy_path",
+          "input": "Logged in user reads patient",
+          "expected": "Access granted, data returned"
+        },
+        {
+          "id": "F136-TC02",
+          "name": "Unauthenticated blocked",
+          "type": "business_logic",
+          "input": "Anonymous request to patients",
+          "expected": "Permission denied"
+        },
+        {
+          "id": "F136-TC03",
+          "name": "User can only see assigned",
+          "type": "business_logic",
+          "input": "Request other user's patients",
+          "expected": "Permission denied or filtered"
+        },
+        {
+          "id": "F136-TC04",
+          "name": "Admin full access",
+          "type": "business_logic",
+          "input": "Admin requests any patient",
+          "expected": "Access granted"
+        },
+        {
+          "id": "F136-TC05",
+          "name": "Write validation",
+          "type": "business_logic",
+          "input": "Try to write invalid data",
+          "expected": "Write rejected by security rules"
+        }
+      ]
+    },
+    {
+      "feature_id": "F137",
+      "feature_name": "Data validation on save",
+      "test_cases": [
+        {
+          "id": "F137-TC01",
+          "name": "Required fields checked",
+          "type": "happy_path",
+          "input": "Save patient without MRN",
+          "expected": "Validation error: 'MRN required'"
+        },
+        {
+          "id": "F137-TC02",
+          "name": "Field type validation",
+          "type": "business_logic",
+          "input": "Save PDC as 'abc'",
+          "expected": "Validation error: 'PDC must be number'"
+        },
+        {
+          "id": "F137-TC03",
+          "name": "Range validation",
+          "type": "business_logic",
+          "input": "Save PDC = 150",
+          "expected": "Validation error: 'PDC must be 0-100'"
+        },
+        {
+          "id": "F137-TC04",
+          "name": "Date validation",
+          "type": "business_logic",
+          "input": "Save DOB = 'not-a-date'",
+          "expected": "Validation error: 'Invalid date format'"
+        },
+        {
+          "id": "F137-TC05",
+          "name": "Cross-field validation",
+          "type": "edge_case",
+          "input": "Start date after end date",
+          "expected": "Validation error: 'Start must be before end'"
+        }
+      ]
+    },
+    {
+      "feature_id": "F138",
+      "feature_name": "Undo/Redo functionality",
+      "test_cases": [
+        {
+          "id": "F138-TC01",
+          "name": "Undo last action",
+          "type": "happy_path",
+          "input": "Delete note, press Ctrl+Z",
+          "expected": "Note restored"
+        },
+        {
+          "id": "F138-TC02",
+          "name": "Redo undone action",
+          "type": "business_logic",
+          "input": "Press Ctrl+Y after undo",
+          "expected": "Action reapplied"
+        },
+        {
+          "id": "F138-TC03",
+          "name": "Multiple undo levels",
+          "type": "business_logic",
+          "input": "Press Ctrl+Z 5 times",
+          "expected": "Last 5 actions undone"
+        },
+        {
+          "id": "F138-TC04",
+          "name": "Undo stack limit",
+          "type": "edge_case",
+          "input": "Make 100 changes, undo all",
+          "expected": "Undo limited to last 20 actions"
+        },
+        {
+          "id": "F138-TC05",
+          "name": "Undo across sessions",
+          "type": "edge_case",
+          "input": "Make change, refresh, undo",
+          "expected": "No undo available after refresh"
+        }
+      ]
+    },
+    {
+      "feature_id": "F139",
+      "feature_name": "Autosave functionality",
+      "test_cases": [
+        {
+          "id": "F139-TC01",
+          "name": "Notes autosaved",
+          "type": "happy_path",
+          "input": "Type in notes field, wait 5 seconds",
+          "expected": "Shows 'Saved' indicator"
+        },
+        {
+          "id": "F139-TC02",
+          "name": "Unsaved indicator",
+          "type": "business_logic",
+          "input": "Make change, wait 2 seconds",
+          "expected": "Shows 'Unsaved changes' until saved"
+        },
+        {
+          "id": "F139-TC03",
+          "name": "Save on navigate away",
+          "type": "business_logic",
+          "input": "Make change, click different patient",
+          "expected": "Prompts to save or discard"
+        },
+        {
+          "id": "F139-TC04",
+          "name": "Autosave failure",
+          "type": "error_handling",
+          "input": "Network fails during autosave",
+          "expected": "Shows 'Failed to save' with retry"
+        },
+        {
+          "id": "F139-TC05",
+          "name": "Manual save still works",
+          "type": "business_logic",
+          "input": "Click Save button",
+          "expected": "Immediate save regardless of autosave timer"
+        }
+      ]
+    },
+    {
+      "feature_id": "F140",
+      "feature_name": "Copy to clipboard",
+      "test_cases": [
+        {
+          "id": "F140-TC01",
+          "name": "Copy patient MRN",
+          "type": "happy_path",
+          "input": "Click copy icon next to MRN",
+          "expected": "MRN copied, toast confirms"
+        },
+        {
+          "id": "F140-TC02",
+          "name": "Copy phone number",
+          "type": "business_logic",
+          "input": "Click copy on phone",
+          "expected": "Phone number copied without formatting"
+        },
+        {
+          "id": "F140-TC03",
+          "name": "Copy entire patient summary",
+          "type": "business_logic",
+          "input": "Click 'Copy Summary'",
+          "expected": "Formatted patient summary copied"
+        },
+        {
+          "id": "F140-TC04",
+          "name": "Copy fails gracefully",
+          "type": "error_handling",
+          "input": "Clipboard access denied",
+          "expected": "Shows 'Unable to copy' with manual select option"
+        },
+        {
+          "id": "F140-TC05",
+          "name": "Keyboard copy",
+          "type": "business_logic",
+          "input": "Select text, Ctrl+C",
+          "expected": "Selected text copied to clipboard"
+        }
+      ]
+    },
+    {
+      "feature_id": "F141",
+      "feature_name": "Help and documentation",
+      "test_cases": [
+        {
+          "id": "F141-TC01",
+          "name": "Help button opens guide",
+          "type": "happy_path",
+          "input": "Click '?' help icon",
+          "expected": "Help panel opens with relevant content"
+        },
+        {
+          "id": "F141-TC02",
+          "name": "Contextual help",
+          "type": "business_logic",
+          "input": "Click help on PDC column",
+          "expected": "PDC explanation displayed"
+        },
+        {
+          "id": "F141-TC03",
+          "name": "Keyboard shortcuts list",
+          "type": "business_logic",
+          "input": "Press '?' key",
+          "expected": "Keyboard shortcuts overlay shown"
+        },
+        {
+          "id": "F141-TC04",
+          "name": "Link to full docs",
+          "type": "business_logic",
+          "input": "Click 'Learn more'",
+          "expected": "Opens documentation in new tab"
+        },
+        {
+          "id": "F141-TC05",
+          "name": "Onboarding tour",
+          "type": "edge_case",
+          "input": "First-time user login",
+          "expected": "Optional guided tour offered"
+        }
+      ]
+    },
+    {
+      "feature_id": "F142",
+      "feature_name": "Feedback submission",
+      "test_cases": [
+        {
+          "id": "F142-TC01",
+          "name": "Submit feedback",
+          "type": "happy_path",
+          "input": "Click feedback, enter text, submit",
+          "expected": "Feedback submitted, thank you message"
+        },
+        {
+          "id": "F142-TC02",
+          "name": "Bug report with screenshot",
+          "type": "business_logic",
+          "input": "Report bug with screenshot attached",
+          "expected": "Screenshot and details captured"
+        },
+        {
+          "id": "F142-TC03",
+          "name": "Feature request",
+          "type": "business_logic",
+          "input": "Submit feature request",
+          "expected": "Request categorized as 'Feature'"
+        },
+        {
+          "id": "F142-TC04",
+          "name": "Empty feedback blocked",
+          "type": "error_handling",
+          "input": "Submit with empty message",
+          "expected": "Validation: 'Please enter feedback'"
+        },
+        {
+          "id": "F142-TC05",
+          "name": "Include debug info",
+          "type": "business_logic",
+          "input": "Check 'Include technical info'",
+          "expected": "Browser/version info attached to feedback"
+        }
+      ]
+    }
+  ]
+}

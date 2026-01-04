@@ -1,0 +1,450 @@
+{
+  "metadata": {
+    "batch": 6,
+    "category": "Calculations (Golden Standard)",
+    "features": "F055-F064",
+    "total_test_cases": 50,
+    "created": "2026-01-03",
+    "reference": "MetricsReference.jsx - Golden Standard"
+  },
+  "test_cases": [
+    {
+      "feature_id": "F055",
+      "feature_name": "PDC calculation engine",
+      "test_cases": [
+        {
+          "id": "F055-TC01",
+          "name": "Basic PDC calculation",
+          "type": "happy_path",
+          "input": "coveredDays=292, treatmentDays=365",
+          "expected": "PDC = 292/365 × 100 = 80%"
+        },
+        {
+          "id": "F055-TC02",
+          "name": "Treatment period ends Dec 31",
+          "type": "business_logic",
+          "input": "First fill Jan 15, today Dec 31",
+          "expected": "Treatment Days = 351 (Jan 15 → Dec 31)"
+        },
+        {
+          "id": "F055-TC03",
+          "name": "Overlapping fills handled",
+          "type": "business_logic",
+          "input": "Fill 1: Jan 1 (30 day), Fill 2: Jan 20 (30 day)",
+          "expected": "Covered = 50 days (not 60), overlap merged"
+        },
+        {
+          "id": "F055-TC04",
+          "name": "100% PDC cap",
+          "type": "edge_case",
+          "input": "coveredDays=400, treatmentDays=365",
+          "expected": "PDC = 100% (capped)"
+        },
+        {
+          "id": "F055-TC05",
+          "name": "0% PDC edge case",
+          "type": "edge_case",
+          "input": "coveredDays=0, treatmentDays=365",
+          "expected": "PDC = 0%"
+        }
+      ]
+    },
+    {
+      "feature_id": "F056",
+      "feature_name": "Gap days calculation",
+      "test_cases": [
+        {
+          "id": "F056-TC01",
+          "name": "Gap Days Used formula",
+          "type": "happy_path",
+          "input": "treatmentDays=365, coveredDays=292",
+          "expected": "gapDaysUsed = 365 - 292 = 73"
+        },
+        {
+          "id": "F056-TC02",
+          "name": "Gap Days Allowed (20%)",
+          "type": "business_logic",
+          "input": "treatmentDays=365",
+          "expected": "gapDaysAllowed = 365 × 0.20 = 73"
+        },
+        {
+          "id": "F056-TC03",
+          "name": "Gap Days Remaining",
+          "type": "business_logic",
+          "input": "allowed=73, used=73",
+          "expected": "gapDaysRemaining = 73 - 73 = 0"
+        },
+        {
+          "id": "F056-TC04",
+          "name": "Negative = unsalvageable",
+          "type": "business_logic",
+          "input": "allowed=73, used=100",
+          "expected": "gapDaysRemaining = -27 (unsalvageable)"
+        },
+        {
+          "id": "F056-TC05",
+          "name": "Short treatment period",
+          "type": "edge_case",
+          "input": "treatmentDays=30, coveredDays=24",
+          "expected": "gapDaysUsed=6, allowed=6, remaining=0"
+        }
+      ]
+    },
+    {
+      "feature_id": "F057",
+      "feature_name": "Days to runout calculation",
+      "test_cases": [
+        {
+          "id": "F057-TC01",
+          "name": "Basic days to runout",
+          "type": "happy_path",
+          "input": "lastFillDate=Dec 15, daysSupply=30, today=Dec 25",
+          "expected": "daysToRunout = (Dec 15 + 30) - Dec 25 = 20"
+        },
+        {
+          "id": "F057-TC02",
+          "name": "Already out of medication",
+          "type": "edge_case",
+          "input": "lastFillDate=Dec 1, daysSupply=15, today=Dec 25",
+          "expected": "daysToRunout = -9 (already out)"
+        },
+        {
+          "id": "F057-TC03",
+          "name": "Exactly 0 days",
+          "type": "edge_case",
+          "input": "lastFillDate=Dec 1, daysSupply=24, today=Dec 25",
+          "expected": "daysToRunout = 0 (runs out today)"
+        },
+        {
+          "id": "F057-TC04",
+          "name": "90-day supply",
+          "type": "happy_path",
+          "input": "lastFillDate=Oct 1, daysSupply=90, today=Dec 1",
+          "expected": "daysToRunout = 30"
+        },
+        {
+          "id": "F057-TC05",
+          "name": "Null last fill date",
+          "type": "error_handling",
+          "input": "lastFillDate=null",
+          "expected": "Returns null or N/A, no crash"
+        }
+      ]
+    },
+    {
+      "feature_id": "F058",
+      "feature_name": "Delay budget calculation",
+      "test_cases": [
+        {
+          "id": "F058-TC01",
+          "name": "Basic delay budget",
+          "type": "happy_path",
+          "input": "gapDaysRemaining=30, refillsNeeded=3",
+          "expected": "delayBudget = 30/3 = 10 days/refill"
+        },
+        {
+          "id": "F058-TC02",
+          "name": "Tight delay budget",
+          "type": "business_logic",
+          "input": "gapDaysRemaining=6, refillsNeeded=3",
+          "expected": "delayBudget = 2 days/refill (F1 tier)"
+        },
+        {
+          "id": "F058-TC03",
+          "name": "Generous delay budget",
+          "type": "business_logic",
+          "input": "gapDaysRemaining=60, refillsNeeded=2",
+          "expected": "delayBudget = 30 days/refill (F5 tier)"
+        },
+        {
+          "id": "F058-TC04",
+          "name": "Zero refills needed",
+          "type": "edge_case",
+          "input": "refillsNeeded=0",
+          "expected": "delayBudget = Infinity or COMP status"
+        },
+        {
+          "id": "F058-TC05",
+          "name": "Negative gap days",
+          "type": "edge_case",
+          "input": "gapDaysRemaining=-10, refillsNeeded=2",
+          "expected": "delayBudget = -5 (T5/unsalvageable)"
+        }
+      ]
+    },
+    {
+      "feature_id": "F059",
+      "feature_name": "Fragility tier assignment",
+      "test_cases": [
+        {
+          "id": "F059-TC01",
+          "name": "COMP tier (already compliant)",
+          "type": "business_logic",
+          "input": "pdcStatusQuo >= 80%",
+          "expected": "tier = COMP"
+        },
+        {
+          "id": "F059-TC02",
+          "name": "F1 tier (critical)",
+          "type": "business_logic",
+          "input": "delayBudget <= 2 days",
+          "expected": "tier = F1"
+        },
+        {
+          "id": "F059-TC03",
+          "name": "F2 tier",
+          "type": "business_logic",
+          "input": "delayBudget = 4 days (3-5 range)",
+          "expected": "tier = F2"
+        },
+        {
+          "id": "F059-TC04",
+          "name": "F3 tier",
+          "type": "business_logic",
+          "input": "delayBudget = 8 days (6-10 range)",
+          "expected": "tier = F3"
+        },
+        {
+          "id": "F059-TC05",
+          "name": "F4 tier",
+          "type": "business_logic",
+          "input": "delayBudget = 15 days (11-20 range)",
+          "expected": "tier = F4"
+        },
+        {
+          "id": "F059-TC06",
+          "name": "F5 tier (stable)",
+          "type": "business_logic",
+          "input": "delayBudget = 25 days (>20)",
+          "expected": "tier = F5"
+        },
+        {
+          "id": "F059-TC07",
+          "name": "T5 tier (unsalvageable)",
+          "type": "business_logic",
+          "input": "pdcPerfect < 80%",
+          "expected": "tier = T5"
+        }
+      ]
+    },
+    {
+      "feature_id": "F060",
+      "feature_name": "Priority score calculation",
+      "test_cases": [
+        {
+          "id": "F060-TC01",
+          "name": "F1 base score",
+          "type": "business_logic",
+          "input": "tier = F1",
+          "expected": "baseScore = 100"
+        },
+        {
+          "id": "F060-TC02",
+          "name": "F2 base score",
+          "type": "business_logic",
+          "input": "tier = F2",
+          "expected": "baseScore = 80"
+        },
+        {
+          "id": "F060-TC03",
+          "name": "Out of Meds bonus",
+          "type": "business_logic",
+          "input": "daysToRunout <= 0",
+          "expected": "bonus = +30"
+        },
+        {
+          "id": "F060-TC04",
+          "name": "Q4 bonus",
+          "type": "business_logic",
+          "input": "date = November (Q4)",
+          "expected": "bonus = +25"
+        },
+        {
+          "id": "F060-TC05",
+          "name": "Multiple MA bonus",
+          "type": "business_logic",
+          "input": "patient on MAC and MAD",
+          "expected": "bonus = +15"
+        },
+        {
+          "id": "F060-TC06",
+          "name": "New Patient bonus",
+          "type": "business_logic",
+          "input": "first fill in last 90 days",
+          "expected": "bonus = +10"
+        },
+        {
+          "id": "F060-TC07",
+          "name": "Combined score",
+          "type": "happy_path",
+          "input": "F1 + Out + Q4 + Multiple MA",
+          "expected": "score = 100 + 30 + 25 + 15 = 170"
+        }
+      ]
+    },
+    {
+      "feature_id": "F061",
+      "feature_name": "PDC Status Quo calculation",
+      "test_cases": [
+        {
+          "id": "F061-TC01",
+          "name": "Status Quo formula",
+          "type": "business_logic",
+          "input": "covered=290, supply=30, daysToYearEnd=10, treatment=365",
+          "expected": "statusQuo = (290 + min(30,10)) / 365 = 82.2%"
+        },
+        {
+          "id": "F061-TC02",
+          "name": "Already compliant check",
+          "type": "business_logic",
+          "input": "statusQuo >= 80%",
+          "expected": "Patient is COMP (already compliant)"
+        },
+        {
+          "id": "F061-TC03",
+          "name": "Supply capped at year end",
+          "type": "business_logic",
+          "input": "supply=90, daysToYearEnd=15",
+          "expected": "Uses 15 days, not 90"
+        },
+        {
+          "id": "F061-TC04",
+          "name": "At-risk status quo",
+          "type": "edge_case",
+          "input": "statusQuo = 75%",
+          "expected": "Patient needs intervention"
+        },
+        {
+          "id": "F061-TC05",
+          "name": "Year end boundary",
+          "type": "edge_case",
+          "input": "today = Dec 31, daysToYearEnd=0",
+          "expected": "No additional supply counted"
+        }
+      ]
+    },
+    {
+      "feature_id": "F062",
+      "feature_name": "PDC Perfect calculation",
+      "test_cases": [
+        {
+          "id": "F062-TC01",
+          "name": "Perfect PDC formula",
+          "type": "business_logic",
+          "input": "covered=260, daysToYearEnd=60, treatment=365",
+          "expected": "perfect = (260 + 60) / 365 = 87.7%"
+        },
+        {
+          "id": "F062-TC02",
+          "name": "Unsalvageable if < 80%",
+          "type": "business_logic",
+          "input": "perfect = 75%",
+          "expected": "Patient is T5 (cannot reach 80%)"
+        },
+        {
+          "id": "F062-TC03",
+          "name": "Salvageable if >= 80%",
+          "type": "business_logic",
+          "input": "perfect = 82%",
+          "expected": "Patient CAN reach compliance"
+        },
+        {
+          "id": "F062-TC04",
+          "name": "Late year high gap",
+          "type": "edge_case",
+          "input": "covered=200, daysToYearEnd=30, treatment=365",
+          "expected": "perfect = 63%, unsalvageable"
+        },
+        {
+          "id": "F062-TC05",
+          "name": "Early year calculation",
+          "type": "edge_case",
+          "input": "covered=30, daysToYearEnd=300, treatment=365",
+          "expected": "perfect = 90%, still salvageable"
+        }
+      ]
+    },
+    {
+      "feature_id": "F063",
+      "feature_name": "Coverage period merging",
+      "test_cases": [
+        {
+          "id": "F063-TC01",
+          "name": "Non-overlapping fills",
+          "type": "happy_path",
+          "input": "Fill1: Jan 1-30, Fill2: Feb 1-28",
+          "expected": "Covered = 58 days (no overlap)"
+        },
+        {
+          "id": "F063-TC02",
+          "name": "Overlapping fills merged",
+          "type": "business_logic",
+          "input": "Fill1: Jan 1-30, Fill2: Jan 15-44",
+          "expected": "Covered = 44 days (merged Jan 1-Feb 13)"
+        },
+        {
+          "id": "F063-TC03",
+          "name": "Fully overlapping fill",
+          "type": "edge_case",
+          "input": "Fill1: Jan 1-60, Fill2: Jan 15-30",
+          "expected": "Covered = 60 days (Fill2 inside Fill1)"
+        },
+        {
+          "id": "F063-TC04",
+          "name": "Cap at Dec 31",
+          "type": "business_logic",
+          "input": "Fill: Dec 1 (90 day supply)",
+          "expected": "Covered = 31 days (stops at Dec 31)"
+        },
+        {
+          "id": "F063-TC05",
+          "name": "Multiple overlaps",
+          "type": "edge_case",
+          "input": "5 fills with various overlaps",
+          "expected": "Each day counted exactly once"
+        }
+      ]
+    },
+    {
+      "feature_id": "F064",
+      "feature_name": "Refills needed calculation",
+      "test_cases": [
+        {
+          "id": "F064-TC01",
+          "name": "Basic refills needed",
+          "type": "happy_path",
+          "input": "daysToYearEnd=90, currentSupply=30, typicalSupply=30",
+          "expected": "refillsNeeded = ceil((90-30)/30) = 2"
+        },
+        {
+          "id": "F064-TC02",
+          "name": "Already has enough",
+          "type": "edge_case",
+          "input": "daysToYearEnd=30, currentSupply=45",
+          "expected": "refillsNeeded = 0"
+        },
+        {
+          "id": "F064-TC03",
+          "name": "90-day supply",
+          "type": "happy_path",
+          "input": "daysToYearEnd=180, currentSupply=0, typicalSupply=90",
+          "expected": "refillsNeeded = 2"
+        },
+        {
+          "id": "F064-TC04",
+          "name": "Fractional fills rounded up",
+          "type": "business_logic",
+          "input": "daysToYearEnd=100, currentSupply=0, typicalSupply=30",
+          "expected": "refillsNeeded = ceil(100/30) = 4"
+        },
+        {
+          "id": "F064-TC05",
+          "name": "Year almost over",
+          "type": "edge_case",
+          "input": "daysToYearEnd=5, currentSupply=0",
+          "expected": "refillsNeeded = 1 (at least 1 fill)"
+        }
+      ]
+    }
+  ]
+}

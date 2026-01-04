@@ -1,0 +1,954 @@
+{
+  "metadata": {
+    "batch": 4,
+    "category": "Review Drawer & Actions",
+    "features": "F024-F046",
+    "total_test_cases": 115,
+    "created": "2026-01-03"
+  },
+  "test_cases": [
+    {
+      "feature_id": "F024",
+      "feature_name": "Review drawer 3-tab layout",
+      "test_cases": [
+        {
+          "id": "F024-TC01",
+          "name": "3 tabs visible",
+          "type": "happy_path",
+          "input": "Open review drawer",
+          "expected": "Overview, RX Claims, Med Adherence tabs visible"
+        },
+        {
+          "id": "F024-TC02",
+          "name": "Overview default tab",
+          "type": "happy_path",
+          "input": "Open drawer first time",
+          "expected": "Overview tab is active by default"
+        },
+        {
+          "id": "F024-TC03",
+          "name": "Tab switching works",
+          "type": "happy_path",
+          "input": "Click RX Claims tab",
+          "expected": "RX Claims content loads, tab highlighted"
+        },
+        {
+          "id": "F024-TC04",
+          "name": "Tab state persists",
+          "type": "edge_case",
+          "input": "Switch to Med Adherence, click patient row again",
+          "expected": "Med Adherence still active"
+        },
+        {
+          "id": "F024-TC05",
+          "name": "Tab content loading",
+          "type": "business_logic",
+          "input": "Click each tab",
+          "expected": "Each tab shows appropriate content"
+        }
+      ]
+    },
+    {
+      "feature_id": "F025",
+      "feature_name": "Protocol checks grid",
+      "test_cases": [
+        {
+          "id": "F025-TC01",
+          "name": "All 16 checks displayed",
+          "type": "happy_path",
+          "input": "Patient with all protocol results",
+          "expected": "Grid shows S1-S4, C1-C4, I1-I4, A1-A4"
+        },
+        {
+          "id": "F025-TC02",
+          "name": "PASS shown in green",
+          "type": "happy_path",
+          "input": "Protocol check result=PASS",
+          "expected": "Green checkmark or PASS badge"
+        },
+        {
+          "id": "F025-TC03",
+          "name": "FAIL shown in red",
+          "type": "happy_path",
+          "input": "Protocol check result=FAIL",
+          "expected": "Red X or FAIL badge with reason"
+        },
+        {
+          "id": "F025-TC04",
+          "name": "Grouped by type",
+          "type": "business_logic",
+          "input": "View protocol grid",
+          "expected": "Safety, Clinical, Important, Admin groups visible"
+        },
+        {
+          "id": "F025-TC05",
+          "name": "Value shown for each",
+          "type": "business_logic",
+          "input": "C1 check (last visit)",
+          "expected": "Shows 'Last Visit: 45 days ago'"
+        }
+      ]
+    },
+    {
+      "feature_id": "F026",
+      "feature_name": "AI decision panel",
+      "test_cases": [
+        {
+          "id": "F026-TC01",
+          "name": "Primary AI decision shown",
+          "type": "happy_path",
+          "input": "Patient with Primary AI=APPROVE",
+          "expected": "Primary section shows APPROVE with confidence"
+        },
+        {
+          "id": "F026-TC02",
+          "name": "QA AI AGREE shown",
+          "type": "happy_path",
+          "input": "QA AI agrees with Primary",
+          "expected": "QA section shows AGREE badge"
+        },
+        {
+          "id": "F026-TC03",
+          "name": "QA AI OVERRIDE shown",
+          "type": "business_logic",
+          "input": "QA AI overrides Primary",
+          "expected": "QA shows OVERRIDE with reason"
+        },
+        {
+          "id": "F026-TC04",
+          "name": "Manager AI triggered",
+          "type": "business_logic",
+          "input": "Primary=APPROVE, QA=OVERRIDE",
+          "expected": "Manager AI section appears with final decision"
+        },
+        {
+          "id": "F026-TC05",
+          "name": "Expandable rationale",
+          "type": "happy_path",
+          "input": "Click expand on rationale",
+          "expected": "Full AI reasoning text visible"
+        }
+      ]
+    },
+    {
+      "feature_id": "F027",
+      "feature_name": "Clinical memory timeline",
+      "test_cases": [
+        {
+          "id": "F027-TC01",
+          "name": "Timeline displays events",
+          "type": "happy_path",
+          "input": "Patient with 5 history events",
+          "expected": "All 5 events shown chronologically"
+        },
+        {
+          "id": "F027-TC02",
+          "name": "Color-coded by type",
+          "type": "business_logic",
+          "input": "AI, Human, System events",
+          "expected": "AI=purple, Human=blue, System=gray"
+        },
+        {
+          "id": "F027-TC03",
+          "name": "Collapsible entries",
+          "type": "happy_path",
+          "input": "Click expand on entry",
+          "expected": "Full details visible"
+        },
+        {
+          "id": "F027-TC04",
+          "name": "Who/When/What shown",
+          "type": "business_logic",
+          "input": "Each timeline entry",
+          "expected": "Actor, timestamp, action visible"
+        },
+        {
+          "id": "F027-TC05",
+          "name": "Empty timeline",
+          "type": "edge_case",
+          "input": "New patient no history",
+          "expected": "Shows 'No history yet' message"
+        }
+      ]
+    },
+    {
+      "feature_id": "F028",
+      "feature_name": "RX Claims tab - fill history table",
+      "test_cases": [
+        {
+          "id": "F028-TC01",
+          "name": "Fill history table loads",
+          "type": "happy_path",
+          "input": "Click RX Claims tab",
+          "expected": "Table with fill history appears"
+        },
+        {
+          "id": "F028-TC02",
+          "name": "All columns visible",
+          "type": "happy_path",
+          "input": "View claims table",
+          "expected": "Date, Drug, Days Supply, Pharmacy, Claim # columns"
+        },
+        {
+          "id": "F028-TC03",
+          "name": "Sorted by date descending",
+          "type": "business_logic",
+          "input": "Multiple fills",
+          "expected": "Most recent fill at top"
+        },
+        {
+          "id": "F028-TC04",
+          "name": "Async loading spinner",
+          "type": "happy_path",
+          "input": "Switch to RX Claims tab",
+          "expected": "Loading spinner while fetching"
+        },
+        {
+          "id": "F028-TC05",
+          "name": "No claims found",
+          "type": "edge_case",
+          "input": "Patient with no RX claims",
+          "expected": "Shows 'No claims found' message"
+        }
+      ]
+    },
+    {
+      "feature_id": "F029",
+      "feature_name": "Med Adherence tab - PDC breakdown",
+      "test_cases": [
+        {
+          "id": "F029-TC01",
+          "name": "PDC by measure displayed",
+          "type": "happy_path",
+          "input": "Click Med Adherence tab",
+          "expected": "MAC, MAD, MAH PDC values visible"
+        },
+        {
+          "id": "F029-TC02",
+          "name": "Gap days visualization",
+          "type": "happy_path",
+          "input": "View gap days section",
+          "expected": "Visual bar/chart showing gap usage"
+        },
+        {
+          "id": "F029-TC03",
+          "name": "Treatment timeline",
+          "type": "happy_path",
+          "input": "View timeline",
+          "expected": "Visual timeline from first fill to Dec 31"
+        },
+        {
+          "id": "F029-TC04",
+          "name": "Recommendations shown",
+          "type": "business_logic",
+          "input": "At-risk patient",
+          "expected": "Shows intervention recommendations"
+        },
+        {
+          "id": "F029-TC05",
+          "name": "D0 patient handling",
+          "type": "edge_case",
+          "input": "Patient with no fills",
+          "expected": "Shows 'Awaiting first fill' message"
+        }
+      ]
+    },
+    {
+      "feature_id": "F030",
+      "feature_name": "Approve button",
+      "test_cases": [
+        {
+          "id": "F030-TC01",
+          "name": "Approve button visible",
+          "type": "happy_path",
+          "input": "Open review drawer",
+          "expected": "Green Approve button visible"
+        },
+        {
+          "id": "F030-TC02",
+          "name": "Click sends Rx",
+          "type": "happy_path",
+          "input": "Click Approve",
+          "expected": "Rx sent to pharmacy, success toast"
+        },
+        {
+          "id": "F030-TC03",
+          "name": "Captures pharmacist ID",
+          "type": "business_logic",
+          "input": "Approve action",
+          "expected": "Current user ID recorded in audit"
+        },
+        {
+          "id": "F030-TC04",
+          "name": "Moves to Pick-up",
+          "type": "business_logic",
+          "input": "After approve",
+          "expected": "Patient moves to Pick-up tab"
+        },
+        {
+          "id": "F030-TC05",
+          "name": "Approve disabled if no AI",
+          "type": "error_handling",
+          "input": "Patient without AI review",
+          "expected": "Approve button disabled with tooltip"
+        }
+      ]
+    },
+    {
+      "feature_id": "F031",
+      "feature_name": "Deny button with reason",
+      "test_cases": [
+        {
+          "id": "F031-TC01",
+          "name": "Deny opens modal",
+          "type": "happy_path",
+          "input": "Click Deny button",
+          "expected": "Modal opens with reason selection"
+        },
+        {
+          "id": "F031-TC02",
+          "name": "Reason required",
+          "type": "business_logic",
+          "input": "Click Deny without reason",
+          "expected": "Validation error, cannot proceed"
+        },
+        {
+          "id": "F031-TC03",
+          "name": "Free text notes optional",
+          "type": "happy_path",
+          "input": "Select reason, add notes",
+          "expected": "Notes saved with denial"
+        },
+        {
+          "id": "F031-TC04",
+          "name": "Moves to Archive",
+          "type": "business_logic",
+          "input": "Complete denial",
+          "expected": "Patient moves to Archive with CLOSED_DENIED"
+        },
+        {
+          "id": "F031-TC05",
+          "name": "Predefined reasons list",
+          "type": "business_logic",
+          "input": "View deny modal",
+          "expected": "List of standard denial reasons available"
+        }
+      ]
+    },
+    {
+      "feature_id": "F032",
+      "feature_name": "Override AI denial",
+      "test_cases": [
+        {
+          "id": "F032-TC01",
+          "name": "Override visible for AI denials",
+          "type": "happy_path",
+          "input": "AI decision=DENY",
+          "expected": "Override button visible"
+        },
+        {
+          "id": "F032-TC02",
+          "name": "Requires justification",
+          "type": "business_logic",
+          "input": "Click override without text",
+          "expected": "Validation error requiring justification"
+        },
+        {
+          "id": "F032-TC03",
+          "name": "Captures override reason",
+          "type": "business_logic",
+          "input": "Complete override",
+          "expected": "Override reason saved to audit trail"
+        },
+        {
+          "id": "F032-TC04",
+          "name": "Logged in clinical memory",
+          "type": "business_logic",
+          "input": "Override action",
+          "expected": "Event added to clinical memory timeline"
+        },
+        {
+          "id": "F032-TC05",
+          "name": "Hidden for AI approvals",
+          "type": "edge_case",
+          "input": "AI decision=APPROVE",
+          "expected": "Override button not shown"
+        }
+      ]
+    },
+    {
+      "feature_id": "F033",
+      "feature_name": "Route to exception",
+      "test_cases": [
+        {
+          "id": "F033-TC01",
+          "name": "Route opens modal",
+          "type": "happy_path",
+          "input": "Click Route button",
+          "expected": "Modal with exception type selection"
+        },
+        {
+          "id": "F033-TC02",
+          "name": "Select exception type",
+          "type": "happy_path",
+          "input": "Choose Clinical",
+          "expected": "Clinical type selected"
+        },
+        {
+          "id": "F033-TC03",
+          "name": "Add notes for recipient",
+          "type": "happy_path",
+          "input": "Add routing notes",
+          "expected": "Notes visible to exception handler"
+        },
+        {
+          "id": "F033-TC04",
+          "name": "Moves to Exceptions tab",
+          "type": "business_logic",
+          "input": "Complete routing",
+          "expected": "Patient appears in Exceptions tab"
+        },
+        {
+          "id": "F033-TC05",
+          "name": "All 4 exception types",
+          "type": "business_logic",
+          "input": "View type dropdown",
+          "expected": "Clinical, PA, Scheduling, Others options"
+        }
+      ]
+    },
+    {
+      "feature_id": "F034",
+      "feature_name": "Keyboard shortcuts",
+      "test_cases": [
+        {
+          "id": "F034-TC01",
+          "name": "A key triggers Approve",
+          "type": "happy_path",
+          "input": "Press A with drawer open",
+          "expected": "Approve action triggered"
+        },
+        {
+          "id": "F034-TC02",
+          "name": "D key triggers Deny",
+          "type": "happy_path",
+          "input": "Press D with drawer open",
+          "expected": "Deny modal opens"
+        },
+        {
+          "id": "F034-TC03",
+          "name": "Esc closes drawer",
+          "type": "happy_path",
+          "input": "Press Escape",
+          "expected": "Drawer closes"
+        },
+        {
+          "id": "F034-TC04",
+          "name": "Shortcuts only when drawer open",
+          "type": "edge_case",
+          "input": "Press A without drawer",
+          "expected": "Nothing happens"
+        },
+        {
+          "id": "F034-TC05",
+          "name": "Shortcuts disabled in input",
+          "type": "edge_case",
+          "input": "Press A while typing in search",
+          "expected": "Types 'a' instead of action"
+        }
+      ]
+    },
+    {
+      "feature_id": "F035",
+      "feature_name": "Pick-up tab patient list",
+      "test_cases": [
+        {
+          "id": "F035-TC01",
+          "name": "AWAITING_PICKUP shown",
+          "type": "happy_path",
+          "input": "View Pick-up tab",
+          "expected": "Patients with rx-sent status visible"
+        },
+        {
+          "id": "F035-TC02",
+          "name": "Days since approval",
+          "type": "happy_path",
+          "input": "Approved 3 days ago",
+          "expected": "Shows '3 days waiting'"
+        },
+        {
+          "id": "F035-TC03",
+          "name": "Outreach status shown",
+          "type": "business_logic",
+          "input": "SMS sent",
+          "expected": "Shows 'SMS sent' indicator"
+        },
+        {
+          "id": "F035-TC04",
+          "name": "Sorted by days waiting",
+          "type": "business_logic",
+          "input": "Multiple patients",
+          "expected": "Longest waiting first"
+        },
+        {
+          "id": "F035-TC05",
+          "name": "Empty Pick-up tab",
+          "type": "edge_case",
+          "input": "No pending pickups",
+          "expected": "Shows 'No pending pickups' message"
+        }
+      ]
+    },
+    {
+      "feature_id": "F036",
+      "feature_name": "Overdue highlighting",
+      "test_cases": [
+        {
+          "id": "F036-TC01",
+          "name": "Red for >7 days",
+          "type": "happy_path",
+          "input": "Patient waiting 10 days",
+          "expected": "Row has red background"
+        },
+        {
+          "id": "F036-TC02",
+          "name": "Overdue badge visible",
+          "type": "business_logic",
+          "input": "Patient waiting 8 days",
+          "expected": "OVERDUE badge displayed"
+        },
+        {
+          "id": "F036-TC03",
+          "name": "Filter to show only overdue",
+          "type": "happy_path",
+          "input": "Click Overdue filter",
+          "expected": "Only >7 day patients shown"
+        },
+        {
+          "id": "F036-TC04",
+          "name": "7 days exactly",
+          "type": "edge_case",
+          "input": "Patient waiting exactly 7 days",
+          "expected": "Not marked overdue (>7 threshold)"
+        },
+        {
+          "id": "F036-TC05",
+          "name": "Color transition",
+          "type": "business_logic",
+          "input": "6 days → 8 days",
+          "expected": "Row transitions to red at day 8"
+        }
+      ]
+    },
+    {
+      "feature_id": "F037",
+      "feature_name": "Confirm Fill button",
+      "test_cases": [
+        {
+          "id": "F037-TC01",
+          "name": "Confirm Fill on each row",
+          "type": "happy_path",
+          "input": "View Pick-up row",
+          "expected": "Confirm Fill button visible"
+        },
+        {
+          "id": "F037-TC02",
+          "name": "Opens confirmation modal",
+          "type": "happy_path",
+          "input": "Click Confirm Fill",
+          "expected": "Modal asks for confirmation"
+        },
+        {
+          "id": "F037-TC03",
+          "name": "Moves to Archive",
+          "type": "business_logic",
+          "input": "Confirm fill",
+          "expected": "Patient moves to Archive with CLOSED_FILLED"
+        },
+        {
+          "id": "F037-TC04",
+          "name": "Records timestamp",
+          "type": "business_logic",
+          "input": "Confirm action",
+          "expected": "Fill confirmation timestamp saved"
+        },
+        {
+          "id": "F037-TC05",
+          "name": "Cancel keeps in Pick-up",
+          "type": "edge_case",
+          "input": "Click Cancel in modal",
+          "expected": "Patient remains in Pick-up"
+        }
+      ]
+    },
+    {
+      "feature_id": "F038",
+      "feature_name": "Re-engage button",
+      "test_cases": [
+        {
+          "id": "F038-TC01",
+          "name": "Re-engage button visible",
+          "type": "happy_path",
+          "input": "Patient with outreach done",
+          "expected": "Re-engage button visible"
+        },
+        {
+          "id": "F038-TC02",
+          "name": "Resets outreach sequence",
+          "type": "business_logic",
+          "input": "Click Re-engage",
+          "expected": "Outreach sequence restarts from Day 1"
+        },
+        {
+          "id": "F038-TC03",
+          "name": "Records in clinical memory",
+          "type": "business_logic",
+          "input": "Re-engage action",
+          "expected": "Event logged in timeline"
+        },
+        {
+          "id": "F038-TC04",
+          "name": "Hidden for new patients",
+          "type": "edge_case",
+          "input": "Patient just approved, no outreach",
+          "expected": "Re-engage button not shown"
+        },
+        {
+          "id": "F038-TC05",
+          "name": "Confirmation before reset",
+          "type": "happy_path",
+          "input": "Click Re-engage",
+          "expected": "Asks for confirmation before reset"
+        }
+      ]
+    },
+    {
+      "feature_id": "F039",
+      "feature_name": "Exception sub-queue tabs",
+      "test_cases": [
+        {
+          "id": "F039-TC01",
+          "name": "4 sub-tabs visible",
+          "type": "happy_path",
+          "input": "View Exceptions tab",
+          "expected": "Clinical, PA, Scheduling, Others sub-tabs"
+        },
+        {
+          "id": "F039-TC02",
+          "name": "Count badge on each",
+          "type": "business_logic",
+          "input": "3 Clinical, 5 PA exceptions",
+          "expected": "Clinical (3), PA (5) badges"
+        },
+        {
+          "id": "F039-TC03",
+          "name": "Active sub-tab styling",
+          "type": "happy_path",
+          "input": "Click PA sub-tab",
+          "expected": "PA sub-tab highlighted as active"
+        },
+        {
+          "id": "F039-TC04",
+          "name": "Zero count sub-tab",
+          "type": "edge_case",
+          "input": "No Scheduling exceptions",
+          "expected": "Scheduling (0), still clickable"
+        },
+        {
+          "id": "F039-TC05",
+          "name": "Default sub-tab",
+          "type": "business_logic",
+          "input": "First visit to Exceptions",
+          "expected": "Clinical sub-tab active by default"
+        }
+      ]
+    },
+    {
+      "feature_id": "F040",
+      "feature_name": "Exception patient list",
+      "test_cases": [
+        {
+          "id": "F040-TC01",
+          "name": "Exception type visible",
+          "type": "happy_path",
+          "input": "View exception row",
+          "expected": "Exception type badge shown"
+        },
+        {
+          "id": "F040-TC02",
+          "name": "Reason visible",
+          "type": "happy_path",
+          "input": "Exception with reason",
+          "expected": "Routing reason/notes displayed"
+        },
+        {
+          "id": "F040-TC03",
+          "name": "SLA countdown displayed",
+          "type": "business_logic",
+          "input": "Clinical exception",
+          "expected": "Shows '2h 15m remaining'"
+        },
+        {
+          "id": "F040-TC04",
+          "name": "Assigned owner shown",
+          "type": "happy_path",
+          "input": "Exception assigned",
+          "expected": "Owner name visible"
+        },
+        {
+          "id": "F040-TC05",
+          "name": "Sorted by SLA urgency",
+          "type": "business_logic",
+          "input": "Multiple exceptions",
+          "expected": "Closest to breach at top"
+        }
+      ]
+    },
+    {
+      "feature_id": "F041",
+      "feature_name": "SLA timer display",
+      "test_cases": [
+        {
+          "id": "F041-TC01",
+          "name": "Time remaining shown",
+          "type": "happy_path",
+          "input": "2.5 hours remaining",
+          "expected": "Shows '2h 30m'"
+        },
+        {
+          "id": "F041-TC02",
+          "name": "Yellow at 50% remaining",
+          "type": "business_logic",
+          "input": "4h SLA, 2h remaining",
+          "expected": "Timer turns yellow"
+        },
+        {
+          "id": "F041-TC03",
+          "name": "Red at 25% remaining",
+          "type": "business_logic",
+          "input": "4h SLA, 1h remaining",
+          "expected": "Timer turns red"
+        },
+        {
+          "id": "F041-TC04",
+          "name": "Overdue shows negative",
+          "type": "edge_case",
+          "input": "30 minutes past SLA",
+          "expected": "Shows '-0h 30m' in red"
+        },
+        {
+          "id": "F041-TC05",
+          "name": "Different SLA per type",
+          "type": "business_logic",
+          "input": "Clinical=4h, PA=24h",
+          "expected": "Correct SLA applied per type"
+        }
+      ]
+    },
+    {
+      "feature_id": "F042",
+      "feature_name": "Resolve exception action",
+      "test_cases": [
+        {
+          "id": "F042-TC01",
+          "name": "Resolve opens modal",
+          "type": "happy_path",
+          "input": "Click Resolve",
+          "expected": "Resolution modal appears"
+        },
+        {
+          "id": "F042-TC02",
+          "name": "Select resolution type",
+          "type": "happy_path",
+          "input": "Choose resolution",
+          "expected": "Resolution type captured"
+        },
+        {
+          "id": "F042-TC03",
+          "name": "Add resolution notes",
+          "type": "happy_path",
+          "input": "Type notes",
+          "expected": "Notes saved with resolution"
+        },
+        {
+          "id": "F042-TC04",
+          "name": "Routes to next queue",
+          "type": "business_logic",
+          "input": "Resolve with 'Return to Refills'",
+          "expected": "Patient returns to Refills tab"
+        },
+        {
+          "id": "F042-TC05",
+          "name": "Route to Archive",
+          "type": "business_logic",
+          "input": "Resolve with 'Close'",
+          "expected": "Patient moves to Archive"
+        }
+      ]
+    },
+    {
+      "feature_id": "F043",
+      "feature_name": "Rerun AI button",
+      "test_cases": [
+        {
+          "id": "F043-TC01",
+          "name": "Rerun AI visible",
+          "type": "happy_path",
+          "input": "View exception",
+          "expected": "Rerun AI button visible"
+        },
+        {
+          "id": "F043-TC02",
+          "name": "Max 3 reruns allowed",
+          "type": "business_logic",
+          "input": "After 3 reruns",
+          "expected": "Button disabled with message"
+        },
+        {
+          "id": "F043-TC03",
+          "name": "Counter shows remaining",
+          "type": "happy_path",
+          "input": "After 1 rerun",
+          "expected": "Shows '2 reruns remaining'"
+        },
+        {
+          "id": "F043-TC04",
+          "name": "Escalates after 3 fails",
+          "type": "business_logic",
+          "input": "3rd rerun still fails",
+          "expected": "Escalation triggered"
+        },
+        {
+          "id": "F043-TC05",
+          "name": "Rerun reprocesses patient",
+          "type": "happy_path",
+          "input": "Click Rerun AI",
+          "expected": "AI re-evaluates with new data"
+        }
+      ]
+    },
+    {
+      "feature_id": "F044",
+      "feature_name": "Archive patient list",
+      "test_cases": [
+        {
+          "id": "F044-TC01",
+          "name": "All CLOSED statuses shown",
+          "type": "happy_path",
+          "input": "View Archive tab",
+          "expected": "CLOSED_FILLED, CLOSED_DENIED, etc. visible"
+        },
+        {
+          "id": "F044-TC02",
+          "name": "Closed date visible",
+          "type": "happy_path",
+          "input": "Archived patient",
+          "expected": "Shows 'Closed: 12/15/2025'"
+        },
+        {
+          "id": "F044-TC03",
+          "name": "Closed by whom",
+          "type": "business_logic",
+          "input": "Pharmacist closed",
+          "expected": "Shows 'By: John Doe'"
+        },
+        {
+          "id": "F044-TC04",
+          "name": "Closure reason visible",
+          "type": "happy_path",
+          "input": "Denied patient",
+          "expected": "Denial reason shown"
+        },
+        {
+          "id": "F044-TC05",
+          "name": "Sorted by closed date",
+          "type": "business_logic",
+          "input": "Multiple archived",
+          "expected": "Most recent at top"
+        }
+      ]
+    },
+    {
+      "feature_id": "F045",
+      "feature_name": "Archive search",
+      "test_cases": [
+        {
+          "id": "F045-TC01",
+          "name": "Search by name",
+          "type": "happy_path",
+          "input": "Search 'Smith'",
+          "expected": "Archived Smith patients shown"
+        },
+        {
+          "id": "F045-TC02",
+          "name": "Search by MRN",
+          "type": "happy_path",
+          "input": "Search 'MRN123'",
+          "expected": "Archived patient with MRN found"
+        },
+        {
+          "id": "F045-TC03",
+          "name": "Results from archive only",
+          "type": "business_logic",
+          "input": "Patient in Refills AND Archive",
+          "expected": "Only archived version shown"
+        },
+        {
+          "id": "F045-TC04",
+          "name": "Fast response time",
+          "type": "business_logic",
+          "input": "Search in 10000 archived",
+          "expected": "Results within 1 second"
+        },
+        {
+          "id": "F045-TC05",
+          "name": "No results found",
+          "type": "edge_case",
+          "input": "Search 'NonExistent'",
+          "expected": "Shows 'No archived patients found'"
+        }
+      ]
+    },
+    {
+      "feature_id": "F046",
+      "feature_name": "Archive date range filter",
+      "test_cases": [
+        {
+          "id": "F046-TC01",
+          "name": "Start and end date pickers",
+          "type": "happy_path",
+          "input": "Open date filter",
+          "expected": "Two date pickers visible"
+        },
+        {
+          "id": "F046-TC02",
+          "name": "Today preset",
+          "type": "happy_path",
+          "input": "Click 'Today'",
+          "expected": "Shows only today's archived"
+        },
+        {
+          "id": "F046-TC03",
+          "name": "This Week preset",
+          "type": "happy_path",
+          "input": "Click 'This Week'",
+          "expected": "Shows current week's archived"
+        },
+        {
+          "id": "F046-TC04",
+          "name": "This Month preset",
+          "type": "happy_path",
+          "input": "Click 'This Month'",
+          "expected": "Shows current month's archived"
+        },
+        {
+          "id": "F046-TC05",
+          "name": "Clear filter button",
+          "type": "happy_path",
+          "input": "Click 'Clear'",
+          "expected": "All archived patients shown again"
+        }
+      ]
+    }
+  ]
+}

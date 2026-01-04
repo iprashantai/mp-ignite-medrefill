@@ -1,0 +1,339 @@
+{
+  "metadata": {
+    "batch": 5,
+    "category": "AI Engine & Protocol Checks",
+    "features": "F047-F054",
+    "total_test_cases": 40,
+    "created": "2026-01-03"
+  },
+  "test_cases": [
+    {
+      "feature_id": "F047",
+      "feature_name": "Primary AI evaluation",
+      "test_cases": [
+        {
+          "id": "F047-TC01",
+          "name": "Returns APPROVE decision",
+          "type": "happy_path",
+          "input": "Patient passes all protocols",
+          "expected": "Decision=APPROVE, confidence=90+, rationale provided"
+        },
+        {
+          "id": "F047-TC02",
+          "name": "Returns DENY decision",
+          "type": "happy_path",
+          "input": "Patient fails safety check",
+          "expected": "Decision=DENY, confidence score, detailed reason"
+        },
+        {
+          "id": "F047-TC03",
+          "name": "Returns ROUTE decision",
+          "type": "happy_path",
+          "input": "Patient needs clinical review",
+          "expected": "Decision=ROUTE, exception type suggested"
+        },
+        {
+          "id": "F047-TC04",
+          "name": "Completes within 2 seconds",
+          "type": "business_logic",
+          "input": "Standard patient evaluation",
+          "expected": "Response returned in < 2000ms"
+        },
+        {
+          "id": "F047-TC05",
+          "name": "Handles empty patient data",
+          "type": "error_handling",
+          "input": "Patient with minimal data",
+          "expected": "Returns ROUTE with 'insufficient data' reason"
+        }
+      ]
+    },
+    {
+      "feature_id": "F048",
+      "feature_name": "QA AI validation",
+      "test_cases": [
+        {
+          "id": "F048-TC01",
+          "name": "QA agrees with Primary",
+          "type": "happy_path",
+          "input": "Primary AI logic is sound",
+          "expected": "QA returns AGREE"
+        },
+        {
+          "id": "F048-TC02",
+          "name": "QA overrides for error",
+          "type": "business_logic",
+          "input": "Primary has date calculation error",
+          "expected": "QA returns OVERRIDE with correction"
+        },
+        {
+          "id": "F048-TC03",
+          "name": "Checks protocol logic",
+          "type": "business_logic",
+          "input": "Primary misinterprets C1 check",
+          "expected": "QA catches error, documents disagreement"
+        },
+        {
+          "id": "F048-TC04",
+          "name": "Documents disagreement reason",
+          "type": "business_logic",
+          "input": "QA disagrees",
+          "expected": "Detailed reason explaining the error"
+        },
+        {
+          "id": "F048-TC05",
+          "name": "Handles Primary timeout",
+          "type": "error_handling",
+          "input": "Primary AI returned null",
+          "expected": "QA returns error, triggers retry"
+        }
+      ]
+    },
+    {
+      "feature_id": "F049",
+      "feature_name": "Manager AI arbitration",
+      "test_cases": [
+        {
+          "id": "F049-TC01",
+          "name": "Triggered on disagreement",
+          "type": "happy_path",
+          "input": "Primary=APPROVE, QA=OVERRIDE",
+          "expected": "Manager AI called"
+        },
+        {
+          "id": "F049-TC02",
+          "name": "Reviews both perspectives",
+          "type": "business_logic",
+          "input": "Conflicting decisions",
+          "expected": "Manager rationale references both"
+        },
+        {
+          "id": "F049-TC03",
+          "name": "Makes final decision",
+          "type": "business_logic",
+          "input": "Primary/QA conflict",
+          "expected": "Returns definitive APPROVE or DENY"
+        },
+        {
+          "id": "F049-TC04",
+          "name": "Documents reasoning",
+          "type": "business_logic",
+          "input": "Arbitration complete",
+          "expected": "Detailed explanation of final choice"
+        },
+        {
+          "id": "F049-TC05",
+          "name": "Not triggered on agreement",
+          "type": "edge_case",
+          "input": "Primary=APPROVE, QA=AGREE",
+          "expected": "Manager AI NOT called, Primary decision used"
+        }
+      ]
+    },
+    {
+      "feature_id": "F050",
+      "feature_name": "AI retry with exponential backoff",
+      "test_cases": [
+        {
+          "id": "F050-TC01",
+          "name": "First retry on failure",
+          "type": "happy_path",
+          "input": "API returns 500 error",
+          "expected": "Retries after initial delay"
+        },
+        {
+          "id": "F050-TC02",
+          "name": "Max 3 retries",
+          "type": "business_logic",
+          "input": "API fails 4 times",
+          "expected": "Stops after 3 attempts, returns error"
+        },
+        {
+          "id": "F050-TC03",
+          "name": "Exponential backoff timing",
+          "type": "business_logic",
+          "input": "Track retry delays",
+          "expected": "Delays increase: 1s, 2s, 4s"
+        },
+        {
+          "id": "F050-TC04",
+          "name": "User-friendly error message",
+          "type": "error_handling",
+          "input": "All retries fail",
+          "expected": "Shows 'AI service temporarily unavailable'"
+        },
+        {
+          "id": "F050-TC05",
+          "name": "Logs all attempts",
+          "type": "business_logic",
+          "input": "2 retries then success",
+          "expected": "All 3 attempts logged with timestamps"
+        }
+      ]
+    },
+    {
+      "feature_id": "F051",
+      "feature_name": "Safety checks (S1-S4)",
+      "test_cases": [
+        {
+          "id": "F051-TC01",
+          "name": "S1 Allergies check PASS",
+          "type": "happy_path",
+          "input": "No allergies to medication",
+          "expected": "S1=PASS, value='No allergies'"
+        },
+        {
+          "id": "F051-TC02",
+          "name": "S1 Allergies check FAIL",
+          "type": "business_logic",
+          "input": "Allergy to penicillin, Rx=Amoxicillin",
+          "expected": "S1=FAIL, value='Penicillin allergy detected'"
+        },
+        {
+          "id": "F051-TC03",
+          "name": "S2 Drug interactions PASS",
+          "type": "happy_path",
+          "input": "No interactions found",
+          "expected": "S2=PASS, value='No interactions'"
+        },
+        {
+          "id": "F051-TC04",
+          "name": "S3 Contraindications FAIL",
+          "type": "business_logic",
+          "input": "Metformin + eGFR < 30",
+          "expected": "S3=FAIL, value='Contraindicated: Renal impairment'"
+        },
+        {
+          "id": "F051-TC05",
+          "name": "S4 Duplicate therapy FAIL",
+          "type": "business_logic",
+          "input": "Two ACE inhibitors prescribed",
+          "expected": "S4=FAIL, value='Duplicate therapy detected'"
+        }
+      ]
+    },
+    {
+      "feature_id": "F052",
+      "feature_name": "Clinical checks (C1-C4)",
+      "test_cases": [
+        {
+          "id": "F052-TC01",
+          "name": "C1 Last visit within 90 days PASS",
+          "type": "happy_path",
+          "input": "Last visit 45 days ago",
+          "expected": "C1=PASS, value='45 days ago'"
+        },
+        {
+          "id": "F052-TC02",
+          "name": "C1 Last visit > 90 days FAIL",
+          "type": "business_logic",
+          "input": "Last visit 120 days ago",
+          "expected": "C1=FAIL, value='120 days ago'"
+        },
+        {
+          "id": "F052-TC03",
+          "name": "C2 Lab values current PASS",
+          "type": "happy_path",
+          "input": "Labs within 6 months",
+          "expected": "C2=PASS, value='Labs current'"
+        },
+        {
+          "id": "F052-TC04",
+          "name": "C3 Diagnosis supports medication",
+          "type": "business_logic",
+          "input": "Statin + Hyperlipidemia diagnosis",
+          "expected": "C3=PASS, value='Diagnosis confirmed'"
+        },
+        {
+          "id": "F052-TC05",
+          "name": "C4 Dosage appropriate FAIL",
+          "type": "business_logic",
+          "input": "Dose exceeds max",
+          "expected": "C4=FAIL, value='Dose exceeds maximum'"
+        }
+      ]
+    },
+    {
+      "feature_id": "F053",
+      "feature_name": "Important checks (I1-I4)",
+      "test_cases": [
+        {
+          "id": "F053-TC01",
+          "name": "I1 Refills remaining PASS",
+          "type": "happy_path",
+          "input": "5 refills remaining",
+          "expected": "I1=PASS, value='5 refills'"
+        },
+        {
+          "id": "F053-TC02",
+          "name": "I1 No refills FAIL",
+          "type": "business_logic",
+          "input": "0 refills remaining",
+          "expected": "I1=FAIL, value='No refills - renewal needed'"
+        },
+        {
+          "id": "F053-TC03",
+          "name": "I2 Rx not expired PASS",
+          "type": "happy_path",
+          "input": "Rx expires in 60 days",
+          "expected": "I2=PASS, value='Expires 60 days'"
+        },
+        {
+          "id": "F053-TC04",
+          "name": "I3 Insurance active PASS",
+          "type": "happy_path",
+          "input": "Coverage active",
+          "expected": "I3=PASS, value='Coverage verified'"
+        },
+        {
+          "id": "F053-TC05",
+          "name": "I4 Prior auth required FAIL",
+          "type": "business_logic",
+          "input": "Step therapy required",
+          "expected": "I4=FAIL, value='Prior auth required'"
+        }
+      ]
+    },
+    {
+      "feature_id": "F054",
+      "feature_name": "Admin checks (A1-A4)",
+      "test_cases": [
+        {
+          "id": "F054-TC01",
+          "name": "A1 Pharmacy in network PASS",
+          "type": "happy_path",
+          "input": "Preferred pharmacy",
+          "expected": "A1=PASS, value='In-network'"
+        },
+        {
+          "id": "F054-TC02",
+          "name": "A2 Quantity limits met PASS",
+          "type": "happy_path",
+          "input": "30 day supply requested",
+          "expected": "A2=PASS, value='Within limits'"
+        },
+        {
+          "id": "F054-TC03",
+          "name": "A3 Fill frequency OK PASS",
+          "type": "happy_path",
+          "input": "Last fill 28 days ago, 30 day supply",
+          "expected": "A3=PASS, value='Fill window open'"
+        },
+        {
+          "id": "F054-TC04",
+          "name": "A3 Too early FAIL",
+          "type": "business_logic",
+          "input": "Last fill 15 days ago, 30 day supply",
+          "expected": "A3=FAIL, value='Too early (75% rule)'"
+        },
+        {
+          "id": "F054-TC05",
+          "name": "A4 Member eligible PASS",
+          "type": "happy_path",
+          "input": "Active member",
+          "expected": "A4=PASS, value='Member active'"
+        }
+      ]
+    }
+  ]
+}
