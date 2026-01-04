@@ -1,0 +1,258 @@
+{
+  "metadata": {
+    "name": "Phase 1 Regression Suite",
+    "version": "1.0.0",
+    "created": "2026-01-04",
+    "description": "Regression test configuration for PDC and Fragility calculation engine"
+  },
+  "suites": [
+    {
+      "id": "golden-standard-core",
+      "name": "Golden Standard - Core Calculations",
+      "description": "Critical PDC and gap day calculations that must match legacy system",
+      "priority": "P0",
+      "required": true,
+      "minCoverage": 100,
+      "pattern": "**/golden-standard.test.ts",
+      "testCases": [
+        "TC-GS-001",
+        "TC-GS-002",
+        "TC-GS-003",
+        "TC-GS-004",
+        "TC-GS-005",
+        "TC-GS-006",
+        "TC-GS-007",
+        "TC-GS-008"
+      ],
+      "failFast": true
+    },
+    {
+      "id": "golden-standard-tiers",
+      "name": "Golden Standard - Tier Assignment",
+      "description": "Fragility tier assignment including COMPLIANT and T5 checks",
+      "priority": "P0",
+      "required": true,
+      "minCoverage": 100,
+      "pattern": "**/fragility.test.ts",
+      "testCases": [
+        "TC-GS-009",
+        "TC-GS-010",
+        "TC-GS-011",
+        "TC-GS-012",
+        "TC-GS-013",
+        "TC-GS-014",
+        "TC-GS-015",
+        "TC-GS-016"
+      ],
+      "failFast": true
+    },
+    {
+      "id": "golden-standard-priority",
+      "name": "Golden Standard - Priority Scoring",
+      "description": "Priority score calculation with bonuses",
+      "priority": "P0",
+      "required": true,
+      "minCoverage": 100,
+      "pattern": "**/fragility.test.ts",
+      "testCases": [
+        "TC-GS-017",
+        "TC-GS-018",
+        "TC-GS-019",
+        "TC-GS-020",
+        "TC-GS-021",
+        "TC-GS-022",
+        "TC-GS-023",
+        "TC-GS-024",
+        "TC-GS-025"
+      ],
+      "failFast": true
+    },
+    {
+      "id": "pdc-calculator-unit",
+      "name": "PDC Calculator Unit Tests",
+      "description": "Unit tests for PDC calculation functions",
+      "priority": "P0",
+      "required": true,
+      "minCoverage": 95,
+      "pattern": "**/calculator.test.ts",
+      "testCases": [
+        "F055-TC01",
+        "F055-TC02",
+        "F055-TC03",
+        "F055-TC04",
+        "F055-TC05",
+        "F056-TC01",
+        "F056-TC02",
+        "F056-TC03",
+        "F056-TC04",
+        "F056-TC05"
+      ],
+      "failFast": false
+    },
+    {
+      "id": "interval-merging",
+      "name": "Interval Merging (HEDIS Compliant)",
+      "description": "Coverage interval merging algorithm tests",
+      "priority": "P0",
+      "required": true,
+      "minCoverage": 100,
+      "pattern": "**/calculator.test.ts",
+      "testCases": ["F063-TC01", "F063-TC02", "F063-TC03", "F063-TC04", "F063-TC05"],
+      "failFast": true
+    },
+    {
+      "id": "fragility-unit",
+      "name": "Fragility Tier Unit Tests",
+      "description": "Unit tests for fragility tier calculation",
+      "priority": "P0",
+      "required": true,
+      "minCoverage": 95,
+      "pattern": "**/fragility.test.ts",
+      "testCases": [
+        "F058-TC01",
+        "F058-TC02",
+        "F058-TC03",
+        "F058-TC04",
+        "F058-TC05",
+        "F059-TC01",
+        "F059-TC02",
+        "F059-TC03",
+        "F059-TC04",
+        "F059-TC05",
+        "F059-TC06",
+        "F059-TC07"
+      ],
+      "failFast": false
+    },
+    {
+      "id": "projection-calculations",
+      "name": "PDC Projections",
+      "description": "Status Quo and Perfect projection calculations",
+      "priority": "P1",
+      "required": true,
+      "minCoverage": 95,
+      "pattern": "**/calculator.test.ts",
+      "testCases": [
+        "F061-TC01",
+        "F061-TC02",
+        "F061-TC03",
+        "F061-TC04",
+        "F061-TC05",
+        "F062-TC01",
+        "F062-TC02",
+        "F062-TC03",
+        "F062-TC04",
+        "F062-TC05"
+      ],
+      "failFast": false
+    },
+    {
+      "id": "prd-fragility-tests",
+      "name": "PRD Fragility Display Tests",
+      "description": "Tests from Patient Detail Page PRD",
+      "priority": "P0",
+      "required": true,
+      "minCoverage": 100,
+      "pattern": "**/fragility.test.ts",
+      "testCases": [
+        "TC-PD-017",
+        "TC-PD-018",
+        "TC-PD-019",
+        "TC-PD-020",
+        "TC-PD-021",
+        "TC-PD-022",
+        "TC-PD-023",
+        "TC-PD-024",
+        "TC-PD-025"
+      ],
+      "failFast": true
+    },
+    {
+      "id": "fhir-services",
+      "name": "FHIR Services",
+      "description": "FHIR data service tests",
+      "priority": "P1",
+      "required": true,
+      "minCoverage": 90,
+      "pattern": "**/fhir/**/*.test.ts",
+      "testCases": [],
+      "failFast": false
+    },
+    {
+      "id": "integration-scenarios",
+      "name": "Integration Test Scenarios",
+      "description": "Full end-to-end scenarios",
+      "priority": "P1",
+      "required": true,
+      "minCoverage": 80,
+      "pattern": "**/integration.test.ts",
+      "testCases": [
+        "TS-PD-01",
+        "TS-PD-02",
+        "TS-PD-03",
+        "TS-PD-04",
+        "TS-PD-05",
+        "TS-PD-06",
+        "TS-PD-07"
+      ],
+      "failFast": false
+    }
+  ],
+  "globalConfig": {
+    "failFast": false,
+    "exitOnFirstFailure": false,
+    "timeout": 10000,
+    "retries": 0,
+    "parallel": true,
+    "maxConcurrency": 4
+  },
+  "coverageThresholds": {
+    "global": {
+      "lines": 85,
+      "statements": 85,
+      "functions": 85,
+      "branches": 80
+    },
+    "src/lib/pdc/**": {
+      "lines": 95,
+      "statements": 95,
+      "functions": 95,
+      "branches": 90
+    },
+    "src/lib/fhir/**": {
+      "lines": 90,
+      "statements": 90,
+      "functions": 90,
+      "branches": 85
+    }
+  },
+  "reporters": [
+    {
+      "type": "default"
+    },
+    {
+      "type": "json",
+      "outputFile": "test-results/regression-results.json"
+    },
+    {
+      "type": "html",
+      "outputFile": "test-results/regression-report.html"
+    }
+  ],
+  "hooks": {
+    "beforeAll": "echo 'Starting regression tests...'",
+    "afterAll": "echo 'Regression tests complete.'",
+    "onFailure": "echo 'Test failure detected!'"
+  },
+  "ciConfig": {
+    "requiredSuites": [
+      "golden-standard-core",
+      "golden-standard-tiers",
+      "golden-standard-priority",
+      "prd-fragility-tests",
+      "interval-merging"
+    ],
+    "blockOnFailure": true,
+    "notifyOnFailure": true
+  }
+}

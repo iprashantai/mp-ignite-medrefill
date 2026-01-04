@@ -1,0 +1,569 @@
+{
+  "metadata": {
+    "description": "Mock MedicationDispense resources for PDC calculation tests",
+    "fhirVersion": "R4",
+    "version": "1.0.0",
+    "created": "2026-01-04"
+  },
+  "dispenses": {
+    "scenario_TS_PD_01": {
+      "patientId": "DEMO_001",
+      "measurementYear": 2025,
+      "comment": "F1 Critical - Maria Gonzalez - 253 covered days, gaps throughout year",
+      "resources": [
+        {
+          "resourceType": "MedicationDispense",
+          "id": "dispense-001-001",
+          "status": "completed",
+          "medicationCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+                "code": "310965",
+                "display": "Lisinopril 10 MG Oral Tablet"
+              }
+            ]
+          },
+          "subject": {
+            "reference": "Patient/DEMO_001"
+          },
+          "whenHandedOver": "2025-01-15",
+          "quantity": {
+            "value": 30,
+            "unit": "tablet"
+          },
+          "daysSupply": {
+            "value": 30
+          }
+        },
+        {
+          "resourceType": "MedicationDispense",
+          "id": "dispense-001-002",
+          "status": "completed",
+          "medicationCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+                "code": "310965",
+                "display": "Lisinopril 10 MG Oral Tablet"
+              }
+            ]
+          },
+          "subject": {
+            "reference": "Patient/DEMO_001"
+          },
+          "whenHandedOver": "2025-02-20",
+          "quantity": {
+            "value": 30,
+            "unit": "tablet"
+          },
+          "daysSupply": {
+            "value": 30
+          }
+        },
+        {
+          "resourceType": "MedicationDispense",
+          "id": "dispense-001-003",
+          "status": "completed",
+          "medicationCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+                "code": "310965",
+                "display": "Lisinopril 10 MG Oral Tablet"
+              }
+            ]
+          },
+          "subject": {
+            "reference": "Patient/DEMO_001"
+          },
+          "whenHandedOver": "2025-04-01",
+          "quantity": {
+            "value": 30,
+            "unit": "tablet"
+          },
+          "daysSupply": {
+            "value": 30
+          }
+        },
+        {
+          "resourceType": "MedicationDispense",
+          "id": "dispense-001-004",
+          "status": "completed",
+          "medicationCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+                "code": "310965",
+                "display": "Lisinopril 10 MG Oral Tablet"
+              }
+            ]
+          },
+          "subject": {
+            "reference": "Patient/DEMO_001"
+          },
+          "whenHandedOver": "2025-05-05",
+          "quantity": {
+            "value": 30,
+            "unit": "tablet"
+          },
+          "daysSupply": {
+            "value": 30
+          }
+        },
+        {
+          "resourceType": "MedicationDispense",
+          "id": "dispense-001-005",
+          "status": "completed",
+          "medicationCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+                "code": "310965",
+                "display": "Lisinopril 10 MG Oral Tablet"
+              }
+            ]
+          },
+          "subject": {
+            "reference": "Patient/DEMO_001"
+          },
+          "whenHandedOver": "2025-06-10",
+          "quantity": {
+            "value": 30,
+            "unit": "tablet"
+          },
+          "daysSupply": {
+            "value": 30
+          }
+        },
+        {
+          "resourceType": "MedicationDispense",
+          "id": "dispense-001-006",
+          "status": "completed",
+          "medicationCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+                "code": "310965",
+                "display": "Lisinopril 10 MG Oral Tablet"
+              }
+            ]
+          },
+          "subject": {
+            "reference": "Patient/DEMO_001"
+          },
+          "whenHandedOver": "2025-08-01",
+          "quantity": {
+            "value": 30,
+            "unit": "tablet"
+          },
+          "daysSupply": {
+            "value": 30
+          }
+        },
+        {
+          "resourceType": "MedicationDispense",
+          "id": "dispense-001-007",
+          "status": "completed",
+          "medicationCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+                "code": "310965",
+                "display": "Lisinopril 10 MG Oral Tablet"
+              }
+            ]
+          },
+          "subject": {
+            "reference": "Patient/DEMO_001"
+          },
+          "whenHandedOver": "2025-09-05",
+          "quantity": {
+            "value": 30,
+            "unit": "tablet"
+          },
+          "daysSupply": {
+            "value": 30
+          }
+        },
+        {
+          "resourceType": "MedicationDispense",
+          "id": "dispense-001-008",
+          "status": "completed",
+          "medicationCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+                "code": "310965",
+                "display": "Lisinopril 10 MG Oral Tablet"
+              }
+            ]
+          },
+          "subject": {
+            "reference": "Patient/DEMO_001"
+          },
+          "whenHandedOver": "2025-10-12",
+          "quantity": {
+            "value": 30,
+            "unit": "tablet"
+          },
+          "daysSupply": {
+            "value": 30
+          }
+        }
+      ]
+    },
+    "scenario_TS_PD_06": {
+      "patientId": "DEMO_006",
+      "measurementYear": 2025,
+      "comment": "COMPLIANT - James Wilson - 310 covered days, consistent fills",
+      "resources": [
+        {
+          "resourceType": "MedicationDispense",
+          "id": "dispense-006-001",
+          "status": "completed",
+          "medicationCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+                "code": "617312",
+                "display": "Atorvastatin 40 MG Oral Tablet"
+              }
+            ]
+          },
+          "subject": {
+            "reference": "Patient/DEMO_006"
+          },
+          "whenHandedOver": "2025-01-01",
+          "quantity": {
+            "value": 30,
+            "unit": "tablet"
+          },
+          "daysSupply": {
+            "value": 30
+          }
+        },
+        {
+          "resourceType": "MedicationDispense",
+          "id": "dispense-006-002",
+          "status": "completed",
+          "medicationCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+                "code": "617312",
+                "display": "Atorvastatin 40 MG Oral Tablet"
+              }
+            ]
+          },
+          "subject": {
+            "reference": "Patient/DEMO_006"
+          },
+          "whenHandedOver": "2025-02-01",
+          "quantity": {
+            "value": 30,
+            "unit": "tablet"
+          },
+          "daysSupply": {
+            "value": 30
+          }
+        },
+        {
+          "resourceType": "MedicationDispense",
+          "id": "dispense-006-003",
+          "status": "completed",
+          "medicationCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+                "code": "617312",
+                "display": "Atorvastatin 40 MG Oral Tablet"
+              }
+            ]
+          },
+          "subject": {
+            "reference": "Patient/DEMO_006"
+          },
+          "whenHandedOver": "2025-03-01",
+          "quantity": {
+            "value": 30,
+            "unit": "tablet"
+          },
+          "daysSupply": {
+            "value": 30
+          }
+        },
+        {
+          "resourceType": "MedicationDispense",
+          "id": "dispense-006-004",
+          "status": "completed",
+          "medicationCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+                "code": "617312",
+                "display": "Atorvastatin 40 MG Oral Tablet"
+              }
+            ]
+          },
+          "subject": {
+            "reference": "Patient/DEMO_006"
+          },
+          "whenHandedOver": "2025-04-01",
+          "quantity": {
+            "value": 30,
+            "unit": "tablet"
+          },
+          "daysSupply": {
+            "value": 30
+          }
+        },
+        {
+          "resourceType": "MedicationDispense",
+          "id": "dispense-006-005",
+          "status": "completed",
+          "medicationCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+                "code": "617312",
+                "display": "Atorvastatin 40 MG Oral Tablet"
+              }
+            ]
+          },
+          "subject": {
+            "reference": "Patient/DEMO_006"
+          },
+          "whenHandedOver": "2025-05-01",
+          "quantity": {
+            "value": 30,
+            "unit": "tablet"
+          },
+          "daysSupply": {
+            "value": 30
+          }
+        },
+        {
+          "resourceType": "MedicationDispense",
+          "id": "dispense-006-006",
+          "status": "completed",
+          "medicationCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+                "code": "617312",
+                "display": "Atorvastatin 40 MG Oral Tablet"
+              }
+            ]
+          },
+          "subject": {
+            "reference": "Patient/DEMO_006"
+          },
+          "whenHandedOver": "2025-06-01",
+          "quantity": {
+            "value": 30,
+            "unit": "tablet"
+          },
+          "daysSupply": {
+            "value": 30
+          }
+        },
+        {
+          "resourceType": "MedicationDispense",
+          "id": "dispense-006-007",
+          "status": "completed",
+          "medicationCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+                "code": "617312",
+                "display": "Atorvastatin 40 MG Oral Tablet"
+              }
+            ]
+          },
+          "subject": {
+            "reference": "Patient/DEMO_006"
+          },
+          "whenHandedOver": "2025-07-01",
+          "quantity": {
+            "value": 30,
+            "unit": "tablet"
+          },
+          "daysSupply": {
+            "value": 30
+          }
+        },
+        {
+          "resourceType": "MedicationDispense",
+          "id": "dispense-006-008",
+          "status": "completed",
+          "medicationCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+                "code": "617312",
+                "display": "Atorvastatin 40 MG Oral Tablet"
+              }
+            ]
+          },
+          "subject": {
+            "reference": "Patient/DEMO_006"
+          },
+          "whenHandedOver": "2025-08-01",
+          "quantity": {
+            "value": 30,
+            "unit": "tablet"
+          },
+          "daysSupply": {
+            "value": 30
+          }
+        },
+        {
+          "resourceType": "MedicationDispense",
+          "id": "dispense-006-009",
+          "status": "completed",
+          "medicationCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+                "code": "617312",
+                "display": "Atorvastatin 40 MG Oral Tablet"
+              }
+            ]
+          },
+          "subject": {
+            "reference": "Patient/DEMO_006"
+          },
+          "whenHandedOver": "2025-09-01",
+          "quantity": {
+            "value": 30,
+            "unit": "tablet"
+          },
+          "daysSupply": {
+            "value": 30
+          }
+        },
+        {
+          "resourceType": "MedicationDispense",
+          "id": "dispense-006-010",
+          "status": "completed",
+          "medicationCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+                "code": "617312",
+                "display": "Atorvastatin 40 MG Oral Tablet"
+              }
+            ]
+          },
+          "subject": {
+            "reference": "Patient/DEMO_006"
+          },
+          "whenHandedOver": "2025-10-01",
+          "quantity": {
+            "value": 30,
+            "unit": "tablet"
+          },
+          "daysSupply": {
+            "value": 30
+          }
+        }
+      ]
+    },
+    "interval_merging_tests": {
+      "comment": "Test cases for F063: Coverage period merging",
+      "test_non_overlapping": {
+        "description": "F063-TC01: Non-overlapping fills counted separately",
+        "resources": [
+          {
+            "resourceType": "MedicationDispense",
+            "id": "merge-test-001",
+            "status": "completed",
+            "subject": { "reference": "Patient/MERGE_TEST" },
+            "whenHandedOver": "2025-01-01",
+            "daysSupply": { "value": 30 }
+          },
+          {
+            "resourceType": "MedicationDispense",
+            "id": "merge-test-002",
+            "status": "completed",
+            "subject": { "reference": "Patient/MERGE_TEST" },
+            "whenHandedOver": "2025-02-01",
+            "daysSupply": { "value": 28 }
+          }
+        ],
+        "expected": {
+          "coveredDays": 58,
+          "comment": "No overlap: Jan 1-30 (30 days) + Feb 1-28 (28 days) = 58 days"
+        }
+      },
+      "test_overlapping": {
+        "description": "F063-TC02: Overlapping fills merged correctly",
+        "resources": [
+          {
+            "resourceType": "MedicationDispense",
+            "id": "merge-test-003",
+            "status": "completed",
+            "subject": { "reference": "Patient/MERGE_TEST" },
+            "whenHandedOver": "2025-01-01",
+            "daysSupply": { "value": 30 }
+          },
+          {
+            "resourceType": "MedicationDispense",
+            "id": "merge-test-004",
+            "status": "completed",
+            "subject": { "reference": "Patient/MERGE_TEST" },
+            "whenHandedOver": "2025-01-15",
+            "daysSupply": { "value": 30 }
+          }
+        ],
+        "expected": {
+          "coveredDays": 44,
+          "comment": "Overlap: Jan 1-30 merged with Jan 15-Feb 13 = Jan 1-Feb 13 (44 days)"
+        }
+      },
+      "test_fully_overlapping": {
+        "description": "F063-TC03: Fully overlapping fill handled",
+        "resources": [
+          {
+            "resourceType": "MedicationDispense",
+            "id": "merge-test-005",
+            "status": "completed",
+            "subject": { "reference": "Patient/MERGE_TEST" },
+            "whenHandedOver": "2025-01-01",
+            "daysSupply": { "value": 60 }
+          },
+          {
+            "resourceType": "MedicationDispense",
+            "id": "merge-test-006",
+            "status": "completed",
+            "subject": { "reference": "Patient/MERGE_TEST" },
+            "whenHandedOver": "2025-01-15",
+            "daysSupply": { "value": 15 }
+          }
+        ],
+        "expected": {
+          "coveredDays": 60,
+          "comment": "Second fill completely inside first: Jan 1-Mar 1 (60 days)"
+        }
+      },
+      "test_year_end_cap": {
+        "description": "F063-TC04: Cap at Dec 31",
+        "resources": [
+          {
+            "resourceType": "MedicationDispense",
+            "id": "merge-test-007",
+            "status": "completed",
+            "subject": { "reference": "Patient/MERGE_TEST" },
+            "whenHandedOver": "2025-12-01",
+            "daysSupply": { "value": 90 }
+          }
+        ],
+        "expected": {
+          "coveredDays": 31,
+          "comment": "Supply extends past Dec 31, capped at year end: Dec 1-31 (31 days)"
+        }
+      }
+    }
+  }
+}

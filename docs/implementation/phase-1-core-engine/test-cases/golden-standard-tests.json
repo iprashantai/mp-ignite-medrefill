@@ -1,0 +1,845 @@
+{
+  "metadata": {
+    "description": "Golden Standard test cases for PDC and Fragility calculations - ALIGNED WITH LEGACY",
+    "source": [
+      "Legacy: src/services/fragilityTierService.js (V3.0)",
+      "Legacy: src/services/__tests__/goldenStandardTestBed.test.js",
+      "Legacy: src/services/pdcDataService.js",
+      "PRD: 3_TEST_CASES_Patient_Detail_Page.json",
+      "PRD: test_cases_batch_6_calculations.json"
+    ],
+    "legacyVersion": "V3.0",
+    "version": "1.1.0",
+    "created": "2026-01-04",
+    "updated": "2026-01-04",
+    "totalTestCases": 95,
+    "note": "Business logic from legacy repo, infrastructure FHIR-native via Medplum"
+  },
+  "goldenStandardConstants": {
+    "_comment": "FROM: legacy/src/services/__tests__/goldenStandardTestBed.test.js lines 58-103",
+    "tiers": {
+      "COMPLIANT": {
+        "check": "PDC Status Quo ≥ 80%",
+        "contactWindow": "Monitor only",
+        "tierLevel": 6
+      },
+      "T5_UNSALVAGEABLE": {
+        "check": "PDC Perfect < 80% OR gapDaysRemaining < 0",
+        "contactWindow": "None - cannot reach 80%",
+        "tierLevel": 0
+      },
+      "F1_IMMINENT": {
+        "delayBudget": { "min": 0, "max": 2 },
+        "contactWindow": "24 hours",
+        "tierLevel": 1
+      },
+      "F2_FRAGILE": {
+        "delayBudget": { "min": 3, "max": 5 },
+        "contactWindow": "48 hours",
+        "tierLevel": 2
+      },
+      "F3_MODERATE": {
+        "delayBudget": { "min": 6, "max": 10 },
+        "contactWindow": "1 week",
+        "tierLevel": 3
+      },
+      "F4_COMFORTABLE": {
+        "delayBudget": { "min": 11, "max": 20 },
+        "contactWindow": "2 weeks",
+        "tierLevel": 4
+      },
+      "F5_SAFE": {
+        "delayBudget": { "min": 21, "max": "Infinity" },
+        "contactWindow": "Monthly",
+        "tierLevel": 5
+      }
+    },
+    "priorityScores": {
+      "COMPLIANT": 0,
+      "F1_IMMINENT": 100,
+      "F2_FRAGILE": 80,
+      "F3_MODERATE": 60,
+      "F4_COMFORTABLE": 40,
+      "F5_SAFE": 20,
+      "T5_UNSALVAGEABLE": 0
+    },
+    "bonuses": {
+      "outOfMedication": 30,
+      "q4": 25,
+      "multipleMAMeasures": 15,
+      "newPatient": 10
+    },
+    "urgencyLevels": {
+      "extreme": { "min": 150 },
+      "high": { "min": 100, "max": 149 },
+      "moderate": { "min": 50, "max": 99 },
+      "low": { "min": 0, "max": 49 }
+    },
+    "pdcThresholds": {
+      "passing": 80,
+      "atRisk": 60,
+      "failing": 0
+    }
+  },
+  "testSuites": [
+    {
+      "name": "Tier Threshold Tests - F1 to F5 Boundaries",
+      "description": "FROM: legacy goldenStandardTestBed.test.js TIER_TEST_CASES (lines 127-153)",
+      "testCases": [
+        {
+          "id": "TIER-F1-01",
+          "name": "F1 at boundary (delay budget = 2)",
+          "input": { "gapDaysRemaining": 6, "remainingRefills": 3 },
+          "expected": { "tier": "F1_IMMINENT", "delayBudget": 2 }
+        },
+        {
+          "id": "TIER-F1-02",
+          "name": "F1 below boundary (delay budget = 1)",
+          "input": { "gapDaysRemaining": 3, "remainingRefills": 3 },
+          "expected": { "tier": "F1_IMMINENT", "delayBudget": 1 }
+        },
+        {
+          "id": "TIER-F1-03",
+          "name": "F1 at very low (delay budget = 0.33)",
+          "input": { "gapDaysRemaining": 1, "remainingRefills": 3 },
+          "expected": { "tier": "F1_IMMINENT", "delayBudget": 0.33 }
+        },
+        {
+          "id": "TIER-F2-01",
+          "name": "F2 at lower boundary (delay budget = 3)",
+          "input": { "gapDaysRemaining": 9, "remainingRefills": 3 },
+          "expected": { "tier": "F2_FRAGILE", "delayBudget": 3 }
+        },
+        {
+          "id": "TIER-F2-02",
+          "name": "F2 mid-range (delay budget = 4)",
+          "input": { "gapDaysRemaining": 12, "remainingRefills": 3 },
+          "expected": { "tier": "F2_FRAGILE", "delayBudget": 4 }
+        },
+        {
+          "id": "TIER-F2-03",
+          "name": "F2 at upper boundary (delay budget = 5)",
+          "input": { "gapDaysRemaining": 15, "remainingRefills": 3 },
+          "expected": { "tier": "F2_FRAGILE", "delayBudget": 5 }
+        },
+        {
+          "id": "TIER-F3-01",
+          "name": "F3 at lower boundary (delay budget = 6)",
+          "input": { "gapDaysRemaining": 18, "remainingRefills": 3 },
+          "expected": { "tier": "F3_MODERATE", "delayBudget": 6 }
+        },
+        {
+          "id": "TIER-F3-02",
+          "name": "F3 mid-range (delay budget = 8)",
+          "input": { "gapDaysRemaining": 24, "remainingRefills": 3 },
+          "expected": { "tier": "F3_MODERATE", "delayBudget": 8 }
+        },
+        {
+          "id": "TIER-F3-03",
+          "name": "F3 at upper boundary (delay budget = 10)",
+          "input": { "gapDaysRemaining": 30, "remainingRefills": 3 },
+          "expected": { "tier": "F3_MODERATE", "delayBudget": 10 }
+        },
+        {
+          "id": "TIER-F4-01",
+          "name": "F4 at lower boundary (delay budget = 11)",
+          "input": { "gapDaysRemaining": 33, "remainingRefills": 3 },
+          "expected": { "tier": "F4_COMFORTABLE", "delayBudget": 11 }
+        },
+        {
+          "id": "TIER-F4-02",
+          "name": "F4 mid-range (delay budget = 15)",
+          "input": { "gapDaysRemaining": 45, "remainingRefills": 3 },
+          "expected": { "tier": "F4_COMFORTABLE", "delayBudget": 15 }
+        },
+        {
+          "id": "TIER-F4-03",
+          "name": "F4 at upper boundary (delay budget = 20)",
+          "input": { "gapDaysRemaining": 60, "remainingRefills": 3 },
+          "expected": { "tier": "F4_COMFORTABLE", "delayBudget": 20 }
+        },
+        {
+          "id": "TIER-F5-01",
+          "name": "F5 at lower boundary (delay budget = 21)",
+          "input": { "gapDaysRemaining": 63, "remainingRefills": 3 },
+          "expected": { "tier": "F5_SAFE", "delayBudget": 21 }
+        },
+        {
+          "id": "TIER-F5-02",
+          "name": "F5 high value (delay budget = 30)",
+          "input": { "gapDaysRemaining": 90, "remainingRefills": 3 },
+          "expected": { "tier": "F5_SAFE", "delayBudget": 30 }
+        },
+        {
+          "id": "TIER-F5-03",
+          "name": "F5 very high (delay budget = 50)",
+          "input": { "gapDaysRemaining": 150, "remainingRefills": 3 },
+          "expected": { "tier": "F5_SAFE", "delayBudget": 50 }
+        }
+      ]
+    },
+    {
+      "name": "Priority Score Tests - Base Scores",
+      "description": "FROM: legacy goldenStandardTestBed.test.js PRIORITY_SCORE_TEST_CASES (lines 158-189)",
+      "testCases": [
+        {
+          "id": "PRIORITY-BASE-01",
+          "name": "F1_IMMINENT base score",
+          "input": { "tier": "F1_IMMINENT", "bonuses": {} },
+          "expected": { "baseScore": 100, "priorityScore": 100 }
+        },
+        {
+          "id": "PRIORITY-BASE-02",
+          "name": "F2_FRAGILE base score",
+          "input": { "tier": "F2_FRAGILE", "bonuses": {} },
+          "expected": { "baseScore": 80, "priorityScore": 80 }
+        },
+        {
+          "id": "PRIORITY-BASE-03",
+          "name": "F3_MODERATE base score",
+          "input": { "tier": "F3_MODERATE", "bonuses": {} },
+          "expected": { "baseScore": 60, "priorityScore": 60 }
+        },
+        {
+          "id": "PRIORITY-BASE-04",
+          "name": "F4_COMFORTABLE base score",
+          "input": { "tier": "F4_COMFORTABLE", "bonuses": {} },
+          "expected": { "baseScore": 40, "priorityScore": 40 }
+        },
+        {
+          "id": "PRIORITY-BASE-05",
+          "name": "F5_SAFE base score",
+          "input": { "tier": "F5_SAFE", "bonuses": {} },
+          "expected": { "baseScore": 20, "priorityScore": 20 }
+        },
+        {
+          "id": "PRIORITY-BASE-06",
+          "name": "COMPLIANT base score",
+          "input": { "tier": "COMPLIANT", "bonuses": {} },
+          "expected": { "baseScore": 0, "priorityScore": 0 }
+        },
+        {
+          "id": "PRIORITY-BASE-07",
+          "name": "T5_UNSALVAGEABLE base score",
+          "input": { "tier": "T5_UNSALVAGEABLE", "bonuses": {} },
+          "expected": { "baseScore": 0, "priorityScore": 0 }
+        }
+      ]
+    },
+    {
+      "name": "Priority Score Tests - Individual Bonuses",
+      "description": "FROM: legacy goldenStandardTestBed.test.js Individual Bonuses tests (lines 459-563)",
+      "testCases": [
+        {
+          "id": "PRIORITY-BONUS-01",
+          "name": "Out of Medication bonus +30",
+          "input": { "tier": "F1_IMMINENT", "isCurrentlyOutOfMeds": true },
+          "expected": { "outOfMedsBonus": 30, "priorityScore": 130 }
+        },
+        {
+          "id": "PRIORITY-BONUS-02",
+          "name": "Q4 bonus +25",
+          "input": { "tier": "F1_IMMINENT", "isQ4": true },
+          "expected": { "q4Bonus": 25, "priorityScore": 125 }
+        },
+        {
+          "id": "PRIORITY-BONUS-03",
+          "name": "Multiple MA Measures bonus +15 (for 2+ measures)",
+          "input": { "tier": "F1_IMMINENT", "measureCount": 2 },
+          "expected": { "multiMeasureBonus": 15, "priorityScore": 115 }
+        },
+        {
+          "id": "PRIORITY-BONUS-04",
+          "name": "Multiple MA Measures - single measure no bonus",
+          "input": { "tier": "F1_IMMINENT", "measureCount": 1 },
+          "expected": { "multiMeasureBonus": 0, "priorityScore": 100 }
+        },
+        {
+          "id": "PRIORITY-BONUS-05",
+          "name": "Multiple MA Measures - 3 measures same as 2",
+          "input": { "tier": "F1_IMMINENT", "measureCount": 3 },
+          "expected": { "multiMeasureBonus": 15, "priorityScore": 115 }
+        },
+        {
+          "id": "PRIORITY-BONUS-06",
+          "name": "New Patient bonus +10",
+          "input": { "tier": "F1_IMMINENT", "isNewPatient": true },
+          "expected": { "newPatientBonus": 10, "priorityScore": 110 }
+        }
+      ]
+    },
+    {
+      "name": "Priority Score Tests - Combined Bonuses",
+      "description": "FROM: legacy goldenStandardTestBed.test.js Combined Bonuses tests (lines 566-584)",
+      "testCases": [
+        {
+          "id": "PRIORITY-COMBINED-01",
+          "name": "F1 with Out of Meds + Q4",
+          "input": { "tier": "F1_IMMINENT", "bonuses": { "outOfMeds": true, "q4": true } },
+          "expected": { "priorityScore": 155 }
+        },
+        {
+          "id": "PRIORITY-COMBINED-02",
+          "name": "F1 with Out of Meds + Q4 + Multi MA",
+          "input": {
+            "tier": "F1_IMMINENT",
+            "bonuses": { "outOfMeds": true, "q4": true, "multiMA": true }
+          },
+          "expected": { "priorityScore": 170 }
+        },
+        {
+          "id": "PRIORITY-COMBINED-03",
+          "name": "F1 with ALL bonuses = 180 pts (MAXIMUM)",
+          "input": {
+            "tier": "F1_IMMINENT",
+            "bonuses": { "outOfMeds": true, "q4": true, "multiMA": true, "newPatient": true }
+          },
+          "expected": { "priorityScore": 180, "urgencyLevel": "extreme" }
+        },
+        {
+          "id": "PRIORITY-COMBINED-04",
+          "name": "F2 with ALL bonuses",
+          "input": {
+            "tier": "F2_FRAGILE",
+            "bonuses": { "outOfMeds": true, "q4": true, "multiMA": true, "newPatient": true }
+          },
+          "expected": { "priorityScore": 160 }
+        }
+      ]
+    },
+    {
+      "name": "Urgency Index Level Tests",
+      "description": "FROM: legacy goldenStandardTestBed.test.js Urgency Index Levels (lines 587-612)",
+      "testCases": [
+        {
+          "id": "URGENCY-01",
+          "name": "Score 150 = extreme",
+          "input": { "priorityScore": 150 },
+          "expected": { "urgencyLevel": "extreme" }
+        },
+        {
+          "id": "URGENCY-02",
+          "name": "Score 175 = extreme",
+          "input": { "priorityScore": 175 },
+          "expected": { "urgencyLevel": "extreme" }
+        },
+        {
+          "id": "URGENCY-03",
+          "name": "Score 100 = high",
+          "input": { "priorityScore": 100 },
+          "expected": { "urgencyLevel": "high" }
+        },
+        {
+          "id": "URGENCY-04",
+          "name": "Score 149 = high",
+          "input": { "priorityScore": 149 },
+          "expected": { "urgencyLevel": "high" }
+        },
+        {
+          "id": "URGENCY-05",
+          "name": "Score 50 = moderate",
+          "input": { "priorityScore": 50 },
+          "expected": { "urgencyLevel": "moderate" }
+        },
+        {
+          "id": "URGENCY-06",
+          "name": "Score 99 = moderate",
+          "input": { "priorityScore": 99 },
+          "expected": { "urgencyLevel": "moderate" }
+        },
+        {
+          "id": "URGENCY-07",
+          "name": "Score 0 = low",
+          "input": { "priorityScore": 0 },
+          "expected": { "urgencyLevel": "low" }
+        },
+        {
+          "id": "URGENCY-08",
+          "name": "Score 49 = low",
+          "input": { "priorityScore": 49 },
+          "expected": { "urgencyLevel": "low" }
+        }
+      ]
+    },
+    {
+      "name": "PDC Status Quo and Perfect Tests",
+      "description": "FROM: legacy goldenStandardTestBed.test.js section 3 (lines 633-668)",
+      "testCases": [
+        {
+          "id": "PDC-PROJ-01",
+          "name": "PDC Status Quo calculation",
+          "formula": "pdcStatusQuo = (daysAlreadyCovered + min(daysOfSupplyOnHand, daysRemainingUntilYearEnd)) / treatmentDays × 100",
+          "input": {
+            "daysAlreadyCovered": 292,
+            "daysOfSupplyOnHand": 30,
+            "daysRemainingUntilYearEnd": 30,
+            "treatmentDays": 365
+          },
+          "expected": {
+            "pdcStatusQuo": 88.2,
+            "note": "(292 + min(30, 30)) / 365 = 322/365 = 88.2%"
+          }
+        },
+        {
+          "id": "PDC-PROJ-02",
+          "name": "PDC Perfect calculation",
+          "formula": "pdcPerfect = (daysAlreadyCovered + daysRemainingUntilYearEnd) / treatmentDays × 100",
+          "input": {
+            "daysAlreadyCovered": 250,
+            "daysRemainingUntilYearEnd": 60,
+            "treatmentDays": 365
+          },
+          "expected": {
+            "pdcPerfect": 84.9,
+            "note": "(250 + 60) / 365 = 310/365 = 84.9%"
+          }
+        },
+        {
+          "id": "PDC-PROJ-03",
+          "name": "Status Quo with supply > days remaining",
+          "input": {
+            "daysAlreadyCovered": 300,
+            "daysOfSupplyOnHand": 60,
+            "daysRemainingUntilYearEnd": 30,
+            "treatmentDays": 365
+          },
+          "expected": {
+            "pdcStatusQuo": 90.4,
+            "note": "Uses min(60, 30) = 30"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Gap Days Formula Tests",
+      "description": "FROM: legacy goldenStandardTestBed.test.js section 4 (lines 670-714)",
+      "testCases": [
+        {
+          "id": "GAP-01",
+          "name": "Gap Days Used formula",
+          "formula": "gapDaysUsed = treatmentDays - coveredDays",
+          "input": { "treatmentDays": 300, "coveredDays": 250 },
+          "expected": { "gapDaysUsed": 50 }
+        },
+        {
+          "id": "GAP-02",
+          "name": "Gap Days Allowed (20% rule)",
+          "formula": "gapDaysAllowed = Math.floor(treatmentDays × 0.20)",
+          "input": { "treatmentDays": 365 },
+          "expected": { "gapDaysAllowed": 73 }
+        },
+        {
+          "id": "GAP-03",
+          "name": "Delay Budget formula verifies tier",
+          "input": {
+            "gapDaysRemaining": 15,
+            "remainingRefills": 3,
+            "daysAlreadyCovered": 250,
+            "daysOfSupplyOnHand": 5
+          },
+          "expected": {
+            "delayBudget": 5,
+            "tier": "F2_FRAGILE",
+            "note": "15 / 3 = 5 → F2"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Real-World Scenario Tests",
+      "description": "FROM: legacy goldenStandardTestBed.test.js REAL_WORLD_SCENARIOS (lines 194-286)",
+      "testCases": [
+        {
+          "id": "SCENARIO-01",
+          "name": "John - Critical Q4 Patient",
+          "description": "Out of meds, Q4, 3 MA measures, critical tier",
+          "input": {
+            "daysAlreadyCovered": 280,
+            "daysOfSupplyOnHand": 0,
+            "daysRemainingUntilYearEnd": 45,
+            "treatmentDays": 365,
+            "gapDaysRemaining": 4,
+            "remainingRefills": 2,
+            "isCurrentlyOutOfMeds": true,
+            "bonuses": { "outOfMeds": true, "q4": true, "multiMA": true }
+          },
+          "expected": {
+            "tier": "F1_IMMINENT",
+            "pdcPerfect": 89.0,
+            "urgencyLevel": "extreme",
+            "priorityScoreRange": { "min": 150, "max": 200 }
+          }
+        },
+        {
+          "id": "SCENARIO-02",
+          "name": "Mary - At-Risk Early Year",
+          "description": "Low PDC, early in year, single measure",
+          "input": {
+            "daysAlreadyCovered": 200,
+            "daysOfSupplyOnHand": 5,
+            "daysRemainingUntilYearEnd": 300,
+            "treatmentDays": 365,
+            "gapDaysRemaining": 10,
+            "remainingRefills": 10,
+            "isCurrentlyOutOfMeds": false,
+            "bonuses": {}
+          },
+          "expected": {
+            "tier": "F1_IMMINENT",
+            "urgencyLevel": "high",
+            "priorityScoreRange": { "min": 100, "max": 110 }
+          }
+        },
+        {
+          "id": "SCENARIO-03",
+          "name": "Sarah - Compliant Patient",
+          "description": "High coverage, PDC Status Quo ≥ 80%",
+          "input": {
+            "daysAlreadyCovered": 300,
+            "daysOfSupplyOnHand": 30,
+            "daysRemainingUntilYearEnd": 30,
+            "treatmentDays": 365,
+            "gapDaysRemaining": 40,
+            "remainingRefills": 1,
+            "isCurrentlyOutOfMeds": false,
+            "bonuses": {}
+          },
+          "expected": {
+            "tier": "COMPLIANT",
+            "urgencyLevel": "low",
+            "priorityScore": 0
+          }
+        },
+        {
+          "id": "SCENARIO-04",
+          "name": "Robert - Unsalvageable",
+          "description": "Too many gap days, cannot reach 80%",
+          "input": {
+            "daysAlreadyCovered": 200,
+            "daysOfSupplyOnHand": 5,
+            "daysRemainingUntilYearEnd": 30,
+            "treatmentDays": 365,
+            "gapDaysRemaining": -10,
+            "remainingRefills": 1,
+            "isCurrentlyOutOfMeds": false,
+            "bonuses": {}
+          },
+          "expected": {
+            "tier": "T5_UNSALVAGEABLE",
+            "urgencyLevel": "low",
+            "priorityScore": 0
+          }
+        },
+        {
+          "id": "SCENARIO-05",
+          "name": "Lisa - New Patient Multi-Measure",
+          "description": "New patient with 2 MA measures, moderate risk",
+          "input": {
+            "daysAlreadyCovered": 270,
+            "daysOfSupplyOnHand": 10,
+            "daysRemainingUntilYearEnd": 60,
+            "treatmentDays": 365,
+            "gapDaysRemaining": 16,
+            "remainingRefills": 2,
+            "isCurrentlyOutOfMeds": false,
+            "bonuses": { "multiMA": true, "newPatient": true }
+          },
+          "expected": {
+            "tier": "F3_MODERATE",
+            "urgencyLevel": "moderate",
+            "priorityScoreRange": { "min": 85, "max": 95 }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Edge Case Tests",
+      "description": "FROM: legacy goldenStandardTestBed.test.js EDGE_CASES (lines 291-319)",
+      "testCases": [
+        {
+          "id": "EDGE-01",
+          "name": "Zero remaining refills",
+          "input": { "remainingRefills": 0, "gapDaysRemaining": 10 },
+          "expected": { "tier": "F5_SAFE", "note": "Handle division by zero gracefully" }
+        },
+        {
+          "id": "EDGE-02",
+          "name": "Negative gap days remaining",
+          "input": { "gapDaysRemaining": -5 },
+          "expected": { "tier": "T5_UNSALVAGEABLE" }
+        },
+        {
+          "id": "EDGE-03",
+          "name": "Zero days to year end",
+          "input": { "daysRemainingUntilYearEnd": 0 },
+          "expected": { "note": "Year end edge case - should not crash" }
+        },
+        {
+          "id": "EDGE-04",
+          "name": "Very high gap days remaining",
+          "input": { "gapDaysRemaining": 100, "remainingRefills": 1 },
+          "expected": { "tier": "F5_SAFE", "delayBudget": 100 }
+        },
+        {
+          "id": "EDGE-05",
+          "name": "Single refill remaining",
+          "input": { "remainingRefills": 1, "gapDaysRemaining": 5 },
+          "expected": { "tier": "F2_FRAGILE", "delayBudget": 5 }
+        },
+        {
+          "id": "EDGE-06",
+          "name": "Extremely large gap days",
+          "input": { "gapDaysRemaining": 1000, "remainingRefills": 1 },
+          "expected": { "tier": "F5_SAFE" }
+        }
+      ]
+    },
+    {
+      "name": "Q4 Tightening Tests",
+      "description": "FROM: legacy goldenStandardTestBed.test.js section 7 (lines 786-833)",
+      "testCases": [
+        {
+          "id": "Q4-01",
+          "name": "Apply Q4 tightening when <60 days AND ≤5 gap days",
+          "legacyRef": "fragilityTierService.js line 302: isQ4Critical = daysToYearEnd < 60 && gapDaysRemaining <= 5",
+          "input": {
+            "baseTier": "F3_MODERATE",
+            "daysToYearEnd": 45,
+            "gapDaysRemaining": 4
+          },
+          "expected": {
+            "tier": "F2_FRAGILE",
+            "q4Tightened": true,
+            "flags": ["Q4_TIGHTENED"]
+          }
+        },
+        {
+          "id": "Q4-02",
+          "name": "NO Q4 tightening when daysToYearEnd >= 60",
+          "input": {
+            "baseTier": "F3_MODERATE",
+            "daysToYearEnd": 60,
+            "gapDaysRemaining": 4
+          },
+          "expected": {
+            "tier": "F3_MODERATE",
+            "q4Tightened": false
+          }
+        },
+        {
+          "id": "Q4-03",
+          "name": "NO Q4 tightening when gapDaysRemaining > 5",
+          "input": {
+            "baseTier": "F3_MODERATE",
+            "daysToYearEnd": 45,
+            "gapDaysRemaining": 15
+          },
+          "expected": {
+            "tier": "F3_MODERATE",
+            "q4Tightened": false
+          }
+        },
+        {
+          "id": "Q4-04",
+          "name": "Q4 tightening promotion map: F2 → F1",
+          "input": { "baseTier": "F2_FRAGILE", "daysToYearEnd": 45, "gapDaysRemaining": 4 },
+          "expected": { "tier": "F1_IMMINENT" }
+        },
+        {
+          "id": "Q4-05",
+          "name": "Q4 tightening promotion map: F4 → F3",
+          "input": { "baseTier": "F4_COMFORTABLE", "daysToYearEnd": 45, "gapDaysRemaining": 4 },
+          "expected": { "tier": "F3_MODERATE" }
+        },
+        {
+          "id": "Q4-06",
+          "name": "Q4 tightening promotion map: F5 → F4",
+          "input": { "baseTier": "F5_SAFE", "daysToYearEnd": 45, "gapDaysRemaining": 4 },
+          "expected": { "tier": "F4_COMFORTABLE" }
+        },
+        {
+          "id": "Q4-07",
+          "name": "COMPLIANT not affected by Q4 tightening",
+          "input": { "baseTier": "COMPLIANT", "daysToYearEnd": 45, "gapDaysRemaining": 4 },
+          "expected": { "tier": "COMPLIANT" }
+        },
+        {
+          "id": "Q4-08",
+          "name": "T5_UNSALVAGEABLE not affected by Q4 tightening",
+          "input": { "baseTier": "T5_UNSALVAGEABLE", "daysToYearEnd": 45, "gapDaysRemaining": 4 },
+          "expected": { "tier": "T5_UNSALVAGEABLE" }
+        }
+      ]
+    },
+    {
+      "name": "Regression Tests - Critical Fixes",
+      "description": "FROM: legacy goldenStandardTestBed.test.js section 8 (lines 836-894)",
+      "testCases": [
+        {
+          "id": "REGRESSION-01",
+          "name": "COMPLIANT check must happen BEFORE F1-F5 assignment",
+          "criticalBug": "Previously, code checked F1-F5 first, then COMPLIANT",
+          "input": {
+            "daysAlreadyCovered": 320,
+            "daysOfSupplyOnHand": 15,
+            "daysRemainingUntilYearEnd": 15,
+            "treatmentDays": 365,
+            "gapDaysRemaining": 2,
+            "remainingRefills": 1
+          },
+          "expected": {
+            "tier": "COMPLIANT",
+            "note": "Should be COMPLIANT because PDC Status Quo ≥ 80%, NOT F1"
+          }
+        },
+        {
+          "id": "REGRESSION-02",
+          "name": "Delay Budget must use remaining refills division",
+          "criticalBug": "Some code used raw gapDaysRemaining for tier assignment",
+          "input": {
+            "gapDaysRemaining": 15,
+            "remainingRefills": 3,
+            "daysAlreadyCovered": 250,
+            "daysOfSupplyOnHand": 5,
+            "daysRemainingUntilYearEnd": 90
+          },
+          "expected": {
+            "delayBudget": 5,
+            "tier": "F2_FRAGILE",
+            "note": "15/3 = 5 → F2, NOT raw 15 → F4"
+          }
+        },
+        {
+          "id": "REGRESSION-03",
+          "name": "Priority scores must use Golden Standard bonuses",
+          "criticalBug": "Previously, Out of Meds bonus was +5, not +30",
+          "input": {
+            "tier": "F1_IMMINENT",
+            "isCurrentlyOutOfMeds": true
+          },
+          "expected": {
+            "priorityScore": 130,
+            "outOfMedsBonus": 30,
+            "note": "100 (F1) + 30 (out of meds) = 130, NOT 100 + 5 = 105"
+          }
+        }
+      ]
+    },
+    {
+      "name": "PDC Calculation From Claims",
+      "description": "FROM: legacy pdcDataService.js calculatePDCFromClaims (lines 95-200)",
+      "testCases": [
+        {
+          "id": "PDC-CLAIMS-01",
+          "name": "Basic PDC from claims",
+          "input": {
+            "claims": [
+              { "fillDate": "2025-01-15", "daysSupply": 90 },
+              { "fillDate": "2025-04-12", "daysSupply": 90 }
+            ]
+          },
+          "expected": { "note": "Calculate PDC correctly from sorted claims" }
+        },
+        {
+          "id": "PDC-CLAIMS-02",
+          "name": "Filter reversed claims",
+          "input": {
+            "claims": [
+              { "fillDate": "2025-01-15", "daysSupply": 90, "Reversal_Flag": "N" },
+              { "fillDate": "2025-02-01", "daysSupply": 90, "Reversal_Flag": "R" }
+            ]
+          },
+          "expected": { "note": "Second claim excluded (reversal)" }
+        },
+        {
+          "id": "PDC-CLAIMS-03",
+          "name": "Handle overlapping fills correctly",
+          "legacyRef": "pdcDataService.js lines 129-148",
+          "input": {
+            "claims": [
+              { "fillDate": "2025-01-01", "daysSupply": 30 },
+              { "fillDate": "2025-01-20", "daysSupply": 30 }
+            ]
+          },
+          "expected": {
+            "coveredDays": 50,
+            "note": "Not 60 - partial overlap merged (Jan 1-30 + Jan 20-Feb 18 = Jan 1-Feb 18 = 49-50 days)"
+          }
+        },
+        {
+          "id": "PDC-CLAIMS-04",
+          "name": "Cap covered days at treatment period",
+          "legacyRef": "pdcDataService.js line 151",
+          "input": {
+            "coveredDays": 400,
+            "treatmentDays": 365
+          },
+          "expected": {
+            "coveredDays": 365,
+            "note": "Math.min(coveredDays, treatmentDays)"
+          }
+        },
+        {
+          "id": "PDC-CLAIMS-05",
+          "name": "Empty claims returns null",
+          "input": { "claims": [] },
+          "expected": { "pdc": null, "status": null, "gapDaysRemaining": null }
+        }
+      ]
+    },
+    {
+      "name": "Interval Merging Algorithm",
+      "description": "HEDIS-compliant interval merging for overlapping fills",
+      "testCases": [
+        {
+          "id": "MERGE-01",
+          "name": "Non-overlapping fills",
+          "input": {
+            "fills": [
+              { "start": "2025-01-01", "end": "2025-01-30" },
+              { "start": "2025-02-01", "end": "2025-02-28" }
+            ]
+          },
+          "expected": { "coveredDays": 58 }
+        },
+        {
+          "id": "MERGE-02",
+          "name": "Overlapping fills merged",
+          "input": {
+            "fills": [
+              { "start": "2025-01-01", "end": "2025-01-30" },
+              { "start": "2025-01-15", "end": "2025-02-13" }
+            ]
+          },
+          "expected": { "coveredDays": 44, "mergedInterval": "Jan 1 - Feb 13" }
+        },
+        {
+          "id": "MERGE-03",
+          "name": "Fully contained fill",
+          "input": {
+            "fills": [
+              { "start": "2025-01-01", "end": "2025-03-01" },
+              { "start": "2025-01-15", "end": "2025-01-29" }
+            ]
+          },
+          "expected": { "coveredDays": 60, "note": "Second fill inside first" }
+        },
+        {
+          "id": "MERGE-04",
+          "name": "Multiple overlapping fills",
+          "legacyAlgorithm": "Track currentCoveredUntil, only add days beyond it",
+          "input": {
+            "fills": [
+              { "date": "2025-01-01", "daysSupply": 30 },
+              { "date": "2025-01-15", "daysSupply": 30 },
+              { "date": "2025-02-01", "daysSupply": 30 },
+              { "date": "2025-02-20", "daysSupply": 30 },
+              { "date": "2025-03-15", "daysSupply": 30 }
+            ]
+          },
+          "expected": { "coveredDays": 104, "note": "Each day counted exactly once" }
+        }
+      ]
+    }
+  ]
+}

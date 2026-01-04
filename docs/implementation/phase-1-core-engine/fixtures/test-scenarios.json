@@ -1,0 +1,439 @@
+{
+  "metadata": {
+    "description": "Complete test scenarios for PDC and Fragility calculations",
+    "source": "3_TEST_CASES_Patient_Detail_Page.json - detailed_test_scenarios",
+    "version": "1.0.0",
+    "created": "2026-01-04"
+  },
+  "scenarios": [
+    {
+      "scenarioId": "TS-PD-01",
+      "name": "F1 Critical + Out of Meds + Q4",
+      "description": "Patient with critical fragility, out of medication, in Q4",
+      "patient": {
+        "id": "DEMO_001",
+        "name": "Maria Gonzalez",
+        "birthDate": "1952-01-15"
+      },
+      "medication": {
+        "name": "Lisinopril 10mg",
+        "rxnormCode": "310965",
+        "measure": "MAH",
+        "drugClass": "ACE Inhibitor"
+      },
+      "input": {
+        "measurementYear": 2025,
+        "currentDate": "2025-10-15",
+        "firstFillDate": "2025-01-15",
+        "treatmentPeriod": 351,
+        "coveredDays": 253,
+        "lastFillDate": "2025-11-15",
+        "daysSupply": 30,
+        "daysToRunout": -3,
+        "refillsRemaining": 2,
+        "isNewPatient": false
+      },
+      "expected": {
+        "pdc": {
+          "value": 72.1,
+          "status": "AT_RISK"
+        },
+        "gapDays": {
+          "used": 98,
+          "allowed": 70,
+          "remaining": 2
+        },
+        "projections": {
+          "pdcStatusQuo": 72.1,
+          "pdcPerfect": 87.7
+        },
+        "fragility": {
+          "tier": "F1_IMMINENT",
+          "tierLevel": 1,
+          "delayBudgetPerRefill": 1,
+          "contactWindow": "24 hours"
+        },
+        "priority": {
+          "score": 155,
+          "urgencyLevel": "EXTREME",
+          "bonuses": {
+            "base": 100,
+            "outOfMeds": 30,
+            "q4": 25,
+            "multipleMA": 0,
+            "newPatient": 0
+          }
+        }
+      },
+      "testCases": ["TC-PD-017", "TC-PD-024", "TC-GS-009", "TC-GS-010"]
+    },
+    {
+      "scenarioId": "TS-PD-02",
+      "name": "F2 Fragile - Standard Case",
+      "description": "Patient with fragile status, needs timely outreach",
+      "patient": {
+        "id": "DEMO_002",
+        "name": "John Smith",
+        "birthDate": "1958-06-20"
+      },
+      "medication": {
+        "name": "Atorvastatin 40mg",
+        "rxnormCode": "617312",
+        "measure": "MAC",
+        "drugClass": "Statin"
+      },
+      "input": {
+        "measurementYear": 2025,
+        "currentDate": "2025-10-15",
+        "firstFillDate": "2025-01-01",
+        "treatmentPeriod": 365,
+        "coveredDays": 274,
+        "lastFillDate": "2025-10-01",
+        "daysSupply": 30,
+        "daysToRunout": 5,
+        "refillsRemaining": 3,
+        "isNewPatient": false
+      },
+      "expected": {
+        "pdc": {
+          "value": 75,
+          "status": "AT_RISK"
+        },
+        "gapDays": {
+          "used": 91,
+          "allowed": 73,
+          "remaining": 8
+        },
+        "projections": {
+          "pdcStatusQuo": 76.4,
+          "pdcPerfect": 96.4
+        },
+        "fragility": {
+          "tier": "F2_FRAGILE",
+          "tierLevel": 2,
+          "delayBudgetPerRefill": 2.67,
+          "contactWindow": "48 hours"
+        },
+        "priority": {
+          "score": 105,
+          "urgencyLevel": "HIGH",
+          "bonuses": {
+            "base": 80,
+            "outOfMeds": 0,
+            "q4": 25,
+            "multipleMA": 0,
+            "newPatient": 0
+          }
+        }
+      },
+      "testCases": ["TC-PD-018", "TC-PD-025", "TC-GS-011", "TC-GS-020"]
+    },
+    {
+      "scenarioId": "TS-PD-03",
+      "name": "F3 Moderate - Moderate Risk",
+      "description": "Patient with moderate fragility, standard outreach window",
+      "patient": {
+        "id": "DEMO_003",
+        "name": "Sarah Johnson",
+        "birthDate": "1965-03-10"
+      },
+      "medication": {
+        "name": "Metformin 500mg",
+        "rxnormCode": "860974",
+        "measure": "MAD",
+        "drugClass": "Biguanide"
+      },
+      "input": {
+        "measurementYear": 2025,
+        "currentDate": "2025-08-15",
+        "firstFillDate": "2025-02-01",
+        "treatmentPeriod": 334,
+        "coveredDays": 261,
+        "lastFillDate": "2025-08-01",
+        "daysSupply": 30,
+        "daysToRunout": 10,
+        "refillsRemaining": 4,
+        "isNewPatient": false
+      },
+      "expected": {
+        "pdc": {
+          "value": 78,
+          "status": "AT_RISK"
+        },
+        "gapDays": {
+          "used": 73,
+          "allowed": 67,
+          "remaining": 32
+        },
+        "projections": {
+          "pdcStatusQuo": 81.4,
+          "pdcPerfect": 91.9
+        },
+        "fragility": {
+          "tier": "F3_MODERATE",
+          "tierLevel": 3,
+          "delayBudgetPerRefill": 8,
+          "contactWindow": "1 week"
+        },
+        "priority": {
+          "score": 60,
+          "urgencyLevel": "MODERATE",
+          "bonuses": {
+            "base": 60,
+            "outOfMeds": 0,
+            "q4": 0,
+            "multipleMA": 0,
+            "newPatient": 0
+          }
+        }
+      },
+      "testCases": ["TC-PD-019", "TC-GS-012"]
+    },
+    {
+      "scenarioId": "TS-PD-04",
+      "name": "F4 Comfortable - Low Urgency",
+      "description": "Patient with comfortable margin, scheduled outreach",
+      "patient": {
+        "id": "DEMO_004",
+        "name": "Michael Brown",
+        "birthDate": "1970-11-25"
+      },
+      "medication": {
+        "name": "Losartan 50mg",
+        "rxnormCode": "979480",
+        "measure": "MAH",
+        "drugClass": "ARB"
+      },
+      "input": {
+        "measurementYear": 2025,
+        "currentDate": "2025-06-15",
+        "firstFillDate": "2025-01-01",
+        "treatmentPeriod": 365,
+        "coveredDays": 292,
+        "lastFillDate": "2025-06-01",
+        "daysSupply": 30,
+        "daysToRunout": 20,
+        "refillsRemaining": 5,
+        "isNewPatient": false
+      },
+      "expected": {
+        "pdc": {
+          "value": 80,
+          "status": "ADHERENT"
+        },
+        "gapDays": {
+          "used": 73,
+          "allowed": 73,
+          "remaining": 60
+        },
+        "projections": {
+          "pdcStatusQuo": 85.5,
+          "pdcPerfect": 100
+        },
+        "fragility": {
+          "tier": "F4_COMFORTABLE",
+          "tierLevel": 4,
+          "delayBudgetPerRefill": 12,
+          "contactWindow": "2 weeks"
+        },
+        "priority": {
+          "score": 40,
+          "urgencyLevel": "LOW",
+          "bonuses": {
+            "base": 40,
+            "outOfMeds": 0,
+            "q4": 0,
+            "multipleMA": 0,
+            "newPatient": 0
+          }
+        }
+      },
+      "testCases": ["TC-PD-020", "TC-GS-013"]
+    },
+    {
+      "scenarioId": "TS-PD-05",
+      "name": "F5 Safe - Low Risk",
+      "description": "Patient with safe margin, monthly monitoring",
+      "patient": {
+        "id": "DEMO_005",
+        "name": "Emily Davis",
+        "birthDate": "1975-08-05"
+      },
+      "medication": {
+        "name": "Rosuvastatin 10mg",
+        "rxnormCode": "859751",
+        "measure": "MAC",
+        "drugClass": "Statin"
+      },
+      "input": {
+        "measurementYear": 2025,
+        "currentDate": "2025-05-15",
+        "firstFillDate": "2025-01-01",
+        "treatmentPeriod": 365,
+        "coveredDays": 300,
+        "lastFillDate": "2025-05-01",
+        "daysSupply": 30,
+        "daysToRunout": 30,
+        "refillsRemaining": 6,
+        "isNewPatient": false
+      },
+      "expected": {
+        "pdc": {
+          "value": 82.2,
+          "status": "ADHERENT"
+        },
+        "gapDays": {
+          "used": 65,
+          "allowed": 73,
+          "remaining": 138
+        },
+        "projections": {
+          "pdcStatusQuo": 90.4,
+          "pdcPerfect": 100
+        },
+        "fragility": {
+          "tier": "F5_SAFE",
+          "tierLevel": 5,
+          "delayBudgetPerRefill": 23,
+          "contactWindow": "Monthly"
+        },
+        "priority": {
+          "score": 20,
+          "urgencyLevel": "LOW",
+          "bonuses": {
+            "base": 20,
+            "outOfMeds": 0,
+            "q4": 0,
+            "multipleMA": 0,
+            "newPatient": 0
+          }
+        }
+      },
+      "testCases": ["TC-PD-021", "TC-GS-014"]
+    },
+    {
+      "scenarioId": "TS-PD-06",
+      "name": "COMPLIANT - Already Passing",
+      "description": "Patient already meeting 80% threshold, COMPLIANT tier",
+      "patient": {
+        "id": "DEMO_006",
+        "name": "James Wilson",
+        "birthDate": "1960-04-12"
+      },
+      "medication": {
+        "name": "Atorvastatin 40mg",
+        "rxnormCode": "617312",
+        "measure": "MAC",
+        "drugClass": "Statin"
+      },
+      "input": {
+        "measurementYear": 2025,
+        "currentDate": "2025-10-15",
+        "firstFillDate": "2025-01-01",
+        "treatmentPeriod": 365,
+        "coveredDays": 310,
+        "lastFillDate": "2025-10-01",
+        "daysSupply": 30,
+        "daysToRunout": 20,
+        "refillsRemaining": 3,
+        "isNewPatient": false
+      },
+      "expected": {
+        "pdc": {
+          "value": 85,
+          "status": "ADHERENT"
+        },
+        "gapDays": {
+          "used": 55,
+          "allowed": 73,
+          "remaining": 18
+        },
+        "projections": {
+          "pdcStatusQuo": 82,
+          "pdcPerfect": 92
+        },
+        "fragility": {
+          "tier": "COMPLIANT",
+          "tierLevel": 0,
+          "delayBudgetPerRefill": 6,
+          "contactWindow": "Monitor only"
+        },
+        "priority": {
+          "score": 0,
+          "urgencyLevel": "LOW",
+          "bonuses": {
+            "base": 0,
+            "outOfMeds": 0,
+            "q4": 0,
+            "multipleMA": 0,
+            "newPatient": 0
+          }
+        },
+        "criticalNote": "COMPLIANT check happens FIRST - NOT F3 despite delay budget of 6"
+      },
+      "testCases": ["TC-PD-022", "TC-GS-015", "TC-PD-100"]
+    },
+    {
+      "scenarioId": "TS-PD-07",
+      "name": "T5 Lost - Unsalvageable",
+      "description": "Patient cannot reach 80% even with perfect adherence",
+      "patient": {
+        "id": "DEMO_007",
+        "name": "Robert Chen",
+        "birthDate": "1955-09-30"
+      },
+      "medication": {
+        "name": "Metformin 500mg",
+        "rxnormCode": "860974",
+        "measure": "MAD",
+        "drugClass": "Biguanide"
+      },
+      "input": {
+        "measurementYear": 2025,
+        "currentDate": "2025-12-01",
+        "firstFillDate": "2025-02-01",
+        "treatmentPeriod": 334,
+        "coveredDays": 200,
+        "lastFillDate": "2025-11-15",
+        "daysSupply": 30,
+        "daysToRunout": 15,
+        "refillsRemaining": 3,
+        "isNewPatient": false
+      },
+      "expected": {
+        "pdc": {
+          "value": 59.9,
+          "status": "NON_ADHERENT"
+        },
+        "gapDays": {
+          "used": 134,
+          "allowed": 67,
+          "remaining": -67
+        },
+        "projections": {
+          "pdcStatusQuo": 64.4,
+          "pdcPerfect": 68.9
+        },
+        "fragility": {
+          "tier": "T5_UNSALVAGEABLE",
+          "tierLevel": 6,
+          "delayBudgetPerRefill": -22.33,
+          "contactWindow": "Special handling required"
+        },
+        "priority": {
+          "score": 0,
+          "urgencyLevel": "LOW",
+          "bonuses": {
+            "base": 0,
+            "outOfMeds": 0,
+            "q4": 0,
+            "multipleMA": 0,
+            "newPatient": 0
+          }
+        },
+        "criticalNote": "T5 when PDC Perfect < 80% - mathematically impossible to reach compliance"
+      },
+      "testCases": ["TC-PD-023", "TC-GS-016", "TC-PD-095"]
+    }
+  ]
+}
