@@ -33,14 +33,17 @@ const MAX_RESULTS = 1000;
 /**
  * RxNorm codes for MA measure classification.
  *
- * Note: This is a simplified set. Production should use a comprehensive
- * RxClass lookup or similar service.
+ * Includes both ingredient codes and SCD (Semantic Clinical Drug) codes
+ * with specific dose forms to match real dispense data.
+ *
+ * Note: Production should use a comprehensive RxClass lookup service.
  *
  * @see https://mor.nlm.nih.gov/RxClass/
  */
 const MA_RXNORM_CODES: Record<MAMeasure, Set<string>> = {
   // MAC - Statins (HMG-CoA Reductase Inhibitors)
   MAC: new Set([
+    // Ingredient codes
     '83367', // Atorvastatin
     '36567', // Simvastatin
     '301542', // Rosuvastatin
@@ -48,10 +51,20 @@ const MA_RXNORM_CODES: Record<MAMeasure, Set<string>> = {
     '6472', // Lovastatin
     '41127', // Fluvastatin
     '861634', // Pitavastatin
+    // SCD codes (dose-specific)
+    '617310', // atorvastatin 20 MG Oral Tablet
+    '617312', // atorvastatin 40 MG Oral Tablet
+    '617314', // atorvastatin 80 MG Oral Tablet
+    '617318', // atorvastatin 10 MG Oral Tablet
+    '200345', // simvastatin 20 MG Oral Tablet
+    '312961', // simvastatin 40 MG Oral Tablet
+    '859747', // rosuvastatin 10 MG Oral Tablet
+    '859751', // rosuvastatin 20 MG Oral Tablet
   ]),
 
   // MAD - Biguanides, Sulfonylureas, DPP-4 inhibitors, etc.
   MAD: new Set([
+    // Ingredient codes
     '6809', // Metformin
     '4821', // Glipizide
     '4815', // Glyburide
@@ -62,10 +75,19 @@ const MA_RXNORM_CODES: Record<MAMeasure, Set<string>> = {
     '857974', // Linagliptin
     '1368001', // Canagliflozin
     '1545653', // Empagliflozin
+    // SCD codes (dose-specific)
+    '860975', // 24 HR Metformin hydrochloride 500 MG Extended Release Oral Tablet
+    '860981', // 24 HR Metformin hydrochloride 750 MG Extended Release Oral Tablet
+    '861007', // Metformin hydrochloride 500 MG Oral Tablet
+    '861010', // Metformin hydrochloride 850 MG Oral Tablet
+    '861004', // Metformin hydrochloride 1000 MG Oral Tablet
+    '310534', // Glipizide 5 MG Oral Tablet
+    '310537', // Glipizide 10 MG Oral Tablet
   ]),
 
-  // MAH - ACE Inhibitors, ARBs
+  // MAH - ACE Inhibitors, ARBs, and Thiazides
   MAH: new Set([
+    // Ingredient codes
     '310965', // Lisinopril
     '52175', // Losartan
     '3827', // Enalapril
@@ -76,6 +98,19 @@ const MA_RXNORM_CODES: Record<MAMeasure, Set<string>> = {
     '83515', // Irbesartan
     '73494', // Olmesartan
     '321064', // Telmisartan
+    // SCD codes (dose-specific)
+    '314076', // lisinopril 10 MG Oral Tablet
+    '314077', // lisinopril 20 MG Oral Tablet
+    '314078', // lisinopril 40 MG Oral Tablet
+    '314079', // lisinopril 5 MG Oral Tablet
+    '979480', // losartan 50 MG Oral Tablet
+    '979485', // losartan 100 MG Oral Tablet
+    '979482', // losartan 25 MG Oral Tablet
+    '198188', // ramipril 5 MG Oral Capsule
+    '198190', // ramipril 10 MG Oral Capsule
+    '310798', // Hydrochlorothiazide 25 MG Oral Tablet
+    '310792', // Hydrochlorothiazide 12.5 MG Oral Capsule
+    '310797', // Hydrochlorothiazide 50 MG Oral Tablet
   ]),
 };
 
