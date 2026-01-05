@@ -1,0 +1,62 @@
+{
+  "resourceType": "Bundle",
+  "type": "collection",
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "SearchParameter",
+        "id": "observation-medication-rxnorm",
+        "url": "https://ignitehealth.io/fhir/SearchParameter/observation-medication-rxnorm",
+        "name": "medication-rxnorm",
+        "status": "active",
+        "description": "Search medication-level PDC Observations by RxNorm code",
+        "code": "medication-rxnorm",
+        "base": ["Observation"],
+        "type": "token",
+        "expression": "Observation.extension.where(url='https://ignitehealth.io/fhir/StructureDefinition/medication-rxnorm').value.ofType(code)"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "SearchParameter",
+        "id": "observation-is-current-pdc",
+        "url": "https://ignitehealth.io/fhir/SearchParameter/observation-is-current-pdc",
+        "name": "is-current-pdc",
+        "status": "active",
+        "description": "Filter for current (most recent) PDC observations",
+        "code": "is-current-pdc",
+        "base": ["Observation"],
+        "type": "token",
+        "expression": "Observation.extension.where(url='https://ignitehealth.io/fhir/StructureDefinition/is-current-pdc').value.ofType(boolean)"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "SearchParameter",
+        "id": "observation-ma-measure",
+        "url": "https://ignitehealth.io/fhir/SearchParameter/observation-ma-measure",
+        "name": "ma-measure",
+        "status": "active",
+        "description": "Filter PDC Observations by HEDIS MA measure type (MAC, MAD, MAH)",
+        "code": "ma-measure",
+        "base": ["Observation"],
+        "type": "token",
+        "expression": "Observation.extension.where(url='https://ignitehealth.io/fhir/StructureDefinition/ma-measure').value.ofType(code)"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "SearchParameter",
+        "id": "observation-fragility-tier",
+        "url": "https://ignitehealth.io/fhir/SearchParameter/observation-fragility-tier",
+        "name": "fragility-tier",
+        "status": "active",
+        "description": "Filter PDC Observations by fragility tier classification",
+        "code": "fragility-tier",
+        "base": ["Observation"],
+        "type": "token",
+        "expression": "Observation.extension.where(url='https://ignitehealth.io/fhir/StructureDefinition/fragility-tier').value.ofType(code)"
+      }
+    }
+  ]
+}
