@@ -17,6 +17,7 @@ export {
   OBSERVATION_EXTENSION_URLS,
   PATIENT_EXTENSION_URLS,
   TASK_EXTENSION_URLS,
+  MEDICATION_OBSERVATION_EXTENSION_URLS,
 
   // Code system URLs
   CODE_SYSTEM_URLS,
@@ -155,3 +156,23 @@ export {
   type PatientPDCSummary,
   type PatientExtensionUpdateResult,
 } from './patient-extensions';
+
+// Medication Observation Service
+export {
+  // Store functions
+  storeMedicationPDCObservation,
+
+  // Query functions
+  getCurrentMedicationPDCObservation,
+  getAllCurrentMedicationPDCObservations,
+
+  // Parse functions
+  parseMedicationPDCObservation,
+
+  // Update functions
+  markPreviousMedicationObservationsNotCurrent,
+
+  // Types
+  type MedicationPDCObservationInput,
+  type ParsedMedicationPDCObservation,
+} from './medication-observation-service';

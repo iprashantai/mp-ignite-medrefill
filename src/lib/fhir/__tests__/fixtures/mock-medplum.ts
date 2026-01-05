@@ -362,3 +362,92 @@ export const MOCK_RXNORM_CODES = {
 export function getRxNormCodesForMeasure(measure: 'MAC' | 'MAD' | 'MAH'): string[] {
   return Object.values(MOCK_RXNORM_CODES[measure]);
 }
+
+/**
+ * Create a mock Observation for medication-level PDC results.
+ */
+export function createMockMedicationPDCObservation(
+  overrides: {
+    patientId?: string;
+    pdcValue?: number;
+    measure?: 'MAC' | 'MAD' | 'MAH';
+    rxnormCode?: string;
+    medicationName?: string;
+    effectiveDate?: string;
+    fragilityTier?: string;
+    priorityScore?: number;
+  } = {}
+): Observation {
+  const {
+    patientId = 'patient-123',
+    pdcValue = 0.78,
+    measure = 'MAH',
+    rxnormCode = '314076',
+    medicationName = 'Lisinopril 10mg',
+    effectiveDate = new Date().toISOString(),
+    fragilityTier = 'F2_FRAGILE',
+    priorityScore = 80,
+  } = overrides;
+
+  return {
+    resourceType: 'Observation',
+    id: `medication-obs-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
+    status: 'final',
+    category: [
+      {
+        coding: [
+          {
+            system: 'http://terminology.hl7.org/CodeSystem/observation-category',
+            code: 'survey',
+            display: 'Survey',
+          },
+        ],
+      },
+    ],
+    code: {
+      coding: [
+        {
+          system: 'https://ignitehealth.io/fhir/CodeSystem/adherence-metrics',
+          code: 'pdc-medication',
+          display: `PDC Score - ${medicationName}`,
+        },
+      ],
+    },
+    subject: {
+      reference: `Patient/${patientId}`,
+    },
+    effectiveDateTime: effectiveDate,
+    valueQuantity: {
+      value: pdcValue,
+      unit: 'ratio',
+      system: 'http://unitsofmeasure.org',
+      code: '1',
+    },
+    extension: [
+      {
+        url: 'https://ignitehealth.io/fhir/StructureDefinition/medication-rxnorm',
+        valueCode: rxnormCode,
+      },
+      {
+        url: 'https://ignitehealth.io/fhir/StructureDefinition/medication-display',
+        valueString: medicationName,
+      },
+      {
+        url: 'https://ignitehealth.io/fhir/StructureDefinition/ma-measure',
+        valueCode: measure,
+      },
+      {
+        url: 'https://ignitehealth.io/fhir/StructureDefinition/fragility-tier',
+        valueCode: fragilityTier,
+      },
+      {
+        url: 'https://ignitehealth.io/fhir/StructureDefinition/priority-score',
+        valueInteger: priorityScore,
+      },
+      {
+        url: 'https://ignitehealth.io/fhir/StructureDefinition/is-current-pdc',
+        valueBoolean: true,
+      },
+    ],
+  };
+}

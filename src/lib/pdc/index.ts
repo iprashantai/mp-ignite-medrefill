@@ -132,5 +132,23 @@ export {
   calculateFragility,
 } from './fragility';
 
+// Refill calculator
+export {
+  // Coverage shortfall
+  calculateCoverageShortfall,
+
+  // Remaining refills
+  calculateRemainingRefills,
+
+  // Supply helpers
+  calculateSupplyOnHand,
+  calculateDaysToYearEnd as calculateDaysToYearEndFromDate,
+
+  // Types
+  type RefillCalculationInput,
+  type RefillCalculationResult,
+  type CoverageShortfallInput,
+} from './refill-calculator';
+
 // Re-export types from fhir module for convenience
 export type { FragilityTier, MAMeasure } from '@/lib/fhir/types';

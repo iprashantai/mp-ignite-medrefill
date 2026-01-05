@@ -112,12 +112,44 @@ export const TASK_EXTENSION_URLS = {
 } as const;
 
 /**
+ * FHIR Extension URLs for Medication-Level Observation resources.
+ * These are specific to individual medication PDC observations (not measure-level).
+ *
+ * NOTE: Medication observations also use OBSERVATION_EXTENSION_URLS for shared fields:
+ * - FRAGILITY_TIER, PRIORITY_SCORE, IS_CURRENT_PDC, DAYS_UNTIL_RUNOUT,
+ * - GAP_DAYS_REMAINING, DELAY_BUDGET, TREATMENT_PERIOD, Q4_ADJUSTED, MA_MEASURE
+ */
+export const MEDICATION_OBSERVATION_EXTENSION_URLS = {
+  /** RxNorm code for the specific medication */
+  MEDICATION_RXNORM: `${EXTENSION_BASE_URL}/medication-rxnorm`,
+
+  /** Display name for the medication */
+  MEDICATION_DISPLAY: `${EXTENSION_BASE_URL}/medication-display`,
+
+  /** Reference to parent measure-level observation */
+  PARENT_MEASURE_OBSERVATION: `${EXTENSION_BASE_URL}/parent-measure-observation`,
+
+  /** Estimated days per refill (from dispense history average) */
+  ESTIMATED_DAYS_PER_REFILL: `${EXTENSION_BASE_URL}/estimated-days-per-refill`,
+
+  /** Calculated remaining refills needed for the year */
+  REMAINING_REFILLS: `${EXTENSION_BASE_URL}/remaining-refills`,
+
+  /** Current days of supply on hand */
+  SUPPLY_ON_HAND: `${EXTENSION_BASE_URL}/supply-on-hand`,
+
+  /** Coverage shortfall (daysToYearEnd - supplyOnHand) */
+  COVERAGE_SHORTFALL: `${EXTENSION_BASE_URL}/coverage-shortfall`,
+} as const;
+
+/**
  * All extension URLs combined for convenience
  */
 export const EXTENSION_URLS = {
   ...OBSERVATION_EXTENSION_URLS,
   ...PATIENT_EXTENSION_URLS,
   ...TASK_EXTENSION_URLS,
+  ...MEDICATION_OBSERVATION_EXTENSION_URLS,
 } as const;
 
 // =============================================================================
