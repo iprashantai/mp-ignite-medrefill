@@ -152,3 +152,21 @@ export {
 
 // Re-export types from fhir module for convenience
 export type { FragilityTier, MAMeasure } from '@/lib/fhir/types';
+
+// Orchestrator
+export {
+  // Main functions
+  calculateAndStorePatientPDC,
+  calculateBatchPatientPDC,
+
+  // Grouping utilities
+  groupDispensesByMeasure,
+  groupDispensesByMedication,
+
+  // Types
+  type PDCOrchestratorOptions,
+  type PDCOrchestratorResult,
+  type MeasurePDCResult,
+  type MedicationPDCResult,
+  type BatchPDCResult,
+} from './orchestrator';
