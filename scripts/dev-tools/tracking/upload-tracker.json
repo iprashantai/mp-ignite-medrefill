@@ -1,0 +1,2790 @@
+{
+  "lastUpdated": "2026-01-04T17:56:09.988Z",
+  "totalPatients": 307,
+  "uploaded": 298,
+  "pending": 0,
+  "failed": 11,
+  "patients": {
+    "e08425e3-ff76-8818-5caf-25beef6733c9": {
+      "patientId": "e08425e3-ff76-8818-5caf-25beef6733c9",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Abel832_Haag279_e08425e3-ff76-8818-5caf-25beef6733c9.json",
+      "fileName": "Abel832_Haag279_e08425e3-ff76-8818-5caf-25beef6733c9.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:45:02.358Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "8f3e3730-e0aa-52e2-444c-c1d9bdb4af67": {
+      "patientId": "8f3e3730-e0aa-52e2-444c-c1d9bdb4af67",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Adela471_Blanca837_Flores439_8f3e3730-e0aa-52e2-444c-c1d9bdb4af67.json",
+      "fileName": "Adela471_Blanca837_Flores439_8f3e3730-e0aa-52e2-444c-c1d9bdb4af67.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:45:02.995Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "15829ecc-6c9e-279c-5426-7344f5cb1425": {
+      "patientId": "15829ecc-6c9e-279c-5426-7344f5cb1425",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Adrian111_Carroll471_15829ecc-6c9e-279c-5426-7344f5cb1425.json",
+      "fileName": "Adrian111_Carroll471_15829ecc-6c9e-279c-5426-7344f5cb1425.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:45:06.365Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "8a165f3b-6f27-d06d-28ce-992f40887da8": {
+      "patientId": "8a165f3b-6f27-d06d-28ce-992f40887da8",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Ahmed109_Heathcote539_8a165f3b-6f27-d06d-28ce-992f40887da8.json",
+      "fileName": "Ahmed109_Heathcote539_8a165f3b-6f27-d06d-28ce-992f40887da8.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:45:08.084Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "0ac85480-33d6-6608-36b8-04449e9fa87f": {
+      "patientId": "0ac85480-33d6-6608-36b8-04449e9fa87f",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Al123_Bosco882_0ac85480-33d6-6608-36b8-04449e9fa87f.json",
+      "fileName": "Al123_Bosco882_0ac85480-33d6-6608-36b8-04449e9fa87f.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:45:09.502Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "2b3c1177-4d7b-79c1-9142-d368d0918944": {
+      "patientId": "2b3c1177-4d7b-79c1-9142-d368d0918944",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Alan320_Jakubowski832_2b3c1177-4d7b-79c1-9142-d368d0918944.json",
+      "fileName": "Alan320_Jakubowski832_2b3c1177-4d7b-79c1-9142-d368d0918944.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:45:10.509Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "c6ff5f40-2a7c-2c3d-ea73-5eff2c96bf7a": {
+      "patientId": "c6ff5f40-2a7c-2c3d-ea73-5eff2c96bf7a",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Alec433_Boehm581_c6ff5f40-2a7c-2c3d-ea73-5eff2c96bf7a.json",
+      "fileName": "Alec433_Boehm581_c6ff5f40-2a7c-2c3d-ea73-5eff2c96bf7a.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:45:16.590Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "6e298d0f-0fa5-fe5c-7681-3524ea10ff40": {
+      "patientId": "6e298d0f-0fa5-fe5c-7681-3524ea10ff40",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Alejandrina481_Homenick806_6e298d0f-0fa5-fe5c-7681-3524ea10ff40.json",
+      "fileName": "Alejandrina481_Homenick806_6e298d0f-0fa5-fe5c-7681-3524ea10ff40.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:45:17.617Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "df46f080-08b9-9959-1553-3916caca3afa": {
+      "patientId": "df46f080-08b9-9959-1553-3916caca3afa",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Alethia102_Valda518_Kuhic920_df46f080-08b9-9959-1553-3916caca3afa.json",
+      "fileName": "Alethia102_Valda518_Kuhic920_df46f080-08b9-9959-1553-3916caca3afa.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:45:24.686Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "1126070f-ec60-fa39-4120-e3bfa2dda018": {
+      "patientId": "1126070f-ec60-fa39-4120-e3bfa2dda018",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Alfonzo975_Wunsch504_1126070f-ec60-fa39-4120-e3bfa2dda018.json",
+      "fileName": "Alfonzo975_Wunsch504_1126070f-ec60-fa39-4120-e3bfa2dda018.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:45:25.996Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "06d30ea0-115e-32d3-d36c-366d1abdb187": {
+      "patientId": "06d30ea0-115e-32d3-d36c-366d1abdb187",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Alicia629_Catalina187_Hernádez343_06d30ea0-115e-32d3-d36c-366d1abdb187.json",
+      "fileName": "Alicia629_Catalina187_Hernádez343_06d30ea0-115e-32d3-d36c-366d1abdb187.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:45:34.763Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "253cb16e-6053-4dc6-0a3e-d9444c19bd75": {
+      "patientId": "253cb16e-6053-4dc6-0a3e-d9444c19bd75",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Alonso270_Hackett68_253cb16e-6053-4dc6-0a3e-d9444c19bd75.json",
+      "fileName": "Alonso270_Hackett68_253cb16e-6053-4dc6-0a3e-d9444c19bd75.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:45:35.593Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "db0803f5-23d0-290e-371e-16b121b070ae": {
+      "patientId": "db0803f5-23d0-290e-371e-16b121b070ae",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Alonso270_Lakin515_db0803f5-23d0-290e-371e-16b121b070ae.json",
+      "fileName": "Alonso270_Lakin515_db0803f5-23d0-290e-371e-16b121b070ae.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:45:36.449Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "ef1b633b-6041-c14f-c4bc-9f238fe6b842": {
+      "patientId": "ef1b633b-6041-c14f-c4bc-9f238fe6b842",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Amber507_Winifred736_Wiegand701_ef1b633b-6041-c14f-c4bc-9f238fe6b842.json",
+      "fileName": "Amber507_Winifred736_Wiegand701_ef1b633b-6041-c14f-c4bc-9f238fe6b842.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:45:37.309Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "ee56f9cf-4a42-e68e-fa84-ff8f88f93991": {
+      "patientId": "ee56f9cf-4a42-e68e-fa84-ff8f88f93991",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Anderson154_Hudson301_ee56f9cf-4a42-e68e-fa84-ff8f88f93991.json",
+      "fileName": "Anderson154_Hudson301_ee56f9cf-4a42-e68e-fa84-ff8f88f93991.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:45:39.198Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "360749f1-b45d-ed7a-de83-a9d5a57343d0": {
+      "patientId": "360749f1-b45d-ed7a-de83-a9d5a57343d0",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Andreas188_Stark857_360749f1-b45d-ed7a-de83-a9d5a57343d0.json",
+      "fileName": "Andreas188_Stark857_360749f1-b45d-ed7a-de83-a9d5a57343d0.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:45:40.243Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "0e7781cc-b5ff-0c81-14ff-57e14eec3b32": {
+      "patientId": "0e7781cc-b5ff-0c81-14ff-57e14eec3b32",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Angel97_Kuphal363_0e7781cc-b5ff-0c81-14ff-57e14eec3b32.json",
+      "fileName": "Angel97_Kuphal363_0e7781cc-b5ff-0c81-14ff-57e14eec3b32.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:45:41.412Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "69ed99c4-d79e-3835-d7e9-c74e61d390c6": {
+      "patientId": "69ed99c4-d79e-3835-d7e9-c74e61d390c6",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Anne636_Molly175_Mertz280_69ed99c4-d79e-3835-d7e9-c74e61d390c6.json",
+      "fileName": "Anne636_Molly175_Mertz280_69ed99c4-d79e-3835-d7e9-c74e61d390c6.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:45:42.103Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "6c0d5245-a8e8-b1c3-f265-27432332e604": {
+      "patientId": "6c0d5245-a8e8-b1c3-f265-27432332e604",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Antwan357_Witting912_6c0d5245-a8e8-b1c3-f265-27432332e604.json",
+      "fileName": "Antwan357_Witting912_6c0d5245-a8e8-b1c3-f265-27432332e604.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:45:43.005Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "046a2bca-0786-5d59-73af-cb8c283b32ca": {
+      "patientId": "046a2bca-0786-5d59-73af-cb8c283b32ca",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Arla414_Angela104_Waters156_046a2bca-0786-5d59-73af-cb8c283b32ca.json",
+      "fileName": "Arla414_Angela104_Waters156_046a2bca-0786-5d59-73af-cb8c283b32ca.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:45:46.485Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "01031670-8519-e824-d66a-c9d40a34575d": {
+      "patientId": "01031670-8519-e824-d66a-c9d40a34575d",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Arlen68_Haag279_01031670-8519-e824-d66a-c9d40a34575d.json",
+      "fileName": "Arlen68_Haag279_01031670-8519-e824-d66a-c9d40a34575d.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:45:49.127Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "bf8453fc-d8dd-5504-d0e3-c6ae0b9c5223": {
+      "patientId": "bf8453fc-d8dd-5504-d0e3-c6ae0b9c5223",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Arlie183_Mante251_bf8453fc-d8dd-5504-d0e3-c6ae0b9c5223.json",
+      "fileName": "Arlie183_Mante251_bf8453fc-d8dd-5504-d0e3-c6ae0b9c5223.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:45:50.088Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "7153a03a-ef15-4dce-6b5b-b9bfe80029c9": {
+      "patientId": "7153a03a-ef15-4dce-6b5b-b9bfe80029c9",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Arnoldo445_Daugherty69_7153a03a-ef15-4dce-6b5b-b9bfe80029c9.json",
+      "fileName": "Arnoldo445_Daugherty69_7153a03a-ef15-4dce-6b5b-b9bfe80029c9.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:45:51.030Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "43fa5837-30b0-2d80-90b7-ecd2f28f032e": {
+      "patientId": "43fa5837-30b0-2d80-90b7-ecd2f28f032e",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/August363_Hartmann983_43fa5837-30b0-2d80-90b7-ecd2f28f032e.json",
+      "fileName": "August363_Hartmann983_43fa5837-30b0-2d80-90b7-ecd2f28f032e.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:45:51.798Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "d92bb139-d42b-5962-adf3-82d27bb0f8a2": {
+      "patientId": "d92bb139-d42b-5962-adf3-82d27bb0f8a2",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Bambi5_Doyle959_d92bb139-d42b-5962-adf3-82d27bb0f8a2.json",
+      "fileName": "Bambi5_Doyle959_d92bb139-d42b-5962-adf3-82d27bb0f8a2.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:45:52.679Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "a682e5cc-9f88-e7b2-1a6d-35e16ea38054": {
+      "patientId": "a682e5cc-9f88-e7b2-1a6d-35e16ea38054",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Barabara924_Bauch723_a682e5cc-9f88-e7b2-1a6d-35e16ea38054.json",
+      "fileName": "Barabara924_Bauch723_a682e5cc-9f88-e7b2-1a6d-35e16ea38054.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:46:03.147Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "c2cf5e63-1b4e-d95a-c5b8-c13d04e50d55": {
+      "patientId": "c2cf5e63-1b4e-d95a-c5b8-c13d04e50d55",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Barton704_Mayer370_c2cf5e63-1b4e-d95a-c5b8-c13d04e50d55.json",
+      "fileName": "Barton704_Mayer370_c2cf5e63-1b4e-d95a-c5b8-c13d04e50d55.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:46:04.995Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "e9ff2335-23d6-4a62-fa42-3e48e98c9931": {
+      "patientId": "e9ff2335-23d6-4a62-fa42-3e48e98c9931",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Beatriz277_Mascareñas995_e9ff2335-23d6-4a62-fa42-3e48e98c9931.json",
+      "fileName": "Beatriz277_Mascareñas995_e9ff2335-23d6-4a62-fa42-3e48e98c9931.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:46:05.746Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "df04fd97-635a-b7a3-a849-43cff158f14f": {
+      "patientId": "df04fd97-635a-b7a3-a849-43cff158f14f",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Beau391_Gaylord332_df04fd97-635a-b7a3-a849-43cff158f14f.json",
+      "fileName": "Beau391_Gaylord332_df04fd97-635a-b7a3-a849-43cff158f14f.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:46:06.413Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "16313eee-627a-ec21-96c5-395a2e8b6b98": {
+      "patientId": "16313eee-627a-ec21-96c5-395a2e8b6b98",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Benito209_Briseño329_16313eee-627a-ec21-96c5-395a2e8b6b98.json",
+      "fileName": "Benito209_Briseño329_16313eee-627a-ec21-96c5-395a2e8b6b98.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:46:07.856Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "49422b6d-2a5e-051e-7011-6fe9e8aea215": {
+      "patientId": "49422b6d-2a5e-051e-7011-6fe9e8aea215",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Benito209_Caballero789_49422b6d-2a5e-051e-7011-6fe9e8aea215.json",
+      "fileName": "Benito209_Caballero789_49422b6d-2a5e-051e-7011-6fe9e8aea215.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:46:08.586Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "c3962dac-b893-50e6-72ce-05716116430d": {
+      "patientId": "c3962dac-b893-50e6-72ce-05716116430d",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Bennett146_O'Connell601_c3962dac-b893-50e6-72ce-05716116430d.json",
+      "fileName": "Bennett146_O'Connell601_c3962dac-b893-50e6-72ce-05716116430d.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:46:09.819Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "c38cb7d6-0e14-9831-24d5-ff4f2c34343d": {
+      "patientId": "c38cb7d6-0e14-9831-24d5-ff4f2c34343d",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Bernadette714_Marylynn944_Feil794_c38cb7d6-0e14-9831-24d5-ff4f2c34343d.json",
+      "fileName": "Bernadette714_Marylynn944_Feil794_c38cb7d6-0e14-9831-24d5-ff4f2c34343d.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:46:13.641Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "b5dbf914-04c3-f8f0-7629-241c082da01f": {
+      "patientId": "b5dbf914-04c3-f8f0-7629-241c082da01f",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Bernardo699_Becerra708_b5dbf914-04c3-f8f0-7629-241c082da01f.json",
+      "fileName": "Bernardo699_Becerra708_b5dbf914-04c3-f8f0-7629-241c082da01f.json",
+      "status": "failed",
+      "timestamp": "2026-01-04T17:46:20.858Z",
+      "error": "File too large",
+      "isPatientBundle": true
+    },
+    "e0f34502-211a-84c9-3fdb-03ea8eb92c10": {
+      "patientId": "e0f34502-211a-84c9-3fdb-03ea8eb92c10",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Beverley336_Morissette863_e0f34502-211a-84c9-3fdb-03ea8eb92c10.json",
+      "fileName": "Beverley336_Morissette863_e0f34502-211a-84c9-3fdb-03ea8eb92c10.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:46:21.717Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "d3eb7364-ac11-a0a1-3cb9-9e6bb7187283": {
+      "patientId": "d3eb7364-ac11-a0a1-3cb9-9e6bb7187283",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Billy698_Hoeger474_d3eb7364-ac11-a0a1-3cb9-9e6bb7187283.json",
+      "fileName": "Billy698_Hoeger474_d3eb7364-ac11-a0a1-3cb9-9e6bb7187283.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:46:22.363Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "c11ba53a-2168-aca2-ad2c-4b83181c9445": {
+      "patientId": "c11ba53a-2168-aca2-ad2c-4b83181c9445",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Bobbie849_Lehner980_c11ba53a-2168-aca2-ad2c-4b83181c9445.json",
+      "fileName": "Bobbie849_Lehner980_c11ba53a-2168-aca2-ad2c-4b83181c9445.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:46:23.125Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "e57c87d4-7a2c-a940-2770-8960e99b7cde": {
+      "patientId": "e57c87d4-7a2c-a940-2770-8960e99b7cde",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Bobette685_Clara183_Hackett68_e57c87d4-7a2c-a940-2770-8960e99b7cde.json",
+      "fileName": "Bobette685_Clara183_Hackett68_e57c87d4-7a2c-a940-2770-8960e99b7cde.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:46:23.867Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "2cb96a17-3c59-ef70-74f2-97f20ee45c49": {
+      "patientId": "2cb96a17-3c59-ef70-74f2-97f20ee45c49",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Boyce638_Dickinson688_2cb96a17-3c59-ef70-74f2-97f20ee45c49.json",
+      "fileName": "Boyce638_Dickinson688_2cb96a17-3c59-ef70-74f2-97f20ee45c49.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:46:24.870Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "f269b108-7bd3-6ff6-fcb2-5bdfd823ccc2": {
+      "patientId": "f269b108-7bd3-6ff6-fcb2-5bdfd823ccc2",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Brendan864_Streich926_f269b108-7bd3-6ff6-fcb2-5bdfd823ccc2.json",
+      "fileName": "Brendan864_Streich926_f269b108-7bd3-6ff6-fcb2-5bdfd823ccc2.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:46:30.120Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "f2bd85c7-1c92-5ff7-a771-8943154804a1": {
+      "patientId": "f2bd85c7-1c92-5ff7-a771-8943154804a1",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Brent147_Schneider199_f2bd85c7-1c92-5ff7-a771-8943154804a1.json",
+      "fileName": "Brent147_Schneider199_f2bd85c7-1c92-5ff7-a771-8943154804a1.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:46:36.500Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "091b555d-f5ad-ab74-8049-6c39f937357e": {
+      "patientId": "091b555d-f5ad-ab74-8049-6c39f937357e",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Brenton674_Kunde533_091b555d-f5ad-ab74-8049-6c39f937357e.json",
+      "fileName": "Brenton674_Kunde533_091b555d-f5ad-ab74-8049-6c39f937357e.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:46:37.251Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "6ba6bbb7-3c65-8aac-2df1-6867d69290c5": {
+      "patientId": "6ba6bbb7-3c65-8aac-2df1-6867d69290c5",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Britt177_Lynch190_6ba6bbb7-3c65-8aac-2df1-6867d69290c5.json",
+      "fileName": "Britt177_Lynch190_6ba6bbb7-3c65-8aac-2df1-6867d69290c5.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:46:38.069Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "ad0c68b2-182c-6274-d35c-fa00b8b75d88": {
+      "patientId": "ad0c68b2-182c-6274-d35c-fa00b8b75d88",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Britteny287_Emmerich580_ad0c68b2-182c-6274-d35c-fa00b8b75d88.json",
+      "fileName": "Britteny287_Emmerich580_ad0c68b2-182c-6274-d35c-fa00b8b75d88.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:46:39.466Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "57eb061d-a093-7e55-32da-354ab59cf83c": {
+      "patientId": "57eb061d-a093-7e55-32da-354ab59cf83c",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Bronwyn77_Mariann762_Runolfsdottir785_57eb061d-a093-7e55-32da-354ab59cf83c.json",
+      "fileName": "Bronwyn77_Mariann762_Runolfsdottir785_57eb061d-a093-7e55-32da-354ab59cf83c.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:46:40.147Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "4300ee85-2856-15a8-175a-1226eb3b14d3": {
+      "patientId": "4300ee85-2856-15a8-175a-1226eb3b14d3",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Bruno518_Baumbach677_4300ee85-2856-15a8-175a-1226eb3b14d3.json",
+      "fileName": "Bruno518_Baumbach677_4300ee85-2856-15a8-175a-1226eb3b14d3.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:46:41.509Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "9fbdfe77-3a67-d491-98b9-29b901a8a914": {
+      "patientId": "9fbdfe77-3a67-d491-98b9-29b901a8a914",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Brynn361_Camelia346_Crona259_9fbdfe77-3a67-d491-98b9-29b901a8a914.json",
+      "fileName": "Brynn361_Camelia346_Crona259_9fbdfe77-3a67-d491-98b9-29b901a8a914.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:46:44.234Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "f80d9d7c-4a27-f821-ac49-70719f594e01": {
+      "patientId": "f80d9d7c-4a27-f821-ac49-70719f594e01",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Buck819_Kreiger457_f80d9d7c-4a27-f821-ac49-70719f594e01.json",
+      "fileName": "Buck819_Kreiger457_f80d9d7c-4a27-f821-ac49-70719f594e01.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:46:47.092Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "3d76c40f-8c2e-9832-e5b8-0a8aad1bd492": {
+      "patientId": "3d76c40f-8c2e-9832-e5b8-0a8aad1bd492",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Buena501_Evonne919_Berge125_3d76c40f-8c2e-9832-e5b8-0a8aad1bd492.json",
+      "fileName": "Buena501_Evonne919_Berge125_3d76c40f-8c2e-9832-e5b8-0a8aad1bd492.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:46:48.825Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "84bc2c38-eb28-003b-9e1f-e148a0140288": {
+      "patientId": "84bc2c38-eb28-003b-9e1f-e148a0140288",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Burl285_Hoppe518_84bc2c38-eb28-003b-9e1f-e148a0140288.json",
+      "fileName": "Burl285_Hoppe518_84bc2c38-eb28-003b-9e1f-e148a0140288.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:46:50.242Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "fe65dcb6-6c1c-a743-af09-2c30fd7050e4": {
+      "patientId": "fe65dcb6-6c1c-a743-af09-2c30fd7050e4",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Burt293_Haley279_fe65dcb6-6c1c-a743-af09-2c30fd7050e4.json",
+      "fileName": "Burt293_Haley279_fe65dcb6-6c1c-a743-af09-2c30fd7050e4.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:46:51.005Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "dacd61a3-6ce5-39bb-38f9-51295de76a74": {
+      "patientId": "dacd61a3-6ce5-39bb-38f9-51295de76a74",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Carlos172_Páez758_dacd61a3-6ce5-39bb-38f9-51295de76a74.json",
+      "fileName": "Carlos172_Páez758_dacd61a3-6ce5-39bb-38f9-51295de76a74.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:46:51.548Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "0f9c673a-4105-9155-0901-77ec75312ab0": {
+      "patientId": "0f9c673a-4105-9155-0901-77ec75312ab0",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Carlton317_Mante251_0f9c673a-4105-9155-0901-77ec75312ab0.json",
+      "fileName": "Carlton317_Mante251_0f9c673a-4105-9155-0901-77ec75312ab0.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:46:52.563Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "f96d08ce-10df-946a-6bdb-1c3fa2d247e9": {
+      "patientId": "f96d08ce-10df-946a-6bdb-1c3fa2d247e9",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Carmelo33_Schoen8_f96d08ce-10df-946a-6bdb-1c3fa2d247e9.json",
+      "fileName": "Carmelo33_Schoen8_f96d08ce-10df-946a-6bdb-1c3fa2d247e9.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:47:03.567Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "90fb156f-c147-4d4b-1927-2ca0a400d51d": {
+      "patientId": "90fb156f-c147-4d4b-1927-2ca0a400d51d",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Caroll955_Dare640_90fb156f-c147-4d4b-1927-2ca0a400d51d.json",
+      "fileName": "Caroll955_Dare640_90fb156f-c147-4d4b-1927-2ca0a400d51d.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:47:04.348Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "b76c8cac-c985-2802-9bc8-b9850b246d25": {
+      "patientId": "b76c8cac-c985-2802-9bc8-b9850b246d25",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Carson894_Kirlin939_b76c8cac-c985-2802-9bc8-b9850b246d25.json",
+      "fileName": "Carson894_Kirlin939_b76c8cac-c985-2802-9bc8-b9850b246d25.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:47:09.421Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "0a223bb9-88c3-6293-9393-bc2562274c99": {
+      "patientId": "0a223bb9-88c3-6293-9393-bc2562274c99",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Carter549_Cronin387_0a223bb9-88c3-6293-9393-bc2562274c99.json",
+      "fileName": "Carter549_Cronin387_0a223bb9-88c3-6293-9393-bc2562274c99.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:47:11.069Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "90970d35-46b5-2e89-2ae7-bc027d6b782b": {
+      "patientId": "90970d35-46b5-2e89-2ae7-bc027d6b782b",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Cary869_Feil794_90970d35-46b5-2e89-2ae7-bc027d6b782b.json",
+      "fileName": "Cary869_Feil794_90970d35-46b5-2e89-2ae7-bc027d6b782b.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:47:16.896Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "448427ac-17e3-3aa7-2e8c-932a18886580": {
+      "patientId": "448427ac-17e3-3aa7-2e8c-932a18886580",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Cary869_Runolfsson901_448427ac-17e3-3aa7-2e8c-932a18886580.json",
+      "fileName": "Cary869_Runolfsson901_448427ac-17e3-3aa7-2e8c-932a18886580.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:47:17.737Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "6ad588e5-f3c8-b242-5aa1-95e5e2666485": {
+      "patientId": "6ad588e5-f3c8-b242-5aa1-95e5e2666485",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Cathryn51_Herzog843_6ad588e5-f3c8-b242-5aa1-95e5e2666485.json",
+      "fileName": "Cathryn51_Herzog843_6ad588e5-f3c8-b242-5aa1-95e5e2666485.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:47:18.357Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "d783a627-dfde-cb0b-3dd8-75081f5ac7b0": {
+      "patientId": "d783a627-dfde-cb0b-3dd8-75081f5ac7b0",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Cecilia788_Gamez720_d783a627-dfde-cb0b-3dd8-75081f5ac7b0.json",
+      "fileName": "Cecilia788_Gamez720_d783a627-dfde-cb0b-3dd8-75081f5ac7b0.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:47:22.833Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "52d2033f-978b-6817-c668-8a3640c59528": {
+      "patientId": "52d2033f-978b-6817-c668-8a3640c59528",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Cesar434_Moen819_52d2033f-978b-6817-c668-8a3640c59528.json",
+      "fileName": "Cesar434_Moen819_52d2033f-978b-6817-c668-8a3640c59528.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:47:23.501Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "71c9f230-dc59-96c7-2d4e-3083cd164f57": {
+      "patientId": "71c9f230-dc59-96c7-2d4e-3083cd164f57",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Chantel847_Hermann103_71c9f230-dc59-96c7-2d4e-3083cd164f57.json",
+      "fileName": "Chantel847_Hermann103_71c9f230-dc59-96c7-2d4e-3083cd164f57.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:47:24.283Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "86f38bc0-0dc9-674a-bdd2-b75238743588": {
+      "patientId": "86f38bc0-0dc9-674a-bdd2-b75238743588",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Charlene806_Evalyn273_Robel940_86f38bc0-0dc9-674a-bdd2-b75238743588.json",
+      "fileName": "Charlene806_Evalyn273_Robel940_86f38bc0-0dc9-674a-bdd2-b75238743588.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:47:25.043Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "aee9005d-bc78-2bd7-3878-1b285ab90035": {
+      "patientId": "aee9005d-bc78-2bd7-3878-1b285ab90035",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Chas63_Nicolas769_aee9005d-bc78-2bd7-3878-1b285ab90035.json",
+      "fileName": "Chas63_Nicolas769_aee9005d-bc78-2bd7-3878-1b285ab90035.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:47:25.973Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "911059ac-7051-3ec9-698f-2169a51f801e": {
+      "patientId": "911059ac-7051-3ec9-698f-2169a51f801e",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Chaya236_Pamella8_Johnson679_911059ac-7051-3ec9-698f-2169a51f801e.json",
+      "fileName": "Chaya236_Pamella8_Johnson679_911059ac-7051-3ec9-698f-2169a51f801e.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:47:27.172Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "fa739a56-ae5b-2531-2380-912f0d5c47e9": {
+      "patientId": "fa739a56-ae5b-2531-2380-912f0d5c47e9",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Chloe501_Ankunding277_fa739a56-ae5b-2531-2380-912f0d5c47e9.json",
+      "fileName": "Chloe501_Ankunding277_fa739a56-ae5b-2531-2380-912f0d5c47e9.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:47:28.098Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "b3cce30d-5e1d-dac4-e37b-126da43a7650": {
+      "patientId": "b3cce30d-5e1d-dac4-e37b-126da43a7650",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Chris95_Witting912_b3cce30d-5e1d-dac4-e37b-126da43a7650.json",
+      "fileName": "Chris95_Witting912_b3cce30d-5e1d-dac4-e37b-126da43a7650.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:47:28.781Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "0108df43-ca49-5078-76c2-6ce347e08e23": {
+      "patientId": "0108df43-ca49-5078-76c2-6ce347e08e23",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Christie481_Justa309_Beahan375_0108df43-ca49-5078-76c2-6ce347e08e23.json",
+      "fileName": "Christie481_Justa309_Beahan375_0108df43-ca49-5078-76c2-6ce347e08e23.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:47:30.054Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "5484aa2a-49d3-d7ed-218f-c135a575a933": {
+      "patientId": "5484aa2a-49d3-d7ed-218f-c135a575a933",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Chrystal576_Loriann967_Kautzer186_5484aa2a-49d3-d7ed-218f-c135a575a933.json",
+      "fileName": "Chrystal576_Loriann967_Kautzer186_5484aa2a-49d3-d7ed-218f-c135a575a933.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:47:30.755Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "4f6b166c-a198-7fdd-0509-5c0710efca93": {
+      "patientId": "4f6b166c-a198-7fdd-0509-5c0710efca93",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Claretta294_Martha161_Dooley940_4f6b166c-a198-7fdd-0509-5c0710efca93.json",
+      "fileName": "Claretta294_Martha161_Dooley940_4f6b166c-a198-7fdd-0509-5c0710efca93.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:47:32.360Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "9734093e-17f6-cc91-f6bd-e100b156d1f1": {
+      "patientId": "9734093e-17f6-cc91-f6bd-e100b156d1f1",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Claudio955_Bernal586_9734093e-17f6-cc91-f6bd-e100b156d1f1.json",
+      "fileName": "Claudio955_Bernal586_9734093e-17f6-cc91-f6bd-e100b156d1f1.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:47:34.469Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "b162a7fc-5431-86f8-d0a3-c73df1c0b553": {
+      "patientId": "b162a7fc-5431-86f8-d0a3-c73df1c0b553",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Claudio955_Dooley940_b162a7fc-5431-86f8-d0a3-c73df1c0b553.json",
+      "fileName": "Claudio955_Dooley940_b162a7fc-5431-86f8-d0a3-c73df1c0b553.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:47:35.288Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "624562be-fae4-c696-96a1-068f0cda2925": {
+      "patientId": "624562be-fae4-c696-96a1-068f0cda2925",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Cody889_Cummings51_624562be-fae4-c696-96a1-068f0cda2925.json",
+      "fileName": "Cody889_Cummings51_624562be-fae4-c696-96a1-068f0cda2925.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:47:38.164Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "07529d3b-e4a1-06f5-f7b5-c1c2fbe25a86": {
+      "patientId": "07529d3b-e4a1-06f5-f7b5-c1c2fbe25a86",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Colleen54_Marti99_Halvorson124_07529d3b-e4a1-06f5-f7b5-c1c2fbe25a86.json",
+      "fileName": "Colleen54_Marti99_Halvorson124_07529d3b-e4a1-06f5-f7b5-c1c2fbe25a86.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:47:38.883Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "ae5a31d2-8a2b-baf1-be2e-40e426d7216a": {
+      "patientId": "ae5a31d2-8a2b-baf1-be2e-40e426d7216a",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Cornelius968_Jacobi462_ae5a31d2-8a2b-baf1-be2e-40e426d7216a.json",
+      "fileName": "Cornelius968_Jacobi462_ae5a31d2-8a2b-baf1-be2e-40e426d7216a.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:47:40.301Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "750574b4-9f3c-2e42-05aa-34e0d550d7c7": {
+      "patientId": "750574b4-9f3c-2e42-05aa-34e0d550d7c7",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Corrie32_Halvorson124_750574b4-9f3c-2e42-05aa-34e0d550d7c7.json",
+      "fileName": "Corrie32_Halvorson124_750574b4-9f3c-2e42-05aa-34e0d550d7c7.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:47:41.117Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "ce7b6679-b75f-a699-0464-2d13469cff58": {
+      "patientId": "ce7b6679-b75f-a699-0464-2d13469cff58",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Cory323_Schuster709_ce7b6679-b75f-a699-0464-2d13469cff58.json",
+      "fileName": "Cory323_Schuster709_ce7b6679-b75f-a699-0464-2d13469cff58.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:47:45.817Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "4422e1c8-64fa-c302-8923-9008680e9ed2": {
+      "patientId": "4422e1c8-64fa-c302-8923-9008680e9ed2",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Curtis94_Mraz590_4422e1c8-64fa-c302-8923-9008680e9ed2.json",
+      "fileName": "Curtis94_Mraz590_4422e1c8-64fa-c302-8923-9008680e9ed2.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:47:47.289Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "7c94454c-1a5b-9300-cd33-8c066500c840": {
+      "patientId": "7c94454c-1a5b-9300-cd33-8c066500c840",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Damon455_Murray856_7c94454c-1a5b-9300-cd33-8c066500c840.json",
+      "fileName": "Damon455_Murray856_7c94454c-1a5b-9300-cd33-8c066500c840.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:47:48.074Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "05450e6e-bc2e-36d7-70b1-e8c16b3a1373": {
+      "patientId": "05450e6e-bc2e-36d7-70b1-e8c16b3a1373",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Daniella68_Faith802_Cummings51_05450e6e-bc2e-36d7-70b1-e8c16b3a1373.json",
+      "fileName": "Daniella68_Faith802_Cummings51_05450e6e-bc2e-36d7-70b1-e8c16b3a1373.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:47:48.810Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "5eb7c687-7e1e-0947-52cf-b6c627a33be4": {
+      "patientId": "5eb7c687-7e1e-0947-52cf-b6c627a33be4",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Danielle72_Carita426_Braun514_5eb7c687-7e1e-0947-52cf-b6c627a33be4.json",
+      "fileName": "Danielle72_Carita426_Braun514_5eb7c687-7e1e-0947-52cf-b6c627a33be4.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:47:49.932Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "fecd4c34-4d79-8d21-3753-d92b78ae494a": {
+      "patientId": "fecd4c34-4d79-8d21-3753-d92b78ae494a",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Danika134_Jillian231_Luettgen772_fecd4c34-4d79-8d21-3753-d92b78ae494a.json",
+      "fileName": "Danika134_Jillian231_Luettgen772_fecd4c34-4d79-8d21-3753-d92b78ae494a.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:47:51.020Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "d4563a7c-c06c-ab07-3d6a-3b9ab25ebe87": {
+      "patientId": "d4563a7c-c06c-ab07-3d6a-3b9ab25ebe87",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Darin74_Wolff180_d4563a7c-c06c-ab07-3d6a-3b9ab25ebe87.json",
+      "fileName": "Darin74_Wolff180_d4563a7c-c06c-ab07-3d6a-3b9ab25ebe87.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:47:51.833Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "6eba44a3-a6b8-bb97-7710-eb53afcc5d13": {
+      "patientId": "6eba44a3-a6b8-bb97-7710-eb53afcc5d13",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Darrin898_Strosin214_6eba44a3-a6b8-bb97-7710-eb53afcc5d13.json",
+      "fileName": "Darrin898_Strosin214_6eba44a3-a6b8-bb97-7710-eb53afcc5d13.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:47:52.893Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "0a656b8c-a587-807f-af50-3b7c9131b04f": {
+      "patientId": "0a656b8c-a587-807f-af50-3b7c9131b04f",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Darron84_Schumm995_0a656b8c-a587-807f-af50-3b7c9131b04f.json",
+      "fileName": "Darron84_Schumm995_0a656b8c-a587-807f-af50-3b7c9131b04f.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:47:53.708Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "f3fa7e03-f35b-e7c7-2ffb-e62e9f208874": {
+      "patientId": "f3fa7e03-f35b-e7c7-2ffb-e62e9f208874",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Deidre679_Kate239_Kuphal363_f3fa7e03-f35b-e7c7-2ffb-e62e9f208874.json",
+      "fileName": "Deidre679_Kate239_Kuphal363_f3fa7e03-f35b-e7c7-2ffb-e62e9f208874.json",
+      "status": "failed",
+      "timestamp": "2026-01-04T17:48:06.773Z",
+      "error": "File too large",
+      "isPatientBundle": true
+    },
+    "e8679e94-0f0d-1794-d40a-a015c457b134": {
+      "patientId": "e8679e94-0f0d-1794-d40a-a015c457b134",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Del587_Sauer652_e8679e94-0f0d-1794-d40a-a015c457b134.json",
+      "fileName": "Del587_Sauer652_e8679e94-0f0d-1794-d40a-a015c457b134.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:48:15.112Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "453300ce-681a-0f2a-b1f3-09619fc4bc37": {
+      "patientId": "453300ce-681a-0f2a-b1f3-09619fc4bc37",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Delmy607_Diedra595_Wiegand701_453300ce-681a-0f2a-b1f3-09619fc4bc37.json",
+      "fileName": "Delmy607_Diedra595_Wiegand701_453300ce-681a-0f2a-b1f3-09619fc4bc37.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:48:15.835Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "be1285dd-2cac-6812-a956-f6df11d94fcd": {
+      "patientId": "be1285dd-2cac-6812-a956-f6df11d94fcd",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Delores12_Felice694_Mosciski958_be1285dd-2cac-6812-a956-f6df11d94fcd.json",
+      "fileName": "Delores12_Felice694_Mosciski958_be1285dd-2cac-6812-a956-f6df11d94fcd.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:48:16.431Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "6d8b8069-a991-a173-a55f-561c59e65135": {
+      "patientId": "6d8b8069-a991-a173-a55f-561c59e65135",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Denese626_Sharilyn202_Abshire638_6d8b8069-a991-a173-a55f-561c59e65135.json",
+      "fileName": "Denese626_Sharilyn202_Abshire638_6d8b8069-a991-a173-a55f-561c59e65135.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:48:17.525Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "5d70df5a-fa2a-eb2f-4382-0e64c857d500": {
+      "patientId": "5d70df5a-fa2a-eb2f-4382-0e64c857d500",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Dino214_Welch179_5d70df5a-fa2a-eb2f-4382-0e64c857d500.json",
+      "fileName": "Dino214_Welch179_5d70df5a-fa2a-eb2f-4382-0e64c857d500.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:48:18.328Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "03d20e6b-1de6-fca9-32ac-40dfe9fbcf71": {
+      "patientId": "03d20e6b-1de6-fca9-32ac-40dfe9fbcf71",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Domingo513_Torp761_03d20e6b-1de6-fca9-32ac-40dfe9fbcf71.json",
+      "fileName": "Domingo513_Torp761_03d20e6b-1de6-fca9-32ac-40dfe9fbcf71.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:48:21.012Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "dc065451-0272-80a4-05b6-988118ecebaf": {
+      "patientId": "dc065451-0272-80a4-05b6-988118ecebaf",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Don899_Bailey598_dc065451-0272-80a4-05b6-988118ecebaf.json",
+      "fileName": "Don899_Bailey598_dc065451-0272-80a4-05b6-988118ecebaf.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:48:21.639Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "3117869d-a9e5-5cfa-2aa2-ff0616ac1362": {
+      "patientId": "3117869d-a9e5-5cfa-2aa2-ff0616ac1362",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Don899_Schamberger479_3117869d-a9e5-5cfa-2aa2-ff0616ac1362.json",
+      "fileName": "Don899_Schamberger479_3117869d-a9e5-5cfa-2aa2-ff0616ac1362.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:48:23.028Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "013afea8-b1ed-55f5-6d09-feaa6e7bb461": {
+      "patientId": "013afea8-b1ed-55f5-6d09-feaa6e7bb461",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Donnie175_Bogan287_013afea8-b1ed-55f5-6d09-feaa6e7bb461.json",
+      "fileName": "Donnie175_Bogan287_013afea8-b1ed-55f5-6d09-feaa6e7bb461.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:48:23.800Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "daf52a6d-dcd2-65af-7041-6f0bdb420557": {
+      "patientId": "daf52a6d-dcd2-65af-7041-6f0bdb420557",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Duane703_Witting912_daf52a6d-dcd2-65af-7041-6f0bdb420557.json",
+      "fileName": "Duane703_Witting912_daf52a6d-dcd2-65af-7041-6f0bdb420557.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:48:24.460Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "14596913-68be-6c7a-1511-f6aebb92bce9": {
+      "patientId": "14596913-68be-6c7a-1511-f6aebb92bce9",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Dustin31_Homenick806_14596913-68be-6c7a-1511-f6aebb92bce9.json",
+      "fileName": "Dustin31_Homenick806_14596913-68be-6c7a-1511-f6aebb92bce9.json",
+      "status": "failed",
+      "timestamp": "2026-01-04T17:48:31.071Z",
+      "error": "File too large",
+      "isPatientBundle": true
+    },
+    "986bc9d9-2294-2221-6914-7b7db4e98d1e": {
+      "patientId": "986bc9d9-2294-2221-6914-7b7db4e98d1e",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Efren426_Bins636_986bc9d9-2294-2221-6914-7b7db4e98d1e.json",
+      "fileName": "Efren426_Bins636_986bc9d9-2294-2221-6914-7b7db4e98d1e.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:48:32.000Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "6db3074a-7551-9ed4-52f3-da319c303bb5": {
+      "patientId": "6db3074a-7551-9ed4-52f3-da319c303bb5",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Elia719_Chiquita638_Buckridge80_6db3074a-7551-9ed4-52f3-da319c303bb5.json",
+      "fileName": "Elia719_Chiquita638_Buckridge80_6db3074a-7551-9ed4-52f3-da319c303bb5.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:48:34.521Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "1ff5c8bc-bc1b-03a3-a39d-3b0de8bc3b1d": {
+      "patientId": "1ff5c8bc-bc1b-03a3-a39d-3b0de8bc3b1d",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Elidia194_McKenzie376_1ff5c8bc-bc1b-03a3-a39d-3b0de8bc3b1d.json",
+      "fileName": "Elidia194_McKenzie376_1ff5c8bc-bc1b-03a3-a39d-3b0de8bc3b1d.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:48:35.898Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "34fbbf1f-e7c7-683b-c584-284ee259d1ae": {
+      "patientId": "34fbbf1f-e7c7-683b-c584-284ee259d1ae",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Elliot577_Waelchi213_34fbbf1f-e7c7-683b-c584-284ee259d1ae.json",
+      "fileName": "Elliot577_Waelchi213_34fbbf1f-e7c7-683b-c584-284ee259d1ae.json",
+      "status": "failed",
+      "timestamp": "2026-01-04T17:48:42.654Z",
+      "error": "File too large",
+      "isPatientBundle": true
+    },
+    "96a635bb-1301-4fc7-d514-1e452c585b6a": {
+      "patientId": "96a635bb-1301-4fc7-d514-1e452c585b6a",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Elna874_Krajcik437_96a635bb-1301-4fc7-d514-1e452c585b6a.json",
+      "fileName": "Elna874_Krajcik437_96a635bb-1301-4fc7-d514-1e452c585b6a.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:48:45.031Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "e71dcca3-4169-a4e4-3cd3-0f1f5a80de6b": {
+      "patientId": "e71dcca3-4169-a4e4-3cd3-0f1f5a80de6b",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Elvia127_Caren429_Marks830_e71dcca3-4169-a4e4-3cd3-0f1f5a80de6b.json",
+      "fileName": "Elvia127_Caren429_Marks830_e71dcca3-4169-a4e4-3cd3-0f1f5a80de6b.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:48:46.278Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "53262f1c-c747-2e5c-a4fa-120935b38923": {
+      "patientId": "53262f1c-c747-2e5c-a4fa-120935b38923",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Elwood28_Hagenes547_53262f1c-c747-2e5c-a4fa-120935b38923.json",
+      "fileName": "Elwood28_Hagenes547_53262f1c-c747-2e5c-a4fa-120935b38923.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:48:47.138Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "03e51a3b-42a6-b5f6-6d0d-eab141c809f2": {
+      "patientId": "03e51a3b-42a6-b5f6-6d0d-eab141c809f2",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Emanuel231_Schneider199_03e51a3b-42a6-b5f6-6d0d-eab141c809f2.json",
+      "fileName": "Emanuel231_Schneider199_03e51a3b-42a6-b5f6-6d0d-eab141c809f2.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:48:49.153Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "d4502991-887d-244b-69c2-e4d1280d51d7": {
+      "patientId": "d4502991-887d-244b-69c2-e4d1280d51d7",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Emilio417_Stoltenberg489_d4502991-887d-244b-69c2-e4d1280d51d7.json",
+      "fileName": "Emilio417_Stoltenberg489_d4502991-887d-244b-69c2-e4d1280d51d7.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:48:50.457Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "b71f8f14-9a2d-21da-5d7c-f6493f92dd46": {
+      "patientId": "b71f8f14-9a2d-21da-5d7c-f6493f92dd46",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Eric487_McKenzie376_b71f8f14-9a2d-21da-5d7c-f6493f92dd46.json",
+      "fileName": "Eric487_McKenzie376_b71f8f14-9a2d-21da-5d7c-f6493f92dd46.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:48:51.566Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "59bdc474-36f0-b8a8-749d-7841f32fd769": {
+      "patientId": "59bdc474-36f0-b8a8-749d-7841f32fd769",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Erline657_Parker433_59bdc474-36f0-b8a8-749d-7841f32fd769.json",
+      "fileName": "Erline657_Parker433_59bdc474-36f0-b8a8-749d-7841f32fd769.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:48:52.615Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "355c829d-5e6f-b607-d383-42eced539b8b": {
+      "patientId": "355c829d-5e6f-b607-d383-42eced539b8b",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Ervin886_Blick895_355c829d-5e6f-b607-d383-42eced539b8b.json",
+      "fileName": "Ervin886_Blick895_355c829d-5e6f-b607-d383-42eced539b8b.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:48:53.385Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "01bc243f-7229-5c7e-0cc6-c32abaf41f12": {
+      "patientId": "01bc243f-7229-5c7e-0cc6-c32abaf41f12",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Esperanza675_María_Teresa440_Armendáriz135_01bc243f-7229-5c7e-0cc6-c32abaf41f12.json",
+      "fileName": "Esperanza675_María_Teresa440_Armendáriz135_01bc243f-7229-5c7e-0cc6-c32abaf41f12.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:48:54.498Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "e3aa93eb-f77b-4172-1281-c6d5cad00e7a": {
+      "patientId": "e3aa93eb-f77b-4172-1281-c6d5cad00e7a",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Estela596_Laura391_Delacrúz637_e3aa93eb-f77b-4172-1281-c6d5cad00e7a.json",
+      "fileName": "Estela596_Laura391_Delacrúz637_e3aa93eb-f77b-4172-1281-c6d5cad00e7a.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:48:55.696Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "6199a47d-6587-a2cd-fe42-79a3502c942c": {
+      "patientId": "6199a47d-6587-a2cd-fe42-79a3502c942c",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Eufemia350_Evon528_Kozey370_6199a47d-6587-a2cd-fe42-79a3502c942c.json",
+      "fileName": "Eufemia350_Evon528_Kozey370_6199a47d-6587-a2cd-fe42-79a3502c942c.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:48:56.708Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "840222dd-711b-19fc-5915-592c32c657b8": {
+      "patientId": "840222dd-711b-19fc-5915-592c32c657b8",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Evelia928_Hallie315_Brown30_840222dd-711b-19fc-5915-592c32c657b8.json",
+      "fileName": "Evelia928_Hallie315_Brown30_840222dd-711b-19fc-5915-592c32c657b8.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:48:57.293Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "b7517d72-5f5a-0bfc-1807-b9a5436baea4": {
+      "patientId": "b7517d72-5f5a-0bfc-1807-b9a5436baea4",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Evelia928_Jayne73_Bayer639_b7517d72-5f5a-0bfc-1807-b9a5436baea4.json",
+      "fileName": "Evelia928_Jayne73_Bayer639_b7517d72-5f5a-0bfc-1807-b9a5436baea4.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:48:58.282Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "88746651-d041-5946-e1ea-0a659fdabddf": {
+      "patientId": "88746651-d041-5946-e1ea-0a659fdabddf",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Evita885_Sha84_Hyatt152_88746651-d041-5946-e1ea-0a659fdabddf.json",
+      "fileName": "Evita885_Sha84_Hyatt152_88746651-d041-5946-e1ea-0a659fdabddf.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:48:58.975Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "dd51c7cb-7f93-b801-c145-08e43ce8379b": {
+      "patientId": "dd51c7cb-7f93-b801-c145-08e43ce8379b",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Felisha640_Kling921_dd51c7cb-7f93-b801-c145-08e43ce8379b.json",
+      "fileName": "Felisha640_Kling921_dd51c7cb-7f93-b801-c145-08e43ce8379b.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:48:59.985Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "5f79179b-53de-ebb7-351c-d7f6bdb3f368": {
+      "patientId": "5f79179b-53de-ebb7-351c-d7f6bdb3f368",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Felton646_Muller251_5f79179b-53de-ebb7-351c-d7f6bdb3f368.json",
+      "fileName": "Felton646_Muller251_5f79179b-53de-ebb7-351c-d7f6bdb3f368.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:49:00.719Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "ba8d6f9a-37f9-8012-4332-ca9aa74abe0a": {
+      "patientId": "ba8d6f9a-37f9-8012-4332-ca9aa74abe0a",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Franklyn361_Morissette863_ba8d6f9a-37f9-8012-4332-ca9aa74abe0a.json",
+      "fileName": "Franklyn361_Morissette863_ba8d6f9a-37f9-8012-4332-ca9aa74abe0a.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:49:01.380Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "71f71783-ff29-9476-c60d-e22a10874b4b": {
+      "patientId": "71f71783-ff29-9476-c60d-e22a10874b4b",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Freeman822_Nienow652_71f71783-ff29-9476-c60d-e22a10874b4b.json",
+      "fileName": "Freeman822_Nienow652_71f71783-ff29-9476-c60d-e22a10874b4b.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:49:02.843Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "259b2dfb-b997-a9fc-5c1c-57a49852a8da": {
+      "patientId": "259b2dfb-b997-a9fc-5c1c-57a49852a8da",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Freeman822_Ruecker817_259b2dfb-b997-a9fc-5c1c-57a49852a8da.json",
+      "fileName": "Freeman822_Ruecker817_259b2dfb-b997-a9fc-5c1c-57a49852a8da.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:49:06.411Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "a98f403b-119e-b9f7-968f-988cdb28c624": {
+      "patientId": "a98f403b-119e-b9f7-968f-988cdb28c624",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Gale827_Stanton715_a98f403b-119e-b9f7-968f-988cdb28c624.json",
+      "fileName": "Gale827_Stanton715_a98f403b-119e-b9f7-968f-988cdb28c624.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:49:15.887Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "83b8a3ac-3d56-9950-27e3-ef1f4c28d54e": {
+      "patientId": "83b8a3ac-3d56-9950-27e3-ef1f4c28d54e",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Garth972_Champlin946_83b8a3ac-3d56-9950-27e3-ef1f4c28d54e.json",
+      "fileName": "Garth972_Champlin946_83b8a3ac-3d56-9950-27e3-ef1f4c28d54e.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:49:18.784Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "4c59b1ce-623b-f513-d01a-55fef0554273": {
+      "patientId": "4c59b1ce-623b-f513-d01a-55fef0554273",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Gavin481_Becker968_4c59b1ce-623b-f513-d01a-55fef0554273.json",
+      "fileName": "Gavin481_Becker968_4c59b1ce-623b-f513-d01a-55fef0554273.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:49:19.309Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "e9f3cd8b-74ce-04d4-122a-f1da2a50833e": {
+      "patientId": "e9f3cd8b-74ce-04d4-122a-f1da2a50833e",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Gene733_Mosciski958_e9f3cd8b-74ce-04d4-122a-f1da2a50833e.json",
+      "fileName": "Gene733_Mosciski958_e9f3cd8b-74ce-04d4-122a-f1da2a50833e.json",
+      "status": "failed",
+      "timestamp": "2026-01-04T17:49:26.415Z",
+      "error": "File too large",
+      "isPatientBundle": true
+    },
+    "80e5ee61-6175-bca2-3383-dce15451f54d": {
+      "patientId": "80e5ee61-6175-bca2-3383-dce15451f54d",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Gene733_Nelida367_Schiller186_80e5ee61-6175-bca2-3383-dce15451f54d.json",
+      "fileName": "Gene733_Nelida367_Schiller186_80e5ee61-6175-bca2-3383-dce15451f54d.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:49:30.090Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "8c7f9637-8309-c88d-658f-d54b9da0f9d6": {
+      "patientId": "8c7f9637-8309-c88d-658f-d54b9da0f9d6",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Gertude950_Vanetta255_Boyle917_8c7f9637-8309-c88d-658f-d54b9da0f9d6.json",
+      "fileName": "Gertude950_Vanetta255_Boyle917_8c7f9637-8309-c88d-658f-d54b9da0f9d6.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:49:32.844Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "669e2e97-ec8a-a730-6afd-4d4ad614e8e8": {
+      "patientId": "669e2e97-ec8a-a730-6afd-4d4ad614e8e8",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Gloria696_Teresa94_Delapaz125_669e2e97-ec8a-a730-6afd-4d4ad614e8e8.json",
+      "fileName": "Gloria696_Teresa94_Delapaz125_669e2e97-ec8a-a730-6afd-4d4ad614e8e8.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:49:33.511Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "f3c684d1-4171-2693-f0ce-8026d8b40b73": {
+      "patientId": "f3c684d1-4171-2693-f0ce-8026d8b40b73",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Gregorio366_Dare640_f3c684d1-4171-2693-f0ce-8026d8b40b73.json",
+      "fileName": "Gregorio366_Dare640_f3c684d1-4171-2693-f0ce-8026d8b40b73.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:49:34.897Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "fec823c3-bea2-9b1d-04e6-7c8678e3af53": {
+      "patientId": "fec823c3-bea2-9b1d-04e6-7c8678e3af53",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Guillermina633_Eloisa55_Olivo261_fec823c3-bea2-9b1d-04e6-7c8678e3af53.json",
+      "fileName": "Guillermina633_Eloisa55_Olivo261_fec823c3-bea2-9b1d-04e6-7c8678e3af53.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:49:36.335Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "3c694c19-a18e-c4f1-a601-6b6c35dd59ea": {
+      "patientId": "3c694c19-a18e-c4f1-a601-6b6c35dd59ea",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Gus973_Little434_3c694c19-a18e-c4f1-a601-6b6c35dd59ea.json",
+      "fileName": "Gus973_Little434_3c694c19-a18e-c4f1-a601-6b6c35dd59ea.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:49:37.129Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "d244f0c5-1d12-8451-44d4-2782c6a65a84": {
+      "patientId": "d244f0c5-1d12-8451-44d4-2782c6a65a84",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Hae300_Rita460_Purdy2_d244f0c5-1d12-8451-44d4-2782c6a65a84.json",
+      "fileName": "Hae300_Rita460_Purdy2_d244f0c5-1d12-8451-44d4-2782c6a65a84.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:49:42.606Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "3b315e0a-f588-27dd-9abb-f1b3e8a1940a": {
+      "patientId": "3b315e0a-f588-27dd-9abb-f1b3e8a1940a",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Hai304_Gutmann970_3b315e0a-f588-27dd-9abb-f1b3e8a1940a.json",
+      "fileName": "Hai304_Gutmann970_3b315e0a-f588-27dd-9abb-f1b3e8a1940a.json",
+      "status": "failed",
+      "timestamp": "2026-01-04T17:49:51.269Z",
+      "error": "File too large",
+      "isPatientBundle": true
+    },
+    "8e724a8b-abcf-993c-2779-876bbb3a5ed7": {
+      "patientId": "8e724a8b-abcf-993c-2779-876bbb3a5ed7",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Hai304_Hermann103_8e724a8b-abcf-993c-2779-876bbb3a5ed7.json",
+      "fileName": "Hai304_Hermann103_8e724a8b-abcf-993c-2779-876bbb3a5ed7.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:49:52.087Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "a49df3ba-87bc-88f5-6e89-1770536a6d63": {
+      "patientId": "a49df3ba-87bc-88f5-6e89-1770536a6d63",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Harlan808_Senger904_a49df3ba-87bc-88f5-6e89-1770536a6d63.json",
+      "fileName": "Harlan808_Senger904_a49df3ba-87bc-88f5-6e89-1770536a6d63.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:49:53.081Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "f2eb6d5f-2c2f-cb18-cde0-63ff95661fc5": {
+      "patientId": "f2eb6d5f-2c2f-cb18-cde0-63ff95661fc5",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Haywood675_Swaniawski813_f2eb6d5f-2c2f-cb18-cde0-63ff95661fc5.json",
+      "fileName": "Haywood675_Swaniawski813_f2eb6d5f-2c2f-cb18-cde0-63ff95661fc5.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:49:57.541Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "fc41b92a-6987-1547-0f40-a60c105fbc4e": {
+      "patientId": "fc41b92a-6987-1547-0f40-a60c105fbc4e",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Henry768_Medhurst46_fc41b92a-6987-1547-0f40-a60c105fbc4e.json",
+      "fileName": "Henry768_Medhurst46_fc41b92a-6987-1547-0f40-a60c105fbc4e.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:49:59.260Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "95b67c28-fe82-4464-6b19-80792dee0caf": {
+      "patientId": "95b67c28-fe82-4464-6b19-80792dee0caf",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Herman763_Treutel973_95b67c28-fe82-4464-6b19-80792dee0caf.json",
+      "fileName": "Herman763_Treutel973_95b67c28-fe82-4464-6b19-80792dee0caf.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:50:00.083Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "4e3998d0-b1d1-fba1-2e39-47e8483ea16b": {
+      "patientId": "4e3998d0-b1d1-fba1-2e39-47e8483ea16b",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Hortense60_Pei116_Nicolas769_4e3998d0-b1d1-fba1-2e39-47e8483ea16b.json",
+      "fileName": "Hortense60_Pei116_Nicolas769_4e3998d0-b1d1-fba1-2e39-47e8483ea16b.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:50:00.796Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "3e19a588-2354-a269-e6d3-d69a88c2924b": {
+      "patientId": "3e19a588-2354-a269-e6d3-d69a88c2924b",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Hosea56_Hamill307_3e19a588-2354-a269-e6d3-d69a88c2924b.json",
+      "fileName": "Hosea56_Hamill307_3e19a588-2354-a269-e6d3-d69a88c2924b.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:50:01.775Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "9e8cb203-e9ff-9538-8ad3-81b2d707b4e8": {
+      "patientId": "9e8cb203-e9ff-9538-8ad3-81b2d707b4e8",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Hugo693_Rolón954_9e8cb203-e9ff-9538-8ad3-81b2d707b4e8.json",
+      "fileName": "Hugo693_Rolón954_9e8cb203-e9ff-9538-8ad3-81b2d707b4e8.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:50:02.907Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "7f9a463c-bf06-8945-72a7-66823d52d2d2": {
+      "patientId": "7f9a463c-bf06-8945-72a7-66823d52d2d2",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Hyman89_Lesch175_7f9a463c-bf06-8945-72a7-66823d52d2d2.json",
+      "fileName": "Hyman89_Lesch175_7f9a463c-bf06-8945-72a7-66823d52d2d2.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:50:03.636Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "1f85d14b-39ff-ecf1-646f-6c996a35af46": {
+      "patientId": "1f85d14b-39ff-ecf1-646f-6c996a35af46",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Ignacio928_Nieves278_1f85d14b-39ff-ecf1-646f-6c996a35af46.json",
+      "fileName": "Ignacio928_Nieves278_1f85d14b-39ff-ecf1-646f-6c996a35af46.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:50:04.245Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "7b6cb8d5-067f-9ccf-732b-e133148f1530": {
+      "patientId": "7b6cb8d5-067f-9ccf-732b-e133148f1530",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Isreal8_Stehr398_7b6cb8d5-067f-9ccf-732b-e133148f1530.json",
+      "fileName": "Isreal8_Stehr398_7b6cb8d5-067f-9ccf-732b-e133148f1530.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:50:04.990Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "15b0e1ba-50db-798b-c076-4a65db543ec3": {
+      "patientId": "15b0e1ba-50db-798b-c076-4a65db543ec3",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Jacques50_Haley279_15b0e1ba-50db-798b-c076-4a65db543ec3.json",
+      "fileName": "Jacques50_Haley279_15b0e1ba-50db-798b-c076-4a65db543ec3.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:50:05.657Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "1458351e-17e9-e532-a3ce-597ef92e9b5d": {
+      "patientId": "1458351e-17e9-e532-a3ce-597ef92e9b5d",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Jake169_Upton904_1458351e-17e9-e532-a3ce-597ef92e9b5d.json",
+      "fileName": "Jake169_Upton904_1458351e-17e9-e532-a3ce-597ef92e9b5d.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:50:18.205Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "ba3f1590-bf43-0ec2-7ec2-391910cb57e4": {
+      "patientId": "ba3f1590-bf43-0ec2-7ec2-391910cb57e4",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Janella261_Sacha430_Rath779_ba3f1590-bf43-0ec2-7ec2-391910cb57e4.json",
+      "fileName": "Janella261_Sacha430_Rath779_ba3f1590-bf43-0ec2-7ec2-391910cb57e4.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:50:18.862Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "1d5c3fb0-70e1-fec2-afd6-2729b5e82cba": {
+      "patientId": "1d5c3fb0-70e1-fec2-afd6-2729b5e82cba",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Jason347_Balistreri607_1d5c3fb0-70e1-fec2-afd6-2729b5e82cba.json",
+      "fileName": "Jason347_Balistreri607_1d5c3fb0-70e1-fec2-afd6-2729b5e82cba.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:50:19.855Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "1596bb74-13e5-7867-d6ec-b68f68f45b52": {
+      "patientId": "1596bb74-13e5-7867-d6ec-b68f68f45b52",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Javier97_Cole117_1596bb74-13e5-7867-d6ec-b68f68f45b52.json",
+      "fileName": "Javier97_Cole117_1596bb74-13e5-7867-d6ec-b68f68f45b52.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:50:20.972Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "43cd2ebb-5522-b492-6a8b-54ecca8ddf97": {
+      "patientId": "43cd2ebb-5522-b492-6a8b-54ecca8ddf97",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Jayson808_Brekke496_43cd2ebb-5522-b492-6a8b-54ecca8ddf97.json",
+      "fileName": "Jayson808_Brekke496_43cd2ebb-5522-b492-6a8b-54ecca8ddf97.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:50:22.087Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "272dcf70-56ad-4e2e-7d54-000a48036dd2": {
+      "patientId": "272dcf70-56ad-4e2e-7d54-000a48036dd2",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Jenice416_Sheilah526_Keeling57_272dcf70-56ad-4e2e-7d54-000a48036dd2.json",
+      "fileName": "Jenice416_Sheilah526_Keeling57_272dcf70-56ad-4e2e-7d54-000a48036dd2.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:50:22.791Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "5a778905-f3bd-e86f-812b-312092ad9238": {
+      "patientId": "5a778905-f3bd-e86f-812b-312092ad9238",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Jerónimo599_Zayas20_5a778905-f3bd-e86f-812b-312092ad9238.json",
+      "fileName": "Jerónimo599_Zayas20_5a778905-f3bd-e86f-812b-312092ad9238.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:50:23.682Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "79225646-67dc-e3b2-4dfd-a7b5bceb11a1": {
+      "patientId": "79225646-67dc-e3b2-4dfd-a7b5bceb11a1",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Jewel43_Melaine933_Veum823_79225646-67dc-e3b2-4dfd-a7b5bceb11a1.json",
+      "fileName": "Jewel43_Melaine933_Veum823_79225646-67dc-e3b2-4dfd-a7b5bceb11a1.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:50:24.204Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "524f7dd6-3763-33b1-f49e-9b3c7473044d": {
+      "patientId": "524f7dd6-3763-33b1-f49e-9b3c7473044d",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Joi660_Jaimee549_Reichel38_524f7dd6-3763-33b1-f49e-9b3c7473044d.json",
+      "fileName": "Joi660_Jaimee549_Reichel38_524f7dd6-3763-33b1-f49e-9b3c7473044d.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:50:25.066Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "a16c4f6e-47bf-8b04-b2ce-66bc2c2692b8": {
+      "patientId": "a16c4f6e-47bf-8b04-b2ce-66bc2c2692b8",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Joleen561_Jennine355_Rath779_a16c4f6e-47bf-8b04-b2ce-66bc2c2692b8.json",
+      "fileName": "Joleen561_Jennine355_Rath779_a16c4f6e-47bf-8b04-b2ce-66bc2c2692b8.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:50:25.728Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "1169502c-6ffc-b04c-0d2d-b0b4102dc336": {
+      "patientId": "1169502c-6ffc-b04c-0d2d-b0b4102dc336",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Jonathon205_Wolf938_1169502c-6ffc-b04c-0d2d-b0b4102dc336.json",
+      "fileName": "Jonathon205_Wolf938_1169502c-6ffc-b04c-0d2d-b0b4102dc336.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:50:26.458Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "21ba9525-0007-b8b5-7666-b7b33915713f": {
+      "patientId": "21ba9525-0007-b8b5-7666-b7b33915713f",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Joni720_Dee580_Jenkins714_21ba9525-0007-b8b5-7666-b7b33915713f.json",
+      "fileName": "Joni720_Dee580_Jenkins714_21ba9525-0007-b8b5-7666-b7b33915713f.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:50:27.206Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "c4baa847-42b2-3cab-75be-c5f5c3dfb51b": {
+      "patientId": "c4baa847-42b2-3cab-75be-c5f5c3dfb51b",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Jorge_Luis88_Ayala238_c4baa847-42b2-3cab-75be-c5f5c3dfb51b.json",
+      "fileName": "Jorge_Luis88_Ayala238_c4baa847-42b2-3cab-75be-c5f5c3dfb51b.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:50:27.909Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "16fc17a1-a1ed-587d-ef0c-25058e325725": {
+      "patientId": "16fc17a1-a1ed-587d-ef0c-25058e325725",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Jorge_Luis88_Domínguez946_16fc17a1-a1ed-587d-ef0c-25058e325725.json",
+      "fileName": "Jorge_Luis88_Domínguez946_16fc17a1-a1ed-587d-ef0c-25058e325725.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:50:28.675Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "03cce0fa-2bde-e7d0-d1a1-76bcf483d336": {
+      "patientId": "03cce0fa-2bde-e7d0-d1a1-76bcf483d336",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Jorge_Luis88_Naranjo39_03cce0fa-2bde-e7d0-d1a1-76bcf483d336.json",
+      "fileName": "Jorge_Luis88_Naranjo39_03cce0fa-2bde-e7d0-d1a1-76bcf483d336.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:50:29.367Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "f2b3be1a-948d-a93f-aa58-8b8a8bd720e5": {
+      "patientId": "f2b3be1a-948d-a93f-aa58-8b8a8bd720e5",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/José3_Limón43_f2b3be1a-948d-a93f-aa58-8b8a8bd720e5.json",
+      "fileName": "José3_Limón43_f2b3be1a-948d-a93f-aa58-8b8a8bd720e5.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:50:30.012Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "4ae25688-dc4f-f12b-e12e-7d693d5df553": {
+      "patientId": "4ae25688-dc4f-f12b-e12e-7d693d5df553",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Juana825_Isabel214_Collazo246_4ae25688-dc4f-f12b-e12e-7d693d5df553.json",
+      "fileName": "Juana825_Isabel214_Collazo246_4ae25688-dc4f-f12b-e12e-7d693d5df553.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:50:34.116Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "651cd578-1f27-0892-e1d6-88c96a9f63e2": {
+      "patientId": "651cd578-1f27-0892-e1d6-88c96a9f63e2",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Juliana372_Felica690_Langworth352_651cd578-1f27-0892-e1d6-88c96a9f63e2.json",
+      "fileName": "Juliana372_Felica690_Langworth352_651cd578-1f27-0892-e1d6-88c96a9f63e2.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:50:42.876Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "d82b36b3-4e34-23bc-5921-1b22b27e61d2": {
+      "patientId": "d82b36b3-4e34-23bc-5921-1b22b27e61d2",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Justine412_Meta661_Smith67_d82b36b3-4e34-23bc-5921-1b22b27e61d2.json",
+      "fileName": "Justine412_Meta661_Smith67_d82b36b3-4e34-23bc-5921-1b22b27e61d2.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:50:43.751Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "833ca469-74af-7493-8633-39a1ffaabfd0": {
+      "patientId": "833ca469-74af-7493-8633-39a1ffaabfd0",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Kali995_Tanya49_Mills423_833ca469-74af-7493-8633-39a1ffaabfd0.json",
+      "fileName": "Kali995_Tanya49_Mills423_833ca469-74af-7493-8633-39a1ffaabfd0.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:50:44.608Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "1b903a2b-1091-5ecb-08d3-e2d06697ea4a": {
+      "patientId": "1b903a2b-1091-5ecb-08d3-e2d06697ea4a",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Kandis954_Haley279_1b903a2b-1091-5ecb-08d3-e2d06697ea4a.json",
+      "fileName": "Kandis954_Haley279_1b903a2b-1091-5ecb-08d3-e2d06697ea4a.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:50:45.526Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "dc023560-9ff2-0cf7-31af-b2595407211a": {
+      "patientId": "dc023560-9ff2-0cf7-31af-b2595407211a",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Kathyrn611_Conn188_dc023560-9ff2-0cf7-31af-b2595407211a.json",
+      "fileName": "Kathyrn611_Conn188_dc023560-9ff2-0cf7-31af-b2595407211a.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:50:46.187Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "b487a9b6-0bf6-51cc-ff5c-438e82806c6a": {
+      "patientId": "b487a9b6-0bf6-51cc-ff5c-438e82806c6a",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Keshia89_Raelene218_Ruecker817_b487a9b6-0bf6-51cc-ff5c-438e82806c6a.json",
+      "fileName": "Keshia89_Raelene218_Ruecker817_b487a9b6-0bf6-51cc-ff5c-438e82806c6a.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:50:50.234Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "591e121b-7693-062e-dfac-14033e71673b": {
+      "patientId": "591e121b-7693-062e-dfac-14033e71673b",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Kieth891_Oberbrunner298_591e121b-7693-062e-dfac-14033e71673b.json",
+      "fileName": "Kieth891_Oberbrunner298_591e121b-7693-062e-dfac-14033e71673b.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:50:51.002Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "9a6fe2ec-b713-2a4e-5eef-ecebde8cf95d": {
+      "patientId": "9a6fe2ec-b713-2a4e-5eef-ecebde8cf95d",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Kris249_Mitchell808_9a6fe2ec-b713-2a4e-5eef-ecebde8cf95d.json",
+      "fileName": "Kris249_Mitchell808_9a6fe2ec-b713-2a4e-5eef-ecebde8cf95d.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:50:52.884Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "4008a027-3f65-725d-0490-b2bd3e7f681f": {
+      "patientId": "4008a027-3f65-725d-0490-b2bd3e7f681f",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Lance203_Hauck852_4008a027-3f65-725d-0490-b2bd3e7f681f.json",
+      "fileName": "Lance203_Hauck852_4008a027-3f65-725d-0490-b2bd3e7f681f.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:50:53.711Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "356e3915-4ffa-7546-aa02-cb2bc533402f": {
+      "patientId": "356e3915-4ffa-7546-aa02-cb2bc533402f",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Landon622_Wiza601_356e3915-4ffa-7546-aa02-cb2bc533402f.json",
+      "fileName": "Landon622_Wiza601_356e3915-4ffa-7546-aa02-cb2bc533402f.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:50:59.083Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "bd1eb589-59c8-bded-d692-d6c8887af630": {
+      "patientId": "bd1eb589-59c8-bded-d692-d6c8887af630",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Laverne101_Gearldine455_Hamill307_bd1eb589-59c8-bded-d692-d6c8887af630.json",
+      "fileName": "Laverne101_Gearldine455_Hamill307_bd1eb589-59c8-bded-d692-d6c8887af630.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:50:59.711Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "08aef398-3f4a-1616-89f4-74c72c72e122": {
+      "patientId": "08aef398-3f4a-1616-89f4-74c72c72e122",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Lee268_Hessel84_08aef398-3f4a-1616-89f4-74c72c72e122.json",
+      "fileName": "Lee268_Hessel84_08aef398-3f4a-1616-89f4-74c72c72e122.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:51:00.325Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "64ef2f31-5c57-1276-1a6e-2c8ea20c941a": {
+      "patientId": "64ef2f31-5c57-1276-1a6e-2c8ea20c941a",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Lenard338_Hansen121_64ef2f31-5c57-1276-1a6e-2c8ea20c941a.json",
+      "fileName": "Lenard338_Hansen121_64ef2f31-5c57-1276-1a6e-2c8ea20c941a.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:51:00.991Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "77374487-8e8a-5711-c42c-297123ee50df": {
+      "patientId": "77374487-8e8a-5711-c42c-297123ee50df",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Leroy603_Heathcote539_77374487-8e8a-5711-c42c-297123ee50df.json",
+      "fileName": "Leroy603_Heathcote539_77374487-8e8a-5711-c42c-297123ee50df.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:51:01.569Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "897cc23b-3c26-b7dd-fc5b-e3ccf07db37b": {
+      "patientId": "897cc23b-3c26-b7dd-fc5b-e3ccf07db37b",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Lesley194_Kuvalis369_897cc23b-3c26-b7dd-fc5b-e3ccf07db37b.json",
+      "fileName": "Lesley194_Kuvalis369_897cc23b-3c26-b7dd-fc5b-e3ccf07db37b.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:51:02.770Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "002183b9-48dd-2503-df5e-a9aed89b8842": {
+      "patientId": "002183b9-48dd-2503-df5e-a9aed89b8842",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Levi940_Boyle917_002183b9-48dd-2503-df5e-a9aed89b8842.json",
+      "fileName": "Levi940_Boyle917_002183b9-48dd-2503-df5e-a9aed89b8842.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:51:03.563Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "64339dba-9663-45af-7acd-86bb78d764de": {
+      "patientId": "64339dba-9663-45af-7acd-86bb78d764de",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Lorena247_Yolanda648_Saiz247_64339dba-9663-45af-7acd-86bb78d764de.json",
+      "fileName": "Lorena247_Yolanda648_Saiz247_64339dba-9663-45af-7acd-86bb78d764de.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:51:04.634Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "614a744e-8b29-866c-b045-9f72d6b48ae2": {
+      "patientId": "614a744e-8b29-866c-b045-9f72d6b48ae2",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Lou594_Kihn564_614a744e-8b29-866c-b045-9f72d6b48ae2.json",
+      "fileName": "Lou594_Kihn564_614a744e-8b29-866c-b045-9f72d6b48ae2.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:51:06.013Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "79d8d43f-c278-f1c8-ad0a-7dfed6449989": {
+      "patientId": "79d8d43f-c278-f1c8-ad0a-7dfed6449989",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Lowell343_Funk324_79d8d43f-c278-f1c8-ad0a-7dfed6449989.json",
+      "fileName": "Lowell343_Funk324_79d8d43f-c278-f1c8-ad0a-7dfed6449989.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:51:06.802Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "34cce8fd-98cc-e1bb-0d9d-5f742a6f8332": {
+      "patientId": "34cce8fd-98cc-e1bb-0d9d-5f742a6f8332",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Luis923_Santacruz647_34cce8fd-98cc-e1bb-0d9d-5f742a6f8332.json",
+      "fileName": "Luis923_Santacruz647_34cce8fd-98cc-e1bb-0d9d-5f742a6f8332.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:51:07.646Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "af283d2f-085c-a7cc-6c1a-a2f194776a2a": {
+      "patientId": "af283d2f-085c-a7cc-6c1a-a2f194776a2a",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Luvenia178_Floria545_Goyette777_af283d2f-085c-a7cc-6c1a-a2f194776a2a.json",
+      "fileName": "Luvenia178_Floria545_Goyette777_af283d2f-085c-a7cc-6c1a-a2f194776a2a.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:51:08.387Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "e2e320a0-7799-45cb-26e4-3ee46ae4aaae": {
+      "patientId": "e2e320a0-7799-45cb-26e4-3ee46ae4aaae",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Lyle846_Hodkiewicz467_e2e320a0-7799-45cb-26e4-3ee46ae4aaae.json",
+      "fileName": "Lyle846_Hodkiewicz467_e2e320a0-7799-45cb-26e4-3ee46ae4aaae.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:51:09.018Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "5cd0b563-37e4-6e17-07f9-bc0516e99e18": {
+      "patientId": "5cd0b563-37e4-6e17-07f9-bc0516e99e18",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Mabelle762_Cristina921_Daugherty69_5cd0b563-37e4-6e17-07f9-bc0516e99e18.json",
+      "fileName": "Mabelle762_Cristina921_Daugherty69_5cd0b563-37e4-6e17-07f9-bc0516e99e18.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:51:17.958Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "00c83a4d-7fe4-6c66-2622-cc744951e716": {
+      "patientId": "00c83a4d-7fe4-6c66-2622-cc744951e716",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Maisie206_Christiane220_Zieme486_00c83a4d-7fe4-6c66-2622-cc744951e716.json",
+      "fileName": "Maisie206_Christiane220_Zieme486_00c83a4d-7fe4-6c66-2622-cc744951e716.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:51:19.675Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "7a53e3aa-c036-983e-49af-81da5367c280": {
+      "patientId": "7a53e3aa-c036-983e-49af-81da5367c280",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Major265_Denesik803_7a53e3aa-c036-983e-49af-81da5367c280.json",
+      "fileName": "Major265_Denesik803_7a53e3aa-c036-983e-49af-81da5367c280.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:51:20.961Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "0c673361-182c-8a34-264e-959ad59d1837": {
+      "patientId": "0c673361-182c-8a34-264e-959ad59d1837",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Major265_Metz686_0c673361-182c-8a34-264e-959ad59d1837.json",
+      "fileName": "Major265_Metz686_0c673361-182c-8a34-264e-959ad59d1837.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:51:22.124Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "a26a94df-a297-891d-a50a-8a9deb66888e": {
+      "patientId": "a26a94df-a297-891d-a50a-8a9deb66888e",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Margarite168_Milagros256_Hilpert278_a26a94df-a297-891d-a50a-8a9deb66888e.json",
+      "fileName": "Margarite168_Milagros256_Hilpert278_a26a94df-a297-891d-a50a-8a9deb66888e.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:51:22.870Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "6d5de90d-4943-ffdd-3425-a672bddef5c5": {
+      "patientId": "6d5de90d-4943-ffdd-3425-a672bddef5c5",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Margeret29_Douglas31_6d5de90d-4943-ffdd-3425-a672bddef5c5.json",
+      "fileName": "Margeret29_Douglas31_6d5de90d-4943-ffdd-3425-a672bddef5c5.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:51:23.641Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "335c5d50-4d94-5ebc-d330-5830ed34ffdf": {
+      "patientId": "335c5d50-4d94-5ebc-d330-5830ed34ffdf",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Mariano761_Volkman526_335c5d50-4d94-5ebc-d330-5830ed34ffdf.json",
+      "fileName": "Mariano761_Volkman526_335c5d50-4d94-5ebc-d330-5830ed34ffdf.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:51:24.272Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "f52f3b24-9ac7-3d6d-fe99-8ae423112037": {
+      "patientId": "f52f3b24-9ac7-3d6d-fe99-8ae423112037",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Marita360_Mraz590_f52f3b24-9ac7-3d6d-fe99-8ae423112037.json",
+      "fileName": "Marita360_Mraz590_f52f3b24-9ac7-3d6d-fe99-8ae423112037.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:51:24.845Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "3555e96a-a241-fd1c-924e-8ddcfe2dc608": {
+      "patientId": "3555e96a-a241-fd1c-924e-8ddcfe2dc608",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Marni913_Desire394_Osinski784_3555e96a-a241-fd1c-924e-8ddcfe2dc608.json",
+      "fileName": "Marni913_Desire394_Osinski784_3555e96a-a241-fd1c-924e-8ddcfe2dc608.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:51:25.532Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "ea364d90-ec1f-81f2-4ada-b52ff7918172": {
+      "patientId": "ea364d90-ec1f-81f2-4ada-b52ff7918172",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Maxwell782_Bergstrom287_ea364d90-ec1f-81f2-4ada-b52ff7918172.json",
+      "fileName": "Maxwell782_Bergstrom287_ea364d90-ec1f-81f2-4ada-b52ff7918172.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:51:26.273Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "6dbd8576-41a3-50ef-94bf-9d0183f628de": {
+      "patientId": "6dbd8576-41a3-50ef-94bf-9d0183f628de",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Megan108_Cole117_6dbd8576-41a3-50ef-94bf-9d0183f628de.json",
+      "fileName": "Megan108_Cole117_6dbd8576-41a3-50ef-94bf-9d0183f628de.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:51:27.439Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "1172122c-93ef-5b60-fbcb-a7c00062840c": {
+      "patientId": "1172122c-93ef-5b60-fbcb-a7c00062840c",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Mel236_Padberg411_1172122c-93ef-5b60-fbcb-a7c00062840c.json",
+      "fileName": "Mel236_Padberg411_1172122c-93ef-5b60-fbcb-a7c00062840c.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:51:33.253Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "99a1442e-459e-b411-420f-cad2b21258e9": {
+      "patientId": "99a1442e-459e-b411-420f-cad2b21258e9",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Mercedes82_Dawne25_Marks830_99a1442e-459e-b411-420f-cad2b21258e9.json",
+      "fileName": "Mercedes82_Dawne25_Marks830_99a1442e-459e-b411-420f-cad2b21258e9.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:51:34.090Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "cde4be80-3350-8e74-82be-9dfc35d35cff": {
+      "patientId": "cde4be80-3350-8e74-82be-9dfc35d35cff",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Mercedes82_Marilu588_Ojeda263_cde4be80-3350-8e74-82be-9dfc35d35cff.json",
+      "fileName": "Mercedes82_Marilu588_Ojeda263_cde4be80-3350-8e74-82be-9dfc35d35cff.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:51:34.772Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "f327a5bf-a67f-7b59-a700-b2ea99d6513e": {
+      "patientId": "f327a5bf-a67f-7b59-a700-b2ea99d6513e",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Mercedes82_Romo23_f327a5bf-a67f-7b59-a700-b2ea99d6513e.json",
+      "fileName": "Mercedes82_Romo23_f327a5bf-a67f-7b59-a700-b2ea99d6513e.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:51:35.422Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "39bff8ca-b516-1086-dcd8-1027eb5c88f3": {
+      "patientId": "39bff8ca-b516-1086-dcd8-1027eb5c88f3",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Mervin111_Ledner144_39bff8ca-b516-1086-dcd8-1027eb5c88f3.json",
+      "fileName": "Mervin111_Ledner144_39bff8ca-b516-1086-dcd8-1027eb5c88f3.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:51:36.127Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "3e937603-df77-6211-0c51-832c83d44f6b": {
+      "patientId": "3e937603-df77-6211-0c51-832c83d44f6b",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Michael441_Brown30_3e937603-df77-6211-0c51-832c83d44f6b.json",
+      "fileName": "Michael441_Brown30_3e937603-df77-6211-0c51-832c83d44f6b.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:51:36.601Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "51458c02-127f-59a5-cda2-181570ab71bd": {
+      "patientId": "51458c02-127f-59a5-cda2-181570ab71bd",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Miguel815_Ebert178_51458c02-127f-59a5-cda2-181570ab71bd.json",
+      "fileName": "Miguel815_Ebert178_51458c02-127f-59a5-cda2-181570ab71bd.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:51:38.866Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "c3ff2a03-b5c6-0640-15dc-0ee8e9f3c514": {
+      "patientId": "c3ff2a03-b5c6-0640-15dc-0ee8e9f3c514",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Mike230_Franecki195_c3ff2a03-b5c6-0640-15dc-0ee8e9f3c514.json",
+      "fileName": "Mike230_Franecki195_c3ff2a03-b5c6-0640-15dc-0ee8e9f3c514.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:51:41.546Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "ad52959c-6c96-c8c3-017c-e6ad8d363f43": {
+      "patientId": "ad52959c-6c96-c8c3-017c-e6ad8d363f43",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Mike230_Zieme486_ad52959c-6c96-c8c3-017c-e6ad8d363f43.json",
+      "fileName": "Mike230_Zieme486_ad52959c-6c96-c8c3-017c-e6ad8d363f43.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:51:42.363Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "9ec92cfc-1952-a03e-2b49-822aa97ee899": {
+      "patientId": "9ec92cfc-1952-a03e-2b49-822aa97ee899",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Milan77_Willms744_9ec92cfc-1952-a03e-2b49-822aa97ee899.json",
+      "fileName": "Milan77_Willms744_9ec92cfc-1952-a03e-2b49-822aa97ee899.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:51:43.043Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "494c4c32-69dc-fd94-fb8e-6785a5b1474a": {
+      "patientId": "494c4c32-69dc-fd94-fb8e-6785a5b1474a",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Modesto621_Turcotte120_494c4c32-69dc-fd94-fb8e-6785a5b1474a.json",
+      "fileName": "Modesto621_Turcotte120_494c4c32-69dc-fd94-fb8e-6785a5b1474a.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:51:43.635Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "500b5b67-e282-9dfa-66df-2ebf95eef07b": {
+      "patientId": "500b5b67-e282-9dfa-66df-2ebf95eef07b",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Moises22_Anderson154_500b5b67-e282-9dfa-66df-2ebf95eef07b.json",
+      "fileName": "Moises22_Anderson154_500b5b67-e282-9dfa-66df-2ebf95eef07b.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:51:44.400Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "dca57de3-67b5-f016-7b4d-2c5122ed391c": {
+      "patientId": "dca57de3-67b5-f016-7b4d-2c5122ed391c",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Monroe732_Heaney114_dca57de3-67b5-f016-7b4d-2c5122ed391c.json",
+      "fileName": "Monroe732_Heaney114_dca57de3-67b5-f016-7b4d-2c5122ed391c.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:51:45.349Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "e8deed7d-79f9-d4af-ca7c-fdae609e489f": {
+      "patientId": "e8deed7d-79f9-d4af-ca7c-fdae609e489f",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Monty345_Welch179_e8deed7d-79f9-d4af-ca7c-fdae609e489f.json",
+      "fileName": "Monty345_Welch179_e8deed7d-79f9-d4af-ca7c-fdae609e489f.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:51:46.370Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "ce07d6c9-c07d-9cf1-49df-2434406c897a": {
+      "patientId": "ce07d6c9-c07d-9cf1-49df-2434406c897a",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Myron933_Cronin387_ce07d6c9-c07d-9cf1-49df-2434406c897a.json",
+      "fileName": "Myron933_Cronin387_ce07d6c9-c07d-9cf1-49df-2434406c897a.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:51:47.506Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "fbac8826-b461-5b01-6efa-3022f46b288b": {
+      "patientId": "fbac8826-b461-5b01-6efa-3022f46b288b",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Mónica985_Daniela614_Urbina137_fbac8826-b461-5b01-6efa-3022f46b288b.json",
+      "fileName": "Mónica985_Daniela614_Urbina137_fbac8826-b461-5b01-6efa-3022f46b288b.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:51:53.499Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "64d447d7-fabd-1ba0-8d0d-74cfe0eb78a2": {
+      "patientId": "64d447d7-fabd-1ba0-8d0d-74cfe0eb78a2",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Nanci249_Edith654_Ward668_64d447d7-fabd-1ba0-8d0d-74cfe0eb78a2.json",
+      "fileName": "Nanci249_Edith654_Ward668_64d447d7-fabd-1ba0-8d0d-74cfe0eb78a2.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:51:55.159Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "06f81892-8226-0234-c9f4-bfe40abe91b8": {
+      "patientId": "06f81892-8226-0234-c9f4-bfe40abe91b8",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Natalia964_Eva64_Palomino953_06f81892-8226-0234-c9f4-bfe40abe91b8.json",
+      "fileName": "Natalia964_Eva64_Palomino953_06f81892-8226-0234-c9f4-bfe40abe91b8.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:51:55.737Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "98d3372a-163f-588f-614a-2952dbec36f1": {
+      "patientId": "98d3372a-163f-588f-614a-2952dbec36f1",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Neoma676_Debora709_Bauch723_98d3372a-163f-588f-614a-2952dbec36f1.json",
+      "fileName": "Neoma676_Debora709_Bauch723_98d3372a-163f-588f-614a-2952dbec36f1.json",
+      "status": "failed",
+      "timestamp": "2026-01-04T17:52:02.942Z",
+      "error": "File too large",
+      "isPatientBundle": true
+    },
+    "79081065-f92c-a360-0769-d989319950a2": {
+      "patientId": "79081065-f92c-a360-0769-d989319950a2",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Neomi684_Collier206_79081065-f92c-a360-0769-d989319950a2.json",
+      "fileName": "Neomi684_Collier206_79081065-f92c-a360-0769-d989319950a2.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:52:05.772Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "6eb35f12-f2f8-0ac5-8e71-17adb2c87eec": {
+      "patientId": "6eb35f12-f2f8-0ac5-8e71-17adb2c87eec",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Nestor901_McGlynn426_6eb35f12-f2f8-0ac5-8e71-17adb2c87eec.json",
+      "fileName": "Nestor901_McGlynn426_6eb35f12-f2f8-0ac5-8e71-17adb2c87eec.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:52:07.366Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "01afc960-36fc-63e7-6fbb-eae768c9c7bc": {
+      "patientId": "01afc960-36fc-63e7-6fbb-eae768c9c7bc",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Nickolas58_Lesch175_01afc960-36fc-63e7-6fbb-eae768c9c7bc.json",
+      "fileName": "Nickolas58_Lesch175_01afc960-36fc-63e7-6fbb-eae768c9c7bc.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:52:08.269Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "2706d799-74ee-b539-b6c0-848a11da9269": {
+      "patientId": "2706d799-74ee-b539-b6c0-848a11da9269",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Nidia145_Jean712_Bergstrom287_2706d799-74ee-b539-b6c0-848a11da9269.json",
+      "fileName": "Nidia145_Jean712_Bergstrom287_2706d799-74ee-b539-b6c0-848a11da9269.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:52:08.902Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "1125e468-fc65-009f-cedf-114b4feaa6dc": {
+      "patientId": "1125e468-fc65-009f-cedf-114b4feaa6dc",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Niesha86_Deckow585_1125e468-fc65-009f-cedf-114b4feaa6dc.json",
+      "fileName": "Niesha86_Deckow585_1125e468-fc65-009f-cedf-114b4feaa6dc.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:52:17.408Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "b9ccf981-ffb1-b3f9-4e5c-e7804388daa8": {
+      "patientId": "b9ccf981-ffb1-b3f9-4e5c-e7804388daa8",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Nigel915_Corwin846_b9ccf981-ffb1-b3f9-4e5c-e7804388daa8.json",
+      "fileName": "Nigel915_Corwin846_b9ccf981-ffb1-b3f9-4e5c-e7804388daa8.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:52:20.245Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "3ef2daf6-7ace-a8b7-e371-00037266c435": {
+      "patientId": "3ef2daf6-7ace-a8b7-e371-00037266c435",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Noble66_Sporer811_3ef2daf6-7ace-a8b7-e371-00037266c435.json",
+      "fileName": "Noble66_Sporer811_3ef2daf6-7ace-a8b7-e371-00037266c435.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:52:23.935Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "0b21e8a2-d5fe-4538-f5eb-c48e6a621fc1": {
+      "patientId": "0b21e8a2-d5fe-4538-f5eb-c48e6a621fc1",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Norberto865_Schinner682_0b21e8a2-d5fe-4538-f5eb-c48e6a621fc1.json",
+      "fileName": "Norberto865_Schinner682_0b21e8a2-d5fe-4538-f5eb-c48e6a621fc1.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:52:26.649Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "0a24731e-2b66-d740-f5a1-f134e2126b22": {
+      "patientId": "0a24731e-2b66-d740-f5a1-f134e2126b22",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Nu535_Shayne60_Rowe323_0a24731e-2b66-d740-f5a1-f134e2126b22.json",
+      "fileName": "Nu535_Shayne60_Rowe323_0a24731e-2b66-d740-f5a1-f134e2126b22.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:52:32.905Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "532436b7-2ed4-644f-07e9-42cb37c955df": {
+      "patientId": "532436b7-2ed4-644f-07e9-42cb37c955df",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Nydia801_Heidenreich818_532436b7-2ed4-644f-07e9-42cb37c955df.json",
+      "fileName": "Nydia801_Heidenreich818_532436b7-2ed4-644f-07e9-42cb37c955df.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:52:33.801Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "6ff28ad1-1eb7-378b-b469-df15cbfb3050": {
+      "patientId": "6ff28ad1-1eb7-378b-b469-df15cbfb3050",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Odilia72_Terese90_Fahey393_6ff28ad1-1eb7-378b-b469-df15cbfb3050.json",
+      "fileName": "Odilia72_Terese90_Fahey393_6ff28ad1-1eb7-378b-b469-df15cbfb3050.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:52:34.664Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "7adc55c8-d80b-79df-4068-6b4cb6bbece9": {
+      "patientId": "7adc55c8-d80b-79df-4068-6b4cb6bbece9",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Olivia294_Anita473_Zepeda235_7adc55c8-d80b-79df-4068-6b4cb6bbece9.json",
+      "fileName": "Olivia294_Anita473_Zepeda235_7adc55c8-d80b-79df-4068-6b4cb6bbece9.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:52:35.568Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "97171c4b-1b7c-7e6e-a2f2-faaf061ebeba": {
+      "patientId": "97171c4b-1b7c-7e6e-a2f2-faaf061ebeba",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Onie555_Alisha974_Weissnat378_97171c4b-1b7c-7e6e-a2f2-faaf061ebeba.json",
+      "fileName": "Onie555_Alisha974_Weissnat378_97171c4b-1b7c-7e6e-a2f2-faaf061ebeba.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:52:36.579Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "7daf2f7d-3dcd-b17a-3df1-21e76eda2f0f": {
+      "patientId": "7daf2f7d-3dcd-b17a-3df1-21e76eda2f0f",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Otha286_Celesta195_Beier427_7daf2f7d-3dcd-b17a-3df1-21e76eda2f0f.json",
+      "fileName": "Otha286_Celesta195_Beier427_7daf2f7d-3dcd-b17a-3df1-21e76eda2f0f.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:52:39.766Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "d0d93d60-3b47-9797-f6d3-f2b5fcb36afe": {
+      "patientId": "d0d93d60-3b47-9797-f6d3-f2b5fcb36afe",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Otis335_Auer97_d0d93d60-3b47-9797-f6d3-f2b5fcb36afe.json",
+      "fileName": "Otis335_Auer97_d0d93d60-3b47-9797-f6d3-f2b5fcb36afe.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:52:44.045Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "bbc9d753-44f2-f26d-5050-6465e48fd9e4": {
+      "patientId": "bbc9d753-44f2-f26d-5050-6465e48fd9e4",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Ozie87_Kylie930_Heidenreich818_bbc9d753-44f2-f26d-5050-6465e48fd9e4.json",
+      "fileName": "Ozie87_Kylie930_Heidenreich818_bbc9d753-44f2-f26d-5050-6465e48fd9e4.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:52:44.653Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "613d4d28-6b19-a81b-395f-98e38b21a766": {
+      "patientId": "613d4d28-6b19-a81b-395f-98e38b21a766",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Parker433_Gerhold939_613d4d28-6b19-a81b-395f-98e38b21a766.json",
+      "fileName": "Parker433_Gerhold939_613d4d28-6b19-a81b-395f-98e38b21a766.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:52:45.853Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "a6dfbd52-baa6-c5bc-bd5e-8e7b786f86e5": {
+      "patientId": "a6dfbd52-baa6-c5bc-bd5e-8e7b786f86e5",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Pearl430_Nikolaus26_a6dfbd52-baa6-c5bc-bd5e-8e7b786f86e5.json",
+      "fileName": "Pearl430_Nikolaus26_a6dfbd52-baa6-c5bc-bd5e-8e7b786f86e5.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:52:48.884Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "8605252f-8d76-0483-fa48-fff3086516f9": {
+      "patientId": "8605252f-8d76-0483-fa48-fff3086516f9",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Pearlie554_Rhea34_Ferry570_8605252f-8d76-0483-fa48-fff3086516f9.json",
+      "fileName": "Pearlie554_Rhea34_Ferry570_8605252f-8d76-0483-fa48-fff3086516f9.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:52:49.687Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "56a87f5c-8dcb-77af-0419-9d41653aed53": {
+      "patientId": "56a87f5c-8dcb-77af-0419-9d41653aed53",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Pedro316_Rojas511_56a87f5c-8dcb-77af-0419-9d41653aed53.json",
+      "fileName": "Pedro316_Rojas511_56a87f5c-8dcb-77af-0419-9d41653aed53.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:52:50.984Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "dd1b222b-1179-00cf-259c-6488f864f467": {
+      "patientId": "dd1b222b-1179-00cf-259c-6488f864f467",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Pete38_Hoeger474_dd1b222b-1179-00cf-259c-6488f864f467.json",
+      "fileName": "Pete38_Hoeger474_dd1b222b-1179-00cf-259c-6488f864f467.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:52:55.199Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "37643f88-09e2-7b03-1376-b39f285c13a8": {
+      "patientId": "37643f88-09e2-7b03-1376-b39f285c13a8",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Petronila724_O'Conner199_37643f88-09e2-7b03-1376-b39f285c13a8.json",
+      "fileName": "Petronila724_O'Conner199_37643f88-09e2-7b03-1376-b39f285c13a8.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:52:59.029Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "49ae34ba-2355-6627-321d-47f3677212d0": {
+      "patientId": "49ae34ba-2355-6627-321d-47f3677212d0",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Philip822_Wyman904_49ae34ba-2355-6627-321d-47f3677212d0.json",
+      "fileName": "Philip822_Wyman904_49ae34ba-2355-6627-321d-47f3677212d0.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:53:01.608Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "942eebb1-75f6-32ae-e47e-0690bba7498b": {
+      "patientId": "942eebb1-75f6-32ae-e47e-0690bba7498b",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Phyliss206_Min362_Bradtke547_942eebb1-75f6-32ae-e47e-0690bba7498b.json",
+      "fileName": "Phyliss206_Min362_Bradtke547_942eebb1-75f6-32ae-e47e-0690bba7498b.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:53:04.328Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "3a15f201-cc17-261e-2ac8-b10a3142f998": {
+      "patientId": "3a15f201-cc17-261e-2ac8-b10a3142f998",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Piper612_Loma263_Bednar518_3a15f201-cc17-261e-2ac8-b10a3142f998.json",
+      "fileName": "Piper612_Loma263_Bednar518_3a15f201-cc17-261e-2ac8-b10a3142f998.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:53:05.128Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "2327c099-268d-2651-f2b3-f734f4a9ade9": {
+      "patientId": "2327c099-268d-2651-f2b3-f734f4a9ade9",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Ramiro608_Zarate81_2327c099-268d-2651-f2b3-f734f4a9ade9.json",
+      "fileName": "Ramiro608_Zarate81_2327c099-268d-2651-f2b3-f734f4a9ade9.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:53:05.794Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "3b3718a1-250d-30dd-9195-017a1ca8b50b": {
+      "patientId": "3b3718a1-250d-30dd-9195-017a1ca8b50b",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Randal152_Price929_3b3718a1-250d-30dd-9195-017a1ca8b50b.json",
+      "fileName": "Randal152_Price929_3b3718a1-250d-30dd-9195-017a1ca8b50b.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:53:06.561Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "258fb128-85f7-ec36-21d3-4d56a3261e61": {
+      "patientId": "258fb128-85f7-ec36-21d3-4d56a3261e61",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Raquel318_Juana825_Rael318_258fb128-85f7-ec36-21d3-4d56a3261e61.json",
+      "fileName": "Raquel318_Juana825_Rael318_258fb128-85f7-ec36-21d3-4d56a3261e61.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:53:07.686Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "fc09441d-1395-9e68-1420-87b32960e8be": {
+      "patientId": "fc09441d-1395-9e68-1420-87b32960e8be",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Ray930_Wehner319_fc09441d-1395-9e68-1420-87b32960e8be.json",
+      "fileName": "Ray930_Wehner319_fc09441d-1395-9e68-1420-87b32960e8be.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:53:09.114Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "ede7247e-56a9-f83f-0e5d-124798e559b0": {
+      "patientId": "ede7247e-56a9-f83f-0e5d-124798e559b0",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Raymond398_Walker122_ede7247e-56a9-f83f-0e5d-124798e559b0.json",
+      "fileName": "Raymond398_Walker122_ede7247e-56a9-f83f-0e5d-124798e559b0.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:53:19.749Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "75ce57a5-f5da-a46b-a846-c355e18ba63a": {
+      "patientId": "75ce57a5-f5da-a46b-a846-c355e18ba63a",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Raymundo71_Volkman526_75ce57a5-f5da-a46b-a846-c355e18ba63a.json",
+      "fileName": "Raymundo71_Volkman526_75ce57a5-f5da-a46b-a846-c355e18ba63a.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:53:21.673Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "bcbe6677-dbed-35e4-7239-51a0dbdc3913": {
+      "patientId": "bcbe6677-dbed-35e4-7239-51a0dbdc3913",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Rema399_Luz785_Labadie908_bcbe6677-dbed-35e4-7239-51a0dbdc3913.json",
+      "fileName": "Rema399_Luz785_Labadie908_bcbe6677-dbed-35e4-7239-51a0dbdc3913.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:53:22.641Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "35f37e54-8ee9-d3e7-56fb-2f44d255fc92": {
+      "patientId": "35f37e54-8ee9-d3e7-56fb-2f44d255fc92",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Renae431_Muriel394_Willms744_35f37e54-8ee9-d3e7-56fb-2f44d255fc92.json",
+      "fileName": "Renae431_Muriel394_Willms744_35f37e54-8ee9-d3e7-56fb-2f44d255fc92.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:53:23.340Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "128adebc-520b-4122-7bc5-130b63399b72": {
+      "patientId": "128adebc-520b-4122-7bc5-130b63399b72",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Renaldo199_Zemlak964_128adebc-520b-4122-7bc5-130b63399b72.json",
+      "fileName": "Renaldo199_Zemlak964_128adebc-520b-4122-7bc5-130b63399b72.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:53:30.573Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "691d6efa-588d-844b-93ef-5a80e8d52a95": {
+      "patientId": "691d6efa-588d-844b-93ef-5a80e8d52a95",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Renato359_Hamill307_691d6efa-588d-844b-93ef-5a80e8d52a95.json",
+      "fileName": "Renato359_Hamill307_691d6efa-588d-844b-93ef-5a80e8d52a95.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:53:33.212Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "f914215e-a01c-9404-576b-adbce51231d6": {
+      "patientId": "f914215e-a01c-9404-576b-adbce51231d6",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Rex53_Padberg411_f914215e-a01c-9404-576b-adbce51231d6.json",
+      "fileName": "Rex53_Padberg411_f914215e-a01c-9404-576b-adbce51231d6.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:53:33.891Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "d3924e03-9de6-dc2e-e7c0-158ecd4a14d6": {
+      "patientId": "d3924e03-9de6-dc2e-e7c0-158ecd4a14d6",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Reyna401_Kunde533_d3924e03-9de6-dc2e-e7c0-158ecd4a14d6.json",
+      "fileName": "Reyna401_Kunde533_d3924e03-9de6-dc2e-e7c0-158ecd4a14d6.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:53:34.511Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "5a6a77cd-f6e1-3b1e-065f-8a7b5b38119f": {
+      "patientId": "5a6a77cd-f6e1-3b1e-065f-8a7b5b38119f",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Ricardo560_Hills818_5a6a77cd-f6e1-3b1e-065f-8a7b5b38119f.json",
+      "fileName": "Ricardo560_Hills818_5a6a77cd-f6e1-3b1e-065f-8a7b5b38119f.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:53:35.321Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "81bcc220-64e6-e8cb-3e76-72ecadbfd606": {
+      "patientId": "81bcc220-64e6-e8cb-3e76-72ecadbfd606",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Robby860_Abernathy524_81bcc220-64e6-e8cb-3e76-72ecadbfd606.json",
+      "fileName": "Robby860_Abernathy524_81bcc220-64e6-e8cb-3e76-72ecadbfd606.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:53:36.420Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "88104b78-e3d5-5f72-40ed-9591e48a6f20": {
+      "patientId": "88104b78-e3d5-5f72-40ed-9591e48a6f20",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Robert854_Swaniawski813_88104b78-e3d5-5f72-40ed-9591e48a6f20.json",
+      "fileName": "Robert854_Swaniawski813_88104b78-e3d5-5f72-40ed-9591e48a6f20.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:53:37.345Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "df81394e-0547-54e5-f329-5ac91e4ce48e": {
+      "patientId": "df81394e-0547-54e5-f329-5ac91e4ce48e",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Ronald408_Ondricka197_df81394e-0547-54e5-f329-5ac91e4ce48e.json",
+      "fileName": "Ronald408_Ondricka197_df81394e-0547-54e5-f329-5ac91e4ce48e.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:53:37.960Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "567bba60-f443-b55e-e2d7-2d2a137c8433": {
+      "patientId": "567bba60-f443-b55e-e2d7-2d2a137c8433",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Rosalia943_González124_567bba60-f443-b55e-e2d7-2d2a137c8433.json",
+      "fileName": "Rosalia943_González124_567bba60-f443-b55e-e2d7-2d2a137c8433.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:53:39.450Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "66efbce2-e1c9-b6d4-20d5-5cbd1bef1215": {
+      "patientId": "66efbce2-e1c9-b6d4-20d5-5cbd1bef1215",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Roselle682_Sol312_Quigley282_66efbce2-e1c9-b6d4-20d5-5cbd1bef1215.json",
+      "fileName": "Roselle682_Sol312_Quigley282_66efbce2-e1c9-b6d4-20d5-5cbd1bef1215.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:53:40.573Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "a37af120-4bad-aadd-f2fe-937060957031": {
+      "patientId": "a37af120-4bad-aadd-f2fe-937060957031",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Rosie394_Cruickshank494_a37af120-4bad-aadd-f2fe-937060957031.json",
+      "fileName": "Rosie394_Cruickshank494_a37af120-4bad-aadd-f2fe-937060957031.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:53:44.445Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "d4007957-80a9-1916-a420-a3309b533fc4": {
+      "patientId": "d4007957-80a9-1916-a420-a3309b533fc4",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Sandra485_Steffanie515_Gerlach374_d4007957-80a9-1916-a420-a3309b533fc4.json",
+      "fileName": "Sandra485_Steffanie515_Gerlach374_d4007957-80a9-1916-a420-a3309b533fc4.json",
+      "status": "failed",
+      "timestamp": "2026-01-04T17:53:52.727Z",
+      "error": "File too large",
+      "isPatientBundle": true
+    },
+    "54f28742-09a4-f425-4039-e9c4201e0d48": {
+      "patientId": "54f28742-09a4-f425-4039-e9c4201e0d48",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Santana368_Kirlin939_54f28742-09a4-f425-4039-e9c4201e0d48.json",
+      "fileName": "Santana368_Kirlin939_54f28742-09a4-f425-4039-e9c4201e0d48.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:53:53.624Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "335b69d8-8c91-5c03-e05a-77f1d083537c": {
+      "patientId": "335b69d8-8c91-5c03-e05a-77f1d083537c",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Sara501_Marilu588_Apodaca347_335b69d8-8c91-5c03-e05a-77f1d083537c.json",
+      "fileName": "Sara501_Marilu588_Apodaca347_335b69d8-8c91-5c03-e05a-77f1d083537c.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:53:54.324Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "c04fb1b7-b314-864b-542d-981681d5bcdc": {
+      "patientId": "c04fb1b7-b314-864b-542d-981681d5bcdc",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Sau887_Bashirian201_c04fb1b7-b314-864b-542d-981681d5bcdc.json",
+      "fileName": "Sau887_Bashirian201_c04fb1b7-b314-864b-542d-981681d5bcdc.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:53:57.818Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "df25b8e7-f8d8-b442-cb9c-36a970339ef4": {
+      "patientId": "df25b8e7-f8d8-b442-cb9c-36a970339ef4",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Saundra460_Feil794_df25b8e7-f8d8-b442-cb9c-36a970339ef4.json",
+      "fileName": "Saundra460_Feil794_df25b8e7-f8d8-b442-cb9c-36a970339ef4.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:53:58.431Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "428fd522-e8c5-213f-ecb5-21e9f20863c4": {
+      "patientId": "428fd522-e8c5-213f-ecb5-21e9f20863c4",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Serena400_Paola523_Bernhard322_428fd522-e8c5-213f-ecb5-21e9f20863c4.json",
+      "fileName": "Serena400_Paola523_Bernhard322_428fd522-e8c5-213f-ecb5-21e9f20863c4.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:53:59.262Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "55960484-8602-8df9-d08c-61b067b32f4d": {
+      "patientId": "55960484-8602-8df9-d08c-61b067b32f4d",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Sergio619_Goyette777_55960484-8602-8df9-d08c-61b067b32f4d.json",
+      "fileName": "Sergio619_Goyette777_55960484-8602-8df9-d08c-61b067b32f4d.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:54:00.032Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "0e5c13d5-ba91-70bf-632f-fa3acfc7be67": {
+      "patientId": "0e5c13d5-ba91-70bf-632f-fa3acfc7be67",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Sergio619_Roberts511_0e5c13d5-ba91-70bf-632f-fa3acfc7be67.json",
+      "fileName": "Sergio619_Roberts511_0e5c13d5-ba91-70bf-632f-fa3acfc7be67.json",
+      "status": "failed",
+      "timestamp": "2026-01-04T17:54:06.930Z",
+      "error": "File too large",
+      "isPatientBundle": true
+    },
+    "f3c3f03b-1a8a-8219-7bdc-dc02b775ac7a": {
+      "patientId": "f3c3f03b-1a8a-8219-7bdc-dc02b775ac7a",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Shaniqua618_O'Kon634_f3c3f03b-1a8a-8219-7bdc-dc02b775ac7a.json",
+      "fileName": "Shaniqua618_O'Kon634_f3c3f03b-1a8a-8219-7bdc-dc02b775ac7a.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:54:07.969Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "565bb72d-73d3-c09e-672f-36b21dc5afc6": {
+      "patientId": "565bb72d-73d3-c09e-672f-36b21dc5afc6",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Sharolyn456_Alda400_Abernathy524_565bb72d-73d3-c09e-672f-36b21dc5afc6.json",
+      "fileName": "Sharolyn456_Alda400_Abernathy524_565bb72d-73d3-c09e-672f-36b21dc5afc6.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:54:08.807Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "9ae49df7-17e7-5dde-6c0e-d6abbb55c4cb": {
+      "patientId": "9ae49df7-17e7-5dde-6c0e-d6abbb55c4cb",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Sherwood961_Witting912_9ae49df7-17e7-5dde-6c0e-d6abbb55c4cb.json",
+      "fileName": "Sherwood961_Witting912_9ae49df7-17e7-5dde-6c0e-d6abbb55c4cb.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:54:09.536Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "216c102d-0206-d1f3-66af-a14a01ceda77": {
+      "patientId": "216c102d-0206-d1f3-66af-a14a01ceda77",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Sheryl275_Cecil300_Champlin946_216c102d-0206-d1f3-66af-a14a01ceda77.json",
+      "fileName": "Sheryl275_Cecil300_Champlin946_216c102d-0206-d1f3-66af-a14a01ceda77.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:54:19.934Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "903658c9-3000-bc2e-3a0f-0c63d96fb51e": {
+      "patientId": "903658c9-3000-bc2e-3a0f-0c63d96fb51e",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Simona661_Billie243_Dooley940_903658c9-3000-bc2e-3a0f-0c63d96fb51e.json",
+      "fileName": "Simona661_Billie243_Dooley940_903658c9-3000-bc2e-3a0f-0c63d96fb51e.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:54:21.115Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "4a60d032-1e34-d56c-f682-63e4a43a7ced": {
+      "patientId": "4a60d032-1e34-d56c-f682-63e4a43a7ced",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Sofia418_Rosa195_Collazo246_4a60d032-1e34-d56c-f682-63e4a43a7ced.json",
+      "fileName": "Sofia418_Rosa195_Collazo246_4a60d032-1e34-d56c-f682-63e4a43a7ced.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:54:21.809Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "7c5667ef-f77b-1326-503f-e7061e0707ad": {
+      "patientId": "7c5667ef-f77b-1326-503f-e7061e0707ad",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Sol312_Corkery305_7c5667ef-f77b-1326-503f-e7061e0707ad.json",
+      "fileName": "Sol312_Corkery305_7c5667ef-f77b-1326-503f-e7061e0707ad.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:54:22.413Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "9f72afbe-e1fb-8743-20ef-f7ef3b50ee61": {
+      "patientId": "9f72afbe-e1fb-8743-20ef-f7ef3b50ee61",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Sonia106_Mónica985_Salazar800_9f72afbe-e1fb-8743-20ef-f7ef3b50ee61.json",
+      "fileName": "Sonia106_Mónica985_Salazar800_9f72afbe-e1fb-8743-20ef-f7ef3b50ee61.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:54:23.204Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "3d62ea60-652b-e5cc-2741-bd8ce64a3125": {
+      "patientId": "3d62ea60-652b-e5cc-2741-bd8ce64a3125",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Stephan15_Williamson769_3d62ea60-652b-e5cc-2741-bd8ce64a3125.json",
+      "fileName": "Stephan15_Williamson769_3d62ea60-652b-e5cc-2741-bd8ce64a3125.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:54:28.940Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "1f5091a0-dc1d-dcd2-126a-b4c1a4cbbb92": {
+      "patientId": "1f5091a0-dc1d-dcd2-126a-b4c1a4cbbb92",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Sue491_Andrew29_Hills818_1f5091a0-dc1d-dcd2-126a-b4c1a4cbbb92.json",
+      "fileName": "Sue491_Andrew29_Hills818_1f5091a0-dc1d-dcd2-126a-b4c1a4cbbb92.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:54:30.473Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "704ba74a-662c-d6c0-7e29-a9bfa44a8c10": {
+      "patientId": "704ba74a-662c-d6c0-7e29-a9bfa44a8c10",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Sumiko254_Thomasina264_Pfannerstill264_704ba74a-662c-d6c0-7e29-a9bfa44a8c10.json",
+      "fileName": "Sumiko254_Thomasina264_Pfannerstill264_704ba74a-662c-d6c0-7e29-a9bfa44a8c10.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:54:31.809Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "80784141-dac6-b6d7-4659-8d1e1c791043": {
+      "patientId": "80784141-dac6-b6d7-4659-8d1e1c791043",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Sylvester827_Johns824_80784141-dac6-b6d7-4659-8d1e1c791043.json",
+      "fileName": "Sylvester827_Johns824_80784141-dac6-b6d7-4659-8d1e1c791043.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:54:32.945Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "51d8f5ca-11ce-f1b9-7397-2611b7bd7925": {
+      "patientId": "51d8f5ca-11ce-f1b9-7397-2611b7bd7925",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Tanisha724_Lottie401_Boyle917_51d8f5ca-11ce-f1b9-7397-2611b7bd7925.json",
+      "fileName": "Tanisha724_Lottie401_Boyle917_51d8f5ca-11ce-f1b9-7397-2611b7bd7925.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:54:33.607Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "8cd625cd-4405-3d62-07e1-dfcd0d4a65e9": {
+      "patientId": "8cd625cd-4405-3d62-07e1-dfcd0d4a65e9",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Tarra676_Bartell116_8cd625cd-4405-3d62-07e1-dfcd0d4a65e9.json",
+      "fileName": "Tarra676_Bartell116_8cd625cd-4405-3d62-07e1-dfcd0d4a65e9.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:54:40.123Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "9b017613-d53a-b17c-dc46-35ab89f0b85f": {
+      "patientId": "9b017613-d53a-b17c-dc46-35ab89f0b85f",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Tatyana394_Sade71_Heathcote539_9b017613-d53a-b17c-dc46-35ab89f0b85f.json",
+      "fileName": "Tatyana394_Sade71_Heathcote539_9b017613-d53a-b17c-dc46-35ab89f0b85f.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:54:49.211Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "c3cfe966-c4f9-f190-cc60-1757ab0142c1": {
+      "patientId": "c3cfe966-c4f9-f190-cc60-1757ab0142c1",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Tawanna466_Legros616_c3cfe966-c4f9-f190-cc60-1757ab0142c1.json",
+      "fileName": "Tawanna466_Legros616_c3cfe966-c4f9-f190-cc60-1757ab0142c1.json",
+      "status": "failed",
+      "timestamp": "2026-01-04T17:54:57.617Z",
+      "error": "File too large",
+      "isPatientBundle": true
+    },
+    "f1142ed0-7af8-a139-de28-cf38603e6618": {
+      "patientId": "f1142ed0-7af8-a139-de28-cf38603e6618",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Temeka297_McGlynn426_f1142ed0-7af8-a139-de28-cf38603e6618.json",
+      "fileName": "Temeka297_McGlynn426_f1142ed0-7af8-a139-de28-cf38603e6618.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:54:58.776Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "e273854c-f3d5-51ac-30ff-76f323fe8173": {
+      "patientId": "e273854c-f3d5-51ac-30ff-76f323fe8173",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Teresita257_Bahringer146_e273854c-f3d5-51ac-30ff-76f323fe8173.json",
+      "fileName": "Teresita257_Bahringer146_e273854c-f3d5-51ac-30ff-76f323fe8173.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:55:00.183Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "803b9d8d-b9b4-18f1-2e30-7e8b461d72ea": {
+      "patientId": "803b9d8d-b9b4-18f1-2e30-7e8b461d72ea",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Terrence276_Rohan584_803b9d8d-b9b4-18f1-2e30-7e8b461d72ea.json",
+      "fileName": "Terrence276_Rohan584_803b9d8d-b9b4-18f1-2e30-7e8b461d72ea.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:55:36.910Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "b55324f6-b059-f321-0854-482aebf02479": {
+      "patientId": "b55324f6-b059-f321-0854-482aebf02479",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Therese102_Pacocha935_b55324f6-b059-f321-0854-482aebf02479.json",
+      "fileName": "Therese102_Pacocha935_b55324f6-b059-f321-0854-482aebf02479.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:55:38.244Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "a402bf10-a063-07ba-a8cf-36eba5a619f3": {
+      "patientId": "a402bf10-a063-07ba-a8cf-36eba5a619f3",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Thora330_Leannon79_a402bf10-a063-07ba-a8cf-36eba5a619f3.json",
+      "fileName": "Thora330_Leannon79_a402bf10-a063-07ba-a8cf-36eba5a619f3.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:55:39.763Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "84dce935-f88f-e1ec-2f0d-b758d1213528": {
+      "patientId": "84dce935-f88f-e1ec-2f0d-b758d1213528",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Tobi258_Reichel38_84dce935-f88f-e1ec-2f0d-b758d1213528.json",
+      "fileName": "Tobi258_Reichel38_84dce935-f88f-e1ec-2f0d-b758d1213528.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:55:40.332Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "b9c53dab-f5c4-c74c-addf-899bc758deb3": {
+      "patientId": "b9c53dab-f5c4-c74c-addf-899bc758deb3",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Tomeka87_Eleanora667_Johnston597_b9c53dab-f5c4-c74c-addf-899bc758deb3.json",
+      "fileName": "Tomeka87_Eleanora667_Johnston597_b9c53dab-f5c4-c74c-addf-899bc758deb3.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:55:41.866Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "97383ad6-363f-ec0a-78d7-8817c2bf6143": {
+      "patientId": "97383ad6-363f-ec0a-78d7-8817c2bf6143",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Tommy814_Ryan260_97383ad6-363f-ec0a-78d7-8817c2bf6143.json",
+      "fileName": "Tommy814_Ryan260_97383ad6-363f-ec0a-78d7-8817c2bf6143.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:55:42.670Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "004c371a-b787-2f90-3a31-6cce5669d2fa": {
+      "patientId": "004c371a-b787-2f90-3a31-6cce5669d2fa",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Tory770_Parker433_004c371a-b787-2f90-3a31-6cce5669d2fa.json",
+      "fileName": "Tory770_Parker433_004c371a-b787-2f90-3a31-6cce5669d2fa.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:55:43.409Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "023224d2-aa39-ab74-46d5-525d94bc8ad2": {
+      "patientId": "023224d2-aa39-ab74-46d5-525d94bc8ad2",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Travis723_Wuckert783_023224d2-aa39-ab74-46d5-525d94bc8ad2.json",
+      "fileName": "Travis723_Wuckert783_023224d2-aa39-ab74-46d5-525d94bc8ad2.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:55:44.111Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "9eb33445-aa56-3a10-6570-225e2e454824": {
+      "patientId": "9eb33445-aa56-3a10-6570-225e2e454824",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Tressa150_Matha641_Upton904_9eb33445-aa56-3a10-6570-225e2e454824.json",
+      "fileName": "Tressa150_Matha641_Upton904_9eb33445-aa56-3a10-6570-225e2e454824.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:55:44.966Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "dfc9a301-e2fd-a343-1c2d-1d3f0a5e4376": {
+      "patientId": "dfc9a301-e2fd-a343-1c2d-1d3f0a5e4376",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Tristan353_Greenfelder433_dfc9a301-e2fd-a343-1c2d-1d3f0a5e4376.json",
+      "fileName": "Tristan353_Greenfelder433_dfc9a301-e2fd-a343-1c2d-1d3f0a5e4376.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:55:45.758Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "c7d848ff-2e2d-4b4d-df25-a0275831da9e": {
+      "patientId": "c7d848ff-2e2d-4b4d-df25-a0275831da9e",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Usha71_Shavon903_Gorczany269_c7d848ff-2e2d-4b4d-df25-a0275831da9e.json",
+      "fileName": "Usha71_Shavon903_Gorczany269_c7d848ff-2e2d-4b4d-df25-a0275831da9e.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:55:48.689Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "e5f8edcf-a59e-b975-570a-08b82d50254a": {
+      "patientId": "e5f8edcf-a59e-b975-570a-08b82d50254a",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Val761_Willms744_e5f8edcf-a59e-b975-570a-08b82d50254a.json",
+      "fileName": "Val761_Willms744_e5f8edcf-a59e-b975-570a-08b82d50254a.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:55:49.353Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "0f877be2-c6c9-bf9e-0290-68934e965746": {
+      "patientId": "0f877be2-c6c9-bf9e-0290-68934e965746",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Valarie790_Harriet337_Cummerata161_0f877be2-c6c9-bf9e-0290-68934e965746.json",
+      "fileName": "Valarie790_Harriet337_Cummerata161_0f877be2-c6c9-bf9e-0290-68934e965746.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:55:50.139Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "9a3ae482-7550-d9a3-fdb9-f1db8cfb61d2": {
+      "patientId": "9a3ae482-7550-d9a3-fdb9-f1db8cfb61d2",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Vena594_Agueda283_Mayert710_9a3ae482-7550-d9a3-fdb9-f1db8cfb61d2.json",
+      "fileName": "Vena594_Agueda283_Mayert710_9a3ae482-7550-d9a3-fdb9-f1db8cfb61d2.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:55:52.972Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "2a8df7a2-25f8-59d9-b6bf-347a9420c3fd": {
+      "patientId": "2a8df7a2-25f8-59d9-b6bf-347a9420c3fd",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Vernell410_Rory188_Feeney44_2a8df7a2-25f8-59d9-b6bf-347a9420c3fd.json",
+      "fileName": "Vernell410_Rory188_Feeney44_2a8df7a2-25f8-59d9-b6bf-347a9420c3fd.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:55:57.159Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "728e1a4e-fb5b-8dc1-8a1e-8fbfb453f71a": {
+      "patientId": "728e1a4e-fb5b-8dc1-8a1e-8fbfb453f71a",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Vicenta966_Nolan344_728e1a4e-fb5b-8dc1-8a1e-8fbfb453f71a.json",
+      "fileName": "Vicenta966_Nolan344_728e1a4e-fb5b-8dc1-8a1e-8fbfb453f71a.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:55:57.735Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "f6f4b6b9-80b9-3c4a-b865-4b3504c79a19": {
+      "patientId": "f6f4b6b9-80b9-3c4a-b865-4b3504c79a19",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Vivien121_Bailey598_f6f4b6b9-80b9-3c4a-b865-4b3504c79a19.json",
+      "fileName": "Vivien121_Bailey598_f6f4b6b9-80b9-3c4a-b865-4b3504c79a19.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:55:58.431Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "26e938c1-eccf-43fd-4d61-bc54d2ddd0ba": {
+      "patientId": "26e938c1-eccf-43fd-4d61-bc54d2ddd0ba",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Víctor493_Santiago500_26e938c1-eccf-43fd-4d61-bc54d2ddd0ba.json",
+      "fileName": "Víctor493_Santiago500_26e938c1-eccf-43fd-4d61-bc54d2ddd0ba.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:55:59.353Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "08434cb3-9951-a718-06b7-66810600f3e3": {
+      "patientId": "08434cb3-9951-a718-06b7-66810600f3e3",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Waltraud488_Helen432_Bashirian201_08434cb3-9951-a718-06b7-66810600f3e3.json",
+      "fileName": "Waltraud488_Helen432_Bashirian201_08434cb3-9951-a718-06b7-66810600f3e3.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:56:00.130Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "af3998ec-2a9d-7eca-6678-03c2d7358c30": {
+      "patientId": "af3998ec-2a9d-7eca-6678-03c2d7358c30",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Waneta858_Connie24_Vandervort697_af3998ec-2a9d-7eca-6678-03c2d7358c30.json",
+      "fileName": "Waneta858_Connie24_Vandervort697_af3998ec-2a9d-7eca-6678-03c2d7358c30.json",
+      "status": "failed",
+      "timestamp": "2026-01-04T17:56:05.683Z",
+      "error": "File too large",
+      "isPatientBundle": true
+    },
+    "539981f6-85b8-0af5-e849-cc62018e069f": {
+      "patientId": "539981f6-85b8-0af5-e849-cc62018e069f",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Wava789_Cummerata161_539981f6-85b8-0af5-e849-cc62018e069f.json",
+      "fileName": "Wava789_Cummerata161_539981f6-85b8-0af5-e849-cc62018e069f.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:56:06.290Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "f60bf0cd-723e-4294-901d-2472b28a52b6": {
+      "patientId": "f60bf0cd-723e-4294-901d-2472b28a52b6",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Wilton999_Watsica258_f60bf0cd-723e-4294-901d-2472b28a52b6.json",
+      "fileName": "Wilton999_Watsica258_f60bf0cd-723e-4294-901d-2472b28a52b6.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:56:06.908Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "bb2cc448-28af-623b-b425-49876df24b25": {
+      "patientId": "bb2cc448-28af-623b-b425-49876df24b25",
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/Xavier983_Ryan260_bb2cc448-28af-623b-b425-49876df24b25.json",
+      "fileName": "Xavier983_Ryan260_bb2cc448-28af-623b-b425-49876df24b25.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:56:08.832Z",
+      "error": null,
+      "isPatientBundle": true
+    },
+    "hospitalInformation1767471504243.json": {
+      "patientId": null,
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/hospitalInformation1767471504243.json",
+      "fileName": "hospitalInformation1767471504243.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:56:09.391Z",
+      "error": null,
+      "isPatientBundle": false
+    },
+    "practitionerInformation1767471504243.json": {
+      "patientId": null,
+      "filePath": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_realistic_pdc_tiers/practitionerInformation1767471504243.json",
+      "fileName": "practitionerInformation1767471504243.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-04T17:56:09.988Z",
+      "error": null,
+      "isPatientBundle": false
+    }
+  }
+}
