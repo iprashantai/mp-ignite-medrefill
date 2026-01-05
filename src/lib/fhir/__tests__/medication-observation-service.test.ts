@@ -258,7 +258,7 @@ describe('MedicationObservationService', () => {
 
   describe('getCurrentMedicationPDCObservation', () => {
     it('MOG-001: should query by RxNorm code and patient', async () => {
-      mockMedplum.searchOne.mockResolvedValue(undefined);
+      mockMedplum.searchResources.mockResolvedValue([]);
 
       await getCurrentMedicationPDCObservation(
         mockMedplum as unknown as any,
@@ -266,7 +266,7 @@ describe('MedicationObservationService', () => {
         '314076'
       );
 
-      expect(mockMedplum.searchOne).toHaveBeenCalledWith(
+      expect(mockMedplum.searchResources).toHaveBeenCalledWith(
         'Observation',
         expect.objectContaining({
           subject: 'Patient/patient-123',
@@ -275,7 +275,7 @@ describe('MedicationObservationService', () => {
     });
 
     it('MOG-002: should return null when no observation exists', async () => {
-      mockMedplum.searchOne.mockResolvedValue(undefined);
+      mockMedplum.searchResources.mockResolvedValue([]);
 
       const result = await getCurrentMedicationPDCObservation(
         mockMedplum as unknown as any,
@@ -292,7 +292,7 @@ describe('MedicationObservationService', () => {
         { url: MEDICATION_OBSERVATION_EXTENSION_URLS.MEDICATION_RXNORM, valueCode: '314076' },
         { url: OBSERVATION_EXTENSION_URLS.IS_CURRENT_PDC, valueBoolean: true },
       ];
-      mockMedplum.searchOne.mockResolvedValue(obs);
+      mockMedplum.searchResources.mockResolvedValue([obs]);
 
       const result = await getCurrentMedicationPDCObservation(
         mockMedplum as unknown as any,

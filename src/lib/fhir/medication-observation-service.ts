@@ -243,44 +243,39 @@ export async function getCurrentMedicationPDCObservation(
   patientId: string,
   rxnormCode: string
 ): Promise<Observation | null> {
-  // Search for medication-level observations with matching RxNorm and is-current=true
-  const observation = await medplum.searchOne('Observation', {
-    subject: `Patient/${patientId}`,
-    code: `${CODE_SYSTEM_URLS.ADHERENCE_METRICS}|${MEDICATION_OBSERVATION_CODE.code}`,
-    'is-current-pdc': 'true',
-  });
+  let allObs: Observation[];
 
-  if (!observation) {
-    return null;
-  }
-
-  // Verify RxNorm matches (in case search parameter isn't working)
-  const obsRxnorm = getCodeExtension(
-    (observation as Observation).extension,
-    MEDICATION_OBSERVATION_EXTENSION_URLS.MEDICATION_RXNORM
-  );
-
-  if (obsRxnorm !== rxnormCode) {
-    // Need to search manually
-    const allObs = await medplum.searchResources('Observation', {
+  try {
+    // Try using custom search parameter first
+    allObs = await medplum.searchResources('Observation', {
       subject: `Patient/${patientId}`,
       code: `${CODE_SYSTEM_URLS.ADHERENCE_METRICS}|${MEDICATION_OBSERVATION_CODE.code}`,
       'is-current-pdc': 'true',
     });
+  } catch {
+    // Fallback: search all observations and filter client-side
+    const observations = await medplum.searchResources('Observation', {
+      subject: `Patient/${patientId}`,
+      code: `${CODE_SYSTEM_URLS.ADHERENCE_METRICS}|${MEDICATION_OBSERVATION_CODE.code}`,
+    });
 
-    for (const obs of allObs as Observation[]) {
-      const obsRx = getCodeExtension(
-        obs.extension,
-        MEDICATION_OBSERVATION_EXTENSION_URLS.MEDICATION_RXNORM
-      );
-      if (obsRx === rxnormCode) {
-        return obs;
-      }
-    }
-    return null;
+    allObs = (observations as Observation[]).filter((obs) => {
+      return getBooleanExtension(obs.extension, OBSERVATION_EXTENSION_URLS.IS_CURRENT_PDC) === true;
+    });
   }
 
-  return observation as Observation;
+  // Find the one matching the RxNorm code
+  for (const obs of allObs as Observation[]) {
+    const obsRx = getCodeExtension(
+      obs.extension,
+      MEDICATION_OBSERVATION_EXTENSION_URLS.MEDICATION_RXNORM
+    );
+    if (obsRx === rxnormCode) {
+      return obs;
+    }
+  }
+
+  return null;
 }
 
 /**
@@ -296,13 +291,26 @@ export async function getAllCurrentMedicationPDCObservations(
   patientId: string,
   measure?: MAMeasure
 ): Promise<Observation[]> {
-  const query: Record<string, string> = {
-    subject: `Patient/${patientId}`,
-    code: `${CODE_SYSTEM_URLS.ADHERENCE_METRICS}|${MEDICATION_OBSERVATION_CODE.code}`,
-    'is-current-pdc': 'true',
-  };
+  let observations: Observation[];
 
-  const observations = await medplum.searchResources('Observation', query);
+  try {
+    // Try using custom search parameter first
+    observations = await medplum.searchResources('Observation', {
+      subject: `Patient/${patientId}`,
+      code: `${CODE_SYSTEM_URLS.ADHERENCE_METRICS}|${MEDICATION_OBSERVATION_CODE.code}`,
+      'is-current-pdc': 'true',
+    });
+  } catch {
+    // Fallback: search all observations and filter client-side
+    const allObs = await medplum.searchResources('Observation', {
+      subject: `Patient/${patientId}`,
+      code: `${CODE_SYSTEM_URLS.ADHERENCE_METRICS}|${MEDICATION_OBSERVATION_CODE.code}`,
+    });
+
+    observations = (allObs as Observation[]).filter((obs) => {
+      return getBooleanExtension(obs.extension, OBSERVATION_EXTENSION_URLS.IS_CURRENT_PDC) === true;
+    });
+  }
 
   // Filter by measure if specified
   if (measure) {
@@ -407,12 +415,26 @@ export async function markPreviousMedicationObservationsNotCurrent(
   patientId: string,
   rxnormCode: string
 ): Promise<void> {
-  // Find all current medication observations for this patient
-  const currentObservations = await medplum.searchResources('Observation', {
-    subject: `Patient/${patientId}`,
-    code: `${CODE_SYSTEM_URLS.ADHERENCE_METRICS}|${MEDICATION_OBSERVATION_CODE.code}`,
-    'is-current-pdc': 'true',
-  });
+  let currentObservations: Observation[];
+
+  try {
+    // Try using custom search parameter first
+    currentObservations = await medplum.searchResources('Observation', {
+      subject: `Patient/${patientId}`,
+      code: `${CODE_SYSTEM_URLS.ADHERENCE_METRICS}|${MEDICATION_OBSERVATION_CODE.code}`,
+      'is-current-pdc': 'true',
+    });
+  } catch {
+    // Fallback: search all observations and filter client-side
+    const allObs = await medplum.searchResources('Observation', {
+      subject: `Patient/${patientId}`,
+      code: `${CODE_SYSTEM_URLS.ADHERENCE_METRICS}|${MEDICATION_OBSERVATION_CODE.code}`,
+    });
+
+    currentObservations = (allObs as Observation[]).filter((obs) => {
+      return getBooleanExtension(obs.extension, OBSERVATION_EXTENSION_URLS.IS_CURRENT_PDC) === true;
+    });
+  }
 
   // Filter to only those matching the RxNorm code
   const matchingObs = (currentObservations as Observation[]).filter((obs) => {

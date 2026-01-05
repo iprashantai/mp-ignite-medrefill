@@ -282,14 +282,29 @@ export async function getCurrentPDCObservation(
   patientId: string,
   measure: MAMeasure
 ): Promise<Observation | null> {
-  // Use custom search parameter if available, otherwise fall back to latest
-  const observation = await medplum.searchOne('Observation', {
-    subject: `Patient/${patientId}`,
-    code: `${CODE_SYSTEM_URLS.ADHERENCE_METRICS}|${OBSERVATION_CODES[measure].code}`,
-    'is-current-pdc': 'true',
-  });
+  try {
+    // Use custom search parameter if available
+    const observation = await medplum.searchOne('Observation', {
+      subject: `Patient/${patientId}`,
+      code: `${CODE_SYSTEM_URLS.ADHERENCE_METRICS}|${OBSERVATION_CODES[measure].code}`,
+      'is-current-pdc': 'true',
+    });
 
-  return (observation as Observation) ?? null;
+    return (observation as Observation) ?? null;
+  } catch {
+    // Fallback: search all observations and filter client-side
+    const allObservations = await medplum.searchResources('Observation', {
+      subject: `Patient/${patientId}`,
+      code: `${CODE_SYSTEM_URLS.ADHERENCE_METRICS}|${OBSERVATION_CODES[measure].code}`,
+      _sort: '-date',
+    });
+
+    const current = (allObservations as Observation[]).find((obs) => {
+      return getBooleanExtension(obs.extension, OBSERVATION_EXTENSION_URLS.IS_CURRENT_PDC) === true;
+    });
+
+    return current ?? null;
+  }
 }
 
 /**
@@ -404,12 +419,27 @@ export async function markPreviousObservationsNotCurrent(
   patientId: string,
   measure: MAMeasure
 ): Promise<void> {
-  // Find all current observations for this patient-measure
-  const currentObservations = await medplum.searchResources('Observation', {
-    subject: `Patient/${patientId}`,
-    code: `${CODE_SYSTEM_URLS.ADHERENCE_METRICS}|${OBSERVATION_CODES[measure].code}`,
-    'is-current-pdc': 'true',
-  });
+  let currentObservations: Observation[];
+
+  try {
+    // Try using custom search parameter first
+    currentObservations = await medplum.searchResources('Observation', {
+      subject: `Patient/${patientId}`,
+      code: `${CODE_SYSTEM_URLS.ADHERENCE_METRICS}|${OBSERVATION_CODES[measure].code}`,
+      'is-current-pdc': 'true',
+    });
+  } catch {
+    // Fallback: search all observations for this patient-measure and filter client-side
+    // This is needed when the custom SearchParameter hasn't been indexed yet
+    const allObservations = await medplum.searchResources('Observation', {
+      subject: `Patient/${patientId}`,
+      code: `${CODE_SYSTEM_URLS.ADHERENCE_METRICS}|${OBSERVATION_CODES[measure].code}`,
+    });
+
+    currentObservations = (allObservations as Observation[]).filter((obs) => {
+      return getBooleanExtension(obs.extension, OBSERVATION_EXTENSION_URLS.IS_CURRENT_PDC) === true;
+    });
+  }
 
   // Update each to set is-current-pdc to false
   for (const obs of currentObservations as Observation[]) {
