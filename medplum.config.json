@@ -1,0 +1,14 @@
+{
+  "$schema": "https://medplum.com/schemas/medplum-config.json",
+  "name": "ignite-medrefills",
+  "bots": [
+    {
+      "name": "pdc-nightly-calculator",
+      "description": "Nightly PDC calculation bot - calculates PDC for all patients and updates Observations/Patient extensions",
+      "src": "src/bots/pdc-nightly-calculator/index.ts",
+      "dist": "dist/bots/pdc-nightly-calculator/index.js",
+      "cronTrigger": "0 2 * * *"
+    }
+  ],
+  "subscriptions": []
+}
