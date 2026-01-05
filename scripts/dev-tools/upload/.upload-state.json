@@ -1,0 +1,327 @@
+{
+  "lastUpdated": "2026-01-05T08:03:43.903Z",
+  "total": 53,
+  "uploaded": 52,
+  "pending": 0,
+  "failed": 1,
+  "files": {
+    "Aaron697_Orn563_03693cdf-476d-afa7-2fda-db21a4e44bc6.json": {
+      "path": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_50pt_15mo/Aaron697_Orn563_03693cdf-476d-afa7-2fda-db21a4e44bc6.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-05T08:01:23.164Z",
+      "error": null
+    },
+    "Adriana394_Jinny850_Durgan499_bba8c7b8-3139-d744-9af4-6f397267629a.json": {
+      "path": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_50pt_15mo/Adriana394_Jinny850_Durgan499_bba8c7b8-3139-d744-9af4-6f397267629a.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-05T08:01:27.092Z",
+      "error": null
+    },
+    "Allyson474_Kerluke267_4cd9e32d-49e1-5c18-df09-f1cf6265fc9a.json": {
+      "path": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_50pt_15mo/Allyson474_Kerluke267_4cd9e32d-49e1-5c18-df09-f1cf6265fc9a.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-05T08:01:28.462Z",
+      "error": null
+    },
+    "Anthony633_Carola944_Skiles927_69bfb71b-3cef-b54e-c4dd-8881389957ba.json": {
+      "path": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_50pt_15mo/Anthony633_Carola944_Skiles927_69bfb71b-3cef-b54e-c4dd-8881389957ba.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-05T08:01:35.096Z",
+      "error": null
+    },
+    "Barney639_Grady603_8f02c6a0-0d0e-91ed-593c-7b8fcc633d53.json": {
+      "path": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_50pt_15mo/Barney639_Grady603_8f02c6a0-0d0e-91ed-593c-7b8fcc633d53.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-05T08:01:38.044Z",
+      "error": null
+    },
+    "Beau391_Kerluke267_43b06126-1da8-d266-d2a7-7fbfe7511ea1.json": {
+      "path": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_50pt_15mo/Beau391_Kerluke267_43b06126-1da8-d266-d2a7-7fbfe7511ea1.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-05T08:01:39.113Z",
+      "error": null
+    },
+    "Berry486_Purdy2_e9a1169b-3873-19b6-ad86-6a5d04078e4c.json": {
+      "path": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_50pt_15mo/Berry486_Purdy2_e9a1169b-3873-19b6-ad86-6a5d04078e4c.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-05T08:01:43.779Z",
+      "error": null
+    },
+    "Branda994_Daniela614_Hagenes547_6f183c5f-74d4-4d90-362c-d7a131a921d1.json": {
+      "path": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_50pt_15mo/Branda994_Daniela614_Hagenes547_6f183c5f-74d4-4d90-362c-d7a131a921d1.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-05T08:01:44.388Z",
+      "error": null
+    },
+    "Brandee895_D'Amore443_5b7ab8ab-6b81-54db-50c9-57677da84ce5.json": {
+      "path": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_50pt_15mo/Brandee895_D'Amore443_5b7ab8ab-6b81-54db-50c9-57677da84ce5.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-05T08:01:47.769Z",
+      "error": null
+    },
+    "Brett333_Kozey370_2745ca44-d00a-4763-5631-4c259f9511f3.json": {
+      "path": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_50pt_15mo/Brett333_Kozey370_2745ca44-d00a-4763-5631-4c259f9511f3.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-05T08:01:48.441Z",
+      "error": null
+    },
+    "Britt177_Reinger292_062af2b1-f162-f1c1-ba1a-7d0f6502e4f1.json": {
+      "path": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_50pt_15mo/Britt177_Reinger292_062af2b1-f162-f1c1-ba1a-7d0f6502e4f1.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-05T08:01:49.032Z",
+      "error": null
+    },
+    "Chasidy481_Fadel536_c89b59ce-aa3a-3a84-0a7e-959d41fec578.json": {
+      "path": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_50pt_15mo/Chasidy481_Fadel536_c89b59ce-aa3a-3a84-0a7e-959d41fec578.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-05T08:01:49.518Z",
+      "error": null
+    },
+    "Cristobal567_Olivas524_944461d5-e5e5-b79d-9760-d8ea0fd8d5be.json": {
+      "path": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_50pt_15mo/Cristobal567_Olivas524_944461d5-e5e5-b79d-9760-d8ea0fd8d5be.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-05T08:01:52.444Z",
+      "error": null
+    },
+    "Cyndy549_Randi364_Gottlieb798_d794b15f-bdd3-637c-e9ad-a52b921cf8e1.json": {
+      "path": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_50pt_15mo/Cyndy549_Randi364_Gottlieb798_d794b15f-bdd3-637c-e9ad-a52b921cf8e1.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-05T08:01:52.984Z",
+      "error": null
+    },
+    "Derek111_Wisozk929_80fc6968-b7e1-5ffc-0a11-4b3f21101c01.json": {
+      "path": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_50pt_15mo/Derek111_Wisozk929_80fc6968-b7e1-5ffc-0a11-4b3f21101c01.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-05T08:01:53.672Z",
+      "error": null
+    },
+    "Domenica436_Petronila724_Wisozk929_b2d981ca-c446-81e9-42e7-be7607799d7b.json": {
+      "path": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_50pt_15mo/Domenica436_Petronila724_Wisozk929_b2d981ca-c446-81e9-42e7-be7607799d7b.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-05T08:01:56.130Z",
+      "error": null
+    },
+    "Donnell534_Haley279_5872dab4-e6a1-5895-2f68-72b59862822d.json": {
+      "path": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_50pt_15mo/Donnell534_Haley279_5872dab4-e6a1-5895-2f68-72b59862822d.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-05T08:01:56.881Z",
+      "error": null
+    },
+    "Douglas31_Reynolds644_bbdfffe9-a6e7-39ac-fe3a-99aa00c3542d.json": {
+      "path": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_50pt_15mo/Douglas31_Reynolds644_bbdfffe9-a6e7-39ac-fe3a-99aa00c3542d.json",
+      "status": "failed",
+      "timestamp": "2026-01-05T08:02:05.937Z",
+      "error": "File too large"
+    },
+    "Elvin140_Zulauf375_32979d5a-82df-26d6-601a-7c98a1694d4a.json": {
+      "path": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_50pt_15mo/Elvin140_Zulauf375_32979d5a-82df-26d6-601a-7c98a1694d4a.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-05T08:02:07.358Z",
+      "error": null
+    },
+    "Foster87_Simonis280_1cc3b36a-333a-7cb6-b39e-7360d7c035b0.json": {
+      "path": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_50pt_15mo/Foster87_Simonis280_1cc3b36a-333a-7cb6-b39e-7360d7c035b0.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-05T08:02:10.020Z",
+      "error": null
+    },
+    "Fredrick998_Heathcote539_85348e3e-2fd4-1120-2dce-f67934c1ef90.json": {
+      "path": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_50pt_15mo/Fredrick998_Heathcote539_85348e3e-2fd4-1120-2dce-f67934c1ef90.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-05T08:02:11.084Z",
+      "error": null
+    },
+    "Gabriel934_Hernádez343_f0da694f-6c6c-4d8b-2e0e-75ef150c2a7e.json": {
+      "path": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_50pt_15mo/Gabriel934_Hernádez343_f0da694f-6c6c-4d8b-2e0e-75ef150c2a7e.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-05T08:02:11.954Z",
+      "error": null
+    },
+    "Gerry91_Sharie942_Parisian75_652d2bd2-9d18-443b-f832-a289d3a8a26b.json": {
+      "path": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_50pt_15mo/Gerry91_Sharie942_Parisian75_652d2bd2-9d18-443b-f832-a289d3a8a26b.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-05T08:02:13.872Z",
+      "error": null
+    },
+    "Gustavo235_Loya635_f8ca997c-5934-1b25-f97f-87a38231fff5.json": {
+      "path": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_50pt_15mo/Gustavo235_Loya635_f8ca997c-5934-1b25-f97f-87a38231fff5.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-05T08:02:37.413Z",
+      "error": null
+    },
+    "Heide509_Luanna919_McClure239_231c6501-a05c-0d84-be51-4a9dbee61c65.json": {
+      "path": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_50pt_15mo/Heide509_Luanna919_McClure239_231c6501-a05c-0d84-be51-4a9dbee61c65.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-05T08:02:38.832Z",
+      "error": null
+    },
+    "Hester117_Madeleine482_Brekke496_edd9edb0-3b8d-d4d1-a134-0694d5eba3d6.json": {
+      "path": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_50pt_15mo/Hester117_Madeleine482_Brekke496_edd9edb0-3b8d-d4d1-a134-0694d5eba3d6.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-05T08:02:39.534Z",
+      "error": null
+    },
+    "Ione925_Leigh689_Donnelly343_90a4b02f-6f68-91a8-b21f-d328457070a5.json": {
+      "path": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_50pt_15mo/Ione925_Leigh689_Donnelly343_90a4b02f-6f68-91a8-b21f-d328457070a5.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-05T08:02:40.196Z",
+      "error": null
+    },
+    "Jake169_Waelchi213_4bd28623-9448-3c78-c1d5-9071f45a1139.json": {
+      "path": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_50pt_15mo/Jake169_Waelchi213_4bd28623-9448-3c78-c1d5-9071f45a1139.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-05T08:02:41.387Z",
+      "error": null
+    },
+    "Josefina523_Carrera906_1e82d77d-8461-bfec-0bc8-b4d1ba8783e1.json": {
+      "path": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_50pt_15mo/Josefina523_Carrera906_1e82d77d-8461-bfec-0bc8-b4d1ba8783e1.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-05T08:02:42.389Z",
+      "error": null
+    },
+    "Kia427_Turner526_6e2cac35-5846-bb27-f4ee-e2da0448547a.json": {
+      "path": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_50pt_15mo/Kia427_Turner526_6e2cac35-5846-bb27-f4ee-e2da0448547a.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-05T08:02:43.752Z",
+      "error": null
+    },
+    "Kimberlee228_Leannon79_6d013cf5-c5b4-dda0-d37d-ddd6534a6334.json": {
+      "path": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_50pt_15mo/Kimberlee228_Leannon79_6d013cf5-c5b4-dda0-d37d-ddd6534a6334.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-05T08:02:44.976Z",
+      "error": null
+    },
+    "Lacey714_Cherlyn665_Braun514_7754367d-b479-b2c8-76fe-3196c52fe156.json": {
+      "path": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_50pt_15mo/Lacey714_Cherlyn665_Braun514_7754367d-b479-b2c8-76fe-3196c52fe156.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-05T08:02:46.809Z",
+      "error": null
+    },
+    "Leanne251_Eloisa55_Padberg411_2ea6e923-98a7-f748-185d-b0b969f7d447.json": {
+      "path": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_50pt_15mo/Leanne251_Eloisa55_Padberg411_2ea6e923-98a7-f748-185d-b0b969f7d447.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-05T08:02:49.387Z",
+      "error": null
+    },
+    "Lee268_Anisa442_Glover433_2aa14c63-d5c5-78b2-133e-e3eb802906b7.json": {
+      "path": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_50pt_15mo/Lee268_Anisa442_Glover433_2aa14c63-d5c5-78b2-133e-e3eb802906b7.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-05T08:02:50.330Z",
+      "error": null
+    },
+    "Marion502_Wiza601_38c6fe6d-dac0-220f-8acf-2c22fc951b74.json": {
+      "path": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_50pt_15mo/Marion502_Wiza601_38c6fe6d-dac0-220f-8acf-2c22fc951b74.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-05T08:02:54.906Z",
+      "error": null
+    },
+    "Marya246_Brigette230_Klein929_00bb2f6c-9920-155b-0f9b-78ea773dd189.json": {
+      "path": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_50pt_15mo/Marya246_Brigette230_Klein929_00bb2f6c-9920-155b-0f9b-78ea773dd189.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-05T08:02:56.846Z",
+      "error": null
+    },
+    "Melvin857_Waters156_91db28f3-ba85-2f92-0cbd-0694f746ae09.json": {
+      "path": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_50pt_15mo/Melvin857_Waters156_91db28f3-ba85-2f92-0cbd-0694f746ae09.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-05T08:02:58.645Z",
+      "error": null
+    },
+    "Milton509_Hane680_2f1348ff-791a-0dad-3e08-06449fd7e1b1.json": {
+      "path": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_50pt_15mo/Milton509_Hane680_2f1348ff-791a-0dad-3e08-06449fd7e1b1.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-05T08:02:59.931Z",
+      "error": null
+    },
+    "Ming325_Cherie102_Murphy561_5616d44d-bbfb-b531-7677-1e4a48343334.json": {
+      "path": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_50pt_15mo/Ming325_Cherie102_Murphy561_5616d44d-bbfb-b531-7677-1e4a48343334.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-05T08:03:01.760Z",
+      "error": null
+    },
+    "Mitchell808_Dicki44_981b78f1-06e1-cf60-4a23-bb6857ff689a.json": {
+      "path": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_50pt_15mo/Mitchell808_Dicki44_981b78f1-06e1-cf60-4a23-bb6857ff689a.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-05T08:03:02.994Z",
+      "error": null
+    },
+    "Nelson403_Reichert620_7d23a7b9-f413-3920-3460-bcf3cb815b23.json": {
+      "path": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_50pt_15mo/Nelson403_Reichert620_7d23a7b9-f413-3920-3460-bcf3cb815b23.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-05T08:03:07.606Z",
+      "error": null
+    },
+    "Portia383_Stroman228_0c69f8ec-783c-2752-33fa-2c01626622a2.json": {
+      "path": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_50pt_15mo/Portia383_Stroman228_0c69f8ec-783c-2752-33fa-2c01626622a2.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-05T08:03:21.446Z",
+      "error": null
+    },
+    "Rae910_Corwin846_1b8ec978-1b61-7520-4a78-07390d827282.json": {
+      "path": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_50pt_15mo/Rae910_Corwin846_1b8ec978-1b61-7520-4a78-07390d827282.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-05T08:03:22.510Z",
+      "error": null
+    },
+    "Rosario163_Ritchie586_6915f908-cb8a-26dc-0a4d-5f50ff30fdd5.json": {
+      "path": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_50pt_15mo/Rosario163_Ritchie586_6915f908-cb8a-26dc-0a4d-5f50ff30fdd5.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-05T08:03:23.384Z",
+      "error": null
+    },
+    "Sharleen176_Eden920_D'Amore443_0db5c437-d79f-7144-7934-c3b482674ccc.json": {
+      "path": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_50pt_15mo/Sharleen176_Eden920_D'Amore443_0db5c437-d79f-7144-7934-c3b482674ccc.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-05T08:03:24.158Z",
+      "error": null
+    },
+    "Tandy422_Baumbach677_6b187427-c2ae-0af7-8f91-bed8d08ac49f.json": {
+      "path": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_50pt_15mo/Tandy422_Baumbach677_6b187427-c2ae-0af7-8f91-bed8d08ac49f.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-05T08:03:26.282Z",
+      "error": null
+    },
+    "Thea616_Delpha270_Kuvalis369_1aec2958-20a4-d168-9ecb-ec118e490381.json": {
+      "path": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_50pt_15mo/Thea616_Delpha270_Kuvalis369_1aec2958-20a4-d168-9ecb-ec118e490381.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-05T08:03:28.112Z",
+      "error": null
+    },
+    "Timika369_Ward668_00c6e3b4-8b25-a151-09ef-14fe8fa1346a.json": {
+      "path": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_50pt_15mo/Timika369_Ward668_00c6e3b4-8b25-a151-09ef-14fe8fa1346a.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-05T08:03:38.247Z",
+      "error": null
+    },
+    "Tony646_Ria154_Legros616_a9177e23-ee76-cf06-cdb8-46120c989073.json": {
+      "path": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_50pt_15mo/Tony646_Ria154_Legros616_a9177e23-ee76-cf06-cdb8-46120c989073.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-05T08:03:39.569Z",
+      "error": null
+    },
+    "Verda448_Flora200_Runolfsdottir785_b4b6e948-d6f1-8741-3ea8-8b7ac9a4d816.json": {
+      "path": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_50pt_15mo/Verda448_Flora200_Runolfsdottir785_b4b6e948-d6f1-8741-3ea8-8b7ac9a4d816.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-05T08:03:41.567Z",
+      "error": null
+    },
+    "Wilburn655_Raynor401_22fe8979-e9e2-9459-4a24-0a71f2262bd0.json": {
+      "path": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_50pt_15mo/Wilburn655_Raynor401_22fe8979-e9e2-9459-4a24-0a71f2262bd0.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-05T08:03:42.316Z",
+      "error": null
+    },
+    "hospitalInformation1767561427607.json": {
+      "path": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_50pt_15mo/hospitalInformation1767561427607.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-05T08:03:43.313Z",
+      "error": null
+    },
+    "practitionerInformation1767561427607.json": {
+      "path": "/Users/prashantsingh/work/ignite/synthea/synthea/output/medrefills/2026-01-04_50pt_15mo/practitionerInformation1767561427607.json",
+      "status": "uploaded",
+      "timestamp": "2026-01-05T08:03:43.903Z",
+      "error": null
+    }
+  }
+}
