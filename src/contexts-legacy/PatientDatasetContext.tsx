@@ -27,6 +27,10 @@ interface PatientDatasetContextType {
     label: string;
     patients: LegacyPatient[];
   }) => void;
+  selectedDataset: string | null;
+  setSelectedDataset: (datasetId: string | null) => void;
+  lastLoadTimestamp: string | null;
+  setLastLoadTimestamp: (timestamp: string | null) => void;
 }
 
 const PatientDatasetContext = createContext<PatientDatasetContextType | null>(null);
@@ -38,6 +42,9 @@ export const PatientDatasetProvider = ({ children }: { children: React.ReactNode
     patients: [],
     lastUpdated: null,
   });
+
+  const [selectedDataset, setSelectedDataset] = useState<string | null>(null);
+  const [lastLoadTimestamp, setLastLoadTimestamp] = useState<string | null>(null);
 
   const updatePatientDataset = useCallback(
     ({
@@ -63,8 +70,12 @@ export const PatientDatasetProvider = ({ children }: { children: React.ReactNode
     () => ({
       patientDataset,
       updatePatientDataset,
+      selectedDataset,
+      setSelectedDataset,
+      lastLoadTimestamp,
+      setLastLoadTimestamp,
     }),
-    [patientDataset, updatePatientDataset]
+    [patientDataset, updatePatientDataset, selectedDataset, lastLoadTimestamp]
   );
 
   return <PatientDatasetContext.Provider value={value}>{children}</PatientDatasetContext.Provider>;

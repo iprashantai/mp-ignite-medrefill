@@ -82,6 +82,10 @@ export const loadPatientsWithRxClaims = async (
     active?: boolean;
     _count?: number;
     _sort?: string;
+    enrichWithAnalytics?: boolean;
+    calculateFragility?: boolean;
+    limit?: number;
+    [key: string]: any; // Allow any other options
   }
 ): Promise<LegacyPatient[]> => {
   console.log('📋 loadPatientsWithRxClaims: Loading from Medplum...');

@@ -36,6 +36,7 @@ interface AppContextType {
   minimizeProgressToast: () => void;
   userId: string | null;
   isAuthReady: boolean;
+  flags: Record<string, boolean>; // Feature flags stub
 }
 
 export const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -170,6 +171,7 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
     minimizeProgressToast,
     userId,
     isAuthReady,
+    flags: {}, // Feature flags stub (empty for now)
   };
 
   return (

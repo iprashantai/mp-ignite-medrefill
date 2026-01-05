@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars, no-console */
+
 /**
  * ============================================================================
  * 🔒 SINGLE SOURCE OF TRUTH - FRAGILITY TIER CALCULATIONS 🔒
@@ -124,7 +126,7 @@ export const calculateFragilityTier = ({
   gapDaysRemaining,
   remainingRefills,
   isCurrentlyOutOfMeds = false,
-}) => {
+}: any) => {
   // ============================================================================
   // STEP 1: CALCULATE PDC PROJECTIONS
   // ============================================================================
@@ -291,7 +293,11 @@ export const calculateFragilityTier = ({
  * const tightened = applyQ4Tightening(tier, 45, 3);
  * // Promotes F2→F1, F3→F2, etc. due to year-end urgency
  */
-export const applyQ4Tightening = (fragilityTier, daysToYearEnd, gapDaysRemaining) => {
+export const applyQ4Tightening = (
+  fragilityTier: any,
+  daysToYearEnd: any,
+  gapDaysRemaining: any
+) => {
   // Can't promote COMPLIANT, UNSALVAGEABLE, or already F1
   if (
     fragilityTier.tier === 'COMPLIANT' ||
@@ -344,7 +350,7 @@ export const applyQ4Tightening = (fragilityTier, daysToYearEnd, gapDaysRemaining
     },
   };
 
-  const promotion = tierPromotions[fragilityTier.tier];
+  const promotion = (tierPromotions as any)[fragilityTier.tier];
 
   if (!promotion) {
     return fragilityTier; // No promotion rule for this tier
@@ -422,7 +428,7 @@ export const calculatePriorityScore = ({
   isCurrentlyOutOfMeds = false,
   isQ4 = null, // If null, auto-detect based on current date
   isNewPatient = false,
-}) => {
+}: any) => {
   // Base score by tier (Golden Standard)
   const baseScores = {
     COMPLIANT: 0, // No priority - already compliant
@@ -434,7 +440,7 @@ export const calculatePriorityScore = ({
     T5_UNSALVAGEABLE: 0, // No priority - cannot be saved
   };
 
-  const baseScore = baseScores[fragilityTier.tier] || 0;
+  const baseScore = (baseScores as any)[fragilityTier.tier] || 0;
 
   // ============================================================================
   // GOLDEN STANDARD BONUSES (MetricsReference.jsx lines 1886-1889)
@@ -488,7 +494,7 @@ export const calculatePriorityScore = ({
     newPatientBonus,
     urgencyLevel,
     isQ4: isInQ4,
-    breakdown: `${parts.join(' + ')} = ${priorityScore} → ${urgencyLabels[urgencyLevel]}`,
+    breakdown: `${parts.join(' + ')} = ${priorityScore} → ${(urgencyLabels as any)[urgencyLevel]}`,
   };
 };
 
@@ -533,7 +539,7 @@ export const calculateFragilityMetrics = ({
   daysToRunout,
   measureCount = 1,
   isNewPatient = false,
-}) => {
+}: any) => {
   // Calculate base tier
   const baseTier = calculateFragilityTier({
     daysAlreadyCovered,
