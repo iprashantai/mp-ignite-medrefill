@@ -100,7 +100,15 @@ const MEDICATIONS = {
   ],
 };
 
-const CRM_STATUSES = ['not_contacted', 'contacted', 'scheduled', 'completed', 'no_answer'] as const;
+const CRM_STATUSES = [
+  'not_contacted',
+  'outreach_attempted',
+  'patient_responded',
+  'appointment_scheduled',
+  'intervention_complete',
+  'lost_to_followup',
+  'opted_out',
+] as const;
 
 const CAMPAIGNS = [
   'Q4 2024 MAC Outreach',
@@ -109,7 +117,7 @@ const CAMPAIGNS = [
   'General Adherence Program',
 ];
 
-function randomElement<T>(arr: T[]): T {
+function randomElement<T>(arr: readonly T[] | T[]): T {
   return arr[Math.floor(Math.random() * arr.length)];
 }
 
@@ -202,7 +210,7 @@ export function generateSyntheticPatient(index: number): LegacyPatient {
   const daysToRunoutValues = medications.map((m) => m.daysToRunout!).filter((d) => d !== null);
   const daysToRunout = daysToRunoutValues.length > 0 ? Math.min(...daysToRunoutValues) : null;
 
-  let fragilityTier: (typeof FRAGILITY_TIERS)[number] | null = null;
+  let fragilityTier: FragilityTier | null = null;
   if (currentPDC !== null && daysToRunout !== null) {
     if (daysToRunout < 0) {
       fragilityTier = 'T5_UNSALVAGEABLE';
