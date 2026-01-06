@@ -39,7 +39,6 @@ export async function loadAllPatientsFromFirestore(medplum: MedplumClient): Prom
   console.log('📊 Loading patients from Medplum FHIR backend...');
 
   const patients = await loadPatientsWithLegacyShape(medplum, {
-    active: true,
     _count: 1000,
     _sort: '-_lastUpdated',
   });

@@ -24,6 +24,8 @@ import {
 } from './helpers';
 import { PDC_THRESHOLDS } from '@/lib/pdc/constants';
 
+/* eslint-disable no-console */
+
 // =============================================================================
 // Types
 // =============================================================================
@@ -282,29 +284,89 @@ export async function getCurrentPDCObservation(
   patientId: string,
   measure: MAMeasure
 ): Promise<Observation | null> {
-  try {
-    // Use custom search parameter if available
-    const observation = await medplum.searchOne('Observation', {
-      subject: `Patient/${patientId}`,
-      code: `${CODE_SYSTEM_URLS.ADHERENCE_METRICS}|${OBSERVATION_CODES[measure].code}`,
-      'is-current-pdc': 'true',
-    });
+  console.log(`🔍 Searching for ${measure} PDC observation for patient ${patientId}`);
 
-    return (observation as Observation) ?? null;
-  } catch {
-    // Fallback: search all observations and filter client-side
-    const allObservations = await medplum.searchResources('Observation', {
+  // Strategy 1: Try with full code system URL
+  let allObservations = await medplum.searchResources('Observation', {
+    subject: `Patient/${patientId}`,
+    code: `${CODE_SYSTEM_URLS.ADHERENCE_METRICS}|${OBSERVATION_CODES[measure].code}`,
+    _sort: '-date',
+    _count: '100',
+  });
+
+  console.log(
+    `📋 Strategy 1 (full code system): Found ${allObservations.length} ${measure} observations`
+  );
+
+  // Strategy 2: If nothing found, try with just the code (no system)
+  if (allObservations.length === 0) {
+    console.log(`⚠️  Trying without code system...`);
+    allObservations = await medplum.searchResources('Observation', {
       subject: `Patient/${patientId}`,
-      code: `${CODE_SYSTEM_URLS.ADHERENCE_METRICS}|${OBSERVATION_CODES[measure].code}`,
+      code: OBSERVATION_CODES[measure].code,
       _sort: '-date',
+      _count: '100',
     });
-
-    const current = (allObservations as Observation[]).find((obs) => {
-      return getBooleanExtension(obs.extension, OBSERVATION_EXTENSION_URLS.IS_CURRENT_PDC) === true;
-    });
-
-    return current ?? null;
+    console.log(
+      `📋 Strategy 2 (code only): Found ${allObservations.length} ${measure} observations`
+    );
   }
+
+  // Strategy 3: If still nothing, get ALL observations for this patient and filter client-side
+  if (allObservations.length === 0) {
+    console.log(`⚠️  Getting ALL observations for patient to search client-side...`);
+    const allPatientObs = await medplum.searchResources('Observation', {
+      subject: `Patient/${patientId}`,
+      _sort: '-date',
+      _count: '1000',
+    });
+
+    console.log(`📋 Found ${allPatientObs.length} total observations for patient`);
+
+    // Filter for this measure by checking code.coding array
+    const filtered = allPatientObs.filter((obs) => {
+      const codings = obs.code?.coding || [];
+      return codings.some(
+        (coding) =>
+          coding.code === OBSERVATION_CODES[measure].code ||
+          coding.display?.includes(measure) ||
+          coding.display?.includes(OBSERVATION_CODES[measure].display)
+      );
+    });
+    // Cast to ResourceArray type
+    allObservations = filtered as typeof allObservations;
+
+    console.log(
+      `📋 Strategy 3 (client-side filter): Found ${allObservations.length} ${measure} observations`
+    );
+  }
+
+  if (allObservations.length === 0) {
+    console.log(
+      `❌ No ${measure} observations found for patient ${patientId} after all strategies`
+    );
+    return null;
+  }
+
+  // Try to find one marked as current
+  let current = (allObservations as Observation[]).find((obs) => {
+    return getBooleanExtension(obs.extension, OBSERVATION_EXTENSION_URLS.IS_CURRENT_PDC) === true;
+  });
+
+  // If no observation marked as current, use the most recent one
+  if (!current) {
+    console.log(`⚠️  No observation marked as current, using most recent ${measure} observation`);
+    current = allObservations[0] as Observation;
+  }
+
+  console.log(`✅ Selected ${measure} observation:`, {
+    id: current.id,
+    date: current.effectiveDateTime,
+    pdc: current.valueQuantity?.value,
+    code: current.code?.coding?.[0],
+  });
+
+  return current;
 }
 
 /**

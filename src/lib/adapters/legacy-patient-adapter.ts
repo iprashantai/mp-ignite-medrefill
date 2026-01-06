@@ -13,7 +13,7 @@
  * @module legacy-patient-adapter
  */
 
-/* eslint-disable @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any, no-console, complexity */
 
 import type { MedplumClient } from '@medplum/core';
 import type { Patient, Observation, MedicationDispense } from '@medplum/fhirtypes';
@@ -89,20 +89,78 @@ function getPDCStatus(pdc: number | null): PDCStatus | null {
  * Transform Observation to LegacyMedication
  */
 function transformObservationToMedication(obs: Observation, patientId: string): LegacyMedication {
-  const measure = getCodeExtension(obs.extension, EXTENSION_URLS.MA_MEASURE) as MAMeasure | null;
+  console.log(`🔄 Transforming observation ${obs.id}:`, {
+    extensions: obs.extension?.length || 0,
+    components: obs.component?.length || 0,
+    code: obs.code?.coding?.[0],
+    value: obs.valueQuantity?.value,
+  });
+
+  // Extract measure from extension OR infer from observation code
+  let measure = getCodeExtension(obs.extension, EXTENSION_URLS.MA_MEASURE) as MAMeasure | null;
+  if (!measure) {
+    // Try to infer from code
+    const codeDisplay = obs.code?.coding?.[0]?.display || obs.code?.text || '';
+    if (codeDisplay.includes('MAC') || codeDisplay.includes('Cholesterol')) {
+      measure = 'MAC';
+    } else if (codeDisplay.includes('MAD') || codeDisplay.includes('Diabetes')) {
+      measure = 'MAD';
+    } else if (codeDisplay.includes('MAH') || codeDisplay.includes('Hypertension')) {
+      measure = 'MAH';
+    }
+    console.log(`  - Inferred measure from code display "${codeDisplay}": ${measure}`);
+  }
+
+  // Extract medication name from extension OR from observation text
   const medicationDisplay =
-    getStringExtension(obs.extension, EXTENSION_URLS.MEDICATION_DISPLAY) || 'Unknown Medication';
+    getStringExtension(obs.extension, EXTENSION_URLS.MEDICATION_DISPLAY) ||
+    obs.code?.text ||
+    obs.code?.coding?.[0]?.display ||
+    'Unknown Medication';
+
   const pdc = obs.valueQuantity?.value || null;
   const status = getPDCStatus(pdc);
 
-  // Extract PDC-related extensions
-  const gapDaysRemaining = getIntegerExtension(obs.extension, EXTENSION_URLS.GAP_DAYS_REMAINING);
-  const daysToRunout = getIntegerExtension(obs.extension, EXTENSION_URLS.DAYS_UNTIL_RUNOUT);
-  const fragilityTier = getCodeExtension(
+  console.log(`  - Extracted: measure=${measure}, medication=${medicationDisplay}, pdc=${pdc}`);
+
+  // Extract PDC-related extensions OR from components
+  let gapDaysRemaining = getIntegerExtension(obs.extension, EXTENSION_URLS.GAP_DAYS_REMAINING);
+  let daysToRunout = getIntegerExtension(obs.extension, EXTENSION_URLS.DAYS_UNTIL_RUNOUT);
+  let fragilityTier = getCodeExtension(
     obs.extension,
     EXTENSION_URLS.FRAGILITY_TIER
   ) as FragilityTier | null;
-  const priorityScore = getIntegerExtension(obs.extension, EXTENSION_URLS.PRIORITY_SCORE) || 0;
+  let priorityScore = getIntegerExtension(obs.extension, EXTENSION_URLS.PRIORITY_SCORE) || 0;
+
+  // Fallback: try to extract from observation components
+  if (obs.component) {
+    for (const comp of obs.component) {
+      const compCode = comp.code?.coding?.[0]?.code || comp.code?.text || '';
+      const compValue = comp.valueQuantity?.value || comp.valueInteger;
+
+      if (compCode.includes('gap') || compCode.includes('Gap')) {
+        if (gapDaysRemaining === null || gapDaysRemaining === undefined) {
+          gapDaysRemaining = compValue !== undefined ? Number(compValue) : undefined;
+        }
+      } else if (compCode.includes('runout') || compCode.includes('Runout')) {
+        if (daysToRunout === null || daysToRunout === undefined) {
+          daysToRunout = compValue !== undefined ? Number(compValue) : undefined;
+        }
+      } else if (compCode.includes('priority') || compCode.includes('Priority')) {
+        if (!priorityScore && compValue !== undefined) {
+          priorityScore = Number(compValue);
+        }
+      } else if (compCode.includes('fragility') || compCode.includes('Fragility')) {
+        if (!fragilityTier) {
+          fragilityTier = comp.valueCodeableConcept?.coding?.[0]?.code as FragilityTier | null;
+        }
+      }
+    }
+  }
+
+  console.log(
+    `  - Metrics: gap=${gapDaysRemaining}, runout=${daysToRunout}, tier=${fragilityTier}, priority=${priorityScore}`
+  );
 
   // Calculate next refill due (approximation)
   let nextRefillDue: string | null = null;
@@ -262,11 +320,13 @@ export async function constructLegacyPatientObject(
 
   // 4. Fetch all current PDC observations for detailed medication data
   const observationsMap = await getAllCurrentPDCObservations(medplum, patientId);
+  console.log(`📊 Patient ${patientId}: Found ${observationsMap.size} PDC observations`);
 
   // 5. Transform observations to medications
   const medications: LegacyMedication[] = Array.from(observationsMap.values()).map((obs) =>
     transformObservationToMedication(obs, patientId)
   );
+  console.log(`💊 Patient ${patientId}: Transformed ${medications.length} medications`);
 
   // 6. Calculate aggregates
   const aggregateMetrics = calculateAggregateMetrics(medications);
@@ -350,7 +410,8 @@ export async function loadPatientsWithLegacyShape(
 ): Promise<LegacyPatient[]> {
   // Fetch patients from Medplum
   const searchParams: any = {
-    active: options?.active !== false ? 'true' : undefined,
+    // Don't filter by active status - get all patients
+    // active: options?.active !== false ? 'true' : undefined,
     _count: options?._count || 100,
     _sort: options?._sort || '-_lastUpdated',
   };
