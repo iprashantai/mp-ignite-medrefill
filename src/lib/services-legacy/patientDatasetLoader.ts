@@ -1,5 +1,7 @@
 /* eslint-disable */
 
+import { generateSyntheticPatients } from '@/utils/helpers/generateSyntheticPatients';
+
 export const PATIENT_DATASET_SOURCES = {
   EMR_DEMO: 'emr_demo', // Default dataset
   BATCH_MANAGER: 'batch_manager',
@@ -28,13 +30,17 @@ export const DEFAULT_DATASET_ID = PATIENT_DATASET_SOURCES.EMR_DEMO;
 /**
  * Load all patients from the allPatients Firestore collection
  * This is the default EMR dataset loader
+ *
+ * NOTE: Firebase not configured, returning synthetic test data instead
  */
 export async function loadAllPatientsFromFirestore(): Promise<any[]> {
-  // Stub: Firebase Firestore not available in new app
-  console.warn(
-    'loadAllPatientsFromFirestore: Firebase not configured in new app, returning empty array'
-  );
-  return [];
+  console.log('📊 Loading synthetic patient dataset (Firebase not configured)');
+
+  // Generate 50 synthetic patients for UI testing
+  const syntheticPatients = generateSyntheticPatients(50);
+
+  console.log(`✅ Generated ${syntheticPatients.length} synthetic patients`);
+  return syntheticPatients;
 }
 
 export async function loadPatientDataset(
