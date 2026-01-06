@@ -23,9 +23,25 @@ export const clearAllCache = async (): Promise<void> => {
   console.warn('[LEGACY] clearAllCache stub');
 };
 
+export const getMany = (patients: any[]): { cached: any[]; missing: any[] } => {
+  console.warn('[LEGACY] getMany stub');
+  return { cached: [], missing: patients };
+};
+
+export const setMany = async (patients: any[], enrichedData?: any): Promise<void> => {
+  console.warn('[LEGACY] setMany stub');
+};
+
+export const logStats = (): void => {
+  console.warn('[LEGACY] logStats stub');
+};
+
 export default {
   getCachedPatient,
   setCachedPatient,
   invalidateCachedPatient,
   clearAllCache,
+  getMany,
+  setMany,
+  logStats,
 };

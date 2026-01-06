@@ -250,7 +250,7 @@ export const verifyMedAdherenceDataInFirebase = async (): Promise<any> => {
     const metadataDoc = await getDoc(metadataRef);
 
     if (metadataDoc.exists()) {
-      const data = metadataDoc.data();
+      const data = metadataDoc.data() as any;
       logger.info(`Med Adherence data verified in Firebase: ${data.totalDrugs} drugs`);
       return true;
     }
@@ -322,6 +322,13 @@ export const calculateGapDays = async (
 
     // 5. Determine treatment period
     const firstFillDate = paidClaims[0].fillDate;
+    if (!firstFillDate) {
+      return {
+        hasData: false,
+        error: 'Invalid first fill date',
+      };
+    }
+
     const today = new Date();
     const endOfYear = new Date(year, 11, 31); // Dec 31
     const treatmentPeriodEnd = today < endOfYear ? today : endOfYear;

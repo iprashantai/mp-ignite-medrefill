@@ -1259,7 +1259,7 @@ export const enrichPatientWithAnalytics = (patient: any): any => {
       const measureDenominatorStatus = calculateDenominatorStatus(measurePatient, measure);
 
       // Store per-measure analytics
-      analyticsPerMeasure[measure] = {
+      analyticsPerMeasure[measure as string] = {
         // Core adherence metrics
         currentPDC: adherenceData.currentPDC,
         treatmentDays: adherenceData.treatmentDays,
@@ -1279,11 +1279,11 @@ export const enrichPatientWithAnalytics = (patient: any): any => {
         inDenominator: measureDenominatorStatus.inDenominator,
       };
 
-      fragilityTiersPerMeasure[measure] = fragilityTierResult?.tier || null;
+      fragilityTiersPerMeasure[measure as string] = fragilityTierResult?.tier || null;
 
       // Validate adherence metrics for THIS MEASURE (DEV mode only)
       if ((import.meta as any)?.env?.DEV && ENABLE_VERBOSE_LOGGING) {
-        validationResults[measure] = validateAdherenceMetrics(
+        validationResults[measure as string] = validateAdherenceMetrics(
           {
             currentPDC: adherenceData.currentPDC,
             treatmentDays: adherenceData.treatmentDays,
@@ -1335,7 +1335,7 @@ export const enrichPatientWithAnalytics = (patient: any): any => {
     const adherenceData = getAdherenceData(patient);
 
     // Calculate all analytics (aggregate - DEPRECATED, use analyticsPerMeasure instead)
-    const analytics = {
+    const analytics: any = {
       // NEW: Per-measure analytics (CORRECT approach)
       perMeasure: analyticsPerMeasure,
 

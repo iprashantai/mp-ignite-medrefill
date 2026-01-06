@@ -11,6 +11,12 @@ export const buildCoverageCalendar = (patient: any, rxClaims: any[]): any => {
   return {};
 };
 
+export const calculateCoveredDays = (claims: any[], startDate: any, endDate: any): number => {
+  console.warn('[LEGACY] calculateCoveredDays stub');
+  return 0;
+};
+
 export default {
   buildCoverageCalendar,
+  calculateCoveredDays,
 };

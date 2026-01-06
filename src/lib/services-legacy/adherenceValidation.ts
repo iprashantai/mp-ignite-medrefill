@@ -21,8 +21,20 @@ export const findAdherenceGaps = (rxClaims: any[]): any[] => {
   return [];
 };
 
+export const validateAdherenceMetrics = (metrics: any, options?: any): any => {
+  console.warn('[LEGACY] validateAdherenceMetrics stub');
+  return { isValid: true };
+};
+
+export const validateDenominatorStatus = (patient: any): any => {
+  console.warn('[LEGACY] validateDenominatorStatus stub');
+  return { isValid: true, inDenominator: true };
+};
+
 export default {
   validateMedicationAdherence,
   detectInvalidOverlaps,
   findAdherenceGaps,
+  validateAdherenceMetrics,
+  validateDenominatorStatus,
 };
