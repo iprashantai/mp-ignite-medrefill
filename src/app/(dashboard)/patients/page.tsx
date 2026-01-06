@@ -216,8 +216,8 @@ const MedAdherenceCRM = () => {
   const [showCampaignModal, setShowCampaignModal] = useState(false);
 
   // Data Loading State
-  // NOTE: Defaulting to 'synthea' because Medplum is empty. Switch back to 'firestore' when Medplum has data.
-  const [dataSource, setDataSource] = useState<'firestore' | 'synthea'>('synthea');
+  // NOTE: Medplum FHIR backend contains patient data - using real FHIR queries
+  const [dataSource, setDataSource] = useState<'firestore' | 'synthea'>('firestore');
   const [cacheStatus, setCacheStatus] = useState<any>(null);
 
   // ============================================================================

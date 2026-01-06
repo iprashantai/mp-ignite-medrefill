@@ -1,5 +1,7 @@
 /* eslint-disable */
 
+import type { MedplumClient } from '@medplum/core';
+import { loadPatientsWithLegacyShape } from '@/lib/adapters/legacy-patient-adapter';
 import { generateSyntheticPatients } from '@/utils/helpers/generateSyntheticPatients';
 
 export const PATIENT_DATASET_SOURCES = {
@@ -28,19 +30,22 @@ export const PATIENT_DATASET_STORAGE_KEY = 'allPatientsCRM.datasetId';
 export const DEFAULT_DATASET_ID = PATIENT_DATASET_SOURCES.EMR_DEMO;
 
 /**
- * Load all patients from the allPatients Firestore collection
+ * Load all patients from Medplum FHIR backend
  * This is the default EMR dataset loader
  *
- * NOTE: Firebase not configured, returning synthetic test data instead
+ * Fetches Patient resources and transforms them to legacy shape using the adapter layer
  */
-export async function loadAllPatientsFromFirestore(): Promise<any[]> {
-  console.log('📊 Loading synthetic patient dataset (Firebase not configured)');
+export async function loadAllPatientsFromFirestore(medplum: MedplumClient): Promise<any[]> {
+  console.log('📊 Loading patients from Medplum FHIR backend...');
 
-  // Generate 50 synthetic patients for UI testing
-  const syntheticPatients = generateSyntheticPatients(50);
+  const patients = await loadPatientsWithLegacyShape(medplum, {
+    active: true,
+    _count: 1000,
+    _sort: '-_lastUpdated',
+  });
 
-  console.log(`✅ Generated ${syntheticPatients.length} synthetic patients`);
-  return syntheticPatients;
+  console.log(`✅ Loaded ${patients.length} patients from Medplum`);
+  return patients;
 }
 
 export async function loadPatientDataset(
@@ -53,12 +58,16 @@ export async function loadPatientDataset(
 
   switch (config.type) {
     case 'emr': {
-      // If no helper provided, use default Firestore loader
+      // If no helper provided, use default Medplum loader
       if (typeof helpers.loadEmrPatients !== 'function') {
         console.log(
-          'No EMR loader provided, using default Firestore loader for allPatients collection'
+          'No EMR loader provided, using default Medplum loader for FHIR Patient resources'
         );
-        return loadAllPatientsFromFirestore();
+        // Medplum client must be passed in options
+        if (!options.medplum) {
+          throw new Error('Medplum client required for EMR dataset loader');
+        }
+        return loadAllPatientsFromFirestore(options.medplum);
       }
       return helpers.loadEmrPatients(options);
     }
