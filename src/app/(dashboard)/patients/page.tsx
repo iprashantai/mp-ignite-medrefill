@@ -216,7 +216,8 @@ const MedAdherenceCRM = () => {
   const [showCampaignModal, setShowCampaignModal] = useState(false);
 
   // Data Loading State
-  const [dataSource, setDataSource] = useState<'firestore' | 'synthea'>('firestore');
+  // NOTE: Defaulting to 'synthea' because Medplum is empty. Switch back to 'firestore' when Medplum has data.
+  const [dataSource, setDataSource] = useState<'firestore' | 'synthea'>('synthea');
   const [cacheStatus, setCacheStatus] = useState<any>(null);
 
   // ============================================================================
@@ -274,6 +275,7 @@ const MedAdherenceCRM = () => {
    * Load patients from selected data source
    */
   const loadPatients = useCallback(async () => {
+    console.log('🚀 loadPatients called, dataSource:', dataSource);
     try {
       setLoading(true);
       setLoadingMessage('Loading patients...');
@@ -283,12 +285,14 @@ const MedAdherenceCRM = () => {
 
       if (dataSource === 'firestore') {
         // Load from Firestore with RxClaims
+        console.log('📥 Loading from Medplum (firestore mode)...');
         setLoadingMessage('Loading patient data from Firestore...');
         patients = await loadPatientsWithRxClaims(medplum, {
           enrichWithAnalytics: true,
           calculateFragility: true,
           limit: 1000,
         });
+        console.log(`✅ Loaded ${patients.length} patients from Medplum`);
         setLastLoadTimestamp(Date.now().toString());
       } else {
         // Load from Synthea dataset
@@ -359,12 +363,15 @@ const MedAdherenceCRM = () => {
       const status = getCacheStatus();
       setCacheStatus(status);
 
+      console.log(`✅ loadPatients complete: ${enrichedPatients.length} patients enriched`);
       showTimedToast('success', `Loaded ${enrichedPatients.length} patients`);
     } catch (err: any) {
-      console.error('Error loading patients:', err);
+      console.error('❌ Error loading patients:', err);
+      console.error('Error stack:', err.stack);
       setError(err.message || 'Failed to load patients');
       showTimedToast('error', 'Failed to load patients');
     } finally {
+      console.log('🏁 loadPatients finally block - setting loading to false');
       setLoading(false);
     }
   }, [dataSource, selectedDataset, medplum, setLastLoadTimestamp, showTimedToast]);
@@ -380,8 +387,10 @@ const MedAdherenceCRM = () => {
 
   /**
    * Apply all active filters to the patient list
+   * Using useEffect with explicit dependencies instead of useCallback + useEffect
+   * to avoid infinite loop
    */
-  const applyFilters = useCallback(() => {
+  useEffect(() => {
     let filtered = [...allPatients];
 
     // 1. Apply search query (simple text search for now)
@@ -426,12 +435,7 @@ const MedAdherenceCRM = () => {
     });
 
     setDisplayPatients(filtered);
-  }, [allPatients, searchQuery, activeQuickFilter, fieldFilters, quickFiltersConfig]);
-
-  // Re-apply filters when dependencies change
-  useEffect(() => {
-    applyFilters();
-  }, [applyFilters]);
+  }, [allPatients, searchQuery, activeQuickFilter, fieldFilters]);
 
   // ============================================================================
   // SORTING LOGIC
@@ -835,7 +839,10 @@ const MedAdherenceCRM = () => {
   // RENDER
   // ============================================================================
 
+  console.log('📊 RENDER:', { loading, allPatientsCount: allPatients.length, error });
+
   if (loading && allPatients.length === 0) {
+    console.log('🔄 Rendering loading spinner');
     return (
       <div className="flex min-h-screen items-center justify-center">
         <div className="text-center">
@@ -847,6 +854,7 @@ const MedAdherenceCRM = () => {
   }
 
   if (error) {
+    console.log('❌ Rendering error state:', error);
     return (
       <div className="flex min-h-screen items-center justify-center">
         <div className="text-center">
@@ -863,6 +871,7 @@ const MedAdherenceCRM = () => {
     );
   }
 
+  console.log('✅ Rendering main UI with', sortedPatients.length, 'patients');
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
