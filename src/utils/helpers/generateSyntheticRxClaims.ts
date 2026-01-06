@@ -18,7 +18,7 @@
  * Adherence pattern definitions
  * Controls how claims are generated for realistic scenarios
  */
-const ADHERENCE_PATTERNS: any = {
+export const ADHERENCE_PATTERNS: any = {
   excellent: {
     name: 'Excellent Adherence',
     pdcTarget: 0.95, // 95% PDC

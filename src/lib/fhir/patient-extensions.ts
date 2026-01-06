@@ -266,10 +266,10 @@ export async function updatePatientExtensions(
   patientId: string
 ): Promise<PatientExtensionUpdateResult> {
   // Fetch all current PDC observations for this patient
-  const observations = await getAllCurrentPDCObservations(medplum, patientId);
+  const observationsMap = await getAllCurrentPDCObservations(medplum, patientId);
 
   // Calculate summary
-  const summary = calculatePatientSummary(observations);
+  const summary = calculatePatientSummary(Array.from(observationsMap.values()));
 
   // Build new extensions
   const newExtensions = buildPatientExtensions(summary);
@@ -295,7 +295,7 @@ export async function updatePatientExtensions(
   return {
     patient: updatedPatient as Patient,
     summary,
-    observationsProcessed: observations.length,
+    observationsProcessed: observationsMap.size,
   };
 }
 

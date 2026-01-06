@@ -28,7 +28,7 @@ import type {
 } from '@/types/legacy-types';
 import { extractPatientPDCSummary } from '@/lib/fhir/patient-extensions';
 import { getAllCurrentPDCObservations } from '@/lib/fhir/observation-service';
-import { searchDispenses } from '@/lib/fhir/dispense-service';
+import { getPatientDispenses } from '@/lib/fhir/dispense-service';
 import {
   getCodeExtension,
   getIntegerExtension,
@@ -97,8 +97,6 @@ function transformObservationToMedication(obs: Observation, patientId: string): 
 
   // Extract PDC-related extensions
   const gapDaysRemaining = getIntegerExtension(obs.extension, EXTENSION_URLS.GAP_DAYS_REMAINING);
-  const gapDaysUsed = getIntegerExtension(obs.extension, EXTENSION_URLS.GAP_DAYS_USED);
-  const gapDaysAllowed = getIntegerExtension(obs.extension, EXTENSION_URLS.GAP_DAYS_ALLOWED);
   const daysToRunout = getIntegerExtension(obs.extension, EXTENSION_URLS.DAYS_UNTIL_RUNOUT);
   const fragilityTier = getCodeExtension(
     obs.extension,
@@ -132,8 +130,8 @@ function transformObservationToMedication(obs: Observation, patientId: string): 
     currentPdc: pdc,
     currentPdcExact: pdc,
     gapDaysRemaining: gapDaysRemaining ?? null,
-    gapDaysUsed: gapDaysUsed ?? null,
-    gapDaysAllowed: gapDaysAllowed ?? null,
+    gapDaysUsed: null, // Not stored in FHIR extensions
+    gapDaysAllowed: null, // Not stored in FHIR extensions
     lastFillDate: null, // Would need to query dispenses
     nextRefillDue,
     daysToRunout: daysToRunout ?? null,
@@ -263,10 +261,10 @@ export async function constructLegacyPatientObject(
   const pdcSummary = extractPatientPDCSummary(patient);
 
   // 4. Fetch all current PDC observations for detailed medication data
-  const observations = await getAllCurrentPDCObservations(medplum, patientId);
+  const observationsMap = await getAllCurrentPDCObservations(medplum, patientId);
 
   // 5. Transform observations to medications
-  const medications: LegacyMedication[] = observations.map((obs) =>
+  const medications: LegacyMedication[] = Array.from(observationsMap.values()).map((obs) =>
     transformObservationToMedication(obs, patientId)
   );
 

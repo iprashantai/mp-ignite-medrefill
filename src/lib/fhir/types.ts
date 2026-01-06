@@ -276,7 +276,17 @@ export type PatientExtensions = z.infer<typeof PatientExtensionsSchema>;
 /**
  * FHIR Extension structure (generic)
  */
-export const FHIRExtensionSchema = z.object({
+export const FHIRExtensionSchema: z.ZodType<{
+  url: string;
+  valueCode?: string;
+  valueInteger?: number;
+  valueDecimal?: number;
+  valueBoolean?: boolean;
+  valueString?: string;
+  valueDateTime?: string;
+  valuePeriod?: TreatmentPeriod;
+  extension?: FHIRExtension[];
+}> = z.object({
   url: z.string().url(),
   valueCode: z.string().optional(),
   valueInteger: z.number().int().optional(),

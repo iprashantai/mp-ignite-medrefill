@@ -172,6 +172,7 @@ export interface ExtensionValue {
   valueString?: string;
   valueDateTime?: string;
   valuePeriod?: Period;
+  valueReference?: { reference: string };
 }
 
 /**
