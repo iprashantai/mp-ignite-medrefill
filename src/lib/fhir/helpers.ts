@@ -199,11 +199,28 @@ export function setExtensionValue(
   value: ExtensionValue
 ): Extension[] {
   const existingExtensions = extensions ?? [];
+
+  // Filter out null/undefined/Infinity properties to prevent FHIR validation errors
+  // FHIR constraint ext-1 requires extensions to have EITHER nested extensions OR a value[x], not both
+  // Infinity becomes null in JSON serialization, causing validation errors
+  const cleanValue = Object.fromEntries(
+    Object.entries(value).filter(([_, v]) => {
+      if (v === null || v === undefined) return false;
+      if (typeof v === 'number' && !isFinite(v)) return false; // Exclude Infinity and NaN
+      return true;
+    })
+  );
+
+  if (Object.keys(cleanValue).length === 0) {
+    // Remove extension if it exists but new value is entirely null/invalid
+    return existingExtensions.filter((ext) => ext.url !== url);
+  }
+
   const existingIndex = existingExtensions.findIndex((ext) => ext.url === url);
 
   const newExtension: Extension = {
     url,
-    ...value,
+    ...cleanValue,
   };
 
   if (existingIndex >= 0) {
